@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{83E526C4-2E79-471A-A411-8971A3C47FE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CapaLN</RootNamespace>
+    <AssemblyName>CapaLN</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NumeroaLetras, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\inetpub\wwwroot\COGSIPA\bin\NumeroaLetras.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AtletasLN.cs" />
+    <Compile Include="ComprasLN.cs" />
+    <Compile Include="AccionesLN.cs" />
+    <Compile Include="CmiLN.cs" />
+    <Compile Include="SeguimientoLN.cs" />
+    <Compile Include="ViaticosLN.cs" />
+    <Compile Include="EmpleadosLN.cs" />
+    <Compile Include="PedidosLN.cs" />
+    <Compile Include="PlanAnualLN.cs" />
+    <Compile Include="PlanAccionLN.cs" />
+    <Compile Include="PlanOperativoLN.cs" />
+    <Compile Include="PlanEstrategicoLN.cs" />
+    <Compile Include="ObjOperativosLN.cs" />
+    <Compile Include="MetasEstrategicasLN.cs" />
+    <Compile Include="ObjEstrategicosLN.cs" />
+    <Compile Include="EjesLN.cs" />
+    <Compile Include="LogeoLN.cs" />
+    <Compile Include="NominaLN.cs" />
+    <Compile Include="PacLN.cs" />
+    <Compile Include="PedidoLNBorrar.cs" />
+    <Compile Include="PoaLN.cs" />
+    <Compile Include="PresupuestoLN.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportesLN.cs" />
+    <Compile Include="UsuariosLN.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaAD\CapaAD.csproj">
+      <Project>{cdc88454-6bf6-4734-82f6-e14860c638a1}</Project>
+      <Name>CapaAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaEN\CapaEN.csproj">
+      <Project>{7ab9d40c-0e73-4252-b310-fc27f9837082}</Project>
+      <Name>CapaEN</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,120 @@
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2010\Projects\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll.config
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+E:\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+E:\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+E:\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+E:\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+E:\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+E:\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+E:\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+E:\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+E:\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+E:\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+E:\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+E:\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\Armando Cardona\Desktop\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+G:\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+G:\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+G:\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+G:\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+G:\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+G:\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+G:\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+G:\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+G:\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+G:\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+G:\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+G:\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll.config
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\Administrador\Desktop\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+E:\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\AplicacionCOG.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaEN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaLN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaAD.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\NumeroaLetras.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaLN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\bin\CapaAD.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\AplicacionCOG\obj\Debug\AplicacionCOG.pdb

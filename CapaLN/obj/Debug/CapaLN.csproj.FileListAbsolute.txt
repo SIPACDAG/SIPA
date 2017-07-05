@@ -1,0 +1,123 @@
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\NumeroaLetras.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\NumeroaLetras.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+E:\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+E:\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+E:\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+E:\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+E:\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+E:\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+E:\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+E:\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+E:\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+G:\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+G:\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+G:\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+G:\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+G:\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+G:\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+G:\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+G:\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+G:\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\NumeroaLetras.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\MySql.Data.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\MySql.Data.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaLN\obj\Debug\CapaLN.pdb
+C:\SIPA\SIPADESARROLLO\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\SIPA\SIPADESARROLLO\CapaLN\obj\Debug\CapaLN.dll
+C:\SIPA\SIPADESARROLLO\CapaLN\obj\Debug\CapaLN.pdb
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaLN.dll
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaLN.pdb
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaAD.dll
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaEN.dll
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\MySql.Data.dll
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaAD.pdb
+C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaEN.pdb

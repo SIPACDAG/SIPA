@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_REPORTE" targetNamespace="http://tempuri.org/DS_REPORTE.xsd" xmlns:mstns="http://tempuri.org/DS_REPORTE.xsd" xmlns="http://tempuri.org/DS_REPORTE.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_REPORTE" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_REPORTE" msprop:Generator_UserDSName="DS_REPORTE">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EJES" msprop:Generator_TableClassName="EJESDataTable" msprop:Generator_TableVarName="tableEJES" msprop:Generator_RowChangedName="EJESRowChanged" msprop:Generator_TablePropName="EJES" msprop:Generator_RowDeletingName="EJESRowDeleting" msprop:Generator_RowChangingName="EJESRowChanging" msprop:Generator_RowEvHandlerName="EJESRowChangeEventHandler" msprop:Generator_RowDeletedName="EJESRowDeleted" msprop:Generator_RowClassName="EJESRow" msprop:Generator_UserTableName="EJES" msprop:Generator_RowEvArgName="EJESRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_ee" msprop:Generator_ColumnVarNameInTable="columncod_ee" msprop:Generator_ColumnPropNameInRow="cod_ee" msprop:Generator_ColumnPropNameInTable="cod_eeColumn" msprop:Generator_UserColumnName="cod_ee" type="xs:string" minOccurs="0" />
+              <xs:element name="eje" msprop:Generator_ColumnVarNameInTable="columneje" msprop:Generator_ColumnPropNameInRow="eje" msprop:Generator_ColumnPropNameInTable="ejeColumn" msprop:Generator_UserColumnName="eje" type="xs:string" minOccurs="0" />
+              <xs:element name="objetivo_estrategico" msprop:Generator_ColumnVarNameInTable="columnobjetivo_estrategico" msprop:Generator_ColumnPropNameInRow="objetivo_estrategico" msprop:Generator_ColumnPropNameInTable="objetivo_estrategicoColumn" msprop:Generator_UserColumnName="objetivo_estrategico" type="xs:string" minOccurs="0" />
+              <xs:element name="meta_e" msprop:Generator_ColumnVarNameInTable="columnmeta_e" msprop:Generator_ColumnPropNameInRow="meta_e" msprop:Generator_ColumnPropNameInTable="meta_eColumn" msprop:Generator_UserColumnName="meta_e" type="xs:string" minOccurs="0" />
+              <xs:element name="indicador_e" msprop:Generator_ColumnVarNameInTable="columnindicador_e" msprop:Generator_ColumnPropNameInRow="indicador_e" msprop:Generator_ColumnPropNameInTable="indicador_eColumn" msprop:Generator_UserColumnName="indicador_e" type="xs:string" minOccurs="0" />
+              <xs:element name="objetivo_operativo" msprop:Generator_ColumnVarNameInTable="columnobjetivo_operativo" msprop:Generator_ColumnPropNameInRow="objetivo_operativo" msprop:Generator_ColumnPropNameInTable="objetivo_operativoColumn" msprop:Generator_UserColumnName="objetivo_operativo" type="xs:string" minOccurs="0" />
+              <xs:element name="cod_oe" msprop:Generator_ColumnVarNameInTable="columncod_oe" msprop:Generator_ColumnPropNameInRow="cod_oe" msprop:Generator_ColumnPropNameInTable="cod_oeColumn" msprop:Generator_UserColumnName="cod_oe" type="xs:string" minOccurs="0" />
+              <xs:element name="cod_oo" msprop:Generator_ColumnVarNameInTable="columncod_oo" msprop:Generator_ColumnPropNameInRow="cod_oo" msprop:Generator_ColumnPropNameInTable="cod_ooColumn" msprop:Generator_UserColumnName="cod_oo" type="xs:string" minOccurs="0" />
+              <xs:element name="indicador_o" msprop:Generator_ColumnVarNameInTable="columnindicador_o" msprop:Generator_ColumnPropNameInRow="indicador_o" msprop:Generator_ColumnPropNameInTable="indicador_oColumn" msprop:Generator_UserColumnName="indicador_o" type="xs:string" minOccurs="0" />
+              <xs:element name="meta_o" msprop:Generator_ColumnVarNameInTable="columnmeta_o" msprop:Generator_ColumnPropNameInRow="meta_o" msprop:Generator_ColumnPropNameInTable="meta_oColumn" msprop:Generator_UserColumnName="meta_o" type="xs:string" minOccurs="0" />
+              <xs:element name="responsable" msprop:Generator_ColumnVarNameInTable="columnresponsable" msprop:Generator_ColumnPropNameInRow="responsable" msprop:Generator_ColumnPropNameInTable="responsableColumn" msprop:Generator_UserColumnName="responsable" type="xs:string" minOccurs="0" />
+              <xs:element name="codigo_accion" msprop:Generator_ColumnVarNameInTable="columncodigo_accion" msprop:Generator_ColumnPropNameInRow="codigo_accion" msprop:Generator_ColumnPropNameInTable="codigo_accionColumn" msprop:Generator_UserColumnName="codigo_accion" type="xs:string" minOccurs="0" />
+              <xs:element name="accion" msprop:Generator_ColumnVarNameInTable="columnaccion" msprop:Generator_ColumnPropNameInRow="accion" msprop:Generator_ColumnPropNameInTable="accionColumn" msprop:Generator_UserColumnName="accion" type="xs:string" minOccurs="0" />
+              <xs:element name="meta_general" msprop:Generator_ColumnVarNameInTable="columnmeta_general" msprop:Generator_ColumnPropNameInRow="meta_general" msprop:Generator_ColumnPropNameInTable="meta_generalColumn" msprop:Generator_UserColumnName="meta_general" type="xs:string" minOccurs="0" />
+              <xs:element name="meta_1" msprop:Generator_ColumnVarNameInTable="columnmeta_1" msprop:Generator_ColumnPropNameInRow="meta_1" msprop:Generator_ColumnPropNameInTable="meta_1Column" msprop:Generator_UserColumnName="meta_1" type="xs:string" minOccurs="0" />
+              <xs:element name="meta_2" msprop:Generator_ColumnVarNameInTable="columnmeta_2" msprop:Generator_ColumnPropNameInRow="meta_2" msprop:Generator_ColumnPropNameInTable="meta_2Column" msprop:Generator_UserColumnName="meta_2" type="xs:string" minOccurs="0" />
+              <xs:element name="meta_3" msprop:Generator_ColumnVarNameInTable="columnmeta_3" msprop:Generator_ColumnPropNameInRow="meta_3" msprop:Generator_ColumnPropNameInTable="meta_3Column" msprop:Generator_UserColumnName="meta_3" type="xs:string" minOccurs="0" />
+              <xs:element name="ponderacion" msprop:Generator_ColumnVarNameInTable="columnponderacion" msprop:Generator_ColumnPropNameInRow="ponderacion" msprop:Generator_ColumnPropNameInTable="ponderacionColumn" msprop:Generator_UserColumnName="ponderacion" type="xs:string" minOccurs="0" />
+              <xs:element name="presupuesto" msprop:Generator_ColumnVarNameInTable="columnpresupuesto" msprop:Generator_ColumnPropNameInRow="presupuesto" msprop:Generator_ColumnPropNameInTable="presupuestoColumn" msprop:Generator_UserColumnName="presupuesto" type="xs:string" minOccurs="0" />
+              <xs:element name="responsable_accion" msprop:Generator_ColumnVarNameInTable="columnresponsable_accion" msprop:Generator_ColumnPropNameInRow="responsable_accion" msprop:Generator_ColumnPropNameInTable="responsable_accionColumn" msprop:Generator_UserColumnName="responsable_accion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

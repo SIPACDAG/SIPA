@@ -1,0 +1,12 @@
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\AplicacionSIPA1.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\AplicacionSIPA1.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\CapaEN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\CapaLN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\CapaAD.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\NumeroaLetras.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\CapaEN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\CapaLN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\bin\CapaAD.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\obj\Debug\AplicacionSIPA2.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\obj\Debug\AplicacionSIPA1.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA\obj\Debug\AplicacionSIPA1.pdb

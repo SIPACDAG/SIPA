@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEN", "CapaEN\CapaEN.csproj", "{7AB9D40C-0E73-4252-B310-FC27F9837082}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaAD", "CapaAD\CapaAD.csproj", "{CDC88454-6BF6-4734-82F6-E14860C638A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaLN", "CapaLN\CapaLN.csproj", "{83E526C4-2E79-471A-A411-8971A3C47FE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionSIPA1", "AplicacionSIPA1\AplicacionSIPA1.csproj", "{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AB9D40C-0E73-4252-B310-FC27F9837082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB9D40C-0E73-4252-B310-FC27F9837082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB9D40C-0E73-4252-B310-FC27F9837082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB9D40C-0E73-4252-B310-FC27F9837082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC88454-6BF6-4734-82F6-E14860C638A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC88454-6BF6-4734-82F6-E14860C638A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC88454-6BF6-4734-82F6-E14860C638A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC88454-6BF6-4734-82F6-E14860C638A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E526C4-2E79-471A-A411-8971A3C47FE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E526C4-2E79-471A-A411-8971A3C47FE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E526C4-2E79-471A-A411-8971A3C47FE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E526C4-2E79-471A-A411-8971A3C47FE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://sipacdag.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CapaEN\\CapaEN.csproj
+		SccProjectName1 = CapaEN
+		SccLocalPath1 = CapaEN
+		SccProjectUniqueName2 = CapaAD\\CapaAD.csproj
+		SccProjectName2 = CapaAD
+		SccLocalPath2 = CapaAD
+		SccProjectUniqueName3 = CapaLN\\CapaLN.csproj
+		SccProjectName3 = CapaLN
+		SccLocalPath3 = CapaLN
+		SccProjectUniqueName4 = AplicacionSIPA1\\AplicacionSIPA1.csproj
+		SccProjectName4 = AplicacionSIPA1
+		SccLocalPath4 = AplicacionSIPA1
+	EndGlobalSection
+EndGlobal

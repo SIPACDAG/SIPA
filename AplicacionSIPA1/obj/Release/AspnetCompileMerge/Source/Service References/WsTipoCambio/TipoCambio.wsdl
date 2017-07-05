@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.banguat.gob.gt/variables/ws/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.banguat.gob.gt/variables/ws/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Tipo de cambio en moneda extranjera</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.banguat.gob.gt/variables/ws/">
+      <s:element name="VariablesDisponibles">
+        <s:complexType />
+      </s:element>
+      <s:element name="VariablesDisponiblesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VariablesDisponiblesResult" type="tns:InfoVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Variables" type="tns:ArrayOfVariable" />
+          <s:element minOccurs="0" maxOccurs="1" name="CambioDia" type="tns:ArrayOfVar" />
+          <s:element minOccurs="0" maxOccurs="1" name="CambioDolar" type="tns:ArrayOfVarDolar" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalItems" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Variable" nillable="true" type="tns:Variable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Variable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="moneda" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Var" nillable="true" type="tns:Var" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Var">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="moneda" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="venta" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="compra" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVarDolar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VarDolar" nillable="true" type="tns:VarDolar" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VarDolar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referencia" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Variables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="variable" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VariablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VariablesResult" type="tns:InfoVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioFechaInicial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fechainit" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioFechaInicialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TipoCambioFechaInicialResult" type="tns:DataVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Vars" type="tns:ArrayOfVar" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalItems" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TipoCambioRango">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fechainit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechafin" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioRangoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TipoCambioRangoResult" type="tns:DataVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioFechaInicialMoneda">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fechainit" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="moneda" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioFechaInicialMonedaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TipoCambioFechaInicialMonedaResult" type="tns:DataVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioRangoMoneda">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fechainit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechafin" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="moneda" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioRangoMonedaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TipoCambioRangoMonedaResult" type="tns:DataVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioDia">
+        <s:complexType />
+      </s:element>
+      <s:element name="TipoCambioDiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TipoCambioDiaResult" type="tns:InfoVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TipoCambioDiaString">
+        <s:complexType />
+      </s:element>
+      <s:element name="TipoCambioDiaStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TipoCambioDiaStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VariablesDisponiblesSoapIn">
+    <wsdl:part name="parameters" element="tns:VariablesDisponibles" />
+  </wsdl:message>
+  <wsdl:message name="VariablesDisponiblesSoapOut">
+    <wsdl:part name="parameters" element="tns:VariablesDisponiblesResponse" />
+  </wsdl:message>
+  <wsdl:message name="VariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:Variables" />
+  </wsdl:message>
+  <wsdl:message name="VariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:VariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioFechaInicialSoapIn">
+    <wsdl:part name="parameters" element="tns:TipoCambioFechaInicial" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioFechaInicialSoapOut">
+    <wsdl:part name="parameters" element="tns:TipoCambioFechaInicialResponse" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioRangoSoapIn">
+    <wsdl:part name="parameters" element="tns:TipoCambioRango" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioRangoSoapOut">
+    <wsdl:part name="parameters" element="tns:TipoCambioRangoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioFechaInicialMonedaSoapIn">
+    <wsdl:part name="parameters" element="tns:TipoCambioFechaInicialMoneda" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioFechaInicialMonedaSoapOut">
+    <wsdl:part name="parameters" element="tns:TipoCambioFechaInicialMonedaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioRangoMonedaSoapIn">
+    <wsdl:part name="parameters" element="tns:TipoCambioRangoMoneda" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioRangoMonedaSoapOut">
+    <wsdl:part name="parameters" element="tns:TipoCambioRangoMonedaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioDiaSoapIn">
+    <wsdl:part name="parameters" element="tns:TipoCambioDia" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioDiaSoapOut">
+    <wsdl:part name="parameters" element="tns:TipoCambioDiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioDiaStringSoapIn">
+    <wsdl:part name="parameters" element="tns:TipoCambioDiaString" />
+  </wsdl:message>
+  <wsdl:message name="TipoCambioDiaStringSoapOut">
+    <wsdl:part name="parameters" element="tns:TipoCambioDiaStringResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TipoCambioSoap">
+    <wsdl:operation name="VariablesDisponibles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Despliega las variables (con relación a la moneda) disponibles para consulta.</wsdl:documentation>
+      <wsdl:input message="tns:VariablesDisponiblesSoapIn" />
+      <wsdl:output message="tns:VariablesDisponiblesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Variables">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Despliega el tipo de cambio correspondiente a una variable (moneda) dada. (Formato: moneda=2) </wsdl:documentation>
+      <wsdl:input message="tns:VariablesSoapIn" />
+      <wsdl:output message="tns:VariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioFechaInicial">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Despliega la información del tipo de cambio, en dólares, desde una fecha dada hasta el día corriente. (Formato: fecha_ini=dd/mm/aaaa).</wsdl:documentation>
+      <wsdl:input message="tns:TipoCambioFechaInicialSoapIn" />
+      <wsdl:output message="tns:TipoCambioFechaInicialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioRango">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Despliega la información para dólares en el período de tiempo dado. (Formato: fecha_ini=dd/mm/aaaa fecha_fin=dd/mm/aaaa)</wsdl:documentation>
+      <wsdl:input message="tns:TipoCambioRangoSoapIn" />
+      <wsdl:output message="tns:TipoCambioRangoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioFechaInicialMoneda">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Despliega la información para la variable indicada a partir de una fecha y moneda indicada. (Formato: fecha_ini=dd/mm/aaaa moneda=02).</wsdl:documentation>
+      <wsdl:input message="tns:TipoCambioFechaInicialMonedaSoapIn" />
+      <wsdl:output message="tns:TipoCambioFechaInicialMonedaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioRangoMoneda">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Despliega la información para la variable indicada en el período de tiempo y la moneda dada. (Formato: fecha_ini=dd/mm/aaaa fecha_fin=dd/mm/aaaa moneda=02)</wsdl:documentation>
+      <wsdl:input message="tns:TipoCambioRangoMonedaSoapIn" />
+      <wsdl:output message="tns:TipoCambioRangoMonedaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioDia">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve el cambio del día en dólares</wsdl:documentation>
+      <wsdl:input message="tns:TipoCambioDiaSoapIn" />
+      <wsdl:output message="tns:TipoCambioDiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioDiaString">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve el cambio del día en dólares</wsdl:documentation>
+      <wsdl:input message="tns:TipoCambioDiaStringSoapIn" />
+      <wsdl:output message="tns:TipoCambioDiaStringSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TipoCambioSoap" type="tns:TipoCambioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VariablesDisponibles">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/VariablesDisponibles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Variables">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/Variables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioFechaInicial">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioFechaInicial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioRango">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioRango" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioFechaInicialMoneda">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioFechaInicialMoneda" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioRangoMoneda">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioRangoMoneda" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioDia">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioDia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioDiaString">
+      <soap:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioDiaString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TipoCambioSoap12" type="tns:TipoCambioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VariablesDisponibles">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/VariablesDisponibles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Variables">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/Variables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioFechaInicial">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioFechaInicial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioRango">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioRango" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioFechaInicialMoneda">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioFechaInicialMoneda" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioRangoMoneda">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioRangoMoneda" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioDia">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioDia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TipoCambioDiaString">
+      <soap12:operation soapAction="http://www.banguat.gob.gt/variables/ws/TipoCambioDiaString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TipoCambio">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Tipo de cambio en moneda extranjera</wsdl:documentation>
+    <wsdl:port name="TipoCambioSoap" binding="tns:TipoCambioSoap">
+      <soap:address location="https://www.banguat.gob.gt/variables/ws/TipoCambio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TipoCambioSoap12" binding="tns:TipoCambioSoap12">
+      <soap12:address location="https://www.banguat.gob.gt/variables/ws/TipoCambio.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

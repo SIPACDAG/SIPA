@@ -1,0 +1,46 @@
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\Armando Cardona\documents\visual studio 2012\Projects\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+G:\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+G:\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+G:\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+G:\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaEN\obj\Debug\CapaEN.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaEN\obj\Debug\CapaEN.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaEN\obj\Debug\CapaEN.pdb
+C:\SIPA\SIPADESARROLLO\CapaEN\bin\Debug\CapaEN.dll
+C:\SIPA\SIPADESARROLLO\CapaEN\bin\Debug\CapaEN.pdb
+C:\SIPA\SIPADESARROLLO\CapaEN\obj\Debug\CapaEN.dll
+C:\SIPA\SIPADESARROLLO\CapaEN\obj\Debug\CapaEN.pdb

@@ -1,0 +1,91 @@
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\Armando Cardona\Documents\Visual Studio 2012\Projects\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\Armando Cardona\OneDrive\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\Administrador\Desktop\POAPACCOMFIN\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+E:\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+E:\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+E:\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+E:\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+E:\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+E:\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+E:\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+G:\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+G:\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+G:\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+G:\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+G:\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+G:\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+G:\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\Administrador\Desktop\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+E:\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\it\Desktop\INSTALADORES CDAG\SolucionCOG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\it\Desktop\xxx\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\it\Desktop\BK DELL CDAG\ESCRITORIO\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
+C:\SIPA\SIPADESARROLLO\CapaAD\bin\Debug\CapaAD.dll
+C:\SIPA\SIPADESARROLLO\CapaAD\bin\Debug\CapaAD.pdb
+C:\SIPA\SIPADESARROLLO\CapaAD\bin\Debug\CapaEN.dll
+C:\SIPA\SIPADESARROLLO\CapaAD\bin\Debug\CapaEN.pdb
+C:\SIPA\SIPADESARROLLO\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\SIPA\SIPADESARROLLO\CapaAD\obj\Debug\CapaAD.dll
+C:\SIPA\SIPADESARROLLO\CapaAD\obj\Debug\CapaAD.pdb

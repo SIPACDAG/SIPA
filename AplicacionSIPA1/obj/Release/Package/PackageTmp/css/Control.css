@@ -1,0 +1,13 @@
+﻿.ControlOnFocus
+{
+    background: #C3CDFF;
+    color: Black; 
+    border: 1px outset #05293F;
+}
+ 
+.ControlOffFocus
+{
+    background: #FEEDA8;
+    color: Black; 
+    border: 1px outset #FFA100;
+}
