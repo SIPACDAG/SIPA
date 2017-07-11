@@ -96,3 +96,7 @@ C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\RdlCompile.cache
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
+C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.ReportSource.dll
+C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.Shared.dll
+C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.Web.dll

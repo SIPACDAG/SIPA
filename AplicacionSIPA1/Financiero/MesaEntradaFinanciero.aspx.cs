@@ -140,7 +140,9 @@ namespace AplicacionSIPA1.Financiero
                 }
                 else
                 {
-                    dsResultado = pInsumoLN.InformacionPedido(idEncabezado, idtipoDocto, 0, anio.ToString(), 9);
+                    //if (idPoa > 0)
+                    {
+                        dsResultado = pInsumoLN.InformacionPedido(anio, 0, 0, "", 9);
 
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
@@ -169,8 +171,8 @@ namespace AplicacionSIPA1.Financiero
                             if (!rblTipoDocto.SelectedValue.Equals("0"))
                                 filtro += " AND id_tipo_documento = " + rblTipoDocto.SelectedValue;
 
-                            //if (!rblEstadosPedido.SelectedValue.Equals("0"))
-                            //    filtro += " AND id_estado_pedido = " + rblEstadosPedido.SelectedValue;
+                            if (!rblEstadosPedido.SelectedValue.Equals("0"))
+                                filtro += " AND id_estado_pedido = " + rblEstadosPedido.SelectedValue;
 
                             if (txtNo.Text.Equals("") == false || txtNo.Text.Equals(string.Empty) == false)
                                 filtro += " AND no_solicitud = " + txtNo.Text;
@@ -216,7 +218,7 @@ namespace AplicacionSIPA1.Financiero
                         }
                     }
                 }
-            
+            }
             catch (Exception ex)
             {
                 throw new Exception("filtrarDvPedidos()" + ex.Message);
@@ -569,13 +571,13 @@ namespace AplicacionSIPA1.Financiero
                     {
                         txtObser.Text = string.Empty;
 
-                pInsumoLN = new PedidosLN();
-                string usuario = Session["usuario"].ToString();
-                string observaciones = txtObser.Text;
-                DataSet dsResultado = pInsumoLN.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario);
-                
-                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                        pInsumoLN = new PedidosLN();
+                        string usuario = Session["usuario"].ToString();
+                        string observaciones = txtObser.Text;
+                        DataSet dsResultado = pInsumoLN.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario);
+
+                        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                 //string s = txtNo.Text;
                 //txtNo.Text = s;

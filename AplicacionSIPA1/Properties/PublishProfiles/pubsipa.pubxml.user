@@ -6,7 +6,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\user Dell\Documents\Trabajo\Deploy</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\143.208.180.250:21892</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AplicacionCOG.dll">

@@ -106,8 +106,13 @@
                 <tr>
                     <td class="auto-style29">&nbsp;&nbsp;&nbsp;&nbsp; Empleado&nbsp;&nbsp;&nbsp;&nbsp; </td>
                     <td class="auto-style19">
-                        <asp:DropDownList ID="ddlEmpleados" runat="server" class="form-control" Width="100%">
+
+                            
+                        <div class="dropdown show">
+                             <asp:DropDownList ID="ddlEmpleados" runat="server" class="form-control dropdown" Width="100%">
                         </asp:DropDownList>
+                        </div>
+                       
                     </td>
                     <td class="auto-style12">&nbsp;</td>
                     <td>

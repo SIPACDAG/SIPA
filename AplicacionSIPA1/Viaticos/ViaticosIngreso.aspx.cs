@@ -265,7 +265,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-
+                
                 if (ddlUnidades.Items.Count == 1)
                 {
                     if (!ddlAnios.SelectedValue.Equals("0"))
