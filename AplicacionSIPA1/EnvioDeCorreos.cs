@@ -17,7 +17,8 @@ namespace AplicacionSIPA1
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("soporte.sistemas@cdag.com.gt", "Soporte SIPA", System.Text.Encoding.UTF8);
                 mail.Subject = encabezado;
-                
+                mail.Body = cuerpo + " \n  \n SIPA - 2017 GUATEMALA SOPORTE TECNICO.";
+                mail.To.Add(correo_enviar);
                 string prueba2;
                 cliente.Port = 587;
                 cliente.Credentials = new System.Net.NetworkCredential("soporte.sistemas@cdag.com.gt", "sistemas2017*");
