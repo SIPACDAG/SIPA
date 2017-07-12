@@ -12,13 +12,14 @@ namespace AplicacionSIPA1
         {
             try
             {
+                string prueba = "esta es una prueba";
                 SmtpClient cliente = new SmtpClient("smtp.office365.com");
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("soporte.sistemas@cdag.com.gt", "Soporte SIPA", System.Text.Encoding.UTF8);
                 mail.Subject = encabezado;
                 mail.Body = cuerpo + " \n  \n SIPA - 2017 GUATEMALA SOPORTE TECNICO.";
                 mail.To.Add(correo_enviar);
-
+                
                 cliente.Port = 587;
                 cliente.Credentials = new System.Net.NetworkCredential("soporte.sistemas@cdag.com.gt", "sistemas2017*");
                 cliente.EnableSsl = true;
