@@ -11,6 +11,7 @@ namespace CapaEN
         public int idPresupuestoUnidad { get; set; }
         public int idUnidad { get; set; }
         public int idDependencia { get; set; }
+        public int idPlan { get; set; }
         public double monto { get; set; }
         public int anio { get; set; }
         public string usuario { get; set; }

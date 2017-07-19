@@ -89,3 +89,10 @@ C:\SIPA\SIPADESARROLLO\CapaAD\bin\Debug\CapaEN.pdb
 C:\SIPA\SIPADESARROLLO\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
 C:\SIPA\SIPADESARROLLO\CapaAD\obj\Debug\CapaAD.dll
 C:\SIPA\SIPADESARROLLO\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.pdb

@@ -35,16 +35,39 @@
                     <td class="auto-style11" colspan="4"><strong>PRESUPUESTO/UNIDAD</strong></td>
                 </tr>
                 <tr>
-                    <td class="auto-style12">&nbsp; Año&nbsp;&nbsp;&nbsp; </td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style4" colspan="3">
-                        <asp:DropDownList ID="dropAnio" runat="server" class="form-control" Width="20%" OnSelectedIndexChanged="dropAnio_SelectedIndexChanged" AutoPostBack="True">
-                        </asp:DropDownList>
+                       <%-- <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlPlanE_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>--%>
+                        <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlPlanE_SelectedIndexChanged" Width="100%"></asp:DropDownList>
                     </td>
                 </tr>
                             <tr>
-                                <td class="auto-style12">&nbsp; Unidad&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style12">&nbsp; Año&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                 <td class="auto-style4" colspan="3">
-                                    <asp:DropDownList ID="dropUnidad" runat="server" class="form-control" OnSelectedIndexChanged="dropUnidad_SelectedIndexChanged">
+                                    <asp:DropDownList ID="dropAnio" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="dropAnio_SelectedIndexChanged" Width="20%">
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">&nbsp; Unidades&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style4" colspan="3">
+                                   <%-- <asp:DropDownList ID="dropUnidad" runat="server" class="form-control" OnSelectedIndexChanged="dropUnidad_SelectedIndexChanged" Height="45%">
+                                    </asp:DropDownList>--%>
+                                    <asp:DropDownList ID="ddlUnidad" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUnidad_SelectedIndexChanged" Height="45%"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">&nbsp; Dependencias&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style4" colspan="3">
+                                    <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Height="45%">
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">&nbsp; Unidades/Jefaturas&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style4" colspan="3">
+                                    <asp:DropDownList ID="ddlJefaturasSub" runat="server" class="form-control" Height="45%" >
                                     </asp:DropDownList>
                                 </td>
                             </tr>
@@ -80,7 +103,7 @@
                                 <td class="auto-style7">
                                     &nbsp;</td>
                                 <td class="auto-style7" colspan="3">
-                                    <asp:GridView ID="gridPresupuesto" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridPresupuesto_RowDataBound" OnRowDeleting="gridPresupuesto_RowDeleting" PageSize="5" ShowFooter="True" Width="65%" CssClass="table table-hover table-responsive" OnSelectedIndexChanged="gridPresupuesto_SelectedIndexChanged">
+                                    <asp:GridView ID="gridPresupuesto" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridPresupuesto_RowDataBound" OnRowDeleting="gridPresupuesto_RowDeleting" PageSize="5" ShowFooter="True" Width="65%" CssClass="table table-hover table-responsive" OnSelectedIndexChanged="gridPresupuesto_SelectedIndexChanged" >
                                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                         <Columns>
                                             <asp:TemplateField ShowHeader="False">

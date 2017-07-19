@@ -121,3 +121,13 @@ C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaEN.dll
 C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\MySql.Data.dll
 C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaAD.pdb
 C:\SIPA\SIPADESARROLLO\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\MySql.Data.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Debug\CapaLN.pdb

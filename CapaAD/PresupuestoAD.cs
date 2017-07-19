@@ -110,7 +110,7 @@ namespace CapaAD
             {
                 conectar = new ConexionBD();
                 DataTable tabla = new DataTable();
-                string query = string.Format("call Insertar_PresUnidad({0}, {1}, {2}, '{3}')", presupuestoEN.idUnidad, presupuestoEN.monto, presupuestoEN.anio, presupuestoEN.usuario);
+                string query = string.Format("call Insertar_PresUnidad({0}, {1}, {2}, '{3}',{4})", presupuestoEN.idUnidad, presupuestoEN.monto, presupuestoEN.anio, presupuestoEN.usuario, presupuestoEN.idPlan);
                 conectar.AbrirConexion();
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(tabla);

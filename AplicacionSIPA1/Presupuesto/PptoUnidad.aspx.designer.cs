@@ -22,6 +22,15 @@ namespace AplicacionSIPA1.Presupuesto {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// Control ddlPlanE.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlanE;
+        
+        /// <summary>
         /// Control dropAnio.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,31 @@ namespace AplicacionSIPA1.Presupuesto {
         protected global::System.Web.UI.WebControls.DropDownList dropAnio;
         
         /// <summary>
-        /// Control dropUnidad.
+        /// Control ddlUnidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropUnidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnidad;
+        
+        /// <summary>
+        /// Control ddlDependencias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDependencias;
+        
+        /// <summary>
+        /// Control ddlJefaturasSub.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJefaturasSub;
         
         /// <summary>
         /// Control RequiredFieldValidator1.
