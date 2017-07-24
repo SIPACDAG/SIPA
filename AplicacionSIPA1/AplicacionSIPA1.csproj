@@ -126,11 +126,13 @@
     <Content Include="Operativa\Seguimiento\NoSeguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\SeguimientoIngreso.aspx" />
     <Content Include="Pac\AdminPac.aspx" />
+    <Content Include="Pac\NuPlan.aspx" />
     <Content Include="Pedido\Ajustes\AjusteIngreso.aspx" />
     <Content Include="Pedido\Ajustes\VoBoN2.aspx" />
     <Content Include="Pedido\Ajustes\VoBoN1.aspx" />
     <Content Include="Pedido\Ajustes\NoAjuste.aspx" />
     <Content Include="Pedido\PedidoAnulacion.aspx" />
+    <Content Include="Pedido\PedidoGuardado.aspx" />
     <Content Include="Presupuesto\AdminTechos.aspx" />
     <Content Include="Presupuesto\ListadoModTechos.aspx" />
     <Content Include="ReporteriaSistema\PruebaReporte.aspx" />
@@ -689,6 +691,13 @@
     <Compile Include="Pac\AdminPac.aspx.designer.cs">
       <DependentUpon>AdminPac.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pac\NuPlan.aspx.cs">
+      <DependentUpon>NuPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pac\NuPlan.aspx.designer.cs">
+      <DependentUpon>NuPlan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pedido\Ajustes\AjusteIngreso.aspx.cs">
       <DependentUpon>AjusteIngreso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -723,6 +732,13 @@
     </Compile>
     <Compile Include="Pedido\PedidoAnulacion.aspx.designer.cs">
       <DependentUpon>PedidoAnulacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido\PedidoGuardado.aspx.cs">
+      <DependentUpon>PedidoGuardado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedido\PedidoGuardado.aspx.designer.cs">
+      <DependentUpon>PedidoGuardado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presupuesto\AdminTechos.aspx.cs">
       <DependentUpon>AdminTechos.aspx</DependentUpon>

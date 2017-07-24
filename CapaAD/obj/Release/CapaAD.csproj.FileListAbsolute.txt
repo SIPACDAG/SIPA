@@ -27,3 +27,11 @@ C:\SIPA\SIPADESARROLLO\CapaAD\bin\Release\CapaEN.pdb
 C:\SIPA\SIPADESARROLLO\CapaAD\obj\Release\CapaAD.csprojResolveAssemblyReference.cache
 C:\SIPA\SIPADESARROLLO\CapaAD\obj\Release\CapaAD.dll
 C:\SIPA\SIPADESARROLLO\CapaAD\obj\Release\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Release\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Release\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Release\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Release\MySql.Data.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Release\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Release\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Release\CapaAD.pdb

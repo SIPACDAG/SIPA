@@ -37,3 +37,13 @@ C:\SIPA\SIPADESARROLLO\CapaLN\bin\Release\CapaEN.pdb
 C:\SIPA\SIPADESARROLLO\CapaLN\obj\Release\CapaLN.csprojResolveAssemblyReference.cache
 C:\SIPA\SIPADESARROLLO\CapaLN\obj\Release\CapaLN.dll
 C:\SIPA\SIPADESARROLLO\CapaLN\obj\Release\CapaLN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaLN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaLN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\MySql.Data.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Release\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Release\CapaLN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Release\CapaLN.pdb

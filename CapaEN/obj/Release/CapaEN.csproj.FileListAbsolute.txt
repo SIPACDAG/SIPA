@@ -18,3 +18,8 @@ C:\SIPA\SIPADESARROLLO\CapaEN\bin\Release\CapaEN.pdb
 C:\SIPA\SIPADESARROLLO\CapaEN\obj\Release\CapaEN.csprojResolveAssemblyReference.cache
 C:\SIPA\SIPADESARROLLO\CapaEN\obj\Release\CapaEN.dll
 C:\SIPA\SIPADESARROLLO\CapaEN\obj\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\bin\Release\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\bin\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Release\CapaEN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Release\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Release\CapaEN.pdb

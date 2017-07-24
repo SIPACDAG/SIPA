@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="dbcdagsipaConnectionString-Web.config Connection String" description="dbcdagsipaConnectionString Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="server=localhost;user id=root;password=1234;database=dbcdagsipa" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\SIPA\\SIPADESARROLLO\\AplicacionSIPA1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbcdagsipaConnectionString']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\user\ Dell\\Documents\\GitHub\\SIPA\\AplicacionSIPA1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbcdagsipaConnectionString']/@connectionString" />
   </parameter>
 </parameters>

@@ -42,7 +42,7 @@
                     <td>&nbsp;</td>
                     <td class="text-right" colspan="2">&nbsp;</td>
                     <td colspan="9" rowspan="8">
-                        <asp:GridView ID="gridAsignaciones" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ANIO,ID_UNIDAD" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="5" Width="97%" OnPageIndexChanging="gridAsignaciones_PageIndexChanging" OnRowDeleting="gridAsignaciones_RowDeleting" CssClass="table table-hover table-responsive" style="margin-left: 24px">
+                        <asp:GridView ID="gridAsignaciones" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ANIO,ID_UNIDAD" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="5" Width="94%" OnPageIndexChanging="gridAsignaciones_PageIndexChanging" OnRowDeleting="gridAsignaciones_RowDeleting" CssClass="table table-hover table-responsive" style="margin-left: 24px">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField ShowHeader="False">
@@ -116,6 +116,28 @@
                     </td>
                     <td colspan="5">
                         <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="2">Dependencia:</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="2">Jefatura/Unidad:</td>
+                    <td>&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                 <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="5">
+                        <asp:DropDownList ID="ddlDependencia" runat="server" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="5">
+                        <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="100%">
                         </asp:DropDownList>
                     </td>
                 </tr>
