@@ -944,7 +944,7 @@ namespace AplicacionSIPA1.Pedido
                     throw new Exception("No existe Bien/Servicio para eliminar");
 
                 pInsumoLN = new PedidosLN();
-                DataSet dsResultado = pInsumoLN.EliminarEncabezado(id,Session["usuario"].ToString());
+                DataSet dsResultado = pInsumoLN.EliminarEncabezado(id);
 
                 if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());

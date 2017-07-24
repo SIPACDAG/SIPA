@@ -204,7 +204,7 @@ namespace AplicacionSIPA1.Pedido
                                 else
                                     lbAnexo.Attributes.Clear();
                             }
-                        }
+                        }                        
                     }
                     else
                     {
@@ -537,7 +537,7 @@ namespace AplicacionSIPA1.Pedido
                     {
                         btnAnular.Visible = false;
                         lblErrorPoa.Text = lblError.Text = "La REQUISICIÓN/VALE/GASTO seleccionado se encuentra en estado: " + estadoPedido + " y no se puede ANULAR!";
-                        pedidoValido = false;
+                        pedidoValido = false;   
                     }
                     else
                     {
@@ -644,18 +644,33 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            NuevaAprobacion();
+            try
+            {
+                NuevaAprobacion();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnBuscar(). " + ex.Message;
+            }
         }
 
         protected void rblTipoDocto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            limpiarControlesError();
-            dvPedido.DataSource = gridDetalle.DataSource = gridSaldos.DataSource = null;
-            dvPedido.DataBind();
-            gridDetalle.DataBind();
-            gridSaldos.DataBind();
+            try
+            {
+                limpiarControlesError();
+                dvPedido.DataSource = gridDetalle.DataSource = gridSaldos.DataSource = null;
+                dvPedido.DataBind();
+                gridDetalle.DataBind();
+                gridSaldos.DataBind();
 
-            NuevaAprobacion();
+                NuevaAprobacion();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "rblTipoDocto(). " + ex.Message;
+            }
+            
         }
 
         protected bool esEntero(string valor)

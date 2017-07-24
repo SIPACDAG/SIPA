@@ -166,14 +166,14 @@ namespace CapaLN
             }
         }
 
-        public DataSet AlmacenarViaticos(ViaticosEN pViaticosEN, DataTable dtDetalles,string usuario)
+        public DataSet AlmacenarViaticos(ViaticosEN pViaticosEN, DataTable dtDetalles, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarViaticos(pViaticosEN, dtDetalles,usuario);
+                DataSet ds = ObjAD.AlmacenarViaticos(pViaticosEN, dtDetalles, usuario);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -365,6 +365,84 @@ namespace CapaLN
             catch (Exception ex)
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RechazoFinanciera(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet Liquidar(int idSalida, string observaciones, string usuario, decimal costoReal, decimal pasajes, decimal kilometraje)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new ViaticosAD();
+            try
+            {
+                DataTable dt = ObjAD.Liquidar(idSalida, observaciones, usuario, costoReal, pasajes, kilometraje);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idSalida;
+                dsResultado.Tables[0].Rows[0]["CODIGO"] = dt.Rows[0]["CODIGO"].ToString();
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionFinanciera(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet RechazoMesaEntrada(int idPedido, string observaciones, string usuario)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new ViaticosAD();
+            try
+            {
+                DataTable dt = ObjAD.RechazoFinanciera(idPedido, observaciones, usuario);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                dsResultado.Tables[0].Rows[0]["CODIGO"] = dt.Rows[0]["CODIGO"].ToString();
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RechazoMesaEntrada(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet Anular(int idPedido, string observaciones, string usuario)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new ViaticosAD();
+            try
+            {
+                DataTable dt = ObjAD.Anular(idPedido, observaciones, usuario);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                dsResultado.Tables[0].Rows[0]["CODIGO"] = dt.Rows[0]["CODIGO"].ToString();
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.Anular(). " + ex.Message;
             }
 
             return dsResultado;

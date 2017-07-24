@@ -87,7 +87,6 @@ namespace CapaLN
             presupuestoAD = new PresupuestoAD();
             return presupuestoAD.InsertarPresUnidad(presupuestoEN, usuario);
         }
-
         public DataSet AlmacenarModificacionTechoPpto(PresupuestoEN presupuestoEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();

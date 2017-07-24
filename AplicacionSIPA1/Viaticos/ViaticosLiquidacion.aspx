@@ -1,4 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PedidoAnulacion.aspx.cs" Inherits="AplicacionSIPA1.Pedido.PedidoAnulacion" MasterPageFile="~/Principal.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViaticosLiquidacion.aspx.cs" Inherits="AplicacionSIPA1.Viaticos.ViaticosLiquidacion" MasterPageFile="~/Principal.Master" %>
+
+
+
 
 
 
@@ -19,11 +22,9 @@
                         <asp:DropDownList ID="ddlPlanes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPlanes_SelectedIndexChanged" Width="50%" Visible="False">
                         </asp:DropDownList>
                         </strong></td>
-                    <td style="font-size: x-large; text-align: center; background-color: #006600; color: #FFFFFF;" class="text-center" colspan="16"><strong>ANULACIONES DE
+                    <td style="font-size: x-large; text-align: center; color: #FFFFFF; background-color: #006600;" class="text-center" colspan="16"><strong>LIQUIDACIÓN DE VIÁTICOS
                         <br />
-                        REQUISICIONES,&nbsp; VALES DE CAJA CHICA,
-                        <br />
-                        TRANFERENCIAS APOYOS Y OTROS GASTOS</strong></td>
+                        AL INTERIOR Y EXTERIOR</strong></td>
                     <td class="text-right" colspan="2" style="font-size: x-large; background-color: #006600;">&nbsp;</td>
                 </tr>
                 <tr>
@@ -32,117 +33,72 @@
                     <td colspan="18" style="text-align: center;"><strong>
                         <asp:Label ID="lblErrorPoa" runat="server" ForeColor="Red" style="font-size: medium"></asp:Label>
                         </strong></td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="9">Año:</td>
+                    <td colspan="3">Unidad:</td>
+                    <td class="text-right" colspan="6">&nbsp;</td>
                     <td style="width: 5%"><strong>
                         <asp:Label ID="lblIdPoa" runat="server" ForeColor="White" style="font-size: medium">0</asp:Label>
                         </strong></td>
                 </tr>
                 <tr>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="height: 18px"></td>
-                    <td style="width: 5%; height: 18px;"></td>
-                </tr>
-                <tr>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td colspan="9" style="height: 18px">Año:</td>
-                    <td colspan="9" style="height: 18px">Unidad:</td>
-                    <td style="width: 5%; height: 18px;">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td colspan="9" style="height: 18px">
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
                         <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
-                    <td colspan="9" style="height: 18px">
+                    <td colspan="9">
                         <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%; height: 18px;">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="width: 5%; height: 18px;">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="18">Acciones:</td>
+                    <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px" colspan="18">Acciones:</td>
-                    <td style="width: 5%; height: 18px;">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td colspan="18" style="height: 18px">
-                        <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" class="form-control" BackColor="#003366" ForeColor="White" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" Visible="False" Width="100%">
+                    <td>&nbsp;</td>
+                    <td colspan="18">
+                        <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" BackColor="#003366" class="form-control" ForeColor="White" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%; height: 18px;">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px">&nbsp;</td>
-                    <td style="width: 5%; height: 18px;">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td colspan="5">Tipos de documento:</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td colspan="2">&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td colspan="3">No. Req. o Vale:</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="9">Viáticos al interior o al exterior:&nbsp;&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="3">No. de viático</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -151,19 +107,19 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="9">
-                        <asp:RadioButtonList ID="rblTipoDocto" runat="server" RepeatDirection="Horizontal" Width="95%" AutoPostBack="True" OnSelectedIndexChanged="rblTipoDocto_SelectedIndexChanged">
-                            <asp:ListItem Selected="True" Value="1">Requisiciones</asp:ListItem>
-                            <asp:ListItem Value="2">Vales</asp:ListItem>
-                            <asp:ListItem Value="3">Gastos</asp:ListItem>
+                        <asp:RadioButtonList ID="rblTipoDocto" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rblTipoDocto_SelectedIndexChanged" RepeatDirection="Horizontal" Width="95%">
+                            <asp:ListItem Selected="True" Value="1">Al interior</asp:ListItem>
+                            <asp:ListItem Value="2">Al exterior</asp:ListItem>
                         </asp:RadioButtonList>
                     </td>
-                    <td colspan="3">
-                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td colspan="3">
                         <asp:TextBox ID="txtNo" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Size="Large" MaxLength="5" Style="text-align: right" TextMode="Number" Width="95%"></asp:TextBox>
                     </td>
                     <td colspan="3">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -192,16 +148,14 @@
 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                         <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
-                            
+                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
-                                <asp:BoundField DataField="ID" HeaderText="Id" Visible="false">
+                                <asp:BoundField DataField="ID" HeaderText="ID" Visible="false">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BackColor="#99FF99" BorderStyle="Inset" Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="no_anio_solicitud" HeaderText="No. Pedido">
+                                <asp:BoundField DataField="no_anio_solicitud" HeaderText="No Viático">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BackColor="#99FF99" BorderStyle="Inset" Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
@@ -209,55 +163,109 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="documento" HeaderText="Tipo de Documento">
-                                <ItemStyle BackColor="#FF6600" Font-Bold="True" />
-                                </asp:BoundField>
-                                <asp:BoundField DataField="fecha_pedido" DataFormatString="{0:d}" HeaderText="Fecha Pedido">
+                                <asp:BoundField DataField="accion" HeaderText="Acción: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="accion" HeaderText="Acción">
+                                <asp:BoundField DataField="fecha_nombramiento_string" DataFormatString="{0:d}" HeaderText="Fecha Nombramiento">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="tipo_pedido" HeaderText="Tipo de pedido">
+                                <asp:BoundField DataField="tipo_viatico" HeaderText="Tipo de viático: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BackColor="#99FF99" BorderStyle="Inset" Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="solicitante" HeaderText="Señor(a) (ita): ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="solicitante" HeaderText="Solicitante">
+                                <asp:BoundField DataField="puesto_solicitante" HeaderText="Puesto: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="encargado" HeaderText="Jefe Direccion">
+                                <asp:BoundField DataField="nombre_dependencia" HeaderText="Dependencia: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="justificacion" HeaderText="Justificacion">
+                                <asp:BoundField DataField="email" HeaderText="Correo electrónico: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="unidad" HeaderText="Unidad">
+                                <asp:BoundField DataField="telefono" HeaderText="Tel: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="dependencia" HeaderText="Dependencia">
+                                <asp:BoundField DataField="nit" HeaderText="Nit: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="fadn" HeaderText="FADN" >
+                                <asp:BoundField DataField="sueldo_base" HeaderText="Sueldo Base: " DataFormatString="Q {0:0,00.00}">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#FF6600" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="Anexos">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="LinkButton1" runat="server" NavigateUrl="" Text='<%# Eval("tipo_anexo") %>'></asp:LinkButton>
-                                    </ItemTemplate>
-                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="estado_pedido" HeaderText="Estado" >
+                                <asp:BoundField DataField="jefe_director" HeaderText="Jefe Direccion: ">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#FF6600" Font-Bold="True" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="subgerente" HeaderText="Subgerente: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="justificacion" HeaderText="Justificación: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="destino" HeaderText="Destino: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="fecha_comision" HeaderText="Fecha de la Comisión: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="hora_salida" HeaderText="Hora de salida: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="hora_retorno" HeaderText="Hora de retorno: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="utiliza_vehiculo_institucion" HeaderText="Vehículo de la Institución: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="pasajes_q" HeaderText="Pasajes: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="kilometraje_q" HeaderText="Kilometraje: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="costo_viatico_q" HeaderText="Viáticos: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="total_viaticos_entregar_q" HeaderText="TOTAL DE VIATICOS A ENTREGAR (Q.): ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BackColor="#99FF99" BorderStyle="Inset" Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="total_dolares" HeaderText="TOTAL DE VIATICOS A ENTREGAR ($.): " DataFormatString="$ {0:0,00.00}">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BackColor="#99FF99" BorderStyle="Inset" Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="tasa_de_cambio" HeaderText="Tasa de Cambio: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="observaciones_viaticos" HeaderText="Observaciones: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="estado_viatico" HeaderText="Estado: ">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
@@ -268,6 +276,28 @@
                 </tr>
 
                 <tr>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                </tr>
+                <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -290,26 +320,93 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="3">Pasajes (Q.):
+                        <asp:Label ID="lblPasajes" runat="server" Text="0"></asp:Label>
+                    </td>
+                    <td colspan="3">Kilometraje:
+                        <asp:Label ID="lblKilometraje" runat="server" Text="0"></asp:Label>
+                    </td>
+                    <td colspan="3">Viáticos (Q.):
+                        <asp:Label ID="lblViaticos" runat="server" Text="0"></asp:Label>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">Año:</td>
+                    <td style="width: 5%; text-align: center;">
+                        Entidad:</td>
+                    <td style="width: 5%; text-align: center;">
+                        <asp:Label ID="lblPRG" runat="server" Font-Bold="True" Text="PRG"></asp:Label>
+                    </td>
+                    <td style="width: 5%; text-align: center;">
+                        <asp:Label ID="lblSPRG" runat="server" Font-Bold="True" Text="SPRG"></asp:Label>
+                    </td>
+                    <td style="width: 5%; text-align: center;">
+                        <asp:Label ID="lblPROY" runat="server" Font-Bold="True" Text="PROY"></asp:Label>
+                    </td>
+                    <td style="width: 5%; text-align: center;">
+                        <asp:Label ID="lblACT" runat="server" Font-Bold="True" Text="ACT"></asp:Label>
+                    </td>
+                    <td style="width: 5%; text-align: center;">
+                        <asp:Label ID="lblOBR" runat="server" Font-Bold="True" Text="OBR"></asp:Label>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:Label ID="lblREN" runat="server" Font-Bold="True" Text="REN"></asp:Label>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="3">
+                        <asp:TextBox ID="txtPasajes" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                    </td>
+                    <td colspan="3">
+                        <asp:TextBox ID="txtKilometraje" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                    </td>
+                    <td colspan="3">
+                        <asp:TextBox ID="txtViaticos" runat="server" BackColor="#FFFF99" class="form-control" MaxLength="14" Style="text-align: right" Width="100%"></asp:TextBox>
+                    </td>
+                    <td style="width: 5%">
+                        &nbsp;</td>
+                    <td style="width: 5%">
+                        <asp:Label ID="lblAnio" runat="server" Text="0"></asp:Label>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:Label ID="lblEntidad" runat="server" Text="1130-0061"></asp:Label>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="ddlPRG" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlPRG_SelectedIndexChanged" Width="97%">
+                            <asp:ListItem>--</asp:ListItem>
+                            <asp:ListItem>11</asp:ListItem>
+                            <asp:ListItem>99</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="ddlSPRG" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlSPRG_SelectedIndexChanged" Width="97%">
+                            <asp:ListItem Selected="True">--</asp:ListItem>
+                            <asp:ListItem>00</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="ddlPROY" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlPROY_SelectedIndexChanged" Width="97%">
+                            <asp:ListItem>---</asp:ListItem>
+                            <asp:ListItem>000</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="ddlACT" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlACT_SelectedIndexChanged" Width="97%">
+                            <asp:ListItem Value="---"></asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="ddlOBR" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" Width="97%">
+                            <asp:ListItem Value="---"></asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="ddlRenglones" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" Width="90%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
@@ -336,9 +433,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                         <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%"
-                            CssClass="table table-hover table-responsive">
-                          
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -347,7 +442,7 @@
                                 </asp:CommandField>
                                 <asp:TemplateField ShowHeader="False" Visible="False">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" CommandName="Delete" ImageUrl="~/img/24_bits/delete.png" onclientclick="javascript:if(!confirm('¿Desea Eliminar Este Registro?'))return false" Text="Eliminar" />
+                                        <asp:ImageButton ID="ImageButton3" runat="server" CausesValidation="False" CommandName="Delete" ImageUrl="~/img/24_bits/delete.png" onclientclick="javascript:if(!confirm('¿Desea Eliminar Este Registro?'))return false" Text="Eliminar" />
                                     </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -356,31 +451,39 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="descripcion" HeaderText="DESCRIPCIÓN DEL BIEN Y/O SERVICIO">
+                                <asp:BoundField DataField="dia" HeaderText="Cuota por Fracción Día">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="unidad_medida" HeaderText="UNIDAD MEDIDA">
+                                <asp:BoundField DataField="fecha_dia" HeaderText="Fecha">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="cantidad" HeaderText="CANTIDAD">
+                                <asp:BoundField DataField="monto_desayuno" HeaderText="Desayuno" DataFormatString="Q.{0:0,0.00}">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="costo_estimado" HeaderText="VALOR ESTIMADO SIN IVA" DataFormatString="Q {0:0,00.00}">
+                                <asp:BoundField DataField="monto_almuerzo" HeaderText="Almuerzo" DataFormatString="Q.{0:0,0.00}">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="subtotal" HeaderText="SUBTOTAL ESTIMADO" DataFormatString="Q {0:0,00.00}">
+                                <asp:BoundField DataField="monto_cena" HeaderText="Cena" DataFormatString="Q.{0:0,0.00}">
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="monto_hospedaje" DataFormatString="Q.{0:0,0.00}" HeaderText="Hospedaje">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="no_renglon_ppto" HeaderText="RENGLÓN PPTO.">
+                                <asp:BoundField DataField="cuota_q" HeaderText="SUBTOTAL (Q.)" DataFormatString="Q.{0:0,0.00}" Visible="true">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="ajuste" HeaderText="AJUSTE">
+                                <asp:BoundField DataField="cuota_d" HeaderText="SUBTOTAL ($.)" DataFormatString="$.{0:0,0.00}" Visible="true">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
@@ -469,8 +572,11 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                         <asp:Button ID="btnReactivar" runat="server" class="btn btn-success" OnClick="btnRechazar_Click" Text="Reactivar" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea REACTIVAR este registro?'))return false" />
-                        <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" OnClick="btnAnular_Click" Text="Anular Pedido" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
+                        <asp:Button ID="btnLiquidar" runat="server" class="btn btn-primary" OnClick="btnLiquidar_Click" Text="Liquidar" Width="200px" OnClientClick="javascript:if(!confirm('¿Desea LIQUIDAR este viático?'))return false" />
+                        &nbsp;&nbsp;
+                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-default" OnClick="btnRechazar_Click" Text="Rechazar" Width="200px" OnClientClick="javascript:if(!confirm('¿Desea RECHAZAR este viático?'))return false" />
+                        &nbsp;&nbsp;
+                        <asp:Button ID="btnAnular" runat="server" class="btn btn-primary" OnClick="btnAnular_Click" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este viático?'))return false" Text="Anular" Width="200px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -497,6 +603,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
+
                 <tr>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
@@ -545,9 +652,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" Visible="False"
-                            CssClass="table table-hover table-responsive">
-                          
+                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -566,42 +671,18 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="Costo Poa">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("costo_poa") %>'></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <div class="text-right">
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("costo_poa", "Q.{0:0,0.00}") %>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    <ItemStyle BorderStyle="Inset" Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Codificado">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("codificado") %>'></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <div class="text-right">
-                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("codificado", "Q.{0:0,0.00}") %>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    <ItemStyle BorderStyle="Inset" Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Saldo">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("saldo_poa") %>'></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <div class="text-right">
-                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("saldo_poa", "Q.{0:0,0.00}") %>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    <ItemStyle BorderStyle="Inset" Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:TemplateField>
+                                <asp:BoundField DataField="costo_poa" DataFormatString="{0:c}" HeaderText="Costo Poa">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="codificado" DataFormatString="{0:c}" HeaderText="Codificado">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="saldo_poa" DataFormatString="{0:c}" HeaderText="Saldo">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
                             </Columns>
                             <FooterStyle BackColor="White" BorderStyle="Inset" Font-Bold="True" ForeColor="Black" HorizontalAlign="Center" VerticalAlign="Middle" />
                             <HeaderStyle BackColor="#339933" Font-Bold="True" ForeColor="White" />
@@ -611,52 +692,30 @@
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
 
             </table>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <br />
                     <br />
                     <br />

@@ -102,7 +102,7 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla.Rows.Count;
         }
- 
+
         public int InsertarPresUnidad(PresupuestoEN presupuestoEN, string usuario)
 
         {
@@ -127,7 +127,7 @@ namespace CapaAD
             if (!validarPermiso(usuario))
             {
                 string query = "";
-               
+
                 DataTable dt;
                 DataTable dtEnc;
                 MySqlTransaction sqlTransaction;
@@ -174,7 +174,7 @@ namespace CapaAD
                 dsResultado = new DataSet();
                 dsResultado.Tables.Add(dtEnc.Copy());
             }
-            
+
 
             return dsResultado;
         }
@@ -198,7 +198,7 @@ namespace CapaAD
             return NoIngreso;
 
         }
-        public int EliminarPresUnidad(PresupuestoEN presupuestoEN,string usuario)
+        public int EliminarPresUnidad(PresupuestoEN presupuestoEN, string usuario)
         {
             if (!validarPermiso(usuario))
             {
@@ -247,8 +247,7 @@ namespace CapaAD
             ds.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
             return ds;
         }
-
-        public bool validarPermiso(string Usuario)
+         public bool validarPermiso(string Usuario)
         {
             conectar = new ConexionBD();
             conectar.AbrirConexion();

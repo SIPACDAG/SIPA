@@ -41,6 +41,7 @@ namespace CapaLN
             }
         }
 
+
         public void DdlJefes(DropDownList drop, string usuario, int idUnidad)
         {
             drop.ClearSelection();
@@ -505,14 +506,14 @@ namespace CapaLN
             }
         }
 
-        public DataSet AlmacenarPedido(PedidosEN pInsumoEN,string usuario)
+        public DataSet AlmacenarPedido(PedidosEN pInsumoEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarPedido(pInsumoEN,usuario);
+                DataSet ds = ObjAD.AlmacenarPedido(pInsumoEN, usuario);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -527,14 +528,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AlmacenarVale(PedidosEN pInsumoEN,string usuario)
+        public DataSet AlmacenarVale(PedidosEN pInsumoEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarVale(pInsumoEN,usuario);
+                DataSet ds = ObjAD.AlmacenarVale(pInsumoEN, usuario);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -571,14 +572,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AlmacenarGasto(PedidosEN pInsumoEN,string usuario)
+        public DataSet AlmacenarGasto(PedidosEN pInsumoEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarGasto(pInsumoEN,usuario);
+                DataSet ds = ObjAD.AlmacenarGasto(pInsumoEN, usuario);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -615,14 +616,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AlmacenarProveedor(ProveedoresEN ObjEN,string usuario)
+        public DataSet AlmacenarProveedor(ProveedoresEN ObjEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarProveedor(ObjEN,usuario);
+                DataSet ds = ObjAD.AlmacenarProveedor(ObjEN, usuario);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -660,14 +661,14 @@ namespace CapaLN
         }
 
         //ALMACENAR UNA SOLICITUD DE AJUSTE DE PEDIDO
-        public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles,string usuario)
+        public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarAjustePedido(ObjEN, dsDetalles,usuario);
+                DataSet ds = ObjAD.AlmacenarAjustePedido(ObjEN, dsDetalles, usuario);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1058,14 +1059,36 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AprobacionTecnico(DataSet dsDetalles,string usuario)
+        public DataSet AsignarValorReal(DataSet dsDetalles)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AprobacionTecnico(dsDetalles,usuario);
+                DataSet ds = ObjAD.AsignarValorReal(dsDetalles);
+
+                if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AsignarValorReal(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet AprobacionTecnico(DataSet dsDetalles)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataSet ds = ObjAD.AprobacionTecnico(dsDetalles);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1075,6 +1098,32 @@ namespace CapaLN
             catch (Exception ex)
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionTecnico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        //CUANDO EL TÉCNICO DE COMPRAS INTENTE LIQUIDAR POR UN MONTO MAYOR AL PRESUPUESTO PLANIFICADO EN EL PAC O EN EL RENGLÓN DE PRESUPUESTO
+        public DataSet RevertirValorReal(int idPedido, int idTipoSalida, string criterio, int opcion)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.RevertirValorReal(idPedido, idTipoSalida, criterio, opcion);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RevertirValorReal(). " + ex.Message;
             }
 
             return dsResultado;
@@ -1180,13 +1229,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet EliminarEncabezado(int id, string usuario)
+        public DataSet EliminarEncabezado(int id)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.EliminarEncabezado(id,usuario);
+                DataTable dt = ObjAD.EliminarEncabezado(id);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1272,13 +1321,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet EliminarProveedor(int id,string usuario)
+        public DataSet EliminarProveedor(int id)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.EliminarProveedor(id,usuario);
+                DataTable dt = ObjAD.EliminarProveedor(id);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());

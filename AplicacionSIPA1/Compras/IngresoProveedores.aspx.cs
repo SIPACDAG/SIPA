@@ -213,7 +213,7 @@ namespace AplicacionSIPA1.Compras
                     throw new Exception("No existe Proveedor para eliminar");
 
                 lnProveedores = new PedidosLN();
-                DataSet dsResultado = lnProveedores.EliminarProveedor(idEncabezado,Session["usuario"].ToString());
+                DataSet dsResultado = lnProveedores.EliminarProveedor(idEncabezado);
 
                 if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());

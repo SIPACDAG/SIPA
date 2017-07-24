@@ -177,6 +177,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
+    <Content Include="Viaticos\ViaticosLiquidacion.aspx" />
     <Content Include="Viaticos\VoBo3Ppto.aspx" />
     <Content Include="Viaticos\VoBo2Subgerencia.aspx" />
     <Content Include="Viaticos\NoViatico.aspx" />
@@ -820,6 +821,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>sipadataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Viaticos\ViaticosLiquidacion.aspx.cs">
+      <DependentUpon>ViaticosLiquidacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Viaticos\ViaticosLiquidacion.aspx.designer.cs">
+      <DependentUpon>ViaticosLiquidacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Viaticos\VoBo3Ppto.aspx.cs">
       <DependentUpon>VoBo3Ppto.aspx</DependentUpon>

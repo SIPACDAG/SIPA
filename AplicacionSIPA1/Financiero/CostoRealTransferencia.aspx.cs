@@ -589,7 +589,7 @@ namespace AplicacionSIPA1.Financiero
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles,usuario);
+                    DataSet dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
