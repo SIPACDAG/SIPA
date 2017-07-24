@@ -186,11 +186,13 @@ namespace AplicacionSIPA1.Operativa
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 int idUnidad = int.Parse(ddlUnidades.SelectedValue);
-
+                string id_unidad = ddlUnidades.SelectedItem.Value;
                 lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
 
                 if (idUnidad > 0)
                 {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDepend, id_unidad);
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
                 }
@@ -909,6 +911,79 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 throw new Exception("gridPlan_RowDataBound1(). " + ex.Message);
+            }
+        }
+
+        protected void ddlDepend_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                filtrarGridPlan();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlDepend.SelectedValue);
+                string id_unidad = ddlDepend.SelectedItem.Value;
+                lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+
+                if (idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    planAccionLN = new PlanAccionLN();
+                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
+                }
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoa(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+                planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
+
+                filtrarGridPlan();
+                generarReporte();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                filtrarGridPlan();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlJefaturaUnidad.SelectedValue);
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+                lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+
+                if (idUnidad > 0)
+                {
+                    
+                    planAccionLN = new PlanAccionLN();
+                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
+                }
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoa(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+                planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
+
+                filtrarGridPlan();
+                generarReporte();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

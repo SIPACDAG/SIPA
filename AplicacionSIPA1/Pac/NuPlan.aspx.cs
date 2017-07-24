@@ -44,5 +44,15 @@ namespace AplicacionSIPA1.Pac
             }
 
         }
+
+        protected void btnPedido_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnListado_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

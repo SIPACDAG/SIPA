@@ -491,7 +491,19 @@ namespace AplicacionSIPA1.Operativa
                     objetivosEN.Id_Objetivo_Operativo = idObjetivo;
                     objetivosEN.Id_Objetivo_Estrategico = int.Parse(ddlObjetivosE.SelectedValue);
                     objetivosEN.Id_Meta = int.Parse(gridPlanE.SelectedValue.ToString());
-                    objetivosEN.Id_Unidad = int.Parse(ddlUnidades.SelectedValue);
+                    if (ddlUnidadJefatura.SelectedValue != "" && int.Parse(ddlUnidadJefatura.SelectedValue) > 0)
+                    {
+                        objetivosEN.Id_Unidad = Convert.ToInt32(ddlUnidadJefatura.SelectedValue);
+                    }
+                    else if (int.Parse(ddlDependencias.SelectedValue) > 0)
+                    {
+                        objetivosEN.Id_Unidad = Convert.ToInt32(ddlDependencias.SelectedValue);
+                    }
+                    else
+                    {
+                        objetivosEN.Id_Unidad = Convert.ToInt32(ddlUnidades.SelectedValue);
+                    }
+                    
 
                     if (!txtCodigo.Text.Equals(string.Empty))
                         objetivosEN.Codigo = int.Parse(txtCodigo.Text);
@@ -1327,8 +1339,8 @@ namespace AplicacionSIPA1.Operativa
                 limpiarControlesError();
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
                 int anio = int.Parse(ddlAnios.SelectedValue);
-                int idUnidad = int.Parse(ddlUnidades.SelectedValue);
-
+                int idUnidad = int.Parse(ddlDependencias.SelectedValue);
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
                 btnNuevo_Click(sender, e);
                 ddlPlanes.SelectedValue = idPlan.ToString();
                 ddlAnios.SelectedValue = anio.ToString();
@@ -1340,8 +1352,8 @@ namespace AplicacionSIPA1.Operativa
                 {
 
                     planOperativoLN.DdlDependencias(ddlUnidadJefatura, id_unidad);
-                    ddlUnidades.SelectedValue = idUnidad.ToString();
-                    lblResponsable.Text = ddlUnidades.SelectedItem.Text;
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    lblResponsable.Text = ddlDependencias.SelectedItem.Text;
                     if (anio > 0 && idUnidad > 0)
                         validarPoa(idUnidad, anio);
                 }
@@ -1357,6 +1369,40 @@ namespace AplicacionSIPA1.Operativa
         protected void ddlUnidadJefatura_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlUnidadJefatura_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            try
+            {
+                string id_unidad = ddlUnidadJefatura.SelectedItem.Value;
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlUnidadJefatura.SelectedValue);
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                btnNuevo_Click(sender, e);
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                ddlAnios.SelectedValue = anio.ToString();
+
+                btnGuardar.Visible = false;
+                lblResponsable.Text = string.Empty;
+
+                if (idUnidad > 0)
+                {
+
+                   
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    lblResponsable.Text = ddlUnidadJefatura.SelectedItem.Text;
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                lblError.Text = "ddlDepencias_SelectedIndexChanged." + ex.Message;
+            }
         }
     }
 }

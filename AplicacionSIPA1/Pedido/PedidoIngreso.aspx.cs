@@ -20,7 +20,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+        private PlanOperativoLN planOperativoLN;
         private PedidosLN pInsumoLN;
         private PedidosEN pInsumoEN;
 
@@ -189,7 +189,7 @@ namespace AplicacionSIPA1.Pedido
 
                 InformacionPublica_TribunalHonor();
 
-                ddlAnios.Enabled = false;
+                ddlAnios.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -348,12 +348,17 @@ namespace AplicacionSIPA1.Pedido
 
                 int anio = 0;
                 int idUnidad = 0;
-
+                string id_unidad = ddlUnidades.SelectedItem.Value;
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
                     validarPoaIngresoPedido(idUnidad, anio);
+                }
+                    
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -1405,6 +1410,83 @@ namespace AplicacionSIPA1.Pedido
         protected void btnPrueba_Click(object sender, EventArgs e)
         {
          
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoPedidoEnc();
+                NuevoPedidoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    validarPoaIngresoPedido(idUnidad, anio);
+                }
+
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                InformacionPublica_TribunalHonor();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoPedidoEnc();
+                NuevoPedidoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                   
+                    validarPoaIngresoPedido(idUnidad, anio);
+                }
+
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                InformacionPublica_TribunalHonor();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
     }
 }

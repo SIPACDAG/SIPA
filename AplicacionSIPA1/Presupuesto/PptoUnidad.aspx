@@ -60,7 +60,7 @@
                             <tr>
                                 <td class="auto-style12">&nbsp; Dependencias&nbsp;&nbsp;&nbsp; </td>
                                 <td class="auto-style4" colspan="3">
-                                    <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Height="45%">
+                                    <asp:DropDownList ID="ddlDependencias" AutoPostBack="true" runat="server" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Height="45%">
                                     </asp:DropDownList>
                                 </td>
                             </tr>

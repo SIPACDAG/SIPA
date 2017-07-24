@@ -647,7 +647,7 @@ namespace CapaLN
 
             try
             {
-                DataTable dt = ObjAD.PptoPoa(idPoa, idDependencia);
+                DataTable dt = ObjAD.PptoPoa(idPoa,idDependencia);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;

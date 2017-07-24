@@ -238,11 +238,11 @@ namespace AplicacionSIPA1.Operativa
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 int idUnidad = int.Parse(ddlUnidades.SelectedValue);
-
+                string id_unidad = ddlUnidades.SelectedItem.Value;
                 //btnNuevo_Click(sender, e);
                 ddlPlanes.SelectedValue = idPlan.ToString();
                 ddlPlanes_SelectedIndexChanged(sender, e);
-
+                limpiarNListado();
                 ddlAnios.SelectedValue = anio.ToString();
                 btnGuardar.Visible = false;
 
@@ -256,6 +256,8 @@ namespace AplicacionSIPA1.Operativa
                 
                 if (idUnidad > 0)
                 {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependen, id_unidad);
                     ddlUnidades.SelectedValue = idUnidad.ToString();
                     
                     if (anio > 0 && idUnidad > 0)
@@ -508,136 +510,7 @@ namespace AplicacionSIPA1.Operativa
             }
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                planAccionLN = new PlanAccionLN();
-                accionesEN = new AccionesEN();
-                metasEN = new MetasAccionEN();
-
-                string mensaje = "";
-                DataSet dsResultado = new DataSet();
-                int idAccion = int.Parse(ddlAcciones.SelectedValue);
-                int idMeta = 0;
-                int idMetaOperativa = 0;
-
-                if (ddlMetas.Items.Count > 0)
-                    idMeta = int.Parse(ddlMetas.SelectedValue);
-                //INSERTAR/ACTUALIZAR
-                if (validarControlesABC())
-                {
-                    rfvCodigo.Enabled = false;
-                    rfvAccion.Enabled = rfvMeta.Enabled = rfvMetaC1.Enabled = rfvMetaC2.Enabled = rfvMetaC3.Enabled = true;
-                    rfvPonderacion.Enabled = /*rfvPresupuesto.Enabled = */rfvResponsable.Enabled = true;
-
-                    int idPoa = int.Parse(lblIdPoa.Text);
-                    int idDependencia = int.Parse(ddlDependencias.SelectedValue);
-                    obtenerPresupuesto(idPoa, idDependencia);
-
-                    idMetaOperativa = int.Parse(gridPlanO.SelectedValue.ToString());
-                    accionesEN.Id_Accion = idAccion;
-                    accionesEN.Id_Dependencia = idDependencia;
-                    accionesEN.Id_Objetivo_Operativo = int.Parse(ddlObjetivos.SelectedValue);
-                    accionesEN.Id_Meta_Operativa = idMetaOperativa;
-                    accionesEN.Id_Poa = idPoa;
-                    accionesEN.Accion = txtAccion.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
-                    txtAccion.Text = accionesEN.Accion;
-
-                    if (!txtCodigo.Text.Equals(string.Empty))
-                        accionesEN.Codigo = int.Parse(txtCodigo.Text);
-
-                    accionesEN.Id_Unidad = int.Parse(ddlUnidades.SelectedValue);
-                    accionesEN.Usuario = Session["usuario"].ToString();
-
-                    dsResultado = planAccionLN.AlmacenarAccion(accionesEN, Session["usuario"].ToString());
-
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la acción: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                    txtCodigo.Text = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
-                    txtCodigo.Enabled = true;
-
-                    if (idAccion == 0)
-                    {
-                        mensaje += "Acción INSERTADA correctamente. \n";
-                    }
-                    else
-                        mensaje += "Acción ACTUALIZADA correctamente. \n";
-
-                    idAccion = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());
-                    metasEN.Id_Accion = idAccion;
-                    metasEN.Id_Meta_Accion = idMeta;
-                    metasEN.Id_Meta_Operativa = idMetaOperativa;
-
-                    metasEN.Meta_1 = txtMeta1.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
-                    txtMeta1.Text = metasEN.Meta_1;
-                    metasEN.Meta_2 = txtMeta2.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
-                    txtMeta2.Text = metasEN.Meta_2;
-                    metasEN.Meta_3 = txtMeta3.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
-                    txtMeta3.Text = metasEN.Meta_3;
-                    metasEN.Meta_General = txtMeta.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
-                    metasEN.No_Actividades = 0;
-                    //metasEN.Ponderacion = int.Parse(txtPonderacion.Text);
-                    metasEN.Ponderacion1 = decimal.Parse(txtPonderacion1.Text);
-                    metasEN.Ponderacion2 = decimal.Parse(txtPonderacion2.Text);
-                    metasEN.Ponderacion3 = decimal.Parse(txtPonderacion3.Text);
-
-                    txtPonderacion1.Text = metasEN.Ponderacion1.ToString();
-                    txtPonderacion2.Text = metasEN.Ponderacion2.ToString();
-                    txtPonderacion3.Text = metasEN.Ponderacion3.ToString();
-
-                    //metasEN.Presupuesto = decimal.Parse(txtPpto.Text);
-                    metasEN.Responsable = txtResponsable.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
-                    txtResponsable.Text = metasEN.Responsable;
-                    metasEN.Enero = txtM1.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Febrero = txtM2.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Marzo = txtM3.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Abril = txtM4.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Mayo = txtM5.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Junio = txtM6.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Julio = txtM7.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Agosto = txtM8.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Septiembre = txtM9.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Octubre = txtM10.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Noviembre = txtM11.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Diciembre = txtM12.Text.Equals(string.Empty) ? 0 : 1;
-                    metasEN.Anio = int.Parse(ddlAnios.SelectedValue);
-                    metasEN.Usuario = Session["usuario"].ToString();                    
-
-                    dsResultado = planAccionLN.AlmacenarMeta(metasEN);
-
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la meta: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                    if (idMeta == 0)
-                        mensaje += "Meta INSERTADA correctamente. \n";
-                    else
-                        mensaje += "Meta ACTUALIZADA correctamente. \n";
-
-                    idMeta = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());
-
-                    chkAccion_CheckedChanged(sender, e);
-
-                    ddlAcciones.ClearSelection();
-                    ddlAcciones.SelectedValue = idAccion.ToString();
-                    mensaje = "Acción almacenada exitosamente!, para almacenar una nueva acción presione NUEVO, para agregar renglones a la acción actual, ingrese renglón monto y presione + ";
-
-
-                    lblSuccess.Text = mensaje;
-                    ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
-
-
-                    //mensaje = "Operación exitosa! ;-). " + mensaje + " Si desea agregar renglones, seleccione la acción en el listado de acciones. ";                    
-                }
-            }
-            catch (Exception ex)
-            {
-                string mensaje = "Error al operar el registro. " + ex.Message;
-                lblError.Text = mensaje;
-                ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
-            }
-        }
+      
         
         protected DataSet guardarDetalleAccion(int idPoa, int idDependencia, int idDetalle, int idAccion, string noRenglon, int idTipoFinanciamiento, decimal monto, string idInsumo, string usuario)
         {
@@ -647,9 +520,9 @@ namespace AplicacionSIPA1.Operativa
 
                 string mensaje = string.Empty;
                 planAccionLN = new PlanAccionLN();
-                DataSet dsPpto = planAccionLN.PptoPoa(idPoa, idDependencia);
+                DataSet dsPpto = planAccionLN.PptoPoa(idPoa);
 
-                decimal disponible = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
+                decimal disponible = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
 
 
                 DataSet dsPptoRenglon = planAccionLN.PptoRenglonAccion(idDetalle);
@@ -863,10 +736,7 @@ namespace AplicacionSIPA1.Operativa
                 /*if (!rfvPresupuesto.IsValid)
                     lblError.Text += "Ingrese el presupuesto de la acción!. ";*/
 
-                if (controlesValidos && Page.IsValid)
-                    controlesValidos = true;
-                else
-                    controlesValidos = false;
+                
 
                 rvPond.Enabled = rfvPond1.Enabled = rfvPond2.Enabled = rfvPond3.Enabled = rfvPonderacion.Enabled = /*rfvPresupuesto.Enabled = */false;
             }
@@ -1017,12 +887,12 @@ namespace AplicacionSIPA1.Operativa
             try
             {
                 planAccionLN = new PlanAccionLN();
-                DataSet dsPpto = planAccionLN.PptoPoa(idPoa, idDependencia);
+                DataSet dsPpto = planAccionLN.PptoPoa(idPoa);
 
-                decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
-                decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
+                decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
+                decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
+                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
+                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
 
 
                 lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
@@ -1273,8 +1143,7 @@ namespace AplicacionSIPA1.Operativa
 
         protected void btnNuevaB_Click(object sender, EventArgs e)
         {
-            string _open = "window.open('VerPlan.aspx', '_newtab');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
+            Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
         }
 
         protected void chkCronograma_CheckedChanged(object sender, EventArgs e)
@@ -1793,7 +1662,20 @@ namespace AplicacionSIPA1.Operativa
                     decimal montoRenglon = 0;
 
                     int.TryParse(lblIdPoa.Text, out idPoa);
-                    int.TryParse(ddlDependencias.SelectedValue, out idDependencia);
+
+                    if(ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
+                    {
+                        int.TryParse(ddlJefaturaUnidad.SelectedValue, out idDependencia);
+                    }
+                    else if (int.Parse(ddlDependen.SelectedValue) > 0)
+                    {
+                        int.TryParse(ddlDependen.SelectedValue, out idDependencia);
+                    }
+                    else
+                    {
+                        int.TryParse(ddlUnidades.SelectedValue, out idDependencia);
+                    }
+                    
                     int.TryParse(ddlAcciones.SelectedValue, out idAccion);
                     
                     decimal.TryParse(txtMonto.Text, out montoRenglon);
@@ -1836,6 +1718,255 @@ namespace AplicacionSIPA1.Operativa
                 return "00.00";
             
             return s;
+        }
+
+        protected void ddlDependen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlDependen.SelectedValue);
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                string id_unidad = ddlDependen.SelectedItem.Value;
+                //btnNuevo_Click(sender, e);
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                ddlPlanes_SelectedIndexChanged(sender, e);
+
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, anio, idUnidad);
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                planAccionLN = new PlanAccionLN();
+                planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), idUnidadTemp);
+
+                if (idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    ddlDependen.SelectedValue = idUnidad.ToString();
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+
+                    if (ddlDependencias.Items.Count == 1)
+                        ddlDependencias_SelectedIndexChanged(sender, e);
+                }
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, int.Parse(ddlAnios.SelectedValue), int.Parse(ddlDependen.SelectedValue));
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                chkAccion.Checked = true;
+                chkAccion_CheckedChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlJefaturaUnidad.SelectedValue);
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                //btnNuevo_Click(sender, e);
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                ddlPlanes_SelectedIndexChanged(sender, e);
+
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, anio, idUnidad);
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                planAccionLN = new PlanAccionLN();
+                planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), idUnidadTemp);
+
+                if (idUnidad > 0)
+                {
+
+                    ddlJefaturaUnidad.SelectedValue = idUnidad.ToString();
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+
+                    if (ddlDependencias.Items.Count == 1)
+                        ddlDependencias_SelectedIndexChanged(sender, e);
+                }
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, int.Parse(ddlAnios.SelectedValue), int.Parse(ddlJefaturaUnidad.SelectedValue));
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                chkAccion.Checked = true;
+                chkAccion_CheckedChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void txtMonto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                planAccionLN = new PlanAccionLN();
+                accionesEN = new AccionesEN();
+                metasEN = new MetasAccionEN();
+
+                string mensaje = "";
+                DataSet dsResultado = new DataSet();
+                int idAccion = int.Parse(ddlAcciones.SelectedValue);
+                int idMeta = 0;
+                int idMetaOperativa = 0;
+
+                if (ddlMetas.Items.Count > 0)
+                    idMeta = int.Parse(ddlMetas.SelectedValue);
+                //INSERTAR/ACTUALIZAR
+                if (validarControlesABC())
+                {
+                    rfvCodigo.Enabled = false;
+                    rfvAccion.Enabled = rfvMeta.Enabled = rfvMetaC1.Enabled = rfvMetaC2.Enabled = rfvMetaC3.Enabled = true;
+                    rfvPonderacion.Enabled = /*rfvPresupuesto.Enabled = */rfvResponsable.Enabled = true;
+
+                    int idPoa = int.Parse(lblIdPoa.Text);
+                    int idDependencia = int.Parse(ddlDependencias.SelectedValue);
+                    obtenerPresupuesto(idPoa, idDependencia);
+
+                    idMetaOperativa = int.Parse(gridPlanO.SelectedValue.ToString());
+                    accionesEN.Id_Accion = idAccion;
+                    accionesEN.Id_Dependencia = idDependencia;
+                    accionesEN.Id_Objetivo_Operativo = int.Parse(ddlObjetivos.SelectedValue);
+                    accionesEN.Id_Meta_Operativa = idMetaOperativa;
+                    accionesEN.Id_Poa = idPoa;
+                    accionesEN.Accion = txtAccion.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtAccion.Text = accionesEN.Accion;
+
+                    if (!txtCodigo.Text.Equals(string.Empty))
+                        accionesEN.Codigo = int.Parse(txtCodigo.Text);
+
+                    if (ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
+                    {
+                        accionesEN.Id_Unidad = int.Parse(ddlJefaturaUnidad.SelectedValue);
+                    }
+                    else if (int.Parse(ddlDependen.SelectedValue) > 0)
+                    {
+                        accionesEN.Id_Unidad = int.Parse(ddlDependen.SelectedValue);
+                    }
+                    else
+                    {
+                        accionesEN.Id_Unidad = int.Parse(ddlUnidades.SelectedValue);
+                    }
+
+                    accionesEN.Usuario = Session["usuario"].ToString();
+
+                    dsResultado = planAccionLN.AlmacenarAccion(accionesEN, Session["usuario"].ToString());
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la acción: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    txtCodigo.Text = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
+                    txtCodigo.Enabled = true;
+
+                    if (idAccion == 0)
+                    {
+                        mensaje += "Acción INSERTADA correctamente. \n";
+                    }
+                    else
+                        mensaje += "Acción ACTUALIZADA correctamente. \n";
+
+                    idAccion = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());
+                    metasEN.Id_Accion = idAccion;
+                    metasEN.Id_Meta_Accion = idMeta;
+                    metasEN.Id_Meta_Operativa = idMetaOperativa;
+
+                    metasEN.Meta_1 = txtMeta1.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtMeta1.Text = metasEN.Meta_1;
+                    metasEN.Meta_2 = txtMeta2.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtMeta2.Text = metasEN.Meta_2;
+                    metasEN.Meta_3 = txtMeta3.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtMeta3.Text = metasEN.Meta_3;
+                    metasEN.Meta_General = txtMeta.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    metasEN.No_Actividades = 0;
+                    //metasEN.Ponderacion = int.Parse(txtPonderacion.Text);
+                    metasEN.Ponderacion1 = decimal.Parse(txtPonderacion1.Text);
+                    metasEN.Ponderacion2 = decimal.Parse(txtPonderacion2.Text);
+                    metasEN.Ponderacion3 = decimal.Parse(txtPonderacion3.Text);
+
+                    txtPonderacion1.Text = metasEN.Ponderacion1.ToString();
+                    txtPonderacion2.Text = metasEN.Ponderacion2.ToString();
+                    txtPonderacion3.Text = metasEN.Ponderacion3.ToString();
+
+                    //metasEN.Presupuesto = decimal.Parse(txtPpto.Text);
+                    metasEN.Responsable = txtResponsable.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtResponsable.Text = metasEN.Responsable;
+                    metasEN.Enero = txtM1.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Febrero = txtM2.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Marzo = txtM3.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Abril = txtM4.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Mayo = txtM5.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Junio = txtM6.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Julio = txtM7.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Agosto = txtM8.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Septiembre = txtM9.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Octubre = txtM10.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Noviembre = txtM11.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Diciembre = txtM12.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Anio = int.Parse(ddlAnios.SelectedValue);
+                    metasEN.Usuario = Session["usuario"].ToString();
+
+                    dsResultado = planAccionLN.AlmacenarMeta(metasEN);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la meta: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    if (idMeta == 0)
+                        mensaje += "Meta INSERTADA correctamente. \n";
+                    else
+                        mensaje += "Meta ACTUALIZADA correctamente. \n";
+
+                    idMeta = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());
+
+                    chkAccion_CheckedChanged(sender, e);
+
+                    ddlAcciones.ClearSelection();
+                    ddlAcciones.SelectedValue = idAccion.ToString();
+                    mensaje = "Acción almacenada exitosamente!, para almacenar una nueva acción presione NUEVO, para agregar renglones a la acción actual, ingrese renglón monto y presione + ";
+
+
+                    lblSuccess.Text = mensaje;
+                    ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
+
+
+                    //mensaje = "Operación exitosa! ;-). " + mensaje + " Si desea agregar renglones, seleccione la acción en el listado de acciones. ";                    
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "Error al operar el registro. " + ex.Message;
+                lblError.Text = mensaje;
+                ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
+            }
         }
 
         protected void btnGuardarMod(object sender, EventArgs e)

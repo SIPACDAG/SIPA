@@ -64,6 +64,19 @@ namespace AplicacionSIPA1.Operativa
 
         protected void filtrarGridPlanes()
         {
+            string id_unidad = "";
+            if (ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
+            {
+                id_unidad = ddlJefaturaUnidad.SelectedValue;
+            }
+            else if (ddlDependencia.SelectedValue != "" && int.Parse(ddlDependencia.SelectedValue) > 0)
+            {
+                id_unidad =ddlDependencia.SelectedValue;
+            }
+            else
+            {
+                id_unidad = ddlUnidades.SelectedValue;
+            }
             gridPlanes.DataSource = null;
             gridPlanes.DataBind();
 
@@ -80,7 +93,7 @@ namespace AplicacionSIPA1.Operativa
             filtro += " AND id_usuario = -1";
 
             if (!ddlUnidades.SelectedValue.Equals("0"))
-                filtro += " AND id_unidad = " + ddlUnidades.SelectedValue;
+                filtro += " AND id_unidad = " +id_unidad;
 
             dv.RowFilter = filtro;
 
@@ -114,6 +127,13 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
+                int idUnidad = int.Parse(ddlUnidades.SelectedValue);
+                string id_unidad = ddlUnidades.SelectedItem.Value;
+                if (idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
+                }
                 limpiarControlesError();
                 filtrarGridPlanes();
             }
@@ -275,6 +295,40 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 lblError.Text = "gridAsignaciones_RowDeleting(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int idUnidad = int.Parse(ddlDependencia.SelectedValue);
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+                if (idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                }
+                limpiarControlesError();
+                filtrarGridPlanes();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                limpiarControlesError();
+                filtrarGridPlanes();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

@@ -329,6 +329,34 @@
                             <td style="width: 5%">&nbsp;</td>
                         </tr>
                         <tr>
+                            <td style="width: 5%">
+                                
+                            </td>
+                            <td style="width: 5%">
+                               
+                            </td>
+                            <td colspan="8">Dependencia:
+                            </td>
+                            <td colspan="8">Jefatura/Unidad:
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlDependen" runat="server" AutoPostBack="True" class="form-control"  OnSelectedIndexChanged="ddlDependen_SelectedIndexChanged" Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="8">&nbsp;</td>
@@ -844,7 +872,7 @@
                                                 </asp:DropDownList>
                                             </td>
                                             <td colspan="2" style="border: 1px solid #000000">
-                                                <asp:TextBox ID="txtMonto" runat="server" Style="text-align: right" class="form-control" MaxLength="20" Width="100%" BackColor="#FFFF99">100000000</asp:TextBox>
+                                                <asp:TextBox ID="txtMonto" runat="server" Style="text-align: right" class="form-control" MaxLength="20" Width="100%" BackColor="#FFFF99" OnTextChanged="txtMonto_TextChanged">100000000</asp:TextBox>
                                             </td>
                                             <td style="border-left: 1px solid #000000; width: 5%">
                                                 <asp:Button ID="btnAgregarDetalle" runat="server" class="btn btn-success" Font-Bold="True" Font-Size="Large" OnClick="btnAgregarDetalle_Click" Text="+" ToolTip="Presione este botón para agregar un renglón presupuestario" Width="95%" />
@@ -1015,7 +1043,7 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center">
-                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                                <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" Width="120px" />
                                 <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
                                 <asp:Button ID="btnRevisarPlan" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnNuevaB_Click" Text="RevisarPlan" Width="120px" />
                                 <asp:Button ID="btnDetalles" runat="server" class="btn btn-primary" OnClick="btnDetalles_Click" Text="Insumos" ValidationGroup="grpDatos" Width="120px" Visible="False" />

@@ -474,7 +474,7 @@
                                 <asp:DropDownList ID="ddlDependencias" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Width="100%"></asp:DropDownList>
                             </td>
                             <td colspan="8">
-                                <asp:DropDownList ID="ddlUnidadJefatura" runat ="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlUnidadJefatura_SelectedIndexChanged" Width="100%"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlUnidadJefatura" runat ="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlUnidadJefatura_SelectedIndexChanged1" Width="100%"></asp:DropDownList>
                             </td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>

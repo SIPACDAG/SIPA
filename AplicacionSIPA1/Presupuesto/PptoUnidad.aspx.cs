@@ -61,7 +61,19 @@ namespace AplicacionSIPA1.Presupuesto
                                     presupuestoLN = new PresupuestoLN();
                                     presupuestoEN = new PresupuestoEN();
                                     presupuestoEN.idPlan = int.Parse(ddlPlanE.SelectedValue);
-                                    presupuestoEN.idUnidad = Convert.ToInt32(ddlUnidad.SelectedValue);
+                                    if (ddlJefaturasSub.SelectedValue!=""&& int.Parse(ddlJefaturasSub.SelectedValue)>0)
+                                    {
+                                        presupuestoEN.idUnidad = Convert.ToInt32(ddlJefaturasSub.SelectedValue);
+                                    }
+                                    else if (int.Parse(ddlDependencias.SelectedValue)>0)
+                                    {
+                                        presupuestoEN.idUnidad = Convert.ToInt32(ddlDependencias.SelectedValue);
+                                    }
+                                    else
+                                    {
+                                        presupuestoEN.idUnidad = Convert.ToInt32(ddlUnidad.SelectedValue);
+                                    }
+                                   
                                     presupuestoEN.monto = Convert.ToDouble(txtMonto.Text);
                                     presupuestoEN.anio = Convert.ToInt32(dropAnio.SelectedItem.Text);
                                     presupuestoEN.usuario = ((Label)Master.FindControl("lblUsuario")).Text;

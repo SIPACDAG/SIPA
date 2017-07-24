@@ -179,18 +179,20 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
+
                 limpiarControlesError();
                 filtrarGridPlan();
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 int idUnidad = int.Parse(ddlUnidades.SelectedValue);
+                string id_unidad = ddlUnidades.SelectedItem.Value;
 
                 lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
 
                 if (idUnidad > 0)
                 {
-                    planAccionLN = new PlanAccionLN();
-                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencias, id_unidad);
                 }
 
                 if (anio > 0 && idUnidad > 0)
@@ -436,7 +438,19 @@ namespace AplicacionSIPA1.Operativa
 
                 int anio, idUnidad = 0;
                 int.TryParse(ddlAnios.SelectedValue, out anio);
-                int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
+                if (ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
+                {
+                    int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+                }
+                else if (int.Parse(ddlDependencias.SelectedValue) > 0)
+                {
+                    int.TryParse(ddlDependencias.SelectedValue, out idUnidad);
+                }
+                else
+                {
+                    int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
+                }
+                
 
                 if (validarPoa(idUnidad, anio))
                 {
@@ -461,17 +475,35 @@ namespace AplicacionSIPA1.Operativa
 
         protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int anio = int.Parse(ddlAnios.SelectedValue);
+            int idUnidad = int.Parse(ddlDependencias.SelectedValue);
+            string id_unidad = ddlDependencias.SelectedItem.Value;
             limpiarControlesError();
+            if (idUnidad > 0)
+            {
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+            }
+            if (anio > 0 && idUnidad > 0)
+                validarPoa(idUnidad, anio);
+
             int idPoa = 0;
-
-            lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
-
-            if (!int.TryParse(lblIdPoa.Text, out idPoa))
-                throw new Exception("No existe POA seleccionado");
-
-            obtenerPresupuesto(idPoa, int.Parse(ddlDependencias.SelectedValue));
+            int.TryParse(lblIdPoa.Text, out idPoa);
+            planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+            ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
 
             filtrarGridPlan();
+            generarReporte();
+            //int idPoa = 0;
+
+            //lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+
+            //if (!int.TryParse(lblIdPoa.Text, out idPoa))
+            //    throw new Exception("No existe POA seleccionado");
+
+            //obtenerPresupuesto(idPoa, int.Parse(ddlDependencias.SelectedValue));
+
+            //filtrarGridPlan();
         }
 
         protected void ddlPlanes_SelectedIndexChanged(object sender, EventArgs e)
@@ -857,6 +889,25 @@ namespace AplicacionSIPA1.Operativa
             {
                 throw new Exception("gridPlan_RowDataBound1(). " + ex.Message);
             }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int anio = int.Parse(ddlAnios.SelectedValue);
+            int idUnidad = int.Parse(ddlJefaturaUnidad.SelectedValue);
+            string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+            limpiarControlesError();
+            
+            if (anio > 0 && idUnidad > 0)
+                validarPoa(idUnidad, anio);
+
+            int idPoa = 0;
+            int.TryParse(lblIdPoa.Text, out idPoa);
+            planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+            ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
+
+            filtrarGridPlan();
+            generarReporte();
         }
     }
 }

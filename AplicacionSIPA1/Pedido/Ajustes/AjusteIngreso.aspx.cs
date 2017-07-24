@@ -21,7 +21,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+        private PlanOperativoLN planOperativoLN;
         private PedidosLN pInsumoLN;
         private AJUSTE_PEDIDO aAjusteEN;
         private AJUSTE_PEDIDO_DET aAjusteEN_DET;
@@ -253,13 +253,16 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                 int anio = 0;
                 int idUnidad = 0;
-
+                string id_unidad = ddlUnidades.SelectedItem.Value;
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencias, id_unidad);
                     validarPoaIngresoPedido(idUnidad, anio);
-
+                }
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -1318,5 +1321,87 @@ namespace AplicacionSIPA1.Pedido.Ajustes
             }
         }
 
+        protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoAjusteEnc();
+                NuevoPedidoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlDependencias.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencias.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidades, id_unidad);
+                    validarPoaIngresoPedido(idUnidad, anio);
+                }
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                string criterio = " AND t.id_tipo_documento = 0 AND t.id_estado_pedido IN (0) AND t.id_accion = 0";
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlDocumentosAjuste(ddlNoDocumento, criterio);
+                ddlNoDocumento_SelectedIndexChanged(new object(), new EventArgs());
+
+                InformacionPublica_TribunalHonor();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoAjusteEnc();
+                NuevoPedidoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlJefaturaUnidades.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidades.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    
+                    validarPoaIngresoPedido(idUnidad, anio);
+                }
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                string criterio = " AND t.id_tipo_documento = 0 AND t.id_estado_pedido IN (0) AND t.id_accion = 0";
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlDocumentosAjuste(ddlNoDocumento, criterio);
+                ddlNoDocumento_SelectedIndexChanged(new object(), new EventArgs());
+
+                InformacionPublica_TribunalHonor();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
     }
 }

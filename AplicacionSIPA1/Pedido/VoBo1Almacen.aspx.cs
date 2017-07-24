@@ -20,7 +20,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanAnualLN pAnualLN;
         private UsuariosLN uUsuariosLN;
         private PedidosLN pInsumoLN;
-
+        private PlanOperativoLN planOperativoLN;
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -332,9 +332,14 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 lblErrorPoa.Text = string.Empty;
-                if (anio > 0 && idUnidad > 0)
-                    validarPoaAprobacionPedido(idUnidad, anio);
+                string id_unidad = ddlUnidades.SelectedItem.Value;
 
+                if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
+                    validarPoaAprobacionPedido(idUnidad, anio);
+                }
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -641,6 +646,73 @@ namespace AplicacionSIPA1.Pedido
             catch (Exception ex)
             {
                 lblError.Text = "rblEstadosPedido(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                lblErrorPoa.Text = string.Empty;
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    validarPoaAprobacionPedido(idUnidad, anio);
+                }
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Todas las acciones >>";
+                NuevaAprobacion();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+
+                lblErrorPoa.Text = string.Empty;
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    
+                    validarPoaAprobacionPedido(idUnidad, anio);
+                }
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Todas las acciones >>";
+                NuevaAprobacion();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

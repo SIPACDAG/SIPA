@@ -21,7 +21,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+        private PlanOperativoLN planOperativoLN;
         private PedidosLN pInsumoLN;
         private AJUSTE_PEDIDO aAjusteEN;
         private AJUSTE_PEDIDO_DET aAjusteEN_DET;
@@ -263,10 +263,14 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
+                string id_unidad = ddlUnidades.SelectedItem.Value;
 
                 if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
                     validarPoaIngresoPedido(idUnidad, anio);
-
+                }
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -1032,6 +1036,93 @@ namespace AplicacionSIPA1.Pedido.Ajustes
         protected void ddlSolicitantes_SelectedIndexChanged(object sender, EventArgs e)
         {
             limpiarControlesError();
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoAjusteEnc();
+                NuevoPedidoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    validarPoaIngresoPedido(idUnidad, anio);
+                }
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                pInsumoLN = new PedidosLN();
+                pInsumoLN.DdlAjustesVoBo(ddlAjustes, idUnidad);
+
+                if (ddlAjustes.Items.Count == 1)
+                    ddlAjustes_SelectedIndexChanged(sender, e);
+
+                InformacionPublica_TribunalHonor();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoAjusteEnc();
+                NuevoPedidoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    
+                    validarPoaIngresoPedido(idUnidad, anio);
+                }
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                pInsumoLN = new PedidosLN();
+                pInsumoLN.DdlAjustesVoBo(ddlAjustes, idUnidad);
+
+                if (ddlAjustes.Items.Count == 1)
+                    ddlAjustes_SelectedIndexChanged(sender, e);
+
+                InformacionPublica_TribunalHonor();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
     }
 }

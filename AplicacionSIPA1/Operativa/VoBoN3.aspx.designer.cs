@@ -103,6 +103,24 @@ namespace AplicacionSIPA1.Operativa {
         protected global::System.Web.UI.WebControls.DropDownList ddlDependencias;
         
         /// <summary>
+        /// Control ddlDepend.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepend;
+        
+        /// <summary>
+        /// Control ddlJefaturaUnidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJefaturaUnidad;
+        
+        /// <summary>
         /// Control lblTechoU.
         /// </summary>
         /// <remarks>
