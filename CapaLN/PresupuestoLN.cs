@@ -76,6 +76,13 @@ namespace CapaLN
             grid.DataSource = presupuestoAD.datosPresupuesto(anio);
             grid.DataBind();
         }
+        public void gridPresupuesto(GridView grid, int anio, int unidad)
+        {
+            presupuestoAD = new PresupuestoAD();
+            grid.DataSource = presupuestoAD.datosPresupuesto(anio,unidad);
+            
+            grid.DataBind();
+        }
         public void gridPresupuestoDep(GridView grid,int anio,int idUnidad)
         {
             presupuestoAD = new PresupuestoAD();
@@ -87,14 +94,14 @@ namespace CapaLN
             presupuestoAD = new PresupuestoAD();
             return presupuestoAD.InsertarPresUnidad(presupuestoEN, usuario);
         }
-        public DataSet AlmacenarModificacionTechoPpto(PresupuestoEN presupuestoEN, string usuario)
+        public DataSet AlmacenarModificacionTechoPpto(PresupuestoEN presupuestoEN, string usuario,int op)
         {
             DataSet dsResultado = armarDsResultado();
 
             presupuestoAD = new PresupuestoAD();
             try
             {
-                DataSet ds = presupuestoAD.AlmacenarModificacionTechoPpto(presupuestoEN, usuario);
+                DataSet ds = presupuestoAD.AlmacenarModificacionTechoPpto(presupuestoEN, usuario, op);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -155,6 +162,29 @@ namespace CapaLN
             ds.Tables[0].Rows[0]["ERRORES"] = true;
             ds.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
             return ds;
+        }
+        public decimal validarMonto(int anio, int unidad)
+        {
+            presupuestoAD = new PresupuestoAD();
+            return presupuestoAD.validarMonoto(anio, unidad);
+        }
+
+        public decimal ObtenerMontoGlobal(int anio, int unidad)
+        {
+            presupuestoAD = new PresupuestoAD();
+            return presupuestoAD.ObtenerMontoGlobal(anio, unidad);
+        }
+
+        public decimal validarMontoDependecias(int anio, int unidad,int op)
+        {
+            presupuestoAD = new PresupuestoAD();
+            return presupuestoAD.validarMontoDependencias(anio, unidad,op);
+        }
+
+        public void InsertarBitacora(string usuario,string unidad,string ip, string acc, string decs, decimal mInicial, decimal mFinal)
+        {
+            presupuestoAD = new PresupuestoAD();
+            presupuestoAD.InsertarBitacora(usuario,unidad,ip,acc,decs,mInicial,mFinal);
         }
     }
 }

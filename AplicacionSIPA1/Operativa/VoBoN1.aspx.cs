@@ -21,9 +21,10 @@ namespace AplicacionSIPA1.Operativa
         private PlanOperativoLN planOperativoLN;
         private PlanAccionLN planAccionLN;
         private UsuariosLN uUsuariosLN;
+        private PresupuestoLN presupuestoLN;
 
         string Last = string.Empty;
-        
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -59,8 +60,8 @@ namespace AplicacionSIPA1.Operativa
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlAccionesPoa(ddlAcciones, 0);
                     ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
-                        
-                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));;
+
+                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue)); ;
                     ddlDependencias.Items[0].Text = "<< Elija un valor >>";
 
                     if (ddlUnidades.Items.Count == 1)
@@ -77,17 +78,21 @@ namespace AplicacionSIPA1.Operativa
                     int.TryParse(lblIdPoa.Text, out idPoa);
                     planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                     ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
-
+                    txtObser.Enabled = true;
                     rblMostrar.SelectedValue = "1";
                     rblMostrar_SelectedIndexChanged(sender, e);
 
-                    txtObser.Enabled = true;
+                    
                     filtrarGridPlan();
                     generarReporte();
                 }
                 catch (Exception ex)
                 {
-                    lblError.Text = "Page_LoadComplete(). " + ex.Message;
+                    if (ex.Message!= "filtrarGridPlan(). Cannot find column [anio].")
+                    {
+                        lblError.Text = "Page_LoadComplete(). " + ex.Message;
+                    }
+                    
                 }
             }
         }
@@ -106,7 +111,15 @@ namespace AplicacionSIPA1.Operativa
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 planAccionLN = new PlanAccionLN();
-                planAccionLN.GridPlan(gridPlan, idUnidad, idPoa);
+                if (ddlDepend.SelectedIndex <= 0)
+                {
+                    planAccionLN.GridPlanCompleto(gridPlan, idUnidad, idPoa, int.Parse(ddlAnios.SelectedValue));
+                }
+                else
+                {
+                    planAccionLN.GridPlan(gridPlan, idUnidad, idPoa);
+                }
+
 
                 string filtro = string.Empty;
 
@@ -130,7 +143,7 @@ namespace AplicacionSIPA1.Operativa
             }
             catch (Exception ex)
             {
-                throw new Exception("filtrarGridPlan(). "  + ex.Message);
+                throw new Exception("filtrarGridPlan(). " + ex.Message);
             }
 
         }
@@ -144,12 +157,20 @@ namespace AplicacionSIPA1.Operativa
 
                 int idUnidad = 0;
                 int idPoa = 0;
-
+                DataSet dsResultado = new DataSet();
                 int.TryParse(lblIdPoa.Text, out idPoa);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 planAccionLN = new PlanAccionLN();
-                DataSet dsResultado = planAccionLN.InformacionAccionDetalles(idPoa, 0, "", 2);
+                if (ddlDepend.SelectedIndex <= 0)
+                {
+                    dsResultado = planAccionLN.InformacionAccionDetallesCompleto(idPoa, 0, "", 2);
+                }
+                else
+                {
+                    dsResultado = planAccionLN.InformacionAccionDetalles(idPoa, 0, "", 2);
+                }
+
 
                 gridRenglonesUnidad.DataSource = dsResultado.Tables["BUSQUEDA"];
                 gridRenglonesUnidad.DataBind();
@@ -196,10 +217,23 @@ namespace AplicacionSIPA1.Operativa
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
                 }
-
+                //decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
                 if (anio > 0 && idUnidad > 0)
                     validarPoa(idUnidad, anio);
-
+                if (!planOperativoLN.CantidadDePresupuestos(anio, idUnidad))
+                {
+                    lblppto.Text = "Una o más depedencias no tiene asignado presupuesto. ";
+                    DataSet dependencias = planOperativoLN.DependenciasFaltantes(idUnidad, anio);
+                    for (int i = 0; i < dependencias.Tables[0].Rows.Count; i++)
+                    {
+                        lblppto.Text += dependencias.Tables[0].Rows[i]["unidad"].ToString() + ", ";
+                    }
+                }
+                if (ddlJefaturUnidad.Items.Count>0)
+                {
+                    ddlJefaturUnidad.SelectedIndex = 0;
+                }
+                
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
                 planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
@@ -216,7 +250,7 @@ namespace AplicacionSIPA1.Operativa
 
         protected void limpiarControlesError()
         {
-            lblError.Text = lblSuccess.Text = string.Empty;
+            lblError.Text = lblppto.Text = lblSuccess.Text = string.Empty;
         }
 
         protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
@@ -348,7 +382,7 @@ namespace AplicacionSIPA1.Operativa
 
                 int idDep = 0;
                 int.TryParse(ddlDependencias.Items[0].Value, out idDep);
-                obtenerPresupuesto(idPoa, idDep);              
+                obtenerPresupuesto(idPoa, idDep);
 
                 poaValido = true;
             }
@@ -363,20 +397,33 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
+                decimal pptoPoaUnidad = 0;
+                decimal pptoDisponibleUnidad = 0;
+                decimal pptoPoaDependencia = 0;
+                decimal pptoDisponibleDep = 0;
+                presupuestoLN = new PresupuestoLN();
                 planAccionLN = new PlanAccionLN();
-                DataSet dsPpto = planAccionLN.PptoPoa(idPoa, idDependencia);
+                if (ddlDepend.SelectedIndex <= 0)
+                {
+                    pptoPoaUnidad = presupuestoLN.ObtenerMontoGlobal(Convert.ToInt32(ddlAnios.SelectedValue), Convert.ToInt32(ddlUnidades.SelectedValue));
+                }
+                else
+                {
+                    DataSet dsPpto = planAccionLN.PptoPoa(idPoa, idDependencia);
 
-                decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
-                decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
+                    pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
+                    pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
+                    pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
+                    pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
+                }
+
 
 
                 lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
                 lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleUnidad);
                 lblTechoD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaDependencia);
                 lblDisponibleD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleDep);
-                
+
             }
             catch (Exception ex)
             {
@@ -396,7 +443,7 @@ namespace AplicacionSIPA1.Operativa
                 lblError.Text = "ddlAcciones_SelectedIndexChanged(). " + ex.Message;
             }
         }
-        
+
 
 
         protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
@@ -440,9 +487,9 @@ namespace AplicacionSIPA1.Operativa
 
         protected void btnVerReporte_Click(object sender, EventArgs e)
         {
-            
+
         }
-        
+
         protected void rblMostrar_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rblMostrar.SelectedValue.Equals("1"))
@@ -707,8 +754,14 @@ namespace AplicacionSIPA1.Operativa
                 if (idPoa == 0)
                     throw new Exception("Seleccione un CMI!");
 
+
+                planOperativoLN = new PlanOperativoLN();
                 txtObser.Text = string.Empty;
                 cambiarEstado(4, "APROBADA");
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -751,6 +804,31 @@ namespace AplicacionSIPA1.Operativa
             }
         }
 
+
+        protected void cambiarEstadoDependecias(List<int> depen)
+        {
+            try
+            {
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                planOperativoLN = new PlanOperativoLN();
+                string usuario = Session["usuario"].ToString();
+                string observaciones = txtObser.Text;
+                for (int i = 0; i < depen.Count; i++)
+                {
+                    DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(depen[i], 4, anio, null, "", usuario, observaciones);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "cambiarEstado(). " + ex.Message;
+                throw;
+            }
+        }
+
         protected void cambiarEstado(int idEstado, string nombreEstado)
         {
             try
@@ -760,11 +838,14 @@ namespace AplicacionSIPA1.Operativa
 
                 if (ddlUnidades.SelectedValue == "0")
                     throw new Exception("Seleccione unidad!");
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlUnidades.SelectedValue);
+                validarPoa(idUnidad, anio);
 
                 int idPoa = int.Parse(lblIdPoa.Text);
 
                 planOperativoLN = new PlanOperativoLN();
-                int anio = int.Parse(ddlAnios.SelectedValue);
+
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
                 DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones);
@@ -856,8 +937,8 @@ namespace AplicacionSIPA1.Operativa
 
                     String reDireccion = "\\ArchivoPDF/";
                     reDireccion += "\\" + "" + nombreReporte + ".xls";
-                    
-                    
+
+
                     string jScript = "javascript:window.open('" + reDireccion + "','CUADRO DE MANDO INTEGRAL'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
 
                     btnVerReporte.Attributes.Add("onclick", jScript);
@@ -868,8 +949,8 @@ namespace AplicacionSIPA1.Operativa
                 lblError.Text = "btnVerReporte(). " + ex.Message;
             }
         }
-		
-		protected void gridPlan_RowDataBound(object sender, GridViewRowEventArgs e)
+
+        protected void gridPlan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
             {
@@ -915,6 +996,7 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
+               
                 limpiarControlesError();
                 filtrarGridPlan();
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
@@ -927,15 +1009,29 @@ namespace AplicacionSIPA1.Operativa
                 if (idUnidad > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
-                    planOperativoLN.DdlDependencias(ddlJefaturUnidad, id_unidad);
+                    if (idUnidad!=idUnidadTemp)
+                    {
+                        planOperativoLN.DdlDependencias(ddlJefaturUnidad, id_unidad);
+                    }
+                   
                     ddlDepend.SelectedValue = idUnidad.ToString();
                     ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+                }
+                if (idUnidad == 0)
+                {
+
+                    planAccionLN = new PlanAccionLN();
+                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
+                    if (anio > 0 && idUnidad >= 0)
+                        validarPoa(idUnidadTemp, anio);
                 }
 
-                if (anio > 0 && idUnidad > 0)
-                    validarPoa(idUnidad, anio);
+
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -944,6 +1040,8 @@ namespace AplicacionSIPA1.Operativa
 
                 filtrarGridPlan();
                 generarReporte();
+                btnAprobar.Visible = false;
+                btnRechazar.Visible = false;
             }
             catch (Exception ex)
             {
@@ -956,6 +1054,8 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
+                btnAprobar.Visible = false;
+                btnRechazar.Visible = false;
                 limpiarControlesError();
                 filtrarGridPlan();
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
@@ -967,7 +1067,7 @@ namespace AplicacionSIPA1.Operativa
 
                 if (idUnidad > 0)
                 {
-                   
+
                     ddlJefaturUnidad.SelectedValue = idUnidad.ToString();
                     ddlUnidades.SelectedValue = idUnidadTemp.ToString();
                     planAccionLN = new PlanAccionLN();

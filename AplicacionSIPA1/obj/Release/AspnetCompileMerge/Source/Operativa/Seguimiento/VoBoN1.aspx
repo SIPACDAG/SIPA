@@ -303,11 +303,11 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="avance_ppto_cuatrimestral_historico" HeaderText="Av. Ppto. Cuatr." DataFormatString="Q {0:0,00.00}">
+                                <asp:BoundField DataField="avance_ppto_cuatrimestral_historico" DataFormatString="Q {0:0,00.00}" HeaderText="Av. Ppto. Cuatr." Visible="true">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="avance_ppto_acumulado_historico" HeaderText="Av. Ppto. Acum." DataFormatString="Q {0:0,00.00}">
+                                <asp:BoundField DataField="avance_ppto_acumulado_historico" DataFormatString="Q {0:0,00.00}" HeaderText="Av. Ppto. Acum." Visible="true">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>

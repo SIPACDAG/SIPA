@@ -115,7 +115,7 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="8">
-                                <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" class="form-control" AutoPostBack="True"  Width="100%">
+                                <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" class="form-control" AutoPostBack="True"  Width="100%" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
                             <td colspan="8">

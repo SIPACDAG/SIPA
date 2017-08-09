@@ -15,7 +15,7 @@
             <div class ="row">
                   <div class="col-md-6  ">
                     <asp:Button ID="btnPedido" runat="server" CausesValidation="false" class="btn btn-warning" OnClick="btnPedido_Click" Text="Nuevo Pedido" Width="166px"  />
-                    <asp:Button ID="btnListado" runat="server" CausesValidation ="false" class="btn btn-info" OnClick="btnListado_Click" Text="Ver Listado"  />
+                    
                     
                 </div>
             </div>

@@ -720,7 +720,7 @@
                                 <asp:TextBox ID="txtPonderacion3" runat="server" Style="text-align: right" class="form-control" MaxLength="5" Width="100%"></asp:TextBox>
                             </td>
                             <td colspan="2" style="border: 1px solid #000000;">
-                                <asp:TextBox ID="txtPonderacion" runat="server" Style="text-align: right" class="form-control" MaxLength="5" TextMode="Number" Width="100%">100000000</asp:TextBox>
+                                <asp:TextBox ID="txtPonderacion" runat="server" Style="text-align: right" class="form-control" MaxLength="5" TextMode="Number" Width="100%">0</asp:TextBox>
                             </td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>

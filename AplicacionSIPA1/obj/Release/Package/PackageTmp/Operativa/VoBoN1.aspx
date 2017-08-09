@@ -260,6 +260,7 @@
                             <td colspan="16" style="text-align: center"><span>
                                 <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                                 <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
+                                <asp:Label ID="lblppto" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Yellow" style="color: #FF9900"></asp:Label>
                                 </span></td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
@@ -268,7 +269,7 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center">
-                                <asp:Button ID="btnAprobar" runat="server" CausesValidation="False" class="btn btn-success" OnClick="btnAprobar_Click" Text="Aprobar" Width="120px" />
+                                <asp:Button ID="btnAprobar" runat="server" CausesValidation="False" class="btn btn-success" OnClientClick="return confirm('¿Desea Aprobar Presupueto?');" OnClick="btnAprobar_Click" Text="Aprobar" Width="120px" />
                                 <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Rechazar" ValidationGroup="grpDatos" Width="120px" />
                                 <asp:Button ID="btnVerReporte" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnVerReporte_Click" Text="Ver Reporte" Width="120px" />
                                 <asp:Button ID="btnActualizar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnActualizar_Click" Text="Actualizar!" Width="120px" />

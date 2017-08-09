@@ -98,6 +98,30 @@
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">Dependencia:
+                            </td>
+                            <td colspan="8">Jefatura/Unidad:
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlDependencia" runat="server" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" class="form-control"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center"><strong>
                                 <asp:Label ID="lblEncabezado" runat="server" Font-Bold="True" Font-Size="Medium" style="text-align: center"></asp:Label>
                                 </strong></td>

@@ -266,7 +266,10 @@ namespace AplicacionSIPA1.Operativa
                     if (ddlDependencias.Items.Count == 1)
                         ddlDependencias_SelectedIndexChanged(sender, e);
                 }
-
+                if (ddlJefaturaUnidad.Items.Count > 0)
+                {
+                    ddlJefaturaUnidad.SelectedIndex = 0;
+                }
                 planOperativoLN = new PlanOperativoLN();
                 planOperativoLN.DdlObjetivosB(ddlObjetivos, int.Parse(ddlAnios.SelectedValue), int.Parse(ddlUnidades.SelectedValue));
                 ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
@@ -600,6 +603,7 @@ namespace AplicacionSIPA1.Operativa
 
             try
             {
+                
                 if (ddlAnios.SelectedValue.Equals("0") || ddlAnios.Items.Count == 0)
                 {
                     lblEAnio.Text = "*";
@@ -661,7 +665,7 @@ namespace AplicacionSIPA1.Operativa
 
                 try
                 {
-                    int valor = int.Parse(txtPonderacion1.Text);
+                    double valor = double.Parse(txtPonderacion1.Text);
                 }
                 catch
                 {
@@ -671,7 +675,7 @@ namespace AplicacionSIPA1.Operativa
 
                 try
                 {
-                    int valor = int.Parse(txtPonderacion2.Text);
+                    double valor = double.Parse(txtPonderacion2.Text);
                 }
                 catch
                 {
@@ -681,7 +685,7 @@ namespace AplicacionSIPA1.Operativa
 
                 try
                 {
-                    int valor = int.Parse(txtPonderacion3.Text);
+                    double valor = double.Parse(txtPonderacion3.Text);
                 }
                 catch
                 {
@@ -689,14 +693,25 @@ namespace AplicacionSIPA1.Operativa
                     lblError.Text += "Ingrese una ponderación cuatrimestre 3 válida. ";
                 }
 
-                int pond1, pond2, pond3;
+                double pond1, pond2, pond3;
                 pond1 = pond2 = pond3 = 0;
-                int.TryParse(txtPonderacion1.Text, out pond1);
-                int.TryParse(txtPonderacion2.Text, out pond2);
-                int.TryParse(txtPonderacion3.Text, out pond3);
-                txtPonderacion.Text = int.Parse((pond1 + pond2 + pond3).ToString()).ToString();
+                double.TryParse(txtPonderacion1.Text, out pond1);
+                double.TryParse(txtPonderacion2.Text, out pond2);
+                double.TryParse(txtPonderacion3.Text, out pond3);
+                if ((pond1+pond2+pond3)>100)
+                {
+                    controlesValidos = false;
+                    rvPond.Visible = true;
+                    rfvPonderacion.Visible = true;
+                    lblError.Text += "Poderacion de acciones debe ser Entre 1 y 100"; 
+                }
+                else
+                {
+                    rvPond.Enabled = false;
+                }
+                txtPonderacion.Text = double.Parse((pond1 + pond2 + pond3).ToString()).ToString();
 
-                rvPond.Enabled = false;
+                
 
                 this.Page.Validate("grpDatos");
 
@@ -727,8 +742,8 @@ namespace AplicacionSIPA1.Operativa
                 if (!rfvPond3.IsValid)
                     lblError.Text += "Ingrese la ponderación del tercer cuatrimestre!. ";
 
-                /*if(!rvPond.IsValid)
-                    lblError.Text += "La ponderación de acciones debe ser entre 1 y 100!. ";*/
+                if(!rvPond.IsValid)
+                    lblError.Text += "La ponderación de acciones debe ser entre 1 y 100!. ";
 
                 if (!rfvPonderacion.IsValid)
                     lblError.Text += "Ingrese la ponderación anual!. ";
@@ -744,7 +759,11 @@ namespace AplicacionSIPA1.Operativa
             {
                 throw new Exception("validarControlesABC(). " + ex.Message);
             }
-
+            if (txtResponsable.Text == "")
+            {
+                lblError.Text += "Ingrese un Responsable";
+                controlesValidos = false;
+            }
             return controlesValidos;
         }
 
@@ -886,19 +905,23 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
-                planAccionLN = new PlanAccionLN();
-                DataSet dsPpto = planAccionLN.PptoPoa(idPoa);
+                if (idPoa>0)
+                {
+                    planAccionLN = new PlanAccionLN();
+                    DataSet dsPpto = planAccionLN.PptoPoa(idPoa);
 
-                decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
-                decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
+                    decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
+                    decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
+                    decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
+                    decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
 
 
-                lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
-                lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleUnidad);
-                lblTechoD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaDependencia);
-                lblDisponibleD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleDep);
+                    lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
+                    lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleUnidad);
+                    lblTechoD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaDependencia);
+                    lblDisponibleD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleDep);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1044,10 +1067,10 @@ namespace AplicacionSIPA1.Operativa
                     txtMeta1.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["META_1"].ToString();
                     txtMeta2.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["META_2"].ToString();
                     txtMeta3.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["META_3"].ToString();
-                    txtPonderacion1.Text = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION1"].ToString().Split('.')[0]).ToString();
-                    txtPonderacion2.Text = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION2"].ToString().Split('.')[0]).ToString();
-                    txtPonderacion3.Text = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION3"].ToString().Split('.')[0]).ToString();
-                    txtPonderacion.Text = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION_ACCION"].ToString().Split('.')[0]).ToString();
+                    txtPonderacion1.Text = double.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION1"].ToString().Split('.')[0]).ToString();
+                    txtPonderacion2.Text = double.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION2"].ToString().Split('.')[0]).ToString();
+                    txtPonderacion3.Text = double.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION3"].ToString().Split('.')[0]).ToString();
+                    txtPonderacion.Text = double.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION_ACCION"].ToString().Split('.')[0]).ToString();
                     //txtPpto.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["PRESUPUESTO"].ToString();
                     txtResponsable.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["RESPONSABLE"].ToString();
                     
@@ -1695,6 +1718,7 @@ namespace AplicacionSIPA1.Operativa
                     obtenerPresupuesto(idPoa, idDependencia);
                     string mensaje = "Detalle INSERTADO/ACTUALIZADO exitosamente!. Para ingresar una nueva acción haga clic en Nuevo. ";
                     mensaje = "Operación exitosa! ;-). " + mensaje;
+                    txtMonto.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1748,7 +1772,12 @@ namespace AplicacionSIPA1.Operativa
                 if (idUnidad > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
-                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    if (idUnidadTemp != idUnidad)
+                    {
+                        planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+
+                    }
+                   
                     ddlDependen.SelectedValue = idUnidad.ToString();
                     ddlUnidades.SelectedValue = idUnidadTemp.ToString();
                     if (anio > 0 && idUnidad > 0)

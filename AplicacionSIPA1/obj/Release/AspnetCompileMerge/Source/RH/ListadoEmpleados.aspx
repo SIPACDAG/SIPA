@@ -74,7 +74,7 @@
                         <asp:TextBox ID="txtBValor" runat="server" class="form-control" MaxLength="250" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="4">
-                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -90,7 +90,13 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

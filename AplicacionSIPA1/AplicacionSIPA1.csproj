@@ -407,6 +407,8 @@
     <Content Include="dbcdagsipaDataSet1.xss">
       <DependentUpon>dbcdagsipaDataSet1.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\pubsipa.pubxml" />
     <EmbeddedResource Include="ReporteriaSistema\Report1.rdlc" />
     <EmbeddedResource Include="Reportes\crccVale.rpt">

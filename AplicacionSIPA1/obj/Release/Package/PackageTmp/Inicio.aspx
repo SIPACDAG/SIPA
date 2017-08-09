@@ -16,7 +16,7 @@
             <p class="text-primary" style="font-size: 12pt; color: #FF3300; text-align: center" >
                 <strong>IMPORTANTE: A todos los usuarios del módulo de Viáticos se les informa que a partir de la fecha, la impresión del formulario de viáticos se debe realizar cuando se encuentra en estado: 6 - Aprobado Nivel II, para obtener firmas respectivas y presentarlo a la Unidad de Viáticos para su revisión en el sistema SIPA.
                     <br />
-                    <br />
+                    <br />Nuevas funcionales En SIPA: En los diferentes modulos del sistema encontra subdivisiones de unidades.
                     <br />Puede enviar sus solicitudes de apoyo al correo: soporte.sistemas@cdag.com.gt                                                                                      
                 </strong></p>
             <!--p class="text-primary" style="font-size: 12pt; color: #FF3300; text-align: center" >

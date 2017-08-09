@@ -853,8 +853,8 @@ namespace AplicacionSIPA1.Pac
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["MONTO"].ToString(), out montoActualPac);
 
             decimal diferenciaRenglonMontoN = (saldoRenglon + montoActualPac) - totalPac;
-            //if(diferenciaRenglonMontoN < 0)
-            //    throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldoRenglon + montoActualPac)));
+            if(diferenciaRenglonMontoN < 0)
+                throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldoRenglon + montoActualPac)));
 
 
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["CODIFICADO"].ToString(), out codificadoPac);
@@ -1559,7 +1559,11 @@ namespace AplicacionSIPA1.Pac
                 if (idUnidad > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
-                    planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    if (idUnidad != int.Parse(ddlUnidades.SelectedValue))
+                    {
+                        planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+
+                    }
                 }
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoPac(idUnidad, anio);
@@ -1626,7 +1630,12 @@ namespace AplicacionSIPA1.Pac
                 if (idUnidad > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
-                    planOperativoLN.DdlDependencias(ddlCJefaturaUnidad, id_unidad);
+                    if (idUnidad != int.Parse(ddlCUnidades.SelectedValue))
+                    {
+                        planOperativoLN.DdlDependencias(ddlCJefaturaUnidad, id_unidad);
+
+                    }
+                    
                 }
                 validarPoaListadoPac(idUnidad, anio);
 

@@ -16,7 +16,7 @@ namespace AplicacionSIPA1.Presupuesto
         private PlanOperativoLN planOperativoLN;
         PresupuestoLN presupuestoLN;
         PresupuestoEN presupuestoEN;
-        double total=0;
+        double total = 0;
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -31,16 +31,16 @@ namespace AplicacionSIPA1.Presupuesto
         private void llenarAnio(DropDownList drop)
         {
             DateTime hoy;
-            int anio,i;
+            int anio, i;
             hoy = DateTime.Now;
-            anio = hoy.Year+1;
+            anio = hoy.Year + 1;
             i = 0;
             for (int index = 0; index <= anio - 2016; index++)
             {
-                drop.Items.Insert(index, Convert.ToString(anio-index));
+                drop.Items.Insert(index, Convert.ToString(anio - index));
                 i += 1;
             }
-            drop.SelectedIndex = i-1;
+            drop.SelectedIndex = i - 1;
 
         }
 
@@ -49,79 +49,146 @@ namespace AplicacionSIPA1.Presupuesto
             limpiarControlesError();
             try
             {
-                            this.Page.Validate("vacios");
-                            if (this.Page.IsValid)
+                this.Page.Validate("vacios");
+                if (this.Page.IsValid)
+                {
+
+                    if (ddlPlanE.SelectedValue.Equals("0") || ddlPlanE.SelectedValue.ToString().Equals(""))
+                        throw new Exception("Seleccione plan estratégico institucional. ");
+
+                    if (Convert.ToInt32(ddlUnidad.SelectedValue) > 0)
+                    {
+                        presupuestoLN = new PresupuestoLN();
+                        presupuestoEN = new PresupuestoEN();
+                        presupuestoEN.idPlan = int.Parse(ddlPlanE.SelectedValue);
+                        if (ddlJefaturasSub.SelectedValue != "" && int.Parse(ddlJefaturasSub.SelectedValue) > 0)
+                        {
+                            presupuestoEN.idUnidad = Convert.ToInt32(ddlJefaturasSub.SelectedValue);
+                        }
+                        else if (int.Parse(ddlDependencias.SelectedValue) > 0)
+                        {
+                            presupuestoEN.idUnidad = Convert.ToInt32(ddlDependencias.SelectedValue);
+                        }
+                        else
+                        {
+                            presupuestoEN.idUnidad = Convert.ToInt32(ddlUnidad.SelectedValue);
+                        }
+
+                        presupuestoEN.monto = Convert.ToDouble(txtMonto.Text);
+                        presupuestoEN.anio = Convert.ToInt32(dropAnio.SelectedItem.Text);
+                        presupuestoEN.usuario = ((Label)Master.FindControl("lblUsuario")).Text;
+                        presupuestoEN.monto_global = txtMontoGlobal.Text;
+                        
+                        if (presupuestoLN.valPresUnidad(presupuestoEN) == 0)
+                        {
+                            if ((ddlJefaturasSub.SelectedIndex <= 0))
                             {
-
-                                if (ddlPlanE.SelectedValue.Equals("0") || ddlPlanE.SelectedValue.ToString().Equals(""))
-                                    throw new Exception("Seleccione plan estratégico institucional. ");
-
-                                if (Convert.ToInt32(ddlUnidad.SelectedValue) > 0)
+                                if (ddlDependencias.SelectedIndex <= 0 && txtMontoGlobal.Text!="" && presupuestoEN.monto <= Convert.ToDouble(txtMontoGlobal.Text))
                                 {
-                                    presupuestoLN = new PresupuestoLN();
-                                    presupuestoEN = new PresupuestoEN();
-                                    presupuestoEN.idPlan = int.Parse(ddlPlanE.SelectedValue);
-                                    if (ddlJefaturasSub.SelectedValue!=""&& int.Parse(ddlJefaturasSub.SelectedValue)>0)
+                                    if (presupuestoLN.InsertarPresUnidad(presupuestoEN, Session["usuario"].ToString()) == 0)
                                     {
-                                        presupuestoEN.idUnidad = Convert.ToInt32(ddlJefaturasSub.SelectedValue);
+                                        txtMonto.Text = String.Empty;
+                                        presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
+                                        txtMontoGlobal.Text = "";
+                                        lblError.Text = string.Empty;
+                                        lblSuccess.Text = "El registro fue ingresado correctamente ";
+                                        //presupuestoLN.InsertarBitacora(Session["usuario"].ToString(),ddlUnidad.SelectedValue,"ip","Asginacion de Presupuesto","N/A",0,Convert.ToDecimal(txtMontoGlobal.Text));
                                     }
-                                    else if (int.Parse(ddlDependencias.SelectedValue)>0)
+                                }
+                                else if (ddlDependencias.SelectedIndex > 0)
+                                {
+                                    if (ddlJefaturasSub.Items.Count <= 1)
                                     {
-                                        presupuestoEN.idUnidad = Convert.ToInt32(ddlDependencias.SelectedValue);
+                                        txtMontoGlobal.Text = txtMonto.Text;
+                                        presupuestoEN.monto_global = txtMontoGlobal.Text;
                                     }
-                                    else
+                                    if ((presupuestoLN.validarMontoDependecias(presupuestoEN.anio, Convert.ToInt32(ddlUnidad.SelectedValue), 1) + Convert.ToDecimal(presupuestoEN.monto_global)) <=
+                                    presupuestoLN.ObtenerMontoGlobal(presupuestoEN.anio, Convert.ToInt32(ddlUnidad.SelectedValue)))
                                     {
-                                        presupuestoEN.idUnidad = Convert.ToInt32(ddlUnidad.SelectedValue);
-                                    }
-                                   
-                                    presupuestoEN.monto = Convert.ToDouble(txtMonto.Text);
-                                    presupuestoEN.anio = Convert.ToInt32(dropAnio.SelectedItem.Text);
-                                    presupuestoEN.usuario = ((Label)Master.FindControl("lblUsuario")).Text;
-                                    //if (presupuestoLN.valPresUnidad(presupuestoEN)==0)
-                                    if (true)
-                                    {
+
                                         if (presupuestoLN.InsertarPresUnidad(presupuestoEN, Session["usuario"].ToString()) == 0)
                                         {
                                             txtMonto.Text = String.Empty;
-                                            presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
-
+                                            presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), Convert.ToInt32(ddlUnidad.SelectedValue));
+                                            txtMontoGlobal.Text = "";
                                             lblError.Text = string.Empty;
                                             lblSuccess.Text = "El registro fue ingresado correctamente ";
                                         }
-                                        else
-                                        {
-                                            lblError.Text = "Error al ingresar el registro";
-                                            lblSuccess.Text = string.Empty;
-                                        }
-
                                     }
                                     else
                                     {
-                                        lblError.Text = "El presupuesto ya fue asignado";
-                                        lblSuccess.Text = string.Empty;
+                                        lblError.Text = "El monto supera al presupuesto de la Dependencia";
                                     }
                                 }
                                 else
                                 {
-                                    lblError.Text = "Seleccione una unidad";
-                                    lblSuccess.Text = string.Empty;
+                                    lblError.Text = "El monto supera al presupuesto de la Unidad";
                                 }
                             }
+                            else if (ddlJefaturasSub.SelectedIndex > 0)
+                            {
+                                if ((presupuestoLN.validarMontoDependecias(presupuestoEN.anio, Convert.ToInt32(ddlDependencias.SelectedValue), 1) + Convert.ToDecimal(presupuestoEN.monto)) <=
+                                presupuestoLN.ObtenerMontoGlobal(presupuestoEN.anio, Convert.ToInt32(ddlDependencias.SelectedValue)))
+                                {
+                                    presupuestoEN.monto_global = "0";
+                                    if (presupuestoLN.InsertarPresUnidad(presupuestoEN, Session["usuario"].ToString()) == 0)
+                                    {
+                                        txtMonto.Text = String.Empty;
+                                        presupuestoLN.gridPresupuestoDep(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), Convert.ToInt32(ddlDependencias.SelectedValue));
+                                        txtMontoGlobal.Text = "";
+                                        lblError.Text = string.Empty;
+                                        lblSuccess.Text = "El registro fue ingresado correctamente ";
+                                    }
+                                }
+                                else
+                                {
+                                    lblError.Text = "Monto superior al Monto Global.";
+                                }
+                            }
+                            else
+                            {
+                                lblError.Text = "Monto superior al Monto Global.";
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            lblError.Text = "El presupuesto ya fue asignado";
+                            lblSuccess.Text = string.Empty;
+                        }
+                    }
+                    else
+                    {
+                        lblError.Text = "Seleccione una unidad";
+                        lblSuccess.Text = string.Empty;
+                    }
+                }
             }
 
             catch (Exception ex)
             {
-                lblError.Text = "Error al ingresar el registro" + ex.Message;
-                lblSuccess.Text = string.Empty;
+                if (ex.Message== "Input string was not in a correct format.")
+                {
+                    lblError.Text = "Error al ingresar el registro Monto global no asignado";
+                }
+                else
+                {
+                    lblError.Text = "Error al ingresar el registro" + ex.Message;
+                    lblSuccess.Text = string.Empty;
+                }
+               
             }
-            
-            
+
+
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             limpiarControlesError();
-            
+            lblMontoGlobal.Visible = false;
+            txtMontoGlobal.Visible = false;
             planEstrategicoLN = new PlanEstrategicoLN();
             planEstrategicoLN.DdlPlanes(ddlPlanE);
 
@@ -142,9 +209,10 @@ namespace AplicacionSIPA1.Presupuesto
             ddlUnidad.SelectedValue = "0";
             lblError.Text = string.Empty;
             lblSuccess.Text = string.Empty;
-                        
+
             presupuestoLN = new PresupuestoLN();
             presupuestoLN.dropUnidad(ddlUnidad);
+            presupuestoLN.dropUnidad(ddlDependencias);
             //presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
             //presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
         }
@@ -193,7 +261,11 @@ namespace AplicacionSIPA1.Presupuesto
         protected void dropAnio_SelectedIndexChanged(object sender, EventArgs e)
         {
             limpiarControlesError();
+            lblMontoGlobal.Visible = false;
+            txtMontoGlobal.Visible = false;
             presupuestoLN = new PresupuestoLN();
+            ddlUnidad.SelectedIndex = 0;
+            ddlDependencias.SelectedIndex = 0;
             presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
 
         }
@@ -215,7 +287,7 @@ namespace AplicacionSIPA1.Presupuesto
             }
         }
 
-       
+
 
         protected void limpiarControlesError()
         {
@@ -257,23 +329,45 @@ namespace AplicacionSIPA1.Presupuesto
         {
             planOperativoLN = new PlanOperativoLN();
             limpiarControlesError();
+            txtMontoGlobal.Text = "";
+            txtMontoGlobal.Visible = true;
+            lblMontoGlobal.Visible = true;
             try
             {
 
                 string id_unidad = ddlDependencias.SelectedItem.Value;
                 int idUnidad = int.Parse(ddlDependencias.SelectedValue);
+                int idunidadTemp = int.Parse(ddlUnidad.SelectedValue);
                 if (idUnidad > 0)
                 {
+                    if (idUnidad != idunidadTemp)
+                    {
+                        planOperativoLN.DdlDependencias(ddlJefaturasSub, id_unidad);
+                        ddlDependencias.SelectedValue = idUnidad.ToString();
+                    }
 
-                    planOperativoLN.DdlDependencias(ddlJefaturasSub, id_unidad);
-
-                    ddlDependencias.SelectedValue = idUnidad.ToString();
+                    presupuestoLN = new PresupuestoLN();
+                    presupuestoLN.gridPresupuestoDep(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), idUnidad);
+                    decimal Monto = presupuestoLN.ObtenerMontoGlobal(Convert.ToInt32(dropAnio.SelectedValue), idUnidad);
+                    lblMontoGlobalUni.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", Monto);
+                    if (ddlJefaturasSub.Items.Count <= 1)
+                    {
+                        txtMontoGlobal.Visible = false;
+                        lblMontoGlobal.Visible = false;
+                    }
 
                 }
+                else if (idUnidad == 0)
+                {
+                    presupuestoLN = new PresupuestoLN();
+                    presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), Convert.ToInt32(ddlUnidad.SelectedValue));
+                    decimal Monto = presupuestoLN.ObtenerMontoGlobal(Convert.ToInt32(dropAnio.SelectedValue), Convert.ToInt32(ddlUnidad.SelectedValue));
+                    lblMontoGlobalUni.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", Monto);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                lblError.Text = ex.ToString();
                 throw;
             }
 
@@ -284,6 +378,10 @@ namespace AplicacionSIPA1.Presupuesto
         {
             planOperativoLN = new PlanOperativoLN();
             limpiarControlesError();
+            txtMontoGlobal.Text = "";
+            lblMontoGlobal.Visible = true;
+            txtMontoGlobal.Visible = true;
+            decimal Monto = 0;
             try
             {
 
@@ -292,19 +390,73 @@ namespace AplicacionSIPA1.Presupuesto
                 if (idUnidad > 0)
                 {
 
+
                     planOperativoLN.DdlDependencias(ddlDependencias, id_unidad);
 
                     ddlUnidad.SelectedValue = idUnidad.ToString();
+                    presupuestoLN = new PresupuestoLN();
+                    presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), idUnidad);
 
+                    Monto = presupuestoLN.ObtenerMontoGlobal(Convert.ToInt32(dropAnio.SelectedValue), Convert.ToInt32(ddlUnidad.SelectedValue));
+                    lblMontoGlobalUni.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", Monto);
+                    if (ddlJefaturasSub.SelectedIndex >= 0)
+                    {
+                        ddlJefaturasSub.SelectedIndex = 0;
+                    }
                 }
-            }
-            catch (Exception)
-            {
 
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.ToString();
                 throw;
             }
 
-            
+
+        }
+
+        protected void ddlJefaturasSub_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            planOperativoLN = new PlanOperativoLN();
+            limpiarControlesError();
+            txtMontoGlobal.Text = "";
+            txtMontoGlobal.Visible = false;
+            lblMontoGlobal.Visible = false;
+            try
+            {
+
+                string id_unidad = ddlDependencias.SelectedItem.Value;
+                int idUnidad = int.Parse(ddlJefaturasSub.SelectedValue);
+                int idunidadTemp = int.Parse(ddlDependencias.SelectedValue);
+                if (idUnidad > 0)
+                {
+
+
+                    presupuestoLN = new PresupuestoLN();
+                    presupuestoLN.gridPresupuestoDep(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), idUnidad);
+                    decimal Monto = presupuestoLN.ObtenerMontoGlobal(Convert.ToInt32(dropAnio.SelectedValue), idunidadTemp);
+                    lblMontoGlobalUni.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", Monto);
+
+
+                }
+                else if (idUnidad == 0)
+                {
+                    presupuestoLN = new PresupuestoLN();
+                    presupuestoLN.gridPresupuestoDep(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), Convert.ToInt32(ddlDependencias.SelectedValue));
+                    decimal Monto = presupuestoLN.ObtenerMontoGlobal(Convert.ToInt32(dropAnio.SelectedValue), Convert.ToInt32(ddlDependencias.SelectedValue));
+                    lblMontoGlobalUni.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", Monto);
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.ToString();
+                throw;
+            }
+
+            txtMonto.Focus();
+
+
+
         }
     }
 }

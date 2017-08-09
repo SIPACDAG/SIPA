@@ -40,9 +40,9 @@ C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\NumeroaLetras.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Release\AplicacionSIPA1.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Release\RdlCompile.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Release\RdlCompile.compiled
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Release\AplicacionSIPA1.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Release\AplicacionSIPA1.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll

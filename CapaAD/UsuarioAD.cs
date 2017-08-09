@@ -202,8 +202,7 @@ namespace CapaAD
        {
            int NoIngreso;
            conectar = new ConexionBD();
-            if (!validarPermiso(usuario))
-            {
+            
                 MySqlCommand procedimiento = new MySqlCommand("insertar_usuario");
                 procedimiento.CommandType = CommandType.StoredProcedure;
                 procedimiento.Parameters.AddWithValue("usr", usuarioE.Usuario);
@@ -222,16 +221,13 @@ namespace CapaAD
                 NoIngreso = procedimiento.ExecuteNonQuery();
                 conectar.CerrarConexion();
                 return NoIngreso;
-            }
-            else
-                return -1;
+           
           
 
        }
        public bool ModificarUsuario(UsuariosEN usuarioE,string usuario)
        {
-            if (!validarPermiso(usuario))
-            {
+            
                 conectar = new ConexionBD();
                 MySqlCommand procedimiento = new MySqlCommand("Modificar_Usuario");
                 procedimiento.CommandType = CommandType.StoredProcedure;
@@ -252,8 +248,7 @@ namespace CapaAD
 
                 conectar.CerrarConexion();
                 return true;
-            }
-            return false;
+           
            
        }
 
@@ -281,17 +276,14 @@ namespace CapaAD
 
            conectar = new ConexionBD();
            DataTable tabla = new DataTable();
-            if (!validarPermiso(usuario))
-            {
+          
                 conectar.AbrirConexion();
                 string query = string.Format("CALL Insertar_Permisos({0}, {1});", idUsuario, idMenu);
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(tabla);
                 conectar.CerrarConexion();
                 return tabla;
-            }
-            else
-                return tabla;
+            
          
            /*int NoIngreso;
            conectar = new ConexionBD();
@@ -330,18 +322,12 @@ namespace CapaAD
            conectar = new ConexionBD();
            DataTable tabla = new DataTable();
            conectar.AbrirConexion();
-            if (!validarPermiso(Usuario))
-            {
-                string query = string.Format("CALL Insertar_CargoUsuario({0}, {1}, {2}, {3});", idUsuario, idU, idd, idtu);
+            string query = string.Format("CALL Insertar_CargoUsuario({0}, {1}, {2}, {3});", idUsuario, idU, idd, idtu);
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(tabla);
                 conectar.CerrarConexion();
                 return tabla;
-            }
-            else
-            {
-                return tabla;
-            }
+           
            
        }
 
@@ -368,8 +354,7 @@ namespace CapaAD
 
        public bool desactivarCargoUsuario(int idcu,string usuario)
        {
-            if (!validarPermiso(usuario))
-            {
+           
                 conectar = new ConexionBD();
                 MySqlCommand procedimiento = new MySqlCommand("Desactivar_CargoUsuario");
                 procedimiento.CommandType = CommandType.StoredProcedure;
@@ -380,8 +365,7 @@ namespace CapaAD
                 procedimiento.ExecuteNonQuery();
                 conectar.CerrarConexion();
                 return true;
-            }
-            return false;   
+            
        }
 
 

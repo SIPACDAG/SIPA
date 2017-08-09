@@ -891,7 +891,7 @@ namespace AplicacionSIPA1.Pedido
                             lblSuccess.Text = "Pedido No. " + lblNoPedido.Text + " ALMACENADO/MODIFICADO exitosamente: ";
                             //FormsAuthentication.RedirectFromLoginPage(this.lblSuccess.Text,false);
                             //Response.Redirect("~/Pedido/PedidoGuardado.aspx?lblsucces="+lblSuccess.Text);
-                            btnGuardar.Visible = false;   
+                            btnGuardar.Visible = true;   
 
                         }
                     }
@@ -1350,8 +1350,8 @@ namespace AplicacionSIPA1.Pedido
                                 mensaje += " Comuníquese a la unidad de presupuesto para la codificación de la requisición, extensión: 2409";
 
                             lblSuccess.Text = "Pedido finalizado correctamente!. El pedido fue enviado al estado: " + estadoActual + " ";
-                            EnvioDeCorreos envio = new EnvioDeCorreos();
-                            envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: "+lblNoPedido.Text,mensaje);
+                            //EnvioDeCorreos envio = new EnvioDeCorreos();
+                            //envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: "+lblNoPedido.Text,mensaje," ");
 
                             Response.Redirect("~/Pedido/PedidoGuardado.aspx?No=" + lblNoPedido.Text + "&msg=REQUISICION" + "&acc=" + mensaje);
                         }

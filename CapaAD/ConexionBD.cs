@@ -29,7 +29,7 @@ namespace CapaAD
         sConn = contenido;
         conectar = new MySqlConnection();
         conectar.ConnectionString = sConn;
-        
+            
 	   try 
 	    {	        
 		conectar.Open();

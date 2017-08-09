@@ -121,6 +121,24 @@ namespace AplicacionSIPA1.Presupuesto {
         protected global::System.Web.UI.WebControls.DropDownList ddlUnidades;
         
         /// <summary>
+        /// Control ddlDependencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDependencia;
+        
+        /// <summary>
+        /// Control ddlJefaturaUnidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJefaturaUnidad;
+        
+        /// <summary>
         /// Control lblEncabezado.
         /// </summary>
         /// <remarks>

@@ -150,8 +150,7 @@
 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="Id" Visible="false">
@@ -223,7 +222,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="10">
-                        <asp:CheckBox ID="chkProveedores" runat="server" Text="Mostrar proveedores del cuadro de comparación" />
+                       <asp:CheckBox ID="chkProveedores" runat="server" Text="Mostrar proveedores del cuadro de comparación" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -258,9 +257,22 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="18"><strong>Cambios importantes:</strong><br /> * Liquidación en base a la cantidad y SUBTOTAL adjudicado sin IVA(en vez de monto indivudual)
+                        <br />
+                        * Selección del tipo de documento de compra
+                        <br />
+                        * Si el producto no se adquirió, se pude liquidar con cantidad y subtotal adjudicado de cero (Q.0.00) el sistema no solicitará los datos restantes concluyendo que el producto no se adquirió, sin embargo para liquidar deberá existir por lo menos un item adquirido<br />
+                        * Posibilidad de rechazar (18 - Rechazado técnico compras) una requisición cuando se encuentre en estado 12 - Liquidado
+                        <br />
+                        * Posibilidad de liquidar nuevamente una requisición que se encuentre en estado 12 - Liquidado
+                        <br />
+                        * Liquidación en base al monto total de la requisición y no en base al monto individual, siempre y cuando no sea superado el monto del renglón de presupuesto ni el monto planificado en el PAC.<br /> <br /> </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
                     <td colspan="20">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridDetalle_RowDataBound" PageSize="12" ShowFooter="True" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridDetalle_RowDataBound" PageSize="12" ShowFooter="True" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -428,6 +440,10 @@
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
+                                <asp:BoundField DataField="no_renglon_ppto" HeaderText="RENGLÓN PPTO.">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
                                 <asp:TemplateField HeaderText="PAGOS P.">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkLiquidacionParcial" runat="server" />
@@ -636,6 +652,7 @@
                     <td colspan="16" style="text-align: center;">
                         <asp:Button ID="btnAprobar" runat="server" class="btn btn-success" OnClick="btnAprobar_Click" Text="Guardar Montos" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
                         <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Rechazar Pedido" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea RECHAZAR este registro?'))return false" />
+                        
                         <asp:Button ID="btnAnular" runat="server" class="btn btn-primary" OnClick="btnAnular_Click" Text="Anular Pedido" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -667,8 +684,9 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" Visible="False"
+                       <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" Visible="False"
                             CssClass="table table-hover table-responsive">
+                        
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -778,6 +796,32 @@
                 </tr>
 
             </table>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <br />
                     <br />
                     <br />

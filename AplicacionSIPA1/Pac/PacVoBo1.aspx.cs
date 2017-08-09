@@ -921,7 +921,11 @@ namespace AplicacionSIPA1.Pac
             }
             catch (Exception ex)
             {
-                lblCError.Text = "btnListadoPac_Click()" + ex.Message;
+                if (ex.Message != "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 1)' at line 1")
+                {
+                    lblCError.Text = "btnListadoPac_Click()" + ex.Message;
+                }
+                
             }
             
         }
@@ -1443,7 +1447,12 @@ namespace AplicacionSIPA1.Pac
                 if (idUnidad > 0 && anio > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
-                    planOperativoLN.DdlDependencias(ddlCJefaturaUnidad, id_unidad);
+                    if (idUnidad != int.Parse(ddlCUnidades.SelectedValue))
+                    {
+                        planOperativoLN.DdlDependencias(ddlCJefaturaUnidad, id_unidad);
+
+                    }
+                   
                     validarPoaListadoPac(idUnidad, anio);
 
                     int idPoa = 0;

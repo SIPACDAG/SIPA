@@ -103,6 +103,28 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                         </tr>
+                         <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">SubDependecia:</td>
+                            <td colspan="8">Jefatura/Unidad:</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                         <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlDepend" runat="server" class="form-control" OnSelectedIndexChanged="ddlDepend_SelectedIndexChanged" AutoPostBack="True" Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlJefaturUnidad" runat="server" class="form-control" OnSelectedIndexChanged="ddlJefaturUnidad_SelectedIndexChanged" AutoPostBack="True" Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>

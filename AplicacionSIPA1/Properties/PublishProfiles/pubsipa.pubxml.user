@@ -6,7 +6,8 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\143.208.180.250:21892</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\user Dell\Documents\Trabajo\Deploy</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8tOX8DBThkiYHl3L/6GkfgAAAAACAAAAAAAQZgAAAAEAACAAAAArS4apHExht1hDGgtxqB3+X0SphiCd95y/yqEmHgz9bgAAAAAOgAAAAAIAACAAAAAy84xEzcEW3G2xJ1JhrmS4fRUGN346kDKWG5b+h5FpuyAAAADUDAJmmdb+JDjIK7Gr4B4mVefU25JYDqnaqq64+0pC1kAAAACZR/mx6rfC35pZf8OFkkxA0ptmX+wdsh/QTemanjtn1G5/xWok5+7EP6xAmTQfeeUqIu2B/zvJKdXeMMQgpBQM</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AplicacionCOG.dll">
@@ -16,19 +17,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/02/2015 13:57:48</publishTime>
     </File>
     <File Include="bin/AplicacionSIPA1.dll">
-      <publishTime>07/04/2017 14:13:45</publishTime>
+      <publishTime>07/25/2017 11:53:38</publishTime>
     </File>
     <File Include="bin/AplicacionSIPA1.dll.config">
-      <publishTime>07/04/2017 13:52:46</publishTime>
+      <publishTime>07/19/2017 14:22:10</publishTime>
     </File>
     <File Include="bin/CapaAD.dll">
-      <publishTime>07/04/2017 14:02:50</publishTime>
+      <publishTime>07/25/2017 11:39:00</publishTime>
     </File>
     <File Include="bin/CapaEN.dll">
-      <publishTime>07/04/2017 14:02:50</publishTime>
+      <publishTime>07/24/2017 11:23:02</publishTime>
     </File>
     <File Include="bin/CapaLN.dll">
-      <publishTime>07/04/2017 14:02:51</publishTime>
+      <publishTime>07/25/2017 11:39:00</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.CrystalReports.Engine.dll">
       <publishTime>07/12/2016 12:01:32</publishTime>
@@ -61,7 +62,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/29/2017 08:42:45</publishTime>
     </File>
     <File Include="Compras/CostoRealCompras.aspx">
-      <publishTime>06/29/2017 08:49:24</publishTime>
+      <publishTime>07/24/2017 14:57:28</publishTime>
     </File>
     <File Include="Compras/CostoRealPedido.aspx">
       <publishTime>04/10/2016 16:45:38</publishTime>
@@ -94,7 +95,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/10/2016 16:45:38</publishTime>
     </File>
     <File Include="Compras/MesaEntradaCompras.aspx">
-      <publishTime>07/04/2017 10:52:28</publishTime>
+      <publishTime>07/24/2017 11:04:46</publishTime>
     </File>
     <File Include="Compras/Proveedores.aspx">
       <publishTime>04/10/2016 16:45:38</publishTime>
@@ -652,7 +653,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/10/2016 16:45:39</publishTime>
     </File>
     <File Include="Operativa/AccionesPoa.aspx">
-      <publishTime>06/15/2017 10:07:09</publishTime>
+      <publishTime>07/24/2017 09:14:08</publishTime>
     </File>
     <File Include="Operativa/AdminAccionesPoa.aspx">
       <publishTime>07/13/2016 09:49:41</publishTime>
@@ -667,7 +668,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/20/2017 10:09:34</publishTime>
     </File>
     <File Include="Operativa/AsignarAnalista.aspx">
-      <publishTime>06/15/2017 11:00:54</publishTime>
+      <publishTime>07/21/2017 11:17:58</publishTime>
     </File>
     <File Include="Operativa/CodificarPoa.aspx">
       <publishTime>06/20/2017 10:24:44</publishTime>
@@ -682,7 +683,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/16/2017 16:03:14</publishTime>
     </File>
     <File Include="Operativa/PlanOperativo.aspx">
-      <publishTime>06/21/2017 12:26:53</publishTime>
+      <publishTime>07/21/2017 09:04:02</publishTime>
     </File>
     <File Include="Operativa/Seguimiento/CalendarioSeguimiento.aspx">
       <publishTime>06/27/2017 09:27:29</publishTime>
@@ -694,7 +695,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/04/2017 12:17:09</publishTime>
     </File>
     <File Include="Operativa/Seguimiento/VoBoN1.aspx">
-      <publishTime>07/04/2017 11:21:08</publishTime>
+      <publishTime>07/10/2017 16:22:06</publishTime>
     </File>
     <File Include="Operativa/Seguimiento/VoBoN2.aspx">
       <publishTime>07/04/2017 11:26:06</publishTime>
@@ -703,28 +704,28 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/04/2017 12:20:37</publishTime>
     </File>
     <File Include="Operativa/VerPlan.aspx">
-      <publishTime>06/27/2017 10:12:42</publishTime>
+      <publishTime>07/20/2017 15:26:37</publishTime>
     </File>
     <File Include="Operativa/VoBoN1.aspx">
-      <publishTime>06/15/2017 10:32:54</publishTime>
+      <publishTime>07/21/2017 09:39:58</publishTime>
     </File>
     <File Include="Operativa/VoBoN2.aspx">
-      <publishTime>06/15/2017 11:02:34</publishTime>
+      <publishTime>07/21/2017 12:28:34</publishTime>
     </File>
     <File Include="Operativa/VoBoN3.aspx">
-      <publishTime>06/15/2017 11:08:13</publishTime>
+      <publishTime>07/21/2017 12:34:49</publishTime>
     </File>
     <File Include="Pac/AdminListadoPlan.aspx">
       <publishTime>07/14/2016 14:15:00</publishTime>
     </File>
     <File Include="Pac/AdminPac.aspx">
-      <publishTime>06/27/2017 14:15:06</publishTime>
+      <publishTime>07/21/2017 14:17:37</publishTime>
     </File>
     <File Include="Pac/CrearPac.aspx">
       <publishTime>06/24/2016 09:41:35</publishTime>
     </File>
     <File Include="Pac/IngresarPac.aspx">
-      <publishTime>06/27/2017 12:27:55</publishTime>
+      <publishTime>07/21/2017 15:19:14</publishTime>
     </File>
     <File Include="Pac/ListadoPacs.aspx">
       <publishTime>10/19/2015 13:16:42</publishTime>
@@ -741,23 +742,26 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Pac/NoPlan.aspx">
       <publishTime>06/13/2017 12:42:42</publishTime>
     </File>
+    <File Include="Pac/NuPlan.aspx">
+      <publishTime>07/21/2017 14:53:56</publishTime>
+    </File>
     <File Include="Pac/PacVoBo1.aspx">
-      <publishTime>06/27/2017 14:56:49</publishTime>
+      <publishTime>07/21/2017 15:32:46</publishTime>
     </File>
     <File Include="Pac/PacVoBo2.aspx">
       <publishTime>06/13/2017 12:42:47</publishTime>
     </File>
     <File Include="Pedido/Ajustes/AjusteIngreso.aspx">
-      <publishTime>06/28/2017 08:07:41</publishTime>
+      <publishTime>07/24/2017 10:40:25</publishTime>
     </File>
     <File Include="Pedido/Ajustes/NoAjuste.aspx">
       <publishTime>06/28/2017 08:07:00</publishTime>
     </File>
     <File Include="Pedido/Ajustes/VoBoN1.aspx">
-      <publishTime>06/28/2017 08:10:02</publishTime>
+      <publishTime>07/24/2017 10:47:47</publishTime>
     </File>
     <File Include="Pedido/Ajustes/VoBoN2.aspx">
-      <publishTime>06/28/2017 08:12:27</publishTime>
+      <publishTime>07/24/2017 10:52:12</publishTime>
     </File>
     <File Include="Pedido/AprobarEncargado.aspx">
       <publishTime>04/10/2016 16:45:39</publishTime>
@@ -778,7 +782,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/10/2016 16:45:39</publishTime>
     </File>
     <File Include="Pedido/EspecificacionesIngreso.aspx">
-      <publishTime>06/13/2017 12:42:58</publishTime>
+      <publishTime>07/24/2017 10:10:43</publishTime>
     </File>
     <File Include="Pedido/EstadoPedido.aspx">
       <publishTime>04/10/2016 16:45:39</publishTime>
@@ -814,13 +818,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/13/2017 12:42:59</publishTime>
     </File>
     <File Include="Pedido/PedidoAnulacion.aspx">
-      <publishTime>07/04/2017 11:06:34</publishTime>
+      <publishTime>07/24/2017 15:16:22</publishTime>
+    </File>
+    <File Include="Pedido/PedidoGuardado.aspx">
+      <publishTime>06/16/2017 15:15:33</publishTime>
     </File>
     <File Include="Pedido/PedidoIngreso.aspx">
-      <publishTime>06/28/2017 08:44:32</publishTime>
+      <publishTime>07/21/2017 15:57:18</publishTime>
     </File>
     <File Include="Pedido/PedidoListado.aspx">
-      <publishTime>06/28/2017 08:46:30</publishTime>
+      <publishTime>07/24/2017 09:49:52</publishTime>
     </File>
     <File Include="Pedido/ReAjustePedido.aspx">
       <publishTime>06/13/2017 12:42:59</publishTime>
@@ -841,10 +848,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/13/2017 12:43:00</publishTime>
     </File>
     <File Include="Pedido/VoBo1Almacen.aspx">
-      <publishTime>06/27/2017 15:18:17</publishTime>
+      <publishTime>07/24/2017 10:17:07</publishTime>
     </File>
     <File Include="Pedido/VoBo2Encargado.aspx">
-      <publishTime>06/27/2017 15:26:21</publishTime>
+      <publishTime>07/24/2017 10:25:01</publishTime>
     </File>
     <File Include="Pedido/VoBo3Ppto.aspx">
       <publishTime>06/27/2017 15:34:22</publishTime>
@@ -880,10 +887,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/27/2017 09:13:07</publishTime>
     </File>
     <File Include="Presupuesto/PptoDependencia.aspx">
-      <publishTime>06/13/2017 12:43:05</publishTime>
+      <publishTime>07/25/2017 10:09:36</publishTime>
     </File>
     <File Include="Presupuesto/PptoUnidad.aspx">
-      <publishTime>06/27/2017 08:35:29</publishTime>
+      <publishTime>07/25/2017 09:23:03</publishTime>
     </File>
     <File Include="Principal.Master">
       <publishTime>07/04/2017 08:27:38</publishTime>
@@ -910,7 +917,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/13/2017 12:43:05</publishTime>
     </File>
     <File Include="ReporteriaSistema/PruebaReporte.aspx">
-      <publishTime>07/03/2017 15:36:52</publishTime>
+      <publishTime>07/04/2017 15:26:59</publishTime>
     </File>
     <File Include="ReporteriaSistema/SaldosRenglones.aspx">
       <publishTime>06/29/2017 09:55:26</publishTime>
@@ -979,7 +986,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/14/2017 15:23:40</publishTime>
     </File>
     <File Include="RH/ListadoEmpleados.aspx">
-      <publishTime>07/04/2017 10:49:01</publishTime>
+      <publishTime>07/19/2017 14:22:10</publishTime>
     </File>
     <File Include="RRHH/MensajeNomina.aspx">
       <publishTime>04/10/2016 16:45:40</publishTime>
@@ -1150,13 +1157,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>08/31/2015 07:37:38</publishTime>
     </File>
     <File Include="Usuario/IngresarUsuarios.aspx">
-      <publishTime>06/14/2017 12:20:57</publishTime>
+      <publishTime>07/04/2017 15:21:01</publishTime>
     </File>
     <File Include="Usuario/ModificarContra.aspx">
       <publishTime>06/14/2017 12:39:33</publishTime>
     </File>
     <File Include="Usuario/ModificarUsuario.aspx">
-      <publishTime>06/14/2017 12:30:32</publishTime>
+      <publishTime>07/13/2017 09:39:40</publishTime>
     </File>
     <File Include="Usuario/Permisos.aspx">
       <publishTime>06/16/2017 15:46:10</publishTime>
@@ -1169,6 +1176,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Viaticos/ViaticosIngresoExt.aspx">
       <publishTime>06/28/2017 09:57:09</publishTime>
+    </File>
+    <File Include="Viaticos/ViaticosLiquidacion.aspx">
+      <publishTime>07/24/2017 15:59:42</publishTime>
     </File>
     <File Include="Viaticos/ViaticosListado.aspx">
       <publishTime>06/13/2017 12:43:30</publishTime>
@@ -1183,7 +1193,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/29/2017 08:23:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/04/2017 14:11:51</publishTime>
+      <publishTime>07/25/2017 11:54:55</publishTime>
     </File>
   </ItemGroup>
 </Project>

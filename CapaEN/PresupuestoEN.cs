@@ -41,5 +41,7 @@ namespace CapaEN
         public string fecha_ing { get; set; }
         public string usuario_act { get; set; }
         public string fecha_act { get; set; }
+
+        public string monto_global { get; set; }
     }
 }

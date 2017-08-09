@@ -106,6 +106,27 @@
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">Jefatura/Unidad:</td>
+                            
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" class="form-control" AutoPostBack="True"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td colspan="8">
+                                
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
                             <td colspan="4">Presupuesto Aprobado:</td>
                             <td colspan="4">Presupuesto Disponible:</td>
                             <td colspan="4">Presupuesto Aprobado:</td>

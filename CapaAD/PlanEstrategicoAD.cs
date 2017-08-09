@@ -239,8 +239,7 @@ namespace CapaAD
        public DataTable EliminarPlanEstrategico(int id, string usuario)
        {
             DataTable tabla = new DataTable();
-            if (validarPermiso(usuario))
-            {
+          
                 conectar = new ConexionBD();
                 
                 string query = String.Format("CALL sp_iue_planes_estrategicos({0}, '', '', 0, 0, '', 2);", id);
@@ -249,8 +248,8 @@ namespace CapaAD
                 consulta.Fill(tabla);
                 conectar.CerrarConexion();
                 return tabla;
-            }
-            return tabla;
+           
+           
        }
 
        public DataTable EliminarObjetivo(int id)

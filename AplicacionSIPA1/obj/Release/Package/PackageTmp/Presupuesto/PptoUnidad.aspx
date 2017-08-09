@@ -15,6 +15,22 @@
         .auto-style12 {
             text-align: right;
         }
+        .auto-style13 {
+            display: block;
+            font-size: small;
+            line-height: 1.42857143;
+            color: #2c3e50;
+            border-radius: 4px;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            border: 1px solid #dce4ec;
+            padding: 10px 15px;
+            background-color: #ffffff;
+            background-image: none;
+        }
     </style>
 </asp:Content>
 
@@ -39,7 +55,7 @@
                     <td class="auto-style4" colspan="3">
                        <%-- <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlPlanE_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>--%>
-                        <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlPlanE_SelectedIndexChanged" Width="100%"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlPlanE_SelectedIndexChanged" Width="30%"></asp:DropDownList>
                     </td>
                 </tr>
                             <tr>
@@ -54,20 +70,20 @@
                                 <td class="auto-style4" colspan="3">
                                    <%-- <asp:DropDownList ID="dropUnidad" runat="server" class="form-control" OnSelectedIndexChanged="dropUnidad_SelectedIndexChanged" Height="45%">
                                     </asp:DropDownList>--%>
-                                    <asp:DropDownList ID="ddlUnidad" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUnidad_SelectedIndexChanged" Height="45%"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUnidad" AutoPostBack="true" runat="server" CssClass="auto-style13" OnSelectedIndexChanged="ddlUnidad_SelectedIndexChanged" Height="45%" Width="315px"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style12">&nbsp; Dependencias&nbsp;&nbsp;&nbsp; </td>
                                 <td class="auto-style4" colspan="3">
-                                    <asp:DropDownList ID="ddlDependencias" AutoPostBack="true" runat="server" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Height="45%">
+                                    <asp:DropDownList ID="ddlDependencias" AutoPostBack="true" runat="server" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Height="45%" Width="314px">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style12">&nbsp; Unidades/Jefaturas&nbsp;&nbsp;&nbsp; </td>
                                 <td class="auto-style4" colspan="3">
-                                    <asp:DropDownList ID="ddlJefaturasSub" runat="server" class="form-control" Height="45%" >
+                                    <asp:DropDownList ID="ddlJefaturasSub" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlJefaturasSub_SelectedIndexChanged" class="form-control" Height="45%" Width="313px" >
                                     </asp:DropDownList>
                                 </td>
                             </tr>
@@ -80,6 +96,18 @@
                         <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtMonto" ErrorMessage="* Ingrese un valor numérico" Font-Bold="True" ForeColor="Red" MaximumValue="300000000" MinimumValue="0" Type="Double"></asp:RangeValidator>
                     </td>
                     <td class="auto-style12">&nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style12"><asp:Label Text="Monto Global" ID="lblMontoGlobal" runat="server"  ></asp:Label></span><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMonto" ErrorMessage="*" ForeColor="Red" ValidationGroup="vacios"></asp:RequiredFieldValidator>
+                        &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td class="auto-style4">
+                        <asp:TextBox ID="txtMontoGlobal" runat="server" class="form-control" placeholder="Monto a Asignar" Width="25%"></asp:TextBox>
+                        <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtMontoGlobal" ErrorMessage="* Ingrese un valor numérico" Font-Bold="True" ForeColor="Red" MaximumValue="300000000" MinimumValue="0" Type="Double"></asp:RangeValidator>
+                    </td>
+                    <td class="text-left">&nbsp; Monto Global: <asp:Label ID="lblMontoGlobalUni" Font-Size="Medium" runat ="server" Font-Bold="true" ForeColor="Green" Text="0.00"></asp:Label> </td>
                     <td>
                         &nbsp;</td>
                 </tr>

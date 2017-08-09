@@ -90,16 +90,11 @@ C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\NumeroaLetras.dll
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaEN.pdb
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaLN.pdb
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaAD.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\RdlCompile.cache
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
 C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.CrystalReports.Engine.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.ReportSource.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.Shared.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CrystalDecisions.Web.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
@@ -116,4 +111,5 @@ C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\NumeroaLetras.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll
+C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll

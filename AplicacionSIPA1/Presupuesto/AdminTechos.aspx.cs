@@ -82,7 +82,7 @@ namespace AplicacionSIPA1.Presupuesto
 
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
-                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue), 2);
                     }
                 }
 
@@ -114,16 +114,22 @@ namespace AplicacionSIPA1.Presupuesto
 
 
                 planOperativoLN = new PlanOperativoLN();
-                
+
 
                 planAccionLN = new PlanAccionLN();
-                
+
                 if (idUnidad > 0)
                 {
+
+                    planOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                     ddlUnidades.SelectedValue = idUnidad.ToString();
-                    
+
                     if (anio > 0 && idUnidad > 0)
-                        validarPoa(idUnidad, anio);
+                        validarPoa(idUnidad, anio, 2);
+                    if (ddlJefaturaUnidad.SelectedIndex > 0)
+                    {
+                        ddlJefaturaUnidad.SelectedIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -150,15 +156,21 @@ namespace AplicacionSIPA1.Presupuesto
 
                 if (anio > 0)
                 {
-                    ddlAnios.SelectedValue = anio.ToString();                    
+                    ddlAnios.SelectedValue = anio.ToString();
                     if (anio > 0 && idUnidad > 0)
-                        validarPoa(idUnidad, anio);
+                        validarPoa(idUnidad, anio, 2);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = "ddlAnios_SelectedIndexChanged(). " + ex.Message;
             }
+        }
+
+        protected decimal obtenerTecho()
+        {
+            decimal monto = 0;
+            return monto;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -174,10 +186,12 @@ namespace AplicacionSIPA1.Presupuesto
                 //INSERTAR/ACTUALIZAR
                 if (validarControlesABC())
                 {
-
                     int idModificacion, idPoa, idUnidad, anio = 0;
                     decimal techoAprobado, techoActual, pptoCodificado, pptoPendienteCodificar, nuevoTecho = 0;
                     int sobreescribeTechoAprobado;
+                    nuevoTecho = funcionesVarias.StringToDecimal(txtNuevoTecho.Text);
+
+
 
                     int.TryParse(lblIdModificacion.Text, out idModificacion);
                     int.TryParse(lblIdPoa.Text, out idPoa);
@@ -189,11 +203,23 @@ namespace AplicacionSIPA1.Presupuesto
                     techoActual = funcionesVarias.StringToDecimal(lblTechoActual.Text);
                     pptoCodificado = funcionesVarias.StringToDecimal(lblPptoCodificado.Text);
                     pptoPendienteCodificar = funcionesVarias.StringToDecimal(lblPptoPendiente.Text);
-                    nuevoTecho = funcionesVarias.StringToDecimal(txtNuevoTecho.Text);
+
 
                     pptoEN.id_modificacion = idModificacion.ToString();
                     pptoEN.id_poa = idPoa.ToString();
-                    pptoEN.id_unidad = idUnidad.ToString();
+                    if (ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
+                    {
+                        pptoEN.id_unidad = ddlJefaturaUnidad.SelectedValue;
+                    }
+                    else if (int.Parse(ddlDependencia.SelectedValue) > 0)
+                    {
+                        pptoEN.id_unidad = ddlDependencia.SelectedValue;
+                    }
+                    else
+                    {
+                        pptoEN.id_unidad = ddlUnidades.SelectedValue;
+                    }
+                    
                     pptoEN.anio_solicitud = anio.ToString();
                     pptoEN.techo_aprobado = techoAprobado.ToString();
                     pptoEN.techo_actual = techoActual.ToString();
@@ -204,7 +230,58 @@ namespace AplicacionSIPA1.Presupuesto
                     pptoEN.justificacion = txtJustificacion.Text;
                     pptoEN.usuario = Session["USUARIO"].ToString();
 
-                    dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString());
+                    if (ddlJefaturaUnidad.SelectedIndex<=0 && ddlDependencia.SelectedIndex <=0 )
+                    {
+                        if (pptoLN.validarMontoDependecias(anio, idUnidad,2) <= nuevoTecho)
+                        {
+                            dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
+                        }
+                        else
+                        {
+                            throw new Exception("No se INSERTÓ/ACTUALIZÓ el techo: El nuevo techo es menor a la suma de las dependencias");
+                        }
+
+                    }
+                    else if (ddlDependencia.SelectedIndex>0)
+                    {
+
+                        if (ddlDependencia.SelectedValue ==  ddlUnidades.SelectedValue)
+                        {
+                            if (pptoLN.validarMontoDependecias(anio,idUnidad,2) + nuevoTecho <= pptoLN.ObtenerMontoGlobal(anio,idUnidad))
+                            {
+                                dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 1);
+                            }
+                            else
+                            {
+                                throw new Exception("No se INSERTÓ/ACTUALIZÓ el techo: El techo es supera al monto global");
+                            }
+                        }
+                        else
+                        {
+                            if (((pptoLN.validarMontoDependecias(anio, Int32.Parse(ddlUnidades.SelectedValue),2) + nuevoTecho - techoActual) <= pptoLN.ObtenerMontoGlobal(anio, idUnidad))&&
+                                (pptoLN.validarMontoDependecias(anio, Convert.ToInt32(pptoEN.id_unidad), 1)<=nuevoTecho))
+                            {
+                                dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
+                            }
+                            else
+                            {
+                                throw new Exception("No se INSERTÓ/ACTUALIZÓ el techo: El techo es supera al monto global/Es menor a sus dependencias");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if ((pptoLN.validarMontoDependecias(anio, idUnidad,2) + nuevoTecho <= pptoLN.ObtenerMontoGlobal(anio, idUnidad)))
+                        {
+                            dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
+                        }
+                        else
+                        {
+                            throw new Exception("No se INSERTÓ/ACTUALIZÓ el techo: El techo es supera al monto global");
+                        }
+                    }
+                   
+                   
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -213,8 +290,8 @@ namespace AplicacionSIPA1.Presupuesto
                     int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idModificacion);
                     lblIdModificacion.Text = "0";
 
-                    obtenerPresupuesto();
-
+                    obtenerPresupuesto(2);
+                    txtNuevoTecho.Text = "";
                     lblSuccess.Text = "Solicitud No. " + idModificacion + " ALMACENADA/MODIFICADA exitosamente: ";
                     ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + lblSuccess.Text + "');", true);
                 }
@@ -287,11 +364,11 @@ namespace AplicacionSIPA1.Presupuesto
             }
 
             return controlesValidos;
-        }       
+        }
 
-        protected bool validarPoa(int idUnidad, int anio)
+        protected bool validarPoa(int idUnidad, int anio, int op)
         {
-            lblErrorPoa.Text = lblError.Text  = "";
+            lblErrorPoa.Text = lblError.Text = "";
             bool poaValido = false;
             btnGuardar.Visible = false;
             lblIdPoa.Text = "0";
@@ -299,10 +376,10 @@ namespace AplicacionSIPA1.Presupuesto
             {
                 lblTechoAprobado.Text = lblTechoActual.Text = lblPptoCodificado.Text = lblPptoPendiente.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
                 txtNuevoTecho.Text = "0";
-                
+
                 planOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = planOperativoLN.DatosPoaUnidad(idUnidad, anio, "", 1);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -313,7 +390,7 @@ namespace AplicacionSIPA1.Presupuesto
                 lblEstadoPoa.Text = dsPoa.Tables[0].Rows[0]["ID_ESTADO"].ToString() + " - " + dsPoa.Tables[0].Rows[0]["ESTADO"].ToString();
 
                 int idPoa = int.Parse(dsPoa.Tables[0].Rows[0]["ID_POA"].ToString());
-                lblIdPoa.Text = idPoa.ToString();            
+                lblIdPoa.Text = idPoa.ToString();
 
                 if (!estadoPoa.Equals("9"))
                     lblErrorPoa.Text = lblError.Text = "El CUADRO DE MANDO INTEGRAL seleccionado se encuenta en estado: " + lblEstadoPoa.Text + " y no se puede modificar";
@@ -322,7 +399,8 @@ namespace AplicacionSIPA1.Presupuesto
 
                 int idDep = 0;
                 int.TryParse("0", out idDep);
-                obtenerPresupuesto();
+
+                obtenerPresupuesto(op);
 
                 lblEncabezado.Text = string.Empty;
                 if (!ddlAnios.SelectedValue.Equals("0") && !ddlUnidades.SelectedValue.Equals("0"))
@@ -337,18 +415,28 @@ namespace AplicacionSIPA1.Presupuesto
             return poaValido;
         }
 
-        protected void obtenerPresupuesto()
+        protected void obtenerPresupuesto(int op)
         {
             try
             {
 
                 string criterio = " AND a.id_poa = " + lblIdPoa.Text;
-               
-                planAccionLN = new PlanAccionLN();
 
+                planAccionLN = new PlanAccionLN();
+                DataSet dsPpto = new DataSet();
 
                 planOperativoLN = new PlanOperativoLN();
-                DataSet dsPpto = planOperativoLN.DatosPoaUnidad(0, 0, criterio, 2);
+               
+                if ((ddlDependencia.SelectedValue == ddlUnidades.SelectedValue) || (ddlDependencia.SelectedValue == ddlJefaturaUnidad.SelectedValue))
+                {
+                    dsPpto = planOperativoLN.DatosPoaUnidad(0, 0, criterio, 3);
+                }
+                else
+                {
+                    dsPpto = planOperativoLN.DatosPoaUnidad(0, 0, criterio, op);
+                }
+                
+
 
                 decimal techoAprobado = decimal.Parse(dsPpto.Tables[0].Rows[0]["TECHO_APROBADO"].ToString());
                 decimal techoActual = decimal.Parse(dsPpto.Tables[0].Rows[0]["TECHO_ACTUAL"].ToString());
@@ -357,7 +445,7 @@ namespace AplicacionSIPA1.Presupuesto
 
                 lblTechoAprobado.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", techoAprobado);
                 lblTechoActual.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", techoActual);
-                lblPptoCodificado.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoCodificado); 
+                lblPptoCodificado.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoCodificado);
                 lblPptoPendiente.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPendienteCodificar);
             }
             catch (Exception ex)
@@ -405,7 +493,96 @@ namespace AplicacionSIPA1.Presupuesto
         protected void btnListado_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListadoModTechos.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
-            
+
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlDependencia.SelectedValue);
+                int tempUnidad = int.Parse(ddlUnidades.SelectedValue);
+               
+                ddlPlanes.SelectedValue = idPlan.ToString();
+
+                var nuevoValor = ddlDependencia.SelectedItem;
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+
+
+                planAccionLN = new PlanAccionLN();
+
+                if ((idUnidad > 0) && (idUnidad != tempUnidad))
+                {
+                    ddlUnidades.SelectedValue = tempUnidad.ToString();
+                    ddlDependencia.SelectedValue = idUnidad.ToString();
+                    planOperativoLN.DdlDependenciasmUnidad(ddlJefaturaUnidad, idUnidad.ToString());
+                    
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio, 2);
+                }
+                else if (ddlDependencia.SelectedIndex == 0)
+                {
+                    validarPoa(Convert.ToInt32(ddlUnidades.SelectedValue), anio, 2);
+                }
+              
+                else
+                {
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio, 3);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlJefaturaUnidad.SelectedValue);
+                int tempUnidad = int.Parse(ddlDependencia.SelectedValue);
+                
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                
+
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+
+
+                planAccionLN = new PlanAccionLN();
+
+                if (idUnidad > 0 && idUnidad != tempUnidad)
+                {
+                    ddlJefaturaUnidad.SelectedValue = idUnidad.ToString();
+                    ddlDependencia.SelectedValue = tempUnidad.ToString();
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio, 3);
+                }
+                else
+                {
+                    validarPoa(idUnidad, anio, 3);
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
     }
 }

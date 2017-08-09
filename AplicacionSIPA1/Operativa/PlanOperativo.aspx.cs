@@ -177,14 +177,14 @@ namespace AplicacionSIPA1.Operativa
                 int idPlan = 0;
                 int anioIni = 0;
                 int anioFin = 0;
-                if (ddlPlanes.Items.Count == 2)
+                if (ddlPlanes.Items.Count  >0)
                 {
                     ddlPlanes.SelectedIndex = 1;
                     idPlan = int.Parse(ddlPlanes.SelectedValue);
                     anioIni = int.Parse(ddlPlanes.SelectedItem.Text.Split('-')[0].Trim());
                     anioFin = int.Parse(ddlPlanes.SelectedItem.Text.Split('-')[1].Trim());
-                    lblPlanE.Visible = false;
-                    ddlPlanes.Visible = false;
+                    lblPlanE.Visible = true;
+                    ddlPlanes.Visible = true;
                 }
                 planEstrategicoLN.DdlAniosPlan(ddlAnios, anioIni, anioFin);
                 planEstrategicoLN.DdlEjes(ddlEjes, idPlan);
@@ -1297,7 +1297,6 @@ namespace AplicacionSIPA1.Operativa
                     planEstrategicoLN = new PlanEstrategicoLN();
 
                     planEstrategicoLN.DdlAniosPlan(ddlAnios, anioIni, anioFin);
-                    planEstrategicoLN.DdlEjes(ddlEjes, idPlan);                   
                 }
             }
             catch (Exception ex)
@@ -1350,8 +1349,11 @@ namespace AplicacionSIPA1.Operativa
 
                 if (idUnidad > 0)
                 {
-
-                    planOperativoLN.DdlDependencias(ddlUnidadJefatura, id_unidad);
+                    if (idUnidadTemp!=idUnidad)
+                    {
+                        planOperativoLN.DdlDependencias(ddlUnidadJefatura, id_unidad);
+                        
+                    }
                     ddlUnidades.SelectedValue = idUnidadTemp.ToString();
                     lblResponsable.Text = ddlDependencias.SelectedItem.Text;
                     if (anio > 0 && idUnidad > 0)

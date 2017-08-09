@@ -56,7 +56,6 @@
     <form class="form-horizontal" id ="form1" runat="server">
        
  
-
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -65,8 +64,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand navbar-hover" runat="server" href="~/Inicio.aspx">SIPA</a>
-                </div>
+                    <a class="navbar-brand navbar-hover" runat="server" href="~/Inicio.aspx">SIPA
+                    </a>
+                &nbsp;</div>
                 <div class="navbar-collapse collapse">
                       <div id="DivContenedorMenu_EW" > 
             <asp:Menu ID="Menu1"  runat="server" style="color: #FFFFFF" MaximumDynamicDisplayLevels="10" Orientation="Horizontal" Font-Bold="True" CssClass="navbar  navbar-default menu_EW" >
@@ -86,6 +86,7 @@
 
                 </div>
             </div>
+            
         </div>
 
 

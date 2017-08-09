@@ -78,6 +78,36 @@ namespace CapaLN
 
           
         }
+        public void DdlDependenciasmUnidad(DropDownList drop, string id)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PlanOperativoAD();
+            drop.DataSource = ObjAD.DdlDependenciasmUnidad(id);
+            drop.DataTextField = "texto";
+            drop.DataValueField = "id";
+            drop.DataBind();
+
+
+        }
+        public void DdlDependenciasxAnalista(DropDownList drop, string usuario,int anio,int id)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PlanOperativoAD();
+            drop.DataSource = ObjAD.DdlDependenciasxAnalista(usuario,anio,id);
+            drop.DataTextField = "texto";
+            drop.DataValueField = "id";
+            drop.DataBind();
+
+
+        }
 
         public void DdlUnidades(DropDownList drop)
         {
@@ -591,6 +621,35 @@ namespace CapaLN
             {
                 throw new Exception("DatosPoaUnidad(). " + ex.Message);
             }
+        }
+
+
+        public DataSet DependenciasFaltantes(int idUnidad, int anio)
+        {
+            try
+            {
+                ObjAD = new PlanOperativoAD();
+                DataTable dt = ObjAD.DependenciasFaltantes(anio,idUnidad);
+                DataSet ds = new DataSet();
+                ds.Tables.Add(dt);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DatosPoaUnidad(). " + ex.Message);
+            }
+        }
+
+        public string ObtenerCorreo(int unidad, int menu)
+        {
+            ObjAD = new PlanOperativoAD();
+            return ObjAD.ObtenerCorreo(unidad,menu);
+        }
+
+        public bool CantidadDePresupuestos(int anio,int unidad)
+        {
+            ObjAD = new PlanOperativoAD();
+            return ObjAD.CantidadPpto(anio,unidad);
         }
     }
 }

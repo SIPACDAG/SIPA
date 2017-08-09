@@ -163,8 +163,7 @@ namespace CapaAD
         public DataSet AlmacenarPedido(PedidosEN ObjEN, string usuariop)
         {
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuariop))
-            {
+           
                 string query = "";
 
            DataTable dt;
@@ -275,15 +274,13 @@ namespace CapaAD
            dsResultado.Tables.Add(dtDet);
 
            return dsResultado;
-       }
-            return dsResultado;
+      
         }
 
         public DataSet AlmacenarVale(PedidosEN ObjEN, string usuariop)
         {
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuariop))
-            {
+           
                 string query = "";
           
            DataTable dt;
@@ -395,8 +392,7 @@ namespace CapaAD
 
            return dsResultado;
        }
-            return dsResultado;
-        }
+         
 
 
         public DataSet ActualizarTotalEnLetras(int id, int id2, string totalEnLetras, int opcion)
@@ -455,8 +451,7 @@ namespace CapaAD
         public DataSet AlmacenarGasto(PedidosEN ObjEN, string usuariop)
         {
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuariop))
-            {
+           
                 string query = "";
            
            DataTable dt;
@@ -568,8 +563,7 @@ namespace CapaAD
 
            return dsResultado;
        }
-            return dsResultado;
-        }
+       
 
         public DataSet AlmacenarEspecificacion(PedidosEN ObjEN, DataTable dtDetallesEsp)
        {
@@ -737,8 +731,7 @@ namespace CapaAD
         public DataSet AlmacenarCriterio(int idCriterioPedido, int idCriterio, int idPedido, string nombre, decimal puntuacion, int criterioPrecio, string usuario, int opcion)
         {
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuario))
-            {
+            
       
            string query = "";
            
@@ -791,14 +784,11 @@ namespace CapaAD
 
            return dsResultado;
        }
-            return dsResultado;
-        }
+            
         public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles, string usuario)
         {
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuario))
-            {
-                string query = "";
+             string query = "";
            
            DataTable dt;
            DataTable dtEnc;
@@ -950,8 +940,7 @@ namespace CapaAD
 
            return dsResultado;
        }
-            return dsResultado;
-        }
+           
         public String ConstruirCampoInsertMySQL(string valor, int tipoDato, char separador)
        {
            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
@@ -1072,8 +1061,7 @@ namespace CapaAD
        public DataTable RechazoEncargado(int idPedido, int idTipoSalida, string observaciones, string usuario)
        {
             DataTable dt = new DataTable();
-            if (!validarPermiso(usuario))
-            {
+            
                 conectar = new ConexionBD();
               
            string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 7);";
@@ -1083,9 +1071,7 @@ namespace CapaAD
            conectar.CerrarConexion();
            return dt;
        }
-            return dt;
-
-        }
+           
 
         public DataTable RechazoEncargadoAjuste(int idAjuste, int idTipoSalida, string observaciones, string usuario)
        {

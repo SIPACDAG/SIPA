@@ -324,7 +324,12 @@ namespace CapaLN
             grid.DataSource = ObjAD.GridPlan(idUnidad, idPoa);
             grid.DataBind();
         }
-
+        public void GridPlanCompleto(GridView grid, int idUnidad, int idPoa,int anio)
+        {
+            ObjAD = new PlanAccionAD();
+            grid.DataSource = ObjAD.GridPlanCompleto(idUnidad, idPoa,anio);
+            grid.DataBind();
+        }
         public void GridInsumosRenglon(GridView grid, string noRenglon, string criterio, int opcion)
         {
             ObjAD = new PlanAccionAD();
@@ -485,6 +490,24 @@ namespace CapaLN
             try
             {
                 DataTable dt = ObjAD.InformacionAccionDetalles(id, id2, criterio, opcion);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionAccionDetalles(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+        public DataSet InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanAccionAD();
+            try
+            {
+                DataTable dt = ObjAD.InformacionAccionDetallesCompleto(id, id2, criterio, opcion);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;

@@ -1,4 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="PedidoAnulacion.aspx.cs" Inherits="AplicacionSIPA1.Pedido.PedidoAnulacion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PedidoAnulacion.aspx.cs" Inherits="AplicacionSIPA1.Pedido.PedidoAnulacion" MasterPageFile="~/Principal.Master" %>
+
+
+
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
@@ -189,8 +192,9 @@
 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
+                         <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
                             CssClass="table table-hover table-responsive">
+                            
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="Id" Visible="false">
@@ -332,8 +336,9 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%"
+                         <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%"
                             CssClass="table table-hover table-responsive">
+                          
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -464,7 +469,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                        <asp:Button ID="btnReactivar" runat="server" class="btn btn-success" OnClick="btnRechazar_Click" Text="Reactivar" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea REACTIVAR este registro?'))return false" />
+                         <asp:Button ID="btnReactivar" runat="server" class="btn btn-success" OnClick="btnRechazar_Click" Text="Reactivar" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea REACTIVAR este registro?'))return false" />
                         <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" OnClick="btnAnular_Click" Text="Anular Pedido" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -542,6 +547,7 @@
                     <td colspan="18">
                         <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" Visible="False"
                             CssClass="table table-hover table-responsive">
+                          
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -719,7 +725,6 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
-
 
 
 

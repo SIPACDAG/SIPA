@@ -130,8 +130,7 @@ namespace CapaAD
         public DataSet AlmacenarPac(DataSet dsPac,string usuariop)
         {
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuariop))
-            {
+            
                 string query = "";
                 
                 DataTable dt;
@@ -247,8 +246,7 @@ namespace CapaAD
                 dsResultado.Tables.Add(dtPacDet);
 
                 return dsResultado;
-            }
-            return dsResultado;
+           
         }
 
         public DataTable EliminarPac(int idPac)
@@ -302,8 +300,7 @@ namespace CapaAD
         public DataTable ActualizarEstadoPac(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones)
         {
             DataTable tabla = new DataTable();
-            if (!validarPermiso(usuario))
-            {
+            
                 conectar = new ConexionBD();
                 
                 string query = "";
@@ -316,8 +313,7 @@ namespace CapaAD
                 consulta.Fill(tabla);
                 conectar.CerrarConexion();
                 return tabla;
-            }
-            return tabla;
+           
         }
 
         public bool validarPermiso(string Usuario)
