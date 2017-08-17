@@ -308,14 +308,14 @@ namespace CapaLN
             grid.DataBind();
         }
 
-        public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario)
+        public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario,string ip,string mac,string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PlanOperativoAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN, usuario);
+                DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -568,13 +568,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones)
+        public DataSet ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones,string ip,string mac,string pc,string tipo,string boton)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanOperativoAD();
             try
             {
-                DataTable dt = ObjAD.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones);
+                DataTable dt = ObjAD.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -645,11 +645,21 @@ namespace CapaLN
             ObjAD = new PlanOperativoAD();
             return ObjAD.ObtenerCorreo(unidad,menu);
         }
-
+        public string ObtenerCorreoxUsuario(int idempleado)
+        {
+            ObjAD = new PlanOperativoAD();
+            return ObjAD.ObtenerCorreoxUsuario(idempleado);
+        }
         public bool CantidadDePresupuestos(int anio,int unidad)
         {
             ObjAD = new PlanOperativoAD();
             return ObjAD.CantidadPpto(anio,unidad);
+        }
+
+        public void InsertarBitacoraOperaciones(string usuario, string op, string ip,  string decs,int NoDoc)
+        {
+            ObjAD = new PlanOperativoAD();
+            ObjAD.InsertarBitacoraOperaciones(usuario,ip,op,decs,NoDoc);
         }
     }
 }

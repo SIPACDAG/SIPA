@@ -402,7 +402,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
             conectar.AbrirConexion();
-            string query = string.Format("call sp_insertBitacora('{0}','{1}','{2}','{3}','{4}',{5},{6})",usuario,unidad,ip,acc,desc,mInicial,mFinal);
+            string query = string.Format("call sp_insertBitacora('{0}','{1}','{2}','{3}','{4}',{5},{6})",usuario,unidad,ip,acc,unidad,mInicial,mFinal);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();

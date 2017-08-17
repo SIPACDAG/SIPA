@@ -551,7 +551,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if(dvPedido.SelectedValue != null)
@@ -565,11 +565,13 @@ namespace AplicacionSIPA1.Pedido
                 if (validarEstadoPedido(idSalida))
                 {
                     txtObser.Text = string.Empty;
-
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.AprobacionEncargado(idSalida, idTipoSalida, observaciones, usuario);
+                    
+                    DataSet dsResultado = pInsumoLN.AprobacionEncargado(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -579,6 +581,7 @@ namespace AplicacionSIPA1.Pedido
 
                     NuevaAprobacion();
                     lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " APROBADA con éxito!";
+                   
                     //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=APROBADO");
                 }
             }
@@ -593,7 +596,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                planOperativoLN = new PlanOperativoLN();
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
@@ -615,8 +618,10 @@ namespace AplicacionSIPA1.Pedido
                 {
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.RechazoEncargado(idSalida, idTipoSalida, observaciones, usuario);
+                    DataSet dsResultado = pInsumoLN.RechazoEncargado(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -626,6 +631,7 @@ namespace AplicacionSIPA1.Pedido
 
                     NuevaAprobacion();
                     lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " RECHAZADA con éxito!";
+                   
                 }
             }
             catch (Exception ex)

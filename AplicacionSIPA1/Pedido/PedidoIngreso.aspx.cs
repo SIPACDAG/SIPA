@@ -1242,6 +1242,7 @@ namespace AplicacionSIPA1.Pedido
                                 throw new Exception("No existe Bien/Servicio para finalizar");
 
                             pInsumoLN = new PedidosLN();
+                            planOperativoLN = new PlanOperativoLN();
                             DataSet dsResultado = new DataSet();
 
                             if (rblAnexos.SelectedValue.Equals("1"))
@@ -1274,7 +1275,8 @@ namespace AplicacionSIPA1.Pedido
 
                             pInsumoLN = new PedidosLN();
                             dsResultado = pInsumoLN.InformacionPedido(int.Parse(lblIdPedido.Text), int.Parse(ddlTipoPedido.SelectedValue), 1, "", 13);
-
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -1302,7 +1304,7 @@ namespace AplicacionSIPA1.Pedido
 
                             //7 - RECHAZADO POR PRESUPUESTO, 9 - RECHAZADO MESA DE ENTRADA DE COMPRAS/PPTO, 18 - RECHAZADO TÉCNICO DE COMPRAS/PPTO
                             if (idEstadoPedido == 7 || idEstadoPedido == 9 || idEstadoPedido == 18)
-                                dsResultado = pInsumoLN.AprobacionEncargado(idPedido, 1, "Realizada por el sistema", Session["usuario"].ToString());
+                                dsResultado = pInsumoLN.AprobacionEncargado(idPedido, 1, "Realizada por el sistema", Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
                             
                             //RECHAZADO POR MESA DE ENTRADA
                             /*else if (idEstadoPedido == 9)
@@ -1328,7 +1330,7 @@ namespace AplicacionSIPA1.Pedido
 
                             //CUALQUIER OTRO ESTADO
                             else
-                                dsResultado = pInsumoLN.EnviarPedidoARevision(idPedido, 1, Session["usuario"].ToString());
+                                dsResultado = pInsumoLN.EnviarPedidoARevision(idPedido, 1, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             //AGREGADO ENVIAR EL PEDIDO A CODIFICACIÓN DE PRESUPUESTO CUANDO SEA RECHAZADO POR PPTO, COMPRAS Y EVITAR QUE VUELVA A RECORRER EL CICLO COMPLETO
 
@@ -1345,6 +1347,10 @@ namespace AplicacionSIPA1.Pedido
                             estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_PEDIDO"].ToString();
 
                             mensaje = " finalizada correctamente!. El pedido fue enviado al estado: " + estadoActual + ". ";
+                            EnvioDeCorreos objEC = new EnvioDeCorreos();
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(ddlJefes.SelectedValue)), "Nueva Requiscion Ingresada", " Requisicion No.  " +idPedido + ", " + lblSuccess.Text+ ", " + mensaje, ddlSolicitantes.Items.ToString());
+                            
+
 
                             if (idEstadoPedido == 6)
                                 mensaje += " Comuníquese a la unidad de presupuesto para la codificación de la requisición, extensión: 2409";

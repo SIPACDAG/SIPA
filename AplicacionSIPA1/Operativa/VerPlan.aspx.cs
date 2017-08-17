@@ -495,12 +495,17 @@ namespace AplicacionSIPA1.Operativa
                 {
                     planOperativoLN = new PlanOperativoLN();
                     string usuario = Session["usuario"].ToString();
-                    DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), 2, anio, null, "", usuario, "");
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
+                    DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), 2, anio, null, "", usuario, "",ip[0],ip[1],ip[2],"ENVIAR", " AplicacionSIPA1.Operativa.VerPlan.btnEnviar()");
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
+                    EnvioDeCorreos objEC = new EnvioDeCorreos();
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreo(int.Parse(ddlUnidades.SelectedValue), 23)," Nuevo CMI Enviado"," Nuevo CMI numero " + lblIdPoa.Text + ", " + lblSuccess.Text ,usuario);
+                    
                     lblSuccess.Text = "Planificación enviada exitosamente!";
+                    planOperativoLN.InsertarBitacoraOperaciones(usuario, "Envio de CMI", "ip", txtObser.Text, int.Parse(lblIdPoa.Text));
                     //planOperativoLN = new PlanOperativoLN();
                     //string correo = planOperativoLN.ObtenerCorreo(Int32.Parse(ddlUnidades.SelectedValue), 23);
                     //EnvioDeCorreos envio = new EnvioDeCorreos();

@@ -20,6 +20,7 @@ namespace AplicacionSIPA1.Compras
         private PlanAnualLN pAnualLN;
         private UsuariosLN uUsuariosLN;
         private PedidosLN pInsumoLN;
+        private PlanOperativoLN planOperativoLN;
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
@@ -502,7 +503,7 @@ namespace AplicacionSIPA1.Compras
             try
             {
                 limpiarControlesError();
-
+                planOperativoLN = new PlanOperativoLN();
                 int idSalida, idTipoSalida, idTecnico;
                 idSalida = idTipoSalida = 0;
                 if(dvPedido.SelectedValue != null)
@@ -523,7 +524,10 @@ namespace AplicacionSIPA1.Compras
                 string usuario = Session["usuario"].ToString();
                 string observaciones = "";
                 //observaciones = txtObser.Text;
-                DataSet dsResultado = pInsumoLN.AsignacionTecnicoCompras(idSalida, idTipoSalida, idTecnico, observaciones, usuario);
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
+               
+                DataSet dsResultado = pInsumoLN.AsignacionTecnicoCompras(idSalida, idTipoSalida, idTecnico, observaciones, usuario,ip[0],ip[1],ip[2]);
                 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -533,6 +537,9 @@ namespace AplicacionSIPA1.Compras
 
                 NuevaAprobacion();
                 lblSuccess.Text = "Solicitud No. " + noSolicitud + " INGRESADA con éxito!";
+                EnvioDeCorreos objEC = new EnvioDeCorreos();
+                objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(idTecnico), "Nueva REQUISICIÓN/VALE ASIGANDA ", lblSuccess.Text + ", " + observaciones, usuario);
+
             }
             catch (Exception ex)
             {

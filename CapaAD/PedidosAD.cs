@@ -190,7 +190,7 @@ namespace CapaAD
            if (destino.Equals("1"))
                idFand = "null";
 
-           query = "CALL sp_iue_pedido(" + idPedido + ", " + idPoa + ", " + idAccion + ", " + idTipoPedido + ", " + idSolicitante + ", " + idJefe + ", '" + justificacion + "', " + idFand + ", " + idTipoAnexo + ", 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '" + usuario + "', 1);";
+           query = "CALL sp_iue_pedido(" + idPedido + ", " + idPoa + ", " + idAccion + ", " + idTipoPedido + ", " + idSolicitante + ", " + idJefe + ", '" + justificacion + "', " + idFand + ", " + idTipoAnexo + ", 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '" + usuario + "', 1,null,null,null);";
 
            dt = armarDsResultado().Tables[0].Copy();
            dtEnc = armarDsResultado().Tables[0].Copy();
@@ -976,12 +976,13 @@ namespace CapaAD
        }
 
         //ENVIAR EL PEDIDO A EXISTENCIAS EN BODEGA(BIENES) O APROBACIÓN DE SUB/DIR(SERVICIO)
-       public DataTable EnviarPedidoARevision(int idPedido, int idTipoSalida, string usuario)
+       public DataTable EnviarPedidoARevision(int idPedido, int idTipoSalida, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 3);";
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 3,'"
+                +ip+"','"+mac+"','"+pc+"');";
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -990,13 +991,14 @@ namespace CapaAD
        }
 
        //ENVIAR EL AJUSTE DEL PEDIDO PEDIDO A APROBACIÓN DE SUB/DIR
-       public DataTable EnviarAjustePedidoARevision(int idAjuste, int idTipoSalida, string usuario)
+       public DataTable EnviarAjustePedidoARevision(int idAjuste, int idTipoSalida, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "', 2);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "',  2,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1004,26 +1006,28 @@ namespace CapaAD
        }
 
        //Vo.Bo. Nivel 1
-       public DataTable AprobacionBodega(int idPedido, int idTipoDocumento, string observaciones, string usuario)
+       public DataTable AprobacionBodega(int idPedido, int idTipoDocumento, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoDocumento + ", '" + usuario + "', 4);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoDocumento + ", '" + usuario + "', 4 ,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
            return dt;
        }
 
-       public DataTable RechazoBodega(int idPedido, int idTipoDocumento, string observaciones, string usuario)
+       public DataTable RechazoBodega(int idPedido, int idTipoDocumento, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoDocumento + ", '" + usuario + "', 5);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoDocumento + ", '" + usuario + "', 5 ,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1031,13 +1035,14 @@ namespace CapaAD
        }
 
        //Vo.Bo. Nivel 2
-       public DataTable AprobacionEncargado(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable AprobacionEncargado(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 6);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 6 ,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1045,27 +1050,29 @@ namespace CapaAD
        }
 
        //ENVIAR EL AJUSTE DEL PEDIDO PEDIDO A APROBACIÓN DE PRESUPUESTO
-       public DataTable AprobacionEncargadoAjuste(int idAjuste, int idTipoSalida, string observaciones, string usuario)
+       public DataTable AprobacionEncargadoAjuste(int idAjuste, int idTipoSalida, string observaciones, string usuario,string ip, string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "', 3);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "',  3,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
            return dt;
        }
 
-       public DataTable RechazoEncargado(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable RechazoEncargado(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
             DataTable dt = new DataTable();
             
                 conectar = new ConexionBD();
               
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 7);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 7,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1087,13 +1094,14 @@ namespace CapaAD
        }
 
         //Vo.Bo. Nivel 3
-       public DataTable AprobacionPresupuesto(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable AprobacionPresupuesto(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 8);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 8 ,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1113,7 +1121,7 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable RechazoPresupuesto(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable RechazoPresupuesto(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
             DataTable dt = new DataTable();
@@ -1121,8 +1129,9 @@ namespace CapaAD
             {
                 conectar = new ConexionBD();
 
-                string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 9);";
-           conectar.AbrirConexion();
+                string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 9,'"
+                + ip + "','" + mac + "','" + pc + "');";
+                conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1146,39 +1155,42 @@ namespace CapaAD
        }
 
        //Vo.Bo. Nivel 4
-       public DataTable AprobacionMesaEntrada(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable AprobacionMesaEntrada(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 10);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 10 ,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
            return dt;
        }
 
-       public DataTable RechazoMesaEntrada(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable RechazoMesaEntrada(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 11);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 11 ,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
            return dt;
        }
 
-       public DataTable AsignacionTecnicoCompras(int idPedido, int idTipoSalida, int idTecnico, string observaciones, string usuario)
+       public DataTable AsignacionTecnicoCompras(int idPedido, int idTipoSalida, int idTecnico, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, " + idTecnico + ", 0, " + idTipoSalida + ", '" + usuario + "', 12);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, " + idTecnico + ", 0, " + idTipoSalida + ", '" + usuario + "', 12,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
@@ -1199,7 +1211,7 @@ namespace CapaAD
            string idPedido = dsDetalles.Tables[0].Rows[0]["ID_PEDIDO"].ToString();
            string idTipoSalida = dsDetalles.Tables[0].Rows[0]["VID_TIPO_DOCUMENTO"].ToString();
 
-           query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', -1);";
+           query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', -1,null,null,null);";
 
            dt = armarDsResultado().Tables[0].Copy();
            dtEnc = armarDsResultado().Tables[0].Copy();
@@ -1307,7 +1319,7 @@ namespace CapaAD
        }
 
 
-       public DataSet AprobacionTecnico(DataSet dsDetalles)
+       public DataSet AprobacionTecnico(DataSet dsDetalles,string ip,string mac,string pc)
        {
            string query = "";
            DataSet dsResultado = new DataSet();
@@ -1321,9 +1333,10 @@ namespace CapaAD
            string idPedido = dsDetalles.Tables[0].Rows[0]["ID_PEDIDO"].ToString();
            string idTipoSalida = dsDetalles.Tables[0].Rows[0]["VID_TIPO_DOCUMENTO"].ToString();
 
-           query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', 13);";
+           query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', 13,'"
+                + ip + "','" + mac + "','" + pc + "');";
 
-           dt = armarDsResultado().Tables[0].Copy();
+            dt = armarDsResultado().Tables[0].Copy();
            dtEnc = armarDsResultado().Tables[0].Copy();
 
            conectar.AbrirConexion();
@@ -1465,25 +1478,27 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable AnulacionTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable AnulacionTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 14);";
-           conectar.AbrirConexion();
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 14,'"
+                + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
            conectar.CerrarConexion();
            return dt;
        }
 
-       public DataTable RechazoTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario)
+       public DataTable RechazoTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 15);";
+           string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 15,'"
+                + ip + "','" + mac + "','" + pc + "');";
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -1495,7 +1510,7 @@ namespace CapaAD
        {
            conectar = new ConexionBD();
            DataTable tabla = new DataTable();
-           string query = "CALL sp_iue_pedido(" + id + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 2);";
+           string query = "CALL sp_iue_pedido(" + id + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 2,null,null,null);";
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(tabla);

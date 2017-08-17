@@ -541,7 +541,8 @@ namespace AplicacionSIPA1.Financiero
             try
             {
                 limpiarControlesError();
-
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
@@ -589,7 +590,7 @@ namespace AplicacionSIPA1.Financiero
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles);
+                    DataSet dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -616,7 +617,8 @@ namespace AplicacionSIPA1.Financiero
             try
             {
                 limpiarControlesError();
-
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
@@ -639,7 +641,7 @@ namespace AplicacionSIPA1.Financiero
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.AnulacionTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString());
+                    DataSet dsResultado = pInsumoLN.AnulacionTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

@@ -127,7 +127,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.DdlAjustesVoBo(ddlAjustes, 0);
                 pInsumoLN.DdlSolicitantes(ddlSolicitantes, usuario, idUnidad);
-                pInsumoLN.DdlJefes(ddlJefes, usuario, idUnidad);               
+                pInsumoLN.DdlJefes(ddlJefes, usuario, idUnidad);
                 txtJustificacion.Text = string.Empty;
                 txtObser.Text = string.Empty;
 
@@ -263,7 +263,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
-              
+
                 if (anio > 0 && idUnidad > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
@@ -380,13 +380,13 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 {
                     lblErrorSolicitante.Text = "Seleccione un valor. ";
                     lblError.Text += "Seleccione un Solicitante. ";
-                } 
-                
+                }
+
                 if (ddlJefes.SelectedValue.Equals("0"))
                 {
                     lblErrorJefe.Text = "Seleccione un valor. ";
                     lblError.Text += "Seleccione un Subgerente/Director. ";
-                }            
+                }
 
                 string justificacion = txtJustificacion.Text;
                 justificacion = justificacion.Replace('\'', ' ').Replace(';', ' ');
@@ -447,7 +447,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
 
                 if (alMenos1Ajuste == false)
-                    lblError.Text += "Ingrese por lo menos un ajuste mayor a Q. 00.00";              
+                    lblError.Text += "Ingrese por lo menos un ajuste mayor a Q. 00.00";
 
                 if (lblError.Text.Equals(string.Empty))
                     controlesValidos = true;
@@ -473,9 +473,9 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 btnRechazar.Visible = btnAprobar.Visible = false;
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -514,7 +514,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
             btnRechazar.Visible = false;
-            return poaValido;            
+            return poaValido;
         }
 
         protected bool validarEstadoPedido(int idPedido)
@@ -543,7 +543,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                     pInsumoLN = new PedidosLN();
                     dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
-                    
+
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -785,7 +785,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                     string noDocumento = dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO_SOLICITUD"].ToString() + "-" + dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_SOLICITUD"].ToString();
                     string idDocumento = dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_PEDIDO"].ToString();
-                    
+
                     ddlNoDocumento.Items.Add(new ListItem(noDocumento, idDocumento));
                     int.TryParse(ddlNoDocumento.SelectedItem.Text.Split('-')[0].Trim(), out anioSolicitud);
                     int.TryParse(ddlNoDocumento.SelectedItem.Text.Split('-')[1].Trim(), out noSolicitud);
@@ -952,26 +952,27 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                             {
                                 pInsumoLN = new PedidosLN();
                                 DataSet dsResultado = new DataSet();
+                                FuncionesVarias fv = new FuncionesVarias();
+                                string[] ip = fv.DatosUsuarios();
+                                dsResultado = pInsumoLN.AprobacionEncargadoAjuste(idAjustePedido, 0, "", Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
-                            dsResultado = pInsumoLN.AprobacionEncargadoAjuste(idAjustePedido, 0, "", Session["usuario"].ToString());
+                                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                                string estadoActual, mensaje = "";
+                                dsResultado = pInsumoLN.InformacionAjustesPedido(idAjustePedido, 0, " AND t.id_ajuste_pedido = " + int.Parse(lblIdAjuste.Text), 1);
 
-                            string estadoActual, mensaje = "";
-                            dsResultado = pInsumoLN.InformacionAjustesPedido(idAjustePedido, 0, " AND t.id_ajuste_pedido = " + int.Parse(lblIdAjuste.Text), 1);
-
-                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
                                 estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_AJUSTE"].ToString();
                                 lblEstadoAjuste.Text = estadoActual;
 
-                            mensaje = " Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". Comuníquese con su subgerente o director para aprobación del ajuste";
+                                mensaje = " Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". Comuníquese con su subgerente o director para aprobación del ajuste";
 
-                            lblSuccess.Text = "Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". ";
+                                lblSuccess.Text = "Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". ";
 
-                            btnAprobar.Visible = btnRechazar.Visible = false;
+                                btnAprobar.Visible = btnRechazar.Visible = false;
 
                                 //Response.Redirect("NoAjuste.aspx?No=" + lblNoAjuste.Text + "&msg=" + mensaje + "&acc=" + "ENVIADO");
                             }
@@ -1099,7 +1100,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                 if (anio > 0 && idUnidad > 0)
                 {
-                    
+
                     validarPoaIngresoPedido(idUnidad, anio);
                 }
                 int idPoa = 0;

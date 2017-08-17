@@ -89,10 +89,11 @@ namespace AplicacionSIPA1.Presupuesto
                                     {
                                         txtMonto.Text = String.Empty;
                                         presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
+                                        presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidad.SelectedValue, "ip", "Asginacion de Presupuesto", "N/A", 0, Convert.ToDecimal(txtMontoGlobal.Text));
                                         txtMontoGlobal.Text = "";
                                         lblError.Text = string.Empty;
                                         lblSuccess.Text = "El registro fue ingresado correctamente ";
-                                        //presupuestoLN.InsertarBitacora(Session["usuario"].ToString(),ddlUnidad.SelectedValue,"ip","Asginacion de Presupuesto","N/A",0,Convert.ToDecimal(txtMontoGlobal.Text));
+                                        
                                     }
                                 }
                                 else if (ddlDependencias.SelectedIndex > 0)
@@ -110,6 +111,7 @@ namespace AplicacionSIPA1.Presupuesto
                                         {
                                             txtMonto.Text = String.Empty;
                                             presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), Convert.ToInt32(ddlUnidad.SelectedValue));
+                                            presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidad.SelectedValue, "ip", "Asginacion de Presupuesto", "N/A", 0, Convert.ToDecimal(txtMontoGlobal.Text));
                                             txtMontoGlobal.Text = "";
                                             lblError.Text = string.Empty;
                                             lblSuccess.Text = "El registro fue ingresado correctamente ";
@@ -135,6 +137,7 @@ namespace AplicacionSIPA1.Presupuesto
                                     {
                                         txtMonto.Text = String.Empty;
                                         presupuestoLN.gridPresupuestoDep(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text), Convert.ToInt32(ddlDependencias.SelectedValue));
+                                        presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidad.SelectedValue, "ip", "Asginacion de Presupuesto", "N/A", 0, Convert.ToDecimal(txtMontoGlobal.Text));
                                         txtMontoGlobal.Text = "";
                                         lblError.Text = string.Empty;
                                         lblSuccess.Text = "El registro fue ingresado correctamente ";
@@ -233,6 +236,7 @@ namespace AplicacionSIPA1.Presupuesto
                     if (presupuestoLN.EliminarPresUnidad(presupuestoEN, Session["usuario"].ToString()) == 0)
                     {
                         presupuestoLN.gridPresupuesto(gridPresupuesto, Convert.ToInt32(dropAnio.SelectedItem.Text));
+                        presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidad.SelectedValue, "ip", "Eliminacion de Presupuesto", "N/A", 0, 0);
                         lblSuccess.Text = "Registro eliminado correctamente";
                         lblError.Text = string.Empty;
                     }

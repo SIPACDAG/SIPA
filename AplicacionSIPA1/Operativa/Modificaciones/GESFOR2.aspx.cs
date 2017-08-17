@@ -18,7 +18,7 @@ namespace AplicacionSIPA1.Operativa.Modificaciones
         private PlanEstrategicoLN pEstrategicoLN;
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
-
+        private PresupuestoLN presupuestoLN;
         private ObjOperativosEN OOperativosEN;
         private IndOperativosEN IOperativosEN;
         private MetasOperativasEN MOperativasEN;
@@ -732,6 +732,7 @@ namespace AplicacionSIPA1.Operativa.Modificaciones
                             if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception("No se INSERTÓ/ACTUALIZÓ la acción: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
+                            presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "GESFOR2" + ddlAcciones.SelectedValue, txtJustificacion.Text, 0, 0);
                             lblIdSol.Text = dsResultado.Tables[0].Rows[0]["VALOR"].ToString();
                             lblNo.Text = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
                             lblSuccess.Text = "Solicitud de actualización generada con éxito!: " + lblNo.Text;

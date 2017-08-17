@@ -1207,8 +1207,9 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                             pInsumoLN = new PedidosLN();
                             DataSet dsResultado = new DataSet();
-
-                            dsResultado = pInsumoLN.EnviarAjustePedidoARevision(idAjustePedido, 0, Session["usuario"].ToString());
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
+                            dsResultado = pInsumoLN.EnviarAjustePedidoARevision(idAjustePedido, 0, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());

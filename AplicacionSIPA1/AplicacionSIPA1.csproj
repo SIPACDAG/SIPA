@@ -135,6 +135,7 @@
     <Content Include="Pedido\PedidoGuardado.aspx" />
     <Content Include="Presupuesto\AdminTechos.aspx" />
     <Content Include="Presupuesto\ListadoModTechos.aspx" />
+    <Content Include="ReporteriaSistema\HistorialEstados.aspx" />
     <Content Include="ReporteriaSistema\PruebaReporte.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
@@ -756,6 +757,13 @@
     </Compile>
     <Compile Include="Presupuesto\ListadoModTechos.aspx.designer.cs">
       <DependentUpon>ListadoModTechos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\HistorialEstados.aspx.cs">
+      <DependentUpon>HistorialEstados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\HistorialEstados.aspx.designer.cs">
+      <DependentUpon>HistorialEstados.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\PruebaReporte.aspx.cs">
       <DependentUpon>PruebaReporte.aspx</DependentUpon>

@@ -576,11 +576,12 @@ namespace AplicacionSIPA1.Compras
                     if (validarEstadoAnexo() == true)
                     {
                         txtObser.Text = string.Empty;
-
+                        FuncionesVarias fv = new FuncionesVarias();
+                        string[] ip = fv.DatosUsuarios();
                         pInsumoLN = new PedidosLN();
                         string usuario = Session["usuario"].ToString();
                         string observaciones = txtObser.Text;
-                        DataSet dsResultado = pInsumoLN.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario);
+                        DataSet dsResultado = pInsumoLN.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -663,10 +664,12 @@ namespace AplicacionSIPA1.Compras
                     lblError.Text = "Llene el campo de observaciones.";
                 else
                 {
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.RechazoMesaEntrada(idSalida, idTipoSalida, observaciones, usuario);
+                    DataSet dsResultado = pInsumoLN.RechazoMesaEntrada(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

@@ -232,14 +232,14 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario)
+        public DataTable AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario, string ip, string mac,string pc)
         {
             DataTable tabla = new DataTable();
 
             conectar = new ConexionBD();
 
             conectar.AbrirConexion();
-            string query = string.Format("CALL sp_iu_obj_operativo({0}, {1}, {2}, {3}, '{4}', {5}, {6}, '{7}');", ObjEN.Id_Objetivo_Operativo, ObjEN.Id_Objetivo_Estrategico, ObjEN.Id_Meta, ObjEN.Codigo, ObjEN.Nombre, ObjEN.Anio, ObjEN.Id_Unidad, ObjEN.Usuario);
+            string query = string.Format("CALL sp_iu_obj_operativo({0}, {1}, {2}, {3}, '{4}', {5}, {6}, '{7}','{8}','{9}','{10}');", ObjEN.Id_Objetivo_Operativo, ObjEN.Id_Objetivo_Estrategico, ObjEN.Id_Meta, ObjEN.Codigo, ObjEN.Nombre, ObjEN.Anio, ObjEN.Id_Unidad, ObjEN.Usuario,ip,mac,pc);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();
@@ -373,12 +373,12 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones)
+        public DataTable ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones,string ip,string mac,string pc, string tipo,string boton)
         {
             conectar = new ConexionBD();
             conectar.AbrirConexion();
             string permiso = string.Format("SELECT 	 pu.id_Poa FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = 2018" +
-                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = (select id_unidad from sipa_poa where id_poa = {0}));",idPoa);
+                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = (select id_unidad from sipa_poa where id_poa = {0}));", idPoa);
             MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
             List<string> id_poas = new List<string>();
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -393,14 +393,14 @@ namespace CapaAD
             for (int i = 0; i < id_poas.Count; i++)
             {
                 if (idUsuario == null)
-                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, null, '{3}', '{4}', '{5}', 1);", id_poas[i], idEstado, anio, usuarioAsignado, usuario, observaciones);
+                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, null, '{3}', '{4}', '{5}', 1,'{6}','{7}','{8}','{9}','{10}','{11}');", id_poas[i], idEstado, anio, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
                 else
-                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, {3}, '{4}', '{5}', '{6}', 1);", id_poas[i], idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones);
+                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, {3}, '{4}', '{5}', '{6}', 1,'{7}','{8}','{9}','{10}','{11}','{12}');", id_poas[i], idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
 
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(tabla);
             }
-          
+
             conectar.CerrarConexion();
             return tabla;
         }
@@ -444,6 +444,24 @@ namespace CapaAD
             string correo = "";
             conectar = new ConexionBD();
             string permiso = string.Format(" call sp_Correo ({0},{1}) ", unidad, menu);
+            conectar.AbrirConexion();
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                correo = dr.GetString("email");
+                if (!string.IsNullOrEmpty(correo))
+                {
+                    return correo;
+                }
+            }
+            return correo = "Correo no encontrado";
+        }
+        public string ObtenerCorreoxUsuario(int idempleado)
+        {
+            string correo = "";
+            conectar = new ConexionBD();
+            string permiso = string.Format(" call sp_CorreoxUsuario ({0}) ", idempleado);
             conectar.AbrirConexion();
             MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -507,6 +525,18 @@ namespace CapaAD
             consulta.Fill(tabla);
             conectar.CerrarConexion();
             return tabla;
+        }
+
+        public void InsertarBitacoraOperaciones(string usuario, string ip, string op, string desc, int NoDoc)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("call sp_insertBitacoraOperaciones('{0}','{1}','{2}','{3}',{4})", usuario, op, ip, desc, NoDoc);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+
         }
 
     }

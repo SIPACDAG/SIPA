@@ -594,7 +594,7 @@ namespace AplicacionSIPA1.Compras
             try
             {
                 limpiarControlesError();
-
+                pOperativoLN = new PlanOperativoLN();
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
@@ -646,7 +646,9 @@ namespace AplicacionSIPA1.Compras
                     DataSet dsResultado = new DataSet();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles);
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
+                    dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles,ip[0],ip[1],ip[2]);
                     
 
                     if (idTipoSalida == 1)
@@ -672,7 +674,11 @@ namespace AplicacionSIPA1.Compras
 
                     if (lblError.Text.Equals(string.Empty) == true || lblError.Text.Equals(""))
                     {
-                        dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles);
+                        string solicitandte = dvPedido.Rows[7].Cells[1].Text;
+                        string jefe = dvPedido.Rows[8].Cells[1].Text;
+                        string[] solicitanteTemp = solicitandte.Split('-');
+                        string[] jefeTemp = jefe.Split('-');
+                        dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles,ip[0],ip[1],ip[2]);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se LIQUIDÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -682,6 +688,10 @@ namespace AplicacionSIPA1.Compras
 
                         NuevaAprobacion();
                         lblSuccess.Text = "Solicitud No. " + noSolicitud + " LIQUIDADA con éxito!";
+                        EnvioDeCorreos objEC = new EnvioDeCorreos();
+                        objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Costo Real Requiscion Aprobada ",  lblSuccess.Text, usuario);
+                        objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Costo Real Requiscion Aprobada ",  lblSuccess.Text, usuario);
+
                     }
                     else
                     {
@@ -704,7 +714,7 @@ namespace AplicacionSIPA1.Compras
             try
             {
                 limpiarControlesError();
-
+                pOperativoLN = new PlanOperativoLN();
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
@@ -719,7 +729,8 @@ namespace AplicacionSIPA1.Compras
                 s = s.Replace('\'', ' ');
                 s = s.Trim();
                 txtObser.Text = s;
-
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 if (txtObser.Text.Equals(string.Empty))
                     lblError.Text = "Llene el campo de observaciones.";
                 else
@@ -727,7 +738,11 @@ namespace AplicacionSIPA1.Compras
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.RechazoTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString());
+                    string solicitandte = dvPedido.Rows[7].Cells[1].Text;
+                    string jefe = dvPedido.Rows[8].Cells[1].Text;
+                    string[] solicitanteTemp = solicitandte.Split('-');
+                    string[] jefeTemp = jefe.Split('-');
+                    DataSet dsResultado = pInsumoLN.RechazoTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -737,6 +752,10 @@ namespace AplicacionSIPA1.Compras
 
                     NuevaAprobacion();
                     lblSuccess.Text = "Solicitud No. " + noSolicitud + " RECHAZADA con éxito!";
+                    EnvioDeCorreos objEC = new EnvioDeCorreos();
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text+", " + observaciones, usuario);
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
+
                 }
             }
             catch (Exception ex)
@@ -1270,7 +1289,7 @@ namespace AplicacionSIPA1.Compras
             try
             {
                 limpiarControlesError();
-
+                pOperativoLN = new PlanOperativoLN();
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
@@ -1281,6 +1300,8 @@ namespace AplicacionSIPA1.Compras
                 if (idSalida == 0)
                     throw new Exception("Seleccione un PEDIDO!");
 
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 string s = txtObser.Text;
                 s = s.Replace('\'', ' ');
                 s = s.Trim();
@@ -1293,7 +1314,11 @@ namespace AplicacionSIPA1.Compras
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.AnulacionTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString());
+                    string solicitandte = dvPedido.Rows[7].Cells[1].Text;
+                    string jefe = dvPedido.Rows[8].Cells[1].Text;
+                    string[] solicitanteTemp = solicitandte.Split('-');
+                    string[] jefeTemp = jefe.Split('-');
+                    DataSet dsResultado = pInsumoLN.AnulacionTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1303,6 +1328,10 @@ namespace AplicacionSIPA1.Compras
 
                     NuevaAprobacion();
                     lblSuccess.Text = "Solicitud No. " + noSolicitud + " ANULADA con éxito!";
+                    EnvioDeCorreos objEC = new EnvioDeCorreos();
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
+
                 }
             }
             catch (Exception ex)

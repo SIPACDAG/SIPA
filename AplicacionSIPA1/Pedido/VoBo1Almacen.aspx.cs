@@ -514,6 +514,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
+                planOperativoLN = new PlanOperativoLN();
                 int idPedido = 0;
                 if(dvPedido.SelectedValue != null)
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
@@ -531,17 +532,28 @@ namespace AplicacionSIPA1.Pedido
 
                     int idTipoDocumento = 0;
                     int.TryParse(lblIdTipoDocto.Text, out idTipoDocumento);
-
-                    DataSet dsResultado = pInsumoLN.AprobacionBodega(idPedido, idTipoDocumento, observaciones, usuario);
-
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
+                    string solicitandte = dvPedido.Rows[7].Cells[1].Text;
+                    string jefe = dvPedido.Rows[8].Cells[1].Text;
+                    string[] solicitanteTemp = solicitandte.Split('-');
+                    string[] jefeTemp = jefe.Split('-');
+                    
+                    DataSet dsResultado = pInsumoLN.AprobacionBodega(idPedido, idTipoDocumento, observaciones, usuario,ip[0],ip[1],ip[2]);
+                    
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se ACTUALIZÓ el pedido/vale: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                     string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
+                    
                     //filtrarDvPedidos();
                     //filtrarGridDetalles();
 
                     lblSuccess.Text = "REQUISICIÓN/VALE NO. " + noSolicitud + " APROBADO con éxito!";
+                    EnvioDeCorreos objEC = new EnvioDeCorreos();
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Nueva Requiscion Aprobada por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text  , usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Nueva Requiscion Aprobada por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
+
                     btnAprobar.Visible = btnRechazar.Visible = false;
                     //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=APROBADO");
                 }
@@ -557,6 +569,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
+                planOperativoLN = new PlanOperativoLN();
                 int idPedido = 0;
                 if (dvPedido.SelectedValue != null)
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
@@ -579,8 +592,13 @@ namespace AplicacionSIPA1.Pedido
 
                     int idTipoDocumento = 0;
                     int.TryParse(lblIdTipoDocto.Text, out idTipoDocumento);
-
-                    DataSet dsResultado = pInsumoLN.RechazoBodega(idPedido, idTipoDocumento, observaciones, usuario);
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
+                    string solicitandte = dvPedido.Rows[7].Cells[1].Text;
+                    string jefe = dvPedido.Rows[8].Cells[1].Text;
+                    string[] solicitanteTemp = solicitandte.Split('-');
+                    string[] jefeTemp = jefe.Split('-');
+                    DataSet dsResultado = pInsumoLN.RechazoBodega(idPedido, idTipoDocumento, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se No se ACTUALIZÓ el pedido/vale: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -591,6 +609,10 @@ namespace AplicacionSIPA1.Pedido
                     filtrarGridDetalles();
                     txtObser.Text = string.Empty;
                     lblSuccess.Text = "REQUISICIÓN/VALE NO. " + noSolicitud + " RECHAZADO con éxito!";
+                    EnvioDeCorreos objEC = new EnvioDeCorreos();
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Nueva REQUISICIÓN/VALE RECHAZADA por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Nueva REQUISICIÓN/VALE RECHAZADA por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
+
                     //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=RECHAZADO");
                 }
             }

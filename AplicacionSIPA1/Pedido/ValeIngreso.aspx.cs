@@ -1191,12 +1191,14 @@ namespace AplicacionSIPA1.Pedido
                             if (dsResultado.Tables[0].Rows.Count == 0)
                                 throw new Exception("No existe estado asignado al pedido");
 
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             int idEstadoPedido = 0;
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstadoPedido);
 
                             //7 - RECHAZADO POR PRESUPUESTO, 9 - RECHAZADO MESA DE ENTRADA DE COMPRAS/PPTO, 18 - RECHAZADO TÉCNICO DE COMPRAS/PPTO
                             if (idEstadoPedido == 7 || idEstadoPedido == 9 || idEstadoPedido == 18)
-                                dsResultado = pInsumoLN.AprobacionEncargado(idVale, 2, "Realizada por el sistema", Session["usuario"].ToString());
+                                dsResultado = pInsumoLN.AprobacionEncargado(idVale, 2, "Realizada por el sistema", Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             //RECHAZADO POR MESA DE ENTRADA
                             /*else if (idEstadoPedido == 9)
@@ -1204,7 +1206,7 @@ namespace AplicacionSIPA1.Pedido
                             */
                             //CUALQUIER OTRO ESTADO
                             else
-                                dsResultado = pInsumoLN.EnviarPedidoARevision(idVale, 2, Session["usuario"].ToString());
+                                dsResultado = pInsumoLN.EnviarPedidoARevision(idVale, 2, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             //AGREGADO ENVIAR EL PEDIDO A CODIFICACIÓN DE PRESUPUESTO CUANDO SEA RECHAZADO POR PPTO, COMPRAS Y EVITAR QUE VUELVA A RECORRER EL CICLO COMPLETO
 

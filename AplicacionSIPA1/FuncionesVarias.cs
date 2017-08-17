@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 
 using ExportToExcel;
+using System.Net;
 
 namespace AplicacionSIPA1
 {
@@ -172,6 +173,26 @@ namespace AplicacionSIPA1
             ds.Tables[0].Rows[0]["ERRORES"] = true;
             ds.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
             return ds;
+        }
+
+        public string[] DatosUsuarios()
+        {
+            IPHostEntry host;
+            string[] localIP = new string [3];
+            host = Dns.GetHostEntry(Dns.GetHostName());
+
+            
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily.ToString() == "InterNetwork")
+                {
+                   
+                    localIP[0] = ip.ToString();
+                }
+            }
+            localIP[2] = host.HostName;
+            localIP[1] = host.AddressList[0].ToString();
+            return localIP;
         }
     }
 }
