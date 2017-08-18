@@ -75,3 +75,6 @@ C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaEN.pdb
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.pdb

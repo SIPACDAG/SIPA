@@ -116,7 +116,7 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable Eliminar(EjesEN ObjEN string usuario)
+        public DataTable Eliminar(EjesEN ObjEN, string usuario)
         {
             DataTable tabla = new DataTable();
             if (!validarPermiso(usuario))
