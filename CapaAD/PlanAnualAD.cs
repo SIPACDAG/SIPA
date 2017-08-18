@@ -127,105 +127,60 @@ namespace CapaAD
             return ds;
         }
 
-        public DataSet AlmacenarPac(DataSet dsPac)
+        public DataSet AlmacenarPac(DataSet dsPac,string usuariop)
         {
-            string query = "";
-            DataSet dsResultado;
-            DataTable dt;
-            DataTable dtPac;
-            DataTable dtPacDet;
-            MySqlTransaction sqlTransaction;
-            MySqlDataAdapter sqlAdapter;
-            conectar = new ConexionBD();
-
-            string idPacS, idPoa, idDet, idIns, noRen, idMod, idCat, idExc, descr, anio, usuario;
-            idPacS = dsPac.Tables["ENC"].Rows[0]["ID_PAC"].ToString();
-            idPoa = dsPac.Tables["ENC"].Rows[0]["ID_POA"].ToString();
-            idDet = dsPac.Tables["ENC"].Rows[0]["ID_DETALLE"].ToString();
-            idIns = dsPac.Tables["ENC"].Rows[0]["ID_INSUMO"].ToString();
-            //noRen = dsPac.Tables["ENC"].Rows[0]["NO_RENGLON"].ToString();
-            idMod = dsPac.Tables["ENC"].Rows[0]["ID_MODALIDAD"].ToString();
-            idCat = dsPac.Tables["ENC"].Rows[0]["ID_CATEGORIA"].ToString();
-            idExc = dsPac.Tables["ENC"].Rows[0]["ID_EXCEPCION"].ToString();
-            descr = dsPac.Tables["ENC"].Rows[0]["DESCRIPCION"].ToString();
-            anio = dsPac.Tables["ENC"].Rows[0]["ANIO"].ToString();
-            usuario = dsPac.Tables["ENC"].Rows[0]["USUARIO"].ToString();
-
+            DataSet dsResultado = new DataSet();
             
-            if (idCat.Equals("0"))
-                idCat = "null";
+                string query = "";
+                
+                DataTable dt;
+                DataTable dtPac;
+                DataTable dtPacDet;
+                MySqlTransaction sqlTransaction;
+                MySqlDataAdapter sqlAdapter;
+                conectar = new ConexionBD();
 
-            if (idExc.Equals("0"))
-                idExc = "null";
+                string idPacS, idPoa, idDet, idIns, noRen, idMod, idCat, idExc, descr, anio, usuario;
+                idPacS = dsPac.Tables["ENC"].Rows[0]["ID_PAC"].ToString();
+                idPoa = dsPac.Tables["ENC"].Rows[0]["ID_POA"].ToString();
+                idDet = dsPac.Tables["ENC"].Rows[0]["ID_DETALLE"].ToString();
+                idIns = dsPac.Tables["ENC"].Rows[0]["ID_INSUMO"].ToString();
+                //noRen = dsPac.Tables["ENC"].Rows[0]["NO_RENGLON"].ToString();
+                idMod = dsPac.Tables["ENC"].Rows[0]["ID_MODALIDAD"].ToString();
+                idCat = dsPac.Tables["ENC"].Rows[0]["ID_CATEGORIA"].ToString();
+                idExc = dsPac.Tables["ENC"].Rows[0]["ID_EXCEPCION"].ToString();
+                descr = dsPac.Tables["ENC"].Rows[0]["DESCRIPCION"].ToString();
+                anio = dsPac.Tables["ENC"].Rows[0]["ANIO"].ToString();
+                usuario = dsPac.Tables["ENC"].Rows[0]["USUARIO"].ToString();
 
-            //query = "CALL sp_iu_pac(" + idPacS + ", " + idDet + ", '" + noRen + "', " + idMod + ", " + idCat + ", " + idExc + ", '" + descr + "', " + anio + ", '" + usuario + "');";
-            query = "CALL sp_iu_pac(" + idPacS + ", " + idPoa + ", " + idDet + ", " + idMod + ", " + idCat + ", " + idExc + ", '" + descr + "', " + anio + ", '" + usuario + "'," + idIns + ");";
 
-            dt = armarDsResultado().Tables[0].Copy();
-            dtPac = armarDsResultado().Tables[0].Copy();
+                if (idCat.Equals("0"))
+                    idCat = "null";
 
-            conectar.AbrirConexion();
-            sqlTransaction = conectar.conectar.BeginTransaction();
-            try
-            {
-                dt = new DataTable();
-                sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
-                sqlAdapter.Fill(dt);
+                if (idExc.Equals("0"))
+                    idExc = "null";
 
-                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
-                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+                //query = "CALL sp_iu_pac(" + idPacS + ", " + idDet + ", '" + noRen + "', " + idMod + ", " + idCat + ", " + idExc + ", '" + descr + "', " + anio + ", '" + usuario + "');";
+                query = "CALL sp_iu_pac(" + idPacS + ", " + idPoa + ", " + idDet + ", " + idMod + ", " + idCat + ", " + idExc + ", '" + descr + "', " + anio + ", '" + usuario + "'," + idIns + ");";
 
-                int idPac = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
-                dtPac.Rows[0]["ERRORES"] = false;
-                dtPac.Rows[0]["MSG_ERROR"] = "";
-                dtPac.Rows[0]["VALOR"] = idPac;
+                dt = armarDsResultado().Tables[0].Copy();
+                dtPac = armarDsResultado().Tables[0].Copy();
 
-            }
-            catch (Exception ex)
-            {
-                sqlTransaction.Rollback();
-                conectar.CerrarConexion();
-
-                dtPac.Rows[0]["ERRORES"] = true;
-                dtPac.Rows[0]["MSG_ERROR"] = ex.Message;
-                dtPac.Rows[0]["VALOR"] = "";
-            }
-            
-            dtPacDet = armarDsResultado().Tables[0].Copy();
-            dtPacDet.TableName = "DETALLES";
-            dtPacDet.Rows.RemoveAt(0);
-            if (dtPac.Rows.Count > 0 && !bool.Parse(dtPac.Rows[0]["ERRORES"].ToString()))
-            {
-                int idPac = int.Parse(dtPac.Rows[0]["VALOR"].ToString());
-
+                conectar.AbrirConexion();
+                sqlTransaction = conectar.conectar.BeginTransaction();
                 try
                 {
-                    foreach (DataRow dr in dsPac.Tables["DET"].Rows)
-                    {
-                        dt = new DataTable();
-                        query = "CALL sp_iu_pac_detalles(";
-                        query += dr["ID_DETALLE"].ToString() + ", ";
-                        query += idPac + ", ";//dr["ID_PAC"].ToString() + ", ";
-                        query += dr["MES"].ToString() + ", ";
-                        query += dr["CANTIDAD"].ToString() + ", ";
-                        query += dr["MONTO"].ToString() + ", ";
-                        query += "'" + dr["USUARIO"].ToString() + "'";
-                        query += "); ";
+                    dt = new DataTable();
+                    sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                    sqlAdapter.Fill(dt);
 
-                        sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
-                        sqlAdapter.Fill(dt);
+                    if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                        throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
 
-                        if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
-                            throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
-
-                        DataRow drDet = dtPacDet.NewRow();
-                        drDet["ERRORES"] = dt.Rows[0]["RESULTADO"].ToString();
-                        drDet["MSG_ERROR"] = "";
-                        drDet["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
-                        dtPacDet.Rows.Add(drDet);
-                    }
-                    sqlTransaction.Commit();
-                    conectar.CerrarConexion();
+                    int idPac = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
+                    dtPac.Rows[0]["ERRORES"] = false;
+                    dtPac.Rows[0]["MSG_ERROR"] = "";
+                    dtPac.Rows[0]["VALOR"] = idPac;
 
                 }
                 catch (Exception ex)
@@ -235,15 +190,63 @@ namespace CapaAD
 
                     dtPac.Rows[0]["ERRORES"] = true;
                     dtPac.Rows[0]["MSG_ERROR"] = ex.Message;
-                    //dtPac.Rows[0]["VALOR"] = idPac;
+                    dtPac.Rows[0]["VALOR"] = "";
                 }
-            }
-            
-            dsResultado = new DataSet();
-            dsResultado.Tables.Add(dtPac.Copy());
-            dsResultado.Tables.Add(dtPacDet);
-            
-            return dsResultado;
+
+                dtPacDet = armarDsResultado().Tables[0].Copy();
+                dtPacDet.TableName = "DETALLES";
+                dtPacDet.Rows.RemoveAt(0);
+                if (dtPac.Rows.Count > 0 && !bool.Parse(dtPac.Rows[0]["ERRORES"].ToString()))
+                {
+                    int idPac = int.Parse(dtPac.Rows[0]["VALOR"].ToString());
+
+                    try
+                    {
+                        foreach (DataRow dr in dsPac.Tables["DET"].Rows)
+                        {
+                            dt = new DataTable();
+                            query = "CALL sp_iu_pac_detalles(";
+                            query += dr["ID_DETALLE"].ToString() + ", ";
+                            query += idPac + ", ";//dr["ID_PAC"].ToString() + ", ";
+                            query += dr["MES"].ToString() + ", ";
+                            query += dr["CANTIDAD"].ToString() + ", ";
+                            query += dr["MONTO"].ToString() + ", ";
+                            query += "'" + dr["USUARIO"].ToString() + "'";
+                            query += "); ";
+
+                            sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                            sqlAdapter.Fill(dt);
+
+                            if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                                throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                            DataRow drDet = dtPacDet.NewRow();
+                            drDet["ERRORES"] = dt.Rows[0]["RESULTADO"].ToString();
+                            drDet["MSG_ERROR"] = "";
+                            drDet["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
+                            dtPacDet.Rows.Add(drDet);
+                        }
+                        sqlTransaction.Commit();
+                        conectar.CerrarConexion();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        sqlTransaction.Rollback();
+                        conectar.CerrarConexion();
+
+                        dtPac.Rows[0]["ERRORES"] = true;
+                        dtPac.Rows[0]["MSG_ERROR"] = ex.Message;
+                        //dtPac.Rows[0]["VALOR"] = idPac;
+                    }
+                }
+
+                dsResultado = new DataSet();
+                dsResultado.Tables.Add(dtPac.Copy());
+                dsResultado.Tables.Add(dtPacDet);
+
+                return dsResultado;
+           
         }
 
         public DataTable EliminarPac(int idPac)
@@ -296,19 +299,43 @@ namespace CapaAD
 
         public DataTable ActualizarEstadoPac(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones)
         {
-            conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = "";
-            if (idUsuario == null)
-                query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, null, '{3}', '{4}', '{5}', 2);", idPoa, idEstado, anio, usuarioAsignado, usuario, observaciones);
-            else
-                query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, {3}, '{4}', '{5}', '{6}', 2);", idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones);
-            conectar.AbrirConexion();
-            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-            consulta.Fill(tabla);
-            conectar.CerrarConexion();
-            return tabla;
+            
+                conectar = new ConexionBD();
+                
+                string query = "";
+                if (idUsuario == null)
+                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, null, '{3}', '{4}', '{5}', 2);", idPoa, idEstado, anio, usuarioAsignado, usuario, observaciones);
+                else
+                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, {3}, '{4}', '{5}', '{6}', 2);", idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones);
+                conectar.AbrirConexion();
+                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+                consulta.Fill(tabla);
+                conectar.CerrarConexion();
+                return tabla;
+           
         }
-        
+
+        public bool validarPermiso(string Usuario)
+        {
+            conectar = new ConexionBD();
+            conectar.AbrirConexion();
+            string permiso = string.Format("SELECT id_cargo_usuario from sipa_cargo_usuario where id_usuario="
+                 + "(select id_usuario from ccl_usuarios where Usuario = '{0}')  AND id_tipo_usuario=50;", Usuario);
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            if (dr.HasRows)
+            {
+                conectar.CerrarConexion();
+                return true;
+            }
+            else
+            {
+                conectar.CerrarConexion();
+                return false;
+            }
+        }
+
     }
 }

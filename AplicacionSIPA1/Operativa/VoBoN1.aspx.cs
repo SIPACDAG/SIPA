@@ -85,7 +85,7 @@ namespace AplicacionSIPA1.Operativa
                     rblMostrar.SelectedValue = "1";
                     rblMostrar_SelectedIndexChanged(sender, e);
 
-                  
+                    txtObser.Enabled = true;
                     filtrarGridPlan();
                     generarReporte();
                     

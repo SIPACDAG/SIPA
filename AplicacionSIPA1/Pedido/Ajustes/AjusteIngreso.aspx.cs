@@ -898,6 +898,22 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                             }
                             filtrarGridPpto();
                             lblSuccess.Text = "Solicitud de ajuste No. " + lblNoAjuste.Text + " ALMACENADA/MODIFICADA exitosamente: ";
+
+                            dsResultado = pInsumoLN.InformacionAjustesPedido(idAjustePedido, 0, "", 4);
+
+                            if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception("No se VALIDARON los techos del PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                                lblError.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["MENSAJE_SALDO"].ToString();
+
+                            dsResultado = pInsumoLN.InformacionAjustesPedido(idAjustePedido, 0, "", 5);
+
+                            if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception("No se VALIDARON los techos de los renglones presupuestarios: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                                lblError.Text += dsResultado.Tables["BUSQUEDA"].Rows[0]["MENSAJE_SALDO"].ToString();
                         }
                     }
                 }
@@ -1186,6 +1202,10 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                 int idAjustePedido, idPoa, idUnidad, anio, idTipoDocumento, idPedido, noSolicitud, anioSolicitud, idSolicitante, idSubgerenteDirector = 0;
                 int.TryParse(lblIdAjuste.Text, out idAjustePedido);
+
+                if (idAjustePedido == 0)
+                    throw new Exception("No existe ajuste para finalizar");
+
                 int.TryParse(lblIdPoa.Text, out idPoa);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
                 int.TryParse(ddlAnios.SelectedValue, out anio);
@@ -1207,9 +1227,26 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                             pInsumoLN = new PedidosLN();
                             DataSet dsResultado = new DataSet();
-                            FuncionesVarias fv = new FuncionesVarias();
-                            string[] ip = fv.DatosUsuarios();
-                            dsResultado = pInsumoLN.EnviarAjustePedidoARevision(idAjustePedido, 0, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
+
+                            dsResultado = pInsumoLN.InformacionAjustesPedido(idAjustePedido, 0, "", 4);
+
+                            if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception("No se VALIDARON los techos del PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                                lblError.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["MENSAJE_SALDO"].ToString();
+
+                            dsResultado = pInsumoLN.InformacionAjustesPedido(idAjustePedido, 0, "", 5);
+
+                            if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception("No se VALIDARON los techos de los renglones presupuestarios: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                                lblError.Text += dsResultado.Tables["BUSQUEDA"].Rows[0]["MENSAJE_SALDO"].ToString();
+
+                            if (lblError.Text.Equals("") || lblError.Text.Equals(string.Empty))
+                            {
+                                dsResultado = pInsumoLN.EnviarAjustePedidoARevision(idAjustePedido, 0, Session["usuario"].ToString());
 
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
@@ -1220,13 +1257,15 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                            estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_AJUSTE"].ToString();
+                                estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_AJUSTE"].ToString();
+                                lblEstadoAjuste.Text = estadoActual;
 
                             mensaje = " Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". Comuníquese con su subgerente o director para aprobación del ajuste";
 
-                            lblSuccess.Text = "Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". ";
-                            ///Falta el correo.
-                            Response.Redirect("No1Ajuste.aspx?No=" + lblNoAjuste.Text + "&msg=" + mensaje + "&acc=" + "ENVIADO");
+                                lblSuccess.Text = "Ajuste finalizado correctamente!. El ajuste fue enviado al estado: " + estadoActual + ". ";
+
+                                Response.Redirect("NoAjuste.aspx?No=" + lblNoAjuste.Text + "&msg=" + mensaje + "&acc=" + "ENVIADO");
+                            }
                         }
                     }
                 }

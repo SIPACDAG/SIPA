@@ -225,6 +225,28 @@ namespace CapaLN
                 drop.Items.RemoveAt(0);*/
         }
 
+        public void DdlRenglonesAccion(DropDownList drop, int idAccion, int opcion)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+
+            if (idAccion > 0)
+            {
+                ObjAD = new PlanAccionAD();
+                drop.DataSource = ObjAD.DdlRenglonesAccion(idAccion, opcion);
+                drop.DataTextField = "texto";
+                drop.DataValueField = "id";
+                drop.DataBind();
+            }
+
+            /*if (drop.Items.Count == 2)
+                drop.Items.RemoveAt(0);*/
+        }
+
         public void DdlRenglonesPoa(DropDownList drop, int idPoa)
         {
             drop.ClearSelection();
@@ -421,6 +443,30 @@ namespace CapaLN
             catch (Exception ex)
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarDetalle(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet AlmacenarDetalleTransferencias(AccionesDetTransferenciasEN ObjEN)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PlanAccionAD();
+            try
+            {
+                DataTable dt = ObjAD.AlmacenarDetalleTransferencias(ObjEN);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarDetalleTransferencias(). " + ex.Message;
             }
 
             return dsResultado;

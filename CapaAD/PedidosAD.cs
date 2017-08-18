@@ -671,14 +671,14 @@ namespace CapaAD
             {
                 string query = "";
 
-
+                DataTable dt;
                 DataTable dtEnc;
                 MySqlTransaction sqlTransaction;
                 MySqlDataAdapter sqlAdapter;
                 conectar = new ConexionBD();
 
                 //PROCEDURE `sp_iue_proveedores`(vid_proveedor int(11), vrazon_social varchar(250), vnombre_proveedor varchar(250), vnit varchar(25), vdireccion varchar(200), vtelefono varchar(50), vactivo int(11), vusuario varchar(45), vOpcion int(11))
-                query = "CALL sp_iue_proveedores(" + ObjEN.vid_proveedor + ", '" + ObjEN.vrazon_social  +"', '" + ObjEN.vnombre_proveedor + "', '" + ObjEN.vnit + "', '" + ObjEN.vdireccion + "', '" + ObjEN.vtelefono + "', " + ObjEN.vactivo + ", '" + ObjEN.vusuario + "', 1)";
+                query = "CALL sp_iue_proveedores(" + ObjEN.vid_proveedor + ", '" + ObjEN.vrazon_social + "', '" + ObjEN.vnombre_proveedor + "', '" + ObjEN.vnit + "', '" + ObjEN.vdireccion + "', '" + ObjEN.vtelefono + "', " + ObjEN.vactivo + ", '" + ObjEN.vusuario + "', 1)";
                 query = query.Replace("''", "null");
 
                 dt = armarDsResultado().Tables[0].Copy();
@@ -720,7 +720,6 @@ namespace CapaAD
                 dsResultado.Tables.Add(dtEnc.Copy());
 
                 return dsResultado;
-              
             }
             return dsResultado;
         }
@@ -1314,7 +1313,7 @@ namespace CapaAD
         }
 
 
-        public DataSet AprobacionTecnico(DataSet dsDetalles)
+        public DataSet AprobacionTecnico(DataSet dsDetalles, string ip, string mac, string pc)
         {
             string query = "";
             DataSet dsResultado = new DataSet();
@@ -1486,7 +1485,7 @@ namespace CapaAD
             return dt;
         }
 
-        public DataTable RechazoTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario)
+        public DataTable RechazoTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
         {
 
             conectar = new ConexionBD();
@@ -1501,7 +1500,7 @@ namespace CapaAD
             return dt;
         }
 
-        public DataTable Reactivacion(int idPedido, int idTipoSalida, string observaciones, string usuario)
+        public DataTable Reactivacion(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip, string mac, string pc)
         {
 
             conectar = new ConexionBD();

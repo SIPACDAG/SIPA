@@ -219,6 +219,8 @@ namespace AplicacionSIPA1.Viaticos
                         lblNoEncabezado.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_SOLICITUD"].ToString();
                         lblAnio.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO_SOLICITUD"].ToString();
                         filtrarGridDetalles(idEncabezado);
+                        filtrarGridPpto();
+
                         validarEstadoSolicitud(idEncabezado);
                         ddlPlanes.Enabled = ddlAnios.Enabled = ddlUnidades.Enabled = /*ddlAcciones.Enabled =*/ false;
                     }
@@ -516,6 +518,46 @@ namespace AplicacionSIPA1.Viaticos
             catch (Exception ex)
             {
                 throw new Exception("filtrarGridDetalles(). " + ex.Message);
+            }
+        }
+
+        protected void filtrarGridPpto()
+        {
+            try
+            {
+                gridSaldos.DataSource = null;
+                gridSaldos.DataBind();
+                gridSaldos.SelectedIndex = -1;
+
+                int idSalida, tipoSalida;
+                idSalida = tipoSalida = 0;
+
+                int.TryParse(ddlAcciones.SelectedValue, out idSalida);
+
+                //SALDOS EN BASE A LA ACCIÓN
+                tipoSalida = 4;
+
+                PedidosLN pInsumoLN;
+                pInsumoLN = new PedidosLN();
+                DataSet dsResultado = pInsumoLN.PptoAprobacionSubgerente(idSalida, 0, "", tipoSalida);
+
+                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+
+                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
+                {
+                    gridSaldos.DataSource = dsResultado.Tables["BUSQUEDA"];
+                    gridSaldos.DataBind();
+                }
+                else
+                {
+                    gridSaldos.DataSource = null;
+                    gridSaldos.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("filtrarGridPpto(). " + ex.Message);
             }
         }
 
@@ -985,16 +1027,18 @@ namespace AplicacionSIPA1.Viaticos
                     lblError.Text += "Ingrese una fecha válida. ";
                 }
 
-                DateTime fechaIni = new DateTime();
-                try
+                if (lblErrorFechaNombramiento.Text.Equals("") || lblErrorFechaNombramiento.Text.Equals(string.Empty))
                 {
-                    if (txtFechaIni.Text.Contains("/"))
-                        sValor = txtFechaIni.Text.Split('/');
-                    else if (txtFechaIni.Text.Contains("-"))
-                        sValor = txtFechaIni.Text.Split('-');
+                    DateTime fechaIni = new DateTime();
+                    try
+                    {
+                        if (txtFechaIni.Text.Contains("/"))
+                            sValor = txtFechaIni.Text.Split('/');
+                        else if (txtFechaIni.Text.Contains("-"))
+                            sValor = txtFechaIni.Text.Split('-');
 
-                    int dia, mes, anio, horas, minutos;
-                    dia = mes = anio = 0;
+                        int dia, mes, anio, horas, minutos;
+                        dia = mes = anio = 0;
 
                     if (sValor.Length != 3)
                         throw new Exception();
@@ -1062,13 +1106,14 @@ namespace AplicacionSIPA1.Viaticos
                         TimeSpan rangoTiempo = fecha - fechaIni;
                         int diasComision = int.Parse((Math.Ceiling(rangoTiempo.TotalDays)).ToString());
 
-                        if(fechaIni > fecha || diasComision == 0)
-                            throw new Exception("Rango no válido");
-                    }
-                    catch (Exception ex)
-                    {
-                        lblErrorFechas.Text = ex.Message;
-                        lblError.Text += ex.Message;
+                            if (fechaIni > fecha || diasComision == 0)
+                                throw new Exception("Rango no válido");
+                        }
+                        catch (Exception ex)
+                        {
+                            lblErrorFechas.Text = ex.Message;
+                            lblError.Text += ex.Message;
+                        }
                     }
                 }
 
@@ -1174,14 +1219,14 @@ namespace AplicacionSIPA1.Viaticos
                         lblErrorPoa.Text = lblError.Text = "";
                         viaticoValido = true;
                     }//EL PEDIDO ESTÁ EN ESTADO RECHAZADO BODEGA, RECHAZADO SUB/DIR, RECHAZADO FINANCIERO, SE PUEDE MODIFICAR
-                    else if(idEstado == 3 || idEstado == 5 || idEstado == 7)
+                    else if (idEstado == 3 || idEstado == 5 || idEstado == 7 || idEstado == 9)
                     {
                         btnAnular.Visible = btnEnviar.Visible = btnGuardar.Visible = btnLimpiarC.Visible = /*gridDet.Columns[0].Visible = gridDet.Columns[1].Visible = */true;
                         lblErrorPoa.Text = lblError.Text = "El VIÁTICO seleccionado se encuenta en estado: " + lblEstado.Text + ", por: " + dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES_RECHAZO"].ToString();
                         viaticoValido = true;
 
                     }//EL PEDIDO ESTÁ EN ESTADO APROBACIÓN BODEGA, APROBACIÓN SUB/DIR, APROBACIÓN FINANCIERO, CODIFICADO FINANCIERO, ANULADO Y NO SE PUEDE MODIFICAR
-                    else if (idEstado == 2 || idEstado == 4 || idEstado == 6 || idEstado == 8 || idEstado == 9)
+                    else if (idEstado == 2 || idEstado == 4 || idEstado == 6 || idEstado == 8 || idEstado == 11)
                     {
                         btnAnular.Visible = btnEnviar.Visible = btnGuardar.Visible = btnLimpiarC.Visible = gridDet.Columns[0].Visible = gridDet.Columns[1].Visible = false;
                         lblErrorPoa.Text = lblError.Text = "El VIÁTICO seleccionado se encuenta en estado: " + lblEstado.Text + " y no se puede modificar ";

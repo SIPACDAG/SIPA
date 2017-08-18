@@ -134,14 +134,31 @@ namespace CapaAD
            return tabla;
        }
 
-        public DataTable DdlRenglonesPoa(int idPoa)
+        public DataTable GridPlanCompleto(int idUnidad, int idPoa, int anio)
         {
+
             conectar = new ConexionBD();
-            DataTable tabla = new DataTable();
             conectar.AbrirConexion();
-            string query = string.Format("CALL sp_slctRenglones({0}, 0, '', 3);", idPoa);
-            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-            consulta.Fill(tabla);
+            string permiso = string.Format("SELECT 	 pu.id_Poa,u.id_unidad FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = {1}" +
+                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = {0});", idUnidad, anio);
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            List<string> id_poas = new List<string>();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                id_poas.Add(dr.GetString("id_unidad"));
+                id_poas.Add(dr.GetString("id_poa"));
+            }
+            dr.Close();
+            cmd.Dispose();
+            DataTable tabla = new DataTable();
+            for (int i = 0; i < id_poas.Count; i += 2)
+            {
+                string query = string.Format("CALL sp_slctPlanAccionGB({0}, {1});", id_poas[i], id_poas[i + 1]);
+                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+                consulta.Fill(tabla);
+            }
+
             conectar.CerrarConexion();
             return tabla;
         }

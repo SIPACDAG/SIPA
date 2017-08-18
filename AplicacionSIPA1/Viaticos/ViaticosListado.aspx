@@ -127,7 +127,7 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="True" Font-Size="Medium" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="fecha_nombramiento" HeaderText="Fecha Nomb.">
+                                <asp:BoundField DataField="fecha_nombramiento_string" HeaderText="Fecha Nomb.">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>

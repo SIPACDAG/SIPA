@@ -323,6 +323,7 @@ namespace AplicacionSIPA1.Viaticos
                 int.TryParse(ddlAcciones.SelectedValue, out idAccion);
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -454,6 +455,7 @@ namespace AplicacionSIPA1.Viaticos
                 dvPedido.PageIndex = e.NewPageIndex;
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -486,6 +488,8 @@ namespace AplicacionSIPA1.Viaticos
 
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
+
                 txtObser.Text = string.Empty;
 
                 string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
@@ -531,6 +535,8 @@ namespace AplicacionSIPA1.Viaticos
 
                     filtrarDvPedidos();
                     filtrarGridDetalles();
+                    filtrarGridPpto();
+
                     txtObser.Text = string.Empty;
 
                     string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();

@@ -173,7 +173,7 @@ namespace CapaLN
             ObjAD = new ViaticosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarViaticos(pViaticosEN, dtDetalles, usuario);
+                DataSet ds = ObjAD.AlmacenarViaticos(pViaticosEN, dtDetalles);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -403,7 +403,7 @@ namespace CapaLN
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoFinanciera(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.RechazoMesaEntrada(idPedido, observaciones, usuario);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());

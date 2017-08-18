@@ -83,7 +83,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
                 if (item != null)
-                    ddlAnios.SelectedValue = Convert.ToString(Request.QueryString["Anio"]);
+                    ddlAnios.SelectedValue = anioActual.ToString();
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);

@@ -1229,6 +1229,31 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public DataSet Reactivacion(int idPedido, int idTipoSalida, string observaciones, string usuario)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.Reactivacion(idPedido, idTipoSalida, observaciones, usuario);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.Reactivacion(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
         public DataSet EliminarEncabezado(int id)
         {
             DataSet dsResultado = armarDsResultado();

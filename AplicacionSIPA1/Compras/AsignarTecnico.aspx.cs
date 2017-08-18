@@ -177,6 +177,7 @@ namespace AplicacionSIPA1.Compras
                         dvPedido.DataBind();
                     }
                 }
+                btnRechazar.Visible = false;
             }
             catch (Exception ex)
             {
@@ -469,6 +470,7 @@ namespace AplicacionSIPA1.Compras
                         pedidoValido = true;
                     }
                 }
+                btnRechazar.Visible = false;
             }
             catch (Exception ex)
             {

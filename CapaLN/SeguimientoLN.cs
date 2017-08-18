@@ -23,7 +23,7 @@ namespace CapaLN
             ObjAD = new SeguimientoAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarCalendario(ObjEN,usuario);
+                DataTable dt = ObjAD.AlmacenarCalendario(ObjEN);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -47,7 +47,7 @@ namespace CapaLN
             ObjAD = new SeguimientoAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarSeguimiento(ObjEN,usuario);
+                DataSet ds = ObjAD.AlmacenarSeguimiento(ObjEN);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -89,7 +89,7 @@ namespace CapaLN
             ObjAD = new SeguimientoAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarFechaRecepcion(ObjEN,usuario);
+                DataSet ds = ObjAD.AlmacenarFechaRecepcion(ObjEN);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());

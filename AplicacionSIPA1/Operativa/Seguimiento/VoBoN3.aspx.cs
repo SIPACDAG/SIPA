@@ -801,7 +801,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                         DataSet dsResultado = sSeguimientoLN.AlmacenarSeguimientoDet( dsDetalles,3);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                            throw new Exception("No se INSERTÓ/ACTUALIZÓ el informe de seguimiento al CMI: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                            throw new Exception("No se INSERTÓ/ACTUALIZÓ el detalle del informe de seguimiento al CMI: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                         ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('ALMACENADO/MODIFICADO exitosamente!');", true);
                         lblSuccess.Text = "ALMACENADO/MODIFICADO exitosamente!";
@@ -819,6 +819,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
         {
             try
             {
+                limpiarControlesError();
                 int idSeguimientoCmi, idPoa, idUnidad, anio, noCuatrimestre, mes = 0;
 
                 int.TryParse(lblIdSeguimientoCmi.Text, out idSeguimientoCmi);
@@ -835,7 +836,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                 string fechaTemp = txtFechaRecepcion.Text;
                 string fechaRecepcion = dsFecha.Tables[0].Rows[0]["FECHA_FORMATO_INSERT_MYSQL"].ToString();
-                if (validarEstadoSeguimiento(idSeguimientoCmi))
+                //if (validarEstadoSeguimiento(idSeguimientoCmi))
                 {
                     noCuatrimestre = 0;
                     if (mes >= 1 && mes <= 4)
@@ -863,7 +864,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                     sSeguimientoEN.USUARIO = Session["usuario"].ToString();
 
                     sSeguimientoLN = new SeguimientoLN();
-                    DataSet dsResultado = sSeguimientoLN.AlmacenarFechaRecepcion(sSeguimientoEN,Session["usuario"].ToString());
+                    DataSet dsResultado = sSeguimientoLN.AlmacenarFechaRecepcion(sSeguimientoEN);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ la fecha de recepción de seguimiento al CMI: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

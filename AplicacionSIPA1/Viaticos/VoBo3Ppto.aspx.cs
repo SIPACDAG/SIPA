@@ -88,8 +88,10 @@ namespace AplicacionSIPA1.Viaticos
                 ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
-
-                uUsuariosLN.dropUnidad(ddlUnidades);
+                
+                //uUsuariosLN.dropUnidad(ddlUnidades);
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
 
                 if (ddlUnidades.Items.Count == 1)
                 {
@@ -342,6 +344,7 @@ namespace AplicacionSIPA1.Viaticos
                 int.TryParse(ddlAcciones.SelectedValue, out idAccion);
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -473,6 +476,7 @@ namespace AplicacionSIPA1.Viaticos
                 dvPedido.PageIndex = e.NewPageIndex;
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
 
                 PedidosLN pInsumoLN = new PedidosLN();
                 pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, int.Parse(dvPedido.SelectedValue.ToString()), 0, "", 4);
@@ -526,7 +530,7 @@ namespace AplicacionSIPA1.Viaticos
                 ACT = ddlACT.SelectedValue;
                 OBR = ddlOBR.SelectedValue;
 
-                if (PRG.Equals("--") || PRG.Equals("---"))
+                /*if (PRG.Equals("--") || PRG.Equals("---"))
                     errores += "Seleccione PROGRAMA (PRG). ";
 
                 if (SPRG.Equals("--") || SPRG.Equals("---"))
@@ -539,12 +543,12 @@ namespace AplicacionSIPA1.Viaticos
                     errores += "Seleccione ACTIVIDAD (ACT). ";
 
                 if (OBR.Equals("--") || OBR.Equals("---"))
-                    errores += "Seleccione OBRA (OBR). ";
+                    errores += "Seleccione OBRA (OBR). ";*/
 
                 int idDetalleAccion = 0;
                 int.TryParse(ddlRenglones.SelectedValue, out idDetalleAccion);
 
-                if (idDetalleAccion < 0)
+                if (idDetalleAccion <= 0)
                     errores += "Seleccione RENGLÓN (REN). ";
 
                 if (errores.Equals("") == false)
@@ -553,14 +557,18 @@ namespace AplicacionSIPA1.Viaticos
                 pViaticosLN = new ViaticosLN();
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje);
+                //DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje);
+                DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, "null", "null", "null", "null", "null", idDetalleAccion, pasajes, kilometraje);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
                 txtObser.Text = string.Empty;
+
+                ddlRenglones.ClearSelection();
 
                 string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
                 lblSuccess.Text = "Viático NO. " + noAnioSolicitud + " APROBADO con éxito!";
@@ -605,6 +613,7 @@ namespace AplicacionSIPA1.Viaticos
 
                     filtrarDvPedidos();
                     filtrarGridDetalles();
+                    filtrarGridPpto();
                     txtObser.Text = string.Empty;
 
                     string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();

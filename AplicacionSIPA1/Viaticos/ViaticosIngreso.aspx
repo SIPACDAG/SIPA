@@ -851,6 +851,28 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                </tr>
+                <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -869,6 +891,59 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="16">Renglones de la accion seleccionada:</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="16">
+                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%">
+                            <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
+                            <Columns>
+                                <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="no_renglon" HeaderText="Renglon">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="renglon" HeaderText="Descripcion">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Fuente" HeaderText="Fuente">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="costo_poa" DataFormatString="{0:c}" HeaderText="Costo Poa">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="codificado" DataFormatString="{0:c}" HeaderText="Codificado">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="saldo_poa" DataFormatString="{0:c}" HeaderText="Saldo">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                            </Columns>
+                            <FooterStyle BackColor="White" BorderStyle="Inset" Font-Bold="True" ForeColor="Black" HorizontalAlign="Center" VerticalAlign="Middle" />
+                            <HeaderStyle BackColor="#339933" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#333333" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#99FF99" Font-Bold="True" ForeColor="#333333" />
+                        </asp:GridView>
+                    </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>

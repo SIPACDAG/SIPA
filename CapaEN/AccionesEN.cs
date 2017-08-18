@@ -99,4 +99,26 @@ namespace CapaEN
 
         public string Usuario { get; set; }
     }
+
+    public class AccionesDetTransferenciasEN
+    {
+        public string vid_poa { get; set; }
+        public string vid_accion_origen { get; set; }
+        public string vid_detalle { get; set; }
+        public string vmonto_actual_origen { get; set; }
+        public string vmonto_nuevo_origen { get; set; }
+        public string vcodificado_origen { get; set; }
+        public string vdebito { get; set; }
+        public string vdestino_debito { get; set; }
+        public string vid_accion_destino { get; set; }
+        public string vid_detalle_destino { get; set; }
+        public string vno_renglon_ppto { get; set; }
+        public string vmonto_actual_destino { get; set; }
+        public string vmonto_nuevo_destino { get; set; }
+        public string vcodificado_destino { get; set; }
+        public string vcredito { get; set; }
+        public string vorigen_credito { get; set; }
+        public string vjustificacion { get; set; }
+        public string vusuario { get; set; }
+    }
 }

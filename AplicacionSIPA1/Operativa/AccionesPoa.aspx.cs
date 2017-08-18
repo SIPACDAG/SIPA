@@ -21,6 +21,7 @@ namespace AplicacionSIPA1.Operativa
         private AccionesEN accionesEN;
         private MetasAccionEN metasEN;
         private AccionesDetEN accionDetEN;
+        private AccionesDetTransferenciasEN accionDetTransferenciasEN = new AccionesDetTransferenciasEN();
 
         decimal totalP, totalC, totalS = 0;
 
@@ -513,7 +514,136 @@ namespace AplicacionSIPA1.Operativa
             }
         }
 
-      
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                planAccionLN = new PlanAccionLN();
+                accionesEN = new AccionesEN();
+                metasEN = new MetasAccionEN();
+
+                string mensaje = "";
+                DataSet dsResultado = new DataSet();
+                int idAccion = int.Parse(ddlAcciones.SelectedValue);
+                int idMeta = 0;
+                int idMetaOperativa = 0;
+
+                if (ddlMetas.Items.Count > 0)
+                    idMeta = int.Parse(ddlMetas.SelectedValue);
+                //INSERTAR/ACTUALIZAR
+                if (validarControlesABC())
+                {
+                    rfvCodigo.Enabled = false;
+                    rfvAccion.Enabled = rfvMeta.Enabled = rfvMetaC1.Enabled = rfvMetaC2.Enabled = rfvMetaC3.Enabled = true;
+                    rfvPonderacion.Enabled = /*rfvPresupuesto.Enabled = */rfvResponsable.Enabled = true;
+
+                    int idPoa = int.Parse(lblIdPoa.Text);
+                    int idDependencia = int.Parse(ddlDependencias.SelectedValue);
+                    obtenerPresupuesto(idPoa, idDependencia);
+
+                    idMetaOperativa = int.Parse(gridPlanO.SelectedValue.ToString());
+                    accionesEN.Id_Accion = idAccion;
+                    accionesEN.Id_Dependencia = idDependencia;
+                    accionesEN.Id_Objetivo_Operativo = int.Parse(ddlObjetivos.SelectedValue);
+                    accionesEN.Id_Meta_Operativa = idMetaOperativa;
+                    accionesEN.Id_Poa = idPoa;
+                    accionesEN.Accion = txtAccion.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtAccion.Text = accionesEN.Accion;
+
+                    if (!txtCodigo.Text.Equals(string.Empty))
+                        accionesEN.Codigo = int.Parse(txtCodigo.Text);
+
+                    accionesEN.Id_Unidad = int.Parse(ddlUnidades.SelectedValue);
+                    accionesEN.Usuario = Session["usuario"].ToString();
+
+                    dsResultado = planAccionLN.AlmacenarAccion(accionesEN);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la acción: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    txtCodigo.Text = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
+                    txtCodigo.Enabled = true;
+
+                    if (idAccion == 0)
+                    {
+                        mensaje += "Acción INSERTADA correctamente. \n";
+                    }
+                    else
+                        mensaje += "Acción ACTUALIZADA correctamente. \n";
+
+                    idAccion = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());
+                    metasEN.Id_Accion = idAccion;
+                    metasEN.Id_Meta_Accion = idMeta;
+                    metasEN.Id_Meta_Operativa = idMetaOperativa;
+
+                    metasEN.Meta_1 = txtMeta1.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtMeta1.Text = metasEN.Meta_1;
+                    metasEN.Meta_2 = txtMeta2.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtMeta2.Text = metasEN.Meta_2;
+                    metasEN.Meta_3 = txtMeta3.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtMeta3.Text = metasEN.Meta_3;
+                    metasEN.Meta_General = txtMeta.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    metasEN.No_Actividades = 0;
+                    //metasEN.Ponderacion = int.Parse(txtPonderacion.Text);
+                    metasEN.Ponderacion1 = decimal.Parse(txtPonderacion1.Text);
+                    metasEN.Ponderacion2 = decimal.Parse(txtPonderacion2.Text);
+                    metasEN.Ponderacion3 = decimal.Parse(txtPonderacion3.Text);
+
+                    txtPonderacion1.Text = metasEN.Ponderacion1.ToString();
+                    txtPonderacion2.Text = metasEN.Ponderacion2.ToString();
+                    txtPonderacion3.Text = metasEN.Ponderacion3.ToString();
+
+                    //metasEN.Presupuesto = decimal.Parse(txtPpto.Text);
+                    metasEN.Responsable = txtResponsable.Text.Replace('\'', ' ').Replace('"', ' ').Trim();
+                    txtResponsable.Text = metasEN.Responsable;
+                    metasEN.Enero = txtM1.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Febrero = txtM2.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Marzo = txtM3.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Abril = txtM4.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Mayo = txtM5.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Junio = txtM6.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Julio = txtM7.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Agosto = txtM8.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Septiembre = txtM9.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Octubre = txtM10.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Noviembre = txtM11.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Diciembre = txtM12.Text.Equals(string.Empty) ? 0 : 1;
+                    metasEN.Anio = int.Parse(ddlAnios.SelectedValue);
+                    metasEN.Usuario = Session["usuario"].ToString();                    
+
+                    dsResultado = planAccionLN.AlmacenarMeta(metasEN);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTÓ/ACTUALIZÓ la meta: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    if (idMeta == 0)
+                        mensaje += "Meta INSERTADA correctamente. \n";
+                    else
+                        mensaje += "Meta ACTUALIZADA correctamente. \n";
+
+                    idMeta = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());
+
+                    chkAccion_CheckedChanged(sender, e);
+
+                    ddlAcciones.ClearSelection();
+                    ddlAcciones.SelectedValue = idAccion.ToString();
+                    mensaje = "Acción almacenada exitosamente!, para almacenar una nueva acción presione NUEVO, para agregar renglones a la acción actual, ingrese renglón monto y presione + ";
+
+
+                    lblSuccess.Text = mensaje;
+                    ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
+
+
+                    //mensaje = "Operación exitosa! ;-). " + mensaje + " Si desea agregar renglones, seleccione la acción en el listado de acciones. ";                    
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "Error al operar el registro. " + ex.Message;
+                lblError.Text = mensaje;
+                ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
+            }
+        }
         
         protected DataSet guardarDetalleAccion(int idPoa, int idDependencia, int idDetalle, int idAccion, string noRenglon, int idTipoFinanciamiento, decimal monto, string idInsumo, string usuario)
         {
@@ -578,6 +708,79 @@ namespace AplicacionSIPA1.Operativa
             return dsResultado;
         }
 
+        protected bool AlmacenarTransferenciaPpto()
+        {
+            bool resultado = false;
+            btnModMonto.Visible = false;
+            try
+            {
+                
+                int idAccionDestino = 0;
+                idAccionDestino = int.Parse(ddlAccionDestino.SelectedValue);
+
+                int idDetalleAccionDestino = 0;
+
+                DataSet dsResultado = new DataSet();
+                planAccionLN = new PlanAccionLN();
+
+                dsResultado = planAccionLN.InformacionAccionDetalles(idAccionDestino, 0, ddlRenglonDestino.SelectedValue, 7);
+
+                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception("No se CONSULTÓ el Renglón: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                    idDetalleAccionDestino = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString());
+
+                FuncionesVarias funciones = new FuncionesVarias();
+                decimal debito = funciones.StringToDecimal(txtMontoActualOrigen.Text) - funciones.StringToDecimal(txtNuevoMontoOrigen.Text);
+                txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", debito);
+
+                decimal nuevoMontoDestino = funciones.StringToDecimal(txtMontoActualDestino.Text) + debito;
+                txtNuevoMontoDestino.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", nuevoMontoDestino);
+
+                txtCredito.Text = txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", debito);
+
+                accionDetTransferenciasEN = new AccionesDetTransferenciasEN();
+                accionDetTransferenciasEN.vid_poa = lblIdPoaModMonto.Text;
+                accionDetTransferenciasEN.vid_accion_origen = ddlAccionOrigen.SelectedValue;
+                accionDetTransferenciasEN.vid_detalle = ddlRenglonOrigen.SelectedValue;
+                accionDetTransferenciasEN.vmonto_actual_origen = funciones.StringToDecimal(txtMontoActualOrigen.Text).ToString();
+                accionDetTransferenciasEN.vmonto_nuevo_origen = funciones.StringToDecimal(txtNuevoMontoOrigen.Text).ToString();
+                accionDetTransferenciasEN.vcodificado_origen = funciones.StringToDecimal(lblCodificadoOrigen.Text).ToString();
+                accionDetTransferenciasEN.vdebito = funciones.StringToDecimal(txtDebito.Text).ToString();
+                accionDetTransferenciasEN.vdestino_debito = "INT_A";
+                accionDetTransferenciasEN.vid_accion_destino = ddlAccionDestino.SelectedValue;
+
+                if(idDetalleAccionDestino == 0)
+                    accionDetTransferenciasEN.vid_detalle_destino = "0";
+                else
+                    accionDetTransferenciasEN.vid_detalle_destino = idDetalleAccionDestino.ToString();
+
+                accionDetTransferenciasEN.vno_renglon_ppto = ddlRenglonDestino.SelectedValue;
+                accionDetTransferenciasEN.vmonto_actual_destino = funciones.StringToDecimal(txtMontoActualDestino.Text).ToString();
+                accionDetTransferenciasEN.vmonto_nuevo_destino = funciones.StringToDecimal(txtNuevoMontoDestino.Text).ToString();
+                accionDetTransferenciasEN.vcodificado_destino = funciones.StringToDecimal(lblCodificadoDestino.Text).ToString();
+                accionDetTransferenciasEN.vcredito = funciones.StringToDecimal(txtCredito.Text).ToString();
+                accionDetTransferenciasEN.vorigen_credito = "INT_A";
+                accionDetTransferenciasEN.vjustificacion = txtJustificacion.Text;
+                accionDetTransferenciasEN.vusuario = Session["usuario"].ToString();                
+
+                planAccionLN = new PlanAccionLN();
+                dsResultado = planAccionLN.AlmacenarDetalleTransferencias(accionDetTransferenciasEN);
+
+                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception("No se INSERTÓ/ la transferencia: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                lblSuccessMonto.Text = "Transferencia INSERTADA exitosamente!. Presione nuevo para una nueva transferencia";
+                resultado = true;
+            }
+            catch (Exception ex)
+            {
+                lblErrorModMonto.Text = "AlmacenarTransferenciaPpto(). " + ex.Message;
+            }
+            return resultado;
+        }
+
         protected void limpiarControlesError()
         {
             lblError.Text = string.Empty;
@@ -596,9 +799,23 @@ namespace AplicacionSIPA1.Operativa
             lblSuccessMonto.Text = string.Empty;
         }
 
+        protected void limpiarControlesErrorModMonto()
+        {
+            lblErrorAccionOrigen.Text = string.Empty;
+            lblErrorRenglonOrigen.Text = string.Empty;
+            lblErrorMontoOrigen.Text = string.Empty;
+
+            lblErrorAccionDestino.Text = string.Empty;
+            lblErrorRenglonDestino.Text = string.Empty;
+
+            lblErrorJustificacion.Text = string.Empty;
+            lblErrorModMonto.Text = string.Empty;
+            lblSuccessMonto.Text = string.Empty;
+        }
+
         private bool validarControlesABC()
         {
-            limpiarControlesError();
+            limpiarControlesErrorModMonto();
             bool controlesValidos = false;
 
             try
@@ -751,7 +968,10 @@ namespace AplicacionSIPA1.Operativa
                 /*if (!rfvPresupuesto.IsValid)
                     lblError.Text += "Ingrese el presupuesto de la acción!. ";*/
 
-                
+                if (controlesValidos && Page.IsValid)
+                    controlesValidos = true;
+                else
+                    controlesValidos = false;
 
                 rvPond.Enabled = rfvPond1.Enabled = rfvPond2.Enabled = rfvPond3.Enabled = rfvPonderacion.Enabled = /*rfvPresupuesto.Enabled = */false;
             }
@@ -845,6 +1065,8 @@ namespace AplicacionSIPA1.Operativa
                     
                     //btnGuardar.Visible = /*btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible =*/ gridRenglon.Columns[1].Visible = true;
                     btnGuardar.Visible = btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible = gridRenglon.Columns[1].Visible = btnAgregarDetalle.Visible = true;
+                    
+                    gridRenglon.Columns[0].Visible = false;
                 }
                 //2	Revisión Subgerencia, 4	Revisión Analista POA, 7	Revisión Dirección
                 else if (estadoPoa.Equals("2") || estadoPoa.Equals("4") || estadoPoa.Equals("7"))
@@ -852,6 +1074,8 @@ namespace AplicacionSIPA1.Operativa
                     lblErrorPoa.Text = lblError.Text = "El CUADRO DE MANDO INTEGRAL seleccionado se encuenta en estado: " + lblEstadoPoa.Text + " y no se puede modificar";
 
                     btnGuardar.Visible = btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible = gridRenglon.Columns[1].Visible = btnAgregarDetalle.Visible = false;
+
+                    gridRenglon.Columns[0].Visible = true;
                 }
                 //3	Rechazado Subgerencia, 6	Rechazado Analista POA, 8	Rechazado Dirección, 
                 else if (estadoPoa.Equals("3") || estadoPoa.Equals("6") || estadoPoa.Equals("8"))
@@ -861,6 +1085,8 @@ namespace AplicacionSIPA1.Operativa
 
                     //btnGuardar.Visible = /*btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible =*/ gridRenglon.Columns[1].Visible = true;
                     btnGuardar.Visible = btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible = gridRenglon.Columns[1].Visible = btnAgregarDetalle.Visible = true;
+
+                    gridRenglon.Columns[0].Visible = false;
                 }
                 //9	Aprobado Dirección
                 else if (estadoPoa.Equals("9"))
@@ -868,6 +1094,8 @@ namespace AplicacionSIPA1.Operativa
                     lblErrorPoa.Text = lblError.Text = string.Empty;
 
                     btnGuardar.Visible = btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible = gridRenglon.Columns[1].Visible = btnAgregarDetalle.Visible = false;
+
+                    gridRenglon.Columns[0].Visible = true;
                 }
                 else
                 {
@@ -1278,10 +1506,11 @@ namespace AplicacionSIPA1.Operativa
                 lblIdPoaModMonto.Text = lblIdPoa.Text;
                 lblIdDependenciaModMonto.Text = ddlDependencias.SelectedValue;
                 lblIdDetalleAccionModMonto.Text = idDetalle.ToString();
-                
-                /*
-                planAccionLN.DdlAccionesPoa(ddlAccionModRenglon, int.Parse(lblIdPoa.Text));
-                item = ddlAccionModRenglon.Items.FindByValue(dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_RENGLON"].ToString());
+                txtJustificacion.Text = string.Empty;
+
+                //ORIGEN DE LA MODIFICACIÓN
+                planAccionLN = new PlanAccionLN();
+                planAccionLN.DdlAccionesPoa(ddlAccionOrigen, int.Parse(lblIdPoaModMonto.Text));
 
                 if (item == null)
                     throw new Exception("Error al localizar la acción!");
@@ -1700,13 +1929,32 @@ namespace AplicacionSIPA1.Operativa
                     }
                     
                     int.TryParse(ddlAcciones.SelectedValue, out idAccion);
+                    idDetalleAccion = 0;
                     
                     decimal.TryParse(txtMonto.Text, out montoRenglon);
 
-                    DataSet dsAlmacenarDetalle = guardarDetalleAccion(idPoa, idDependencia, 0, idAccion, ddlRenglones.SelectedValue, int.Parse(ddlFuentes.SelectedValue), montoRenglon, ddlInsumos.SelectedValue, Session["usuario"].ToString());
+                    DataSet dsResultado = new DataSet();
+                    planAccionLN = new PlanAccionLN();
 
+                    dsResultado = planAccionLN.InformacionAccionDetalles(idAccion, 0, ddlRenglones.SelectedValue, 7);
 
-                    
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se CONSULTÓ el Renglón: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                    {
+                        decimal montoActual, codificado, saldo = 0;
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["MONTO"].ToString(), out montoActual);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIFICADO"].ToString(), out codificado);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["SALDO"].ToString(), out saldo);
+
+                        if (montoRenglon < codificado)
+                            throw new Exception("El monto no puede ser menor al codificado del renglón: " + codificado);
+
+                        idDetalleAccion = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString());
+                    }
+
+                    DataSet dsAlmacenarDetalle = guardarDetalleAccion(idPoa, idDependencia, idDetalleAccion, idAccion, ddlRenglones.SelectedValue, int.Parse(ddlFuentes.SelectedValue), montoRenglon, ddlInsumos.SelectedValue, Session["usuario"].ToString());
 
                     if (bool.Parse(dsAlmacenarDetalle.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ el registro: " + dsAlmacenarDetalle.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1718,7 +1966,9 @@ namespace AplicacionSIPA1.Operativa
                     obtenerPresupuesto(idPoa, idDependencia);
                     string mensaje = "Detalle INSERTADO/ACTUALIZADO exitosamente!. Para ingresar una nueva acción haga clic en Nuevo. ";
                     mensaje = "Operación exitosa! ;-). " + mensaje;
-                    txtMonto.Text = "";
+
+                    txtMonto.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+                    lblSuccess.Text = "!Detalle INSERTADO/ACTUALIZADO exitosamente!";
                 }
             }
             catch (Exception ex)
@@ -1743,6 +1993,10 @@ namespace AplicacionSIPA1.Operativa
             
             return s;
         }
+
+
+
+
 
         protected void ddlDependen_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1996,7 +2250,126 @@ namespace AplicacionSIPA1.Operativa
                 lblError.Text = mensaje;
                 ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
             }
+            return controlesValidos;
         }
+
+		protected bool validarControlesModPpto()
+        {
+            bool controlesValidos = false;
+            limpiarControlesErrorModMonto();
+
+            try
+            {
+                //ORIGEN
+                if (ddlAccionOrigen.SelectedValue.Equals("0") || ddlAccionOrigen.Items.Count == 0)
+                {
+                    lblErrorAccionOrigen.Text = "Seleccione un valor. ";
+                    lblErrorModMonto.Text += "Seleccione una acción de origen. ";
+                }
+
+                if (ddlRenglonOrigen.SelectedValue.Equals("0") || ddlRenglonOrigen.Items.Count == 0)
+                {
+                    lblErrorRenglonOrigen.Text = "Seleccione un valor. ";
+                    lblErrorModMonto.Text += "Seleccione un renglón de origen. ";
+                }
+
+                FuncionesVarias funciones = new FuncionesVarias();
+                decimal nuevoMontoOrigen = 0;
+
+                try
+                {
+                    nuevoMontoOrigen = funciones.StringToDecimal(txtNuevoMontoOrigen.Text);
+                    txtNuevoMontoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", nuevoMontoOrigen);
+
+                    if (nuevoMontoOrigen < 0)
+                        throw new Exception();
+                }
+                catch (Exception ex)
+                {
+                    lblErrorMontoOrigen.Text = "Monto no válido. ";
+                    lblErrorModMonto.Text += "Monto no válido. ";
+                }
+
+                if (lblErrorMontoOrigen.Text.Equals("") || lblErrorMontoOrigen.Text.Equals(string.Empty))
+                {
+                    int idAccion = int.Parse(ddlAccionOrigen.SelectedValue);
+                    DataSet dsResultado = new DataSet();
+
+                    planAccionLN = new PlanAccionLN();
+                    dsResultado = planAccionLN.InformacionAccionDetalles(int.Parse(ddlRenglonOrigen.SelectedValue), 0, "", 6);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se CONSULTÓ el Renglón: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                    {
+                        decimal montoActual, codificado, saldo = 0;
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["MONTO"].ToString(), out montoActual);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIFICADO"].ToString(), out codificado);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["SALDO"].ToString(), out saldo);
+
+                        lblCodificadoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificado);
+                        lblSaldoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", saldo);
+                        txtMontoActualOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", montoActual);
+                        //txtNuevoMontoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificado);
+                        txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+
+                        if (nuevoMontoOrigen < codificado)
+                        {
+                            lblErrorMontoOrigen.Text = "El nuevo monto debe no puede ser menor al codificado del renglón. ";
+                            lblErrorModMonto.Text += "El nuevo monto debe no puede ser menor al codificado del renglón. ";
+                        }
+
+                        if (nuevoMontoOrigen > montoActual)
+                        {
+                            lblErrorMontoOrigen.Text = "El nuevo monto debe no puede ser mayor al monto actual del renglón. ";
+                            lblErrorModMonto.Text += "El nuevo monto debe no puede ser mayor al monto actual del renglón. ";
+                        }
+                    }
+                }
+
+                //DESTINO
+                if (ddlAccionDestino.SelectedValue.Equals("0") || ddlAccionDestino.Items.Count == 0)
+                {
+                    lblErrorAccionDestino.Text = "Seleccione un valor. ";
+                    lblErrorModMonto.Text += "Seleccione una acción de destino. ";
+                }
+
+                if (ddlRenglonDestino.SelectedValue.Equals("0") || ddlRenglonDestino.Items.Count == 0)
+                {
+                    lblErrorRenglonDestino.Text = "Seleccione un valor. ";
+                    lblErrorModMonto.Text += "Seleccione un renglón de destino. ";
+                }
+
+                string justificacion = txtJustificacion.Text;
+                justificacion = justificacion.Replace('\'', ' ').Replace(';', ' ');
+                justificacion = justificacion.Trim();
+                txtJustificacion.Text = justificacion;
+
+                if (txtJustificacion.Text.Equals(""))
+                {
+                    lblErrorJustificacion.Text = "Ingrese una justificación. ";
+                    lblErrorModMonto.Text += "Ingrese una justificación. ";
+                }
+
+
+                if (lblErrorModMonto.Text.Equals(string.Empty))
+                    controlesValidos = true;
+
+                Page.Validate();
+
+                if (controlesValidos && Page.IsValid)
+                    controlesValidos = true;
+                else
+                    controlesValidos = false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("validarControlesModPpto(). " + ex.Message);
+            }
+            return controlesValidos;
+        }
+
 
         protected void btnGuardarMod(object sender, EventArgs e)
         {

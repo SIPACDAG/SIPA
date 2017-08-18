@@ -1298,6 +1298,7 @@ namespace AplicacionSIPA1.Operativa
                     planEstrategicoLN = new PlanEstrategicoLN();
 
                     planEstrategicoLN.DdlAniosPlan(ddlAnios, anioIni, anioFin);
+                    planEstrategicoLN.DdlEjes(ddlEjes, idPlan);                   
                 }
             }
             catch (Exception ex)

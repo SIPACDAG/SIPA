@@ -635,5 +635,26 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 throw new Exception("filtrarGridPpto(). " + ex.Message);
             }
         }
+
+        protected void chkFiltroColumnas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridDet.Columns.Count > 0)
+                {
+                    for (int i = 0; i < chkFiltroColumnas.Items.Count; i++)
+                    {
+                        if (chkFiltroColumnas.Items[i].Selected == true)
+                            gridDet.Columns[int.Parse(chkFiltroColumnas.Items[i].Value)].Visible = true;
+                        else
+                            gridDet.Columns[int.Parse(chkFiltroColumnas.Items[i].Value)].Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "chkFiltroColumnas(). " + ex.Message;
+            }
+        }
     }
 }

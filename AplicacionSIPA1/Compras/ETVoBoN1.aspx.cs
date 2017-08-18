@@ -120,6 +120,11 @@ namespace AplicacionSIPA1.Compras
                     btnAprobar.Visible = btnRechazar.Visible = false;
                     lblError.Text = "La especificación se encuentra en estado " + estado + ", y no se puede modificar";
                 }
+
+                lblErrorPoa.Text = "La especificación se encuentra en estado " + estado;
+                lblError.Text = string.Empty;
+
+                btnAprobar.Visible = btnRechazar.Visible = true;
             }
             catch (Exception ex)
             {
@@ -214,7 +219,7 @@ namespace AplicacionSIPA1.Compras
 
                 lblError.Text = string.Empty;
                 lblSuccess.Text = "Especificaciones APROBADAS exitosamente: ";
-                btnAprobar.Visible = btnRechazar.Visible = false;
+                validarEstadoAnexo();
             }
             catch (Exception ex)
             {
@@ -251,7 +256,7 @@ namespace AplicacionSIPA1.Compras
 
                 lblError.Text = string.Empty;
                 lblSuccess.Text = "Especificaciones RECHAZADAS exitosamente: ";
-                btnAprobar.Visible = btnRechazar.Visible = false;
+                validarEstadoAnexo();
             }
             catch (Exception ex)
             {

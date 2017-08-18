@@ -323,6 +323,7 @@ namespace AplicacionSIPA1.Viaticos
                 int.TryParse(ddlAcciones.SelectedValue, out idAccion);
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -387,12 +388,12 @@ namespace AplicacionSIPA1.Viaticos
             return poaValido;            
         }
 
-        protected bool validarEstadoPedido(int idPedido)
+        protected bool validarEstadoViatico(int idViatico)
         {
             bool pedidoValido = false;
             try
             {
-                if (idPedido == 0)
+                if (idViatico == 0)
                 {
                     btnAprobar.Visible = btnRechazar.Visible = true;
                     lblErrorPoa.Text = lblError.Text = "";
@@ -403,7 +404,7 @@ namespace AplicacionSIPA1.Viaticos
                     btnAprobar.Visible = btnRechazar.Visible = false;
 
                     pViaticosLN = new ViaticosLN();
-                    DataSet dsResultado = pViaticosLN.InformacionViatico(idPedido, 0, 2);
+                    DataSet dsResultado = pViaticosLN.InformacionViatico(idViatico, 0, 2);
                     
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
@@ -414,16 +415,16 @@ namespace AplicacionSIPA1.Viaticos
                     if (dsResultado.Tables[0].Rows.Count == 0)
                         throw new Exception("No existe estado asignado al pedido");
 
-                    string estadoPedido = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_PEDIDO"].ToString();
+                    string estadoViatico = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_VIATICO"].ToString();
 
-                    int idEstadoPedido = 0;
-                    int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstadoPedido);
+                    int idEstadoViatico = 0;
+                    int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstadoViatico);
 
-                    //EL PEDIDO NO ESTÁ EN ESTADO APROBACIÓN DE BODEGA
-                    if (idEstadoPedido != 2)
+                    //EL PEDIDO NO ESTÁ EN ESTADO APROBACIÓN NIVEL I
+                    if (idEstadoViatico != 2)
                     {
                         btnAprobar.Visible = btnRechazar.Visible = false;
-                        lblErrorPoa.Text = lblError.Text = "El PEDIDO seleccionado se encuenta en estado: " + estadoPedido + " y no se puede modificar ";
+                        lblErrorPoa.Text = lblError.Text = "El VIÁTICO seleccionado se encuenta en estado: " + estadoViatico + " y no se puede modificar ";
                         pedidoValido = false;
                     }
                     else
@@ -454,6 +455,7 @@ namespace AplicacionSIPA1.Viaticos
                 dvPedido.PageIndex = e.NewPageIndex;
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -486,6 +488,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 filtrarDvPedidos();
                 filtrarGridDetalles();
+                filtrarGridPpto();
 
                 string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
                 lblSuccess.Text = "Viático NO. " + noAnioSolicitud + " APROBADO con éxito!";
@@ -530,6 +533,8 @@ namespace AplicacionSIPA1.Viaticos
 
                     filtrarDvPedidos();
                     filtrarGridDetalles();
+                    filtrarGridPpto();
+
                     txtObser.Text = string.Empty;
 
                     string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
