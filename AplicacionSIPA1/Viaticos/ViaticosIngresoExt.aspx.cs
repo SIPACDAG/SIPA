@@ -550,9 +550,11 @@ namespace AplicacionSIPA1.Viaticos
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 inicialesUnidad();
-
+                if (ddlJefaturaUnidad.Items.Count > 0)
+                    ddlJefaturaUnidad.SelectedIndex = 0;
                 pAccionLN = new PlanAccionLN();
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 5);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
@@ -1650,5 +1652,74 @@ namespace AplicacionSIPA1.Viaticos
                 
         }
 
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoEnc();
+                NuevoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngreso(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                inicialesUnidad();
+                
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pOperativoLN.DdlDependencias(ddlJefaturaUnidad, idUnidad.ToString());
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 5);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoEnc();
+                NuevoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngreso(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                inicialesUnidad();
+                
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+              
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 5);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
     }
 }
