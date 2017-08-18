@@ -118,21 +118,16 @@ namespace CapaAD
            return tabla;
        }
 
-       public DataTable AlmacenarPlanEstrategico(EjesEN ObjEN, string usuario)
+       public DataTable AlmacenarPlanEstrategico(EjesEN ObjEN)
        {
-            DataTable tabla = new DataTable();
-            if (!validarPermiso(usuario))
-            {
-                conectar = new ConexionBD();
-                
-                conectar.AbrirConexion();
-                string query = string.Format("CALL sp_iue_planes_estrategicos({0}, '{1}', '{2}', {3}, {4}, '{5}', 1);", ObjEN.Id_Plan, ObjEN.NOMBRE_PLAN, ObjEN.DESCRIPCION, ObjEN.ANIO_INI, ObjEN.ANIO_FIN, ObjEN.USUARIO);
-                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-                consulta.Fill(tabla);
-                conectar.CerrarConexion();
-                return tabla;
-            }
-            return tabla;
+           conectar = new ConexionBD();
+           DataTable tabla = new DataTable();
+           conectar.AbrirConexion();
+           string query = string.Format("CALL sp_iue_planes_estrategicos({0}, '{1}', '{2}', {3}, {4}, '{5}', 1);", ObjEN.Id_Plan, ObjEN.NOMBRE_PLAN, ObjEN.DESCRIPCION, ObjEN.ANIO_INI, ObjEN.ANIO_FIN, ObjEN.USUARIO);
+           MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+           consulta.Fill(tabla);
+           conectar.CerrarConexion();
+           return tabla;
        }
 
        public DataTable AlmacenarObjetivo(ObjEstrategicosEN ObjEN)
@@ -159,21 +154,16 @@ namespace CapaAD
            return tabla;
        }
 
-       public DataTable AlmacenarMeta(MetasEstrategicasEN ObjEN,string usuario)
+       public DataTable AlmacenarMeta(MetasEstrategicasEN ObjEN)
        {
-            DataTable tabla = new DataTable();
-            if (!validarPermiso(usuario))
-            {
-                conectar = new ConexionBD();
-                
-                conectar.AbrirConexion();
-                string query = string.Format("CALL sp_iu_meta_estrategica({0}, {1}, {2}, '{3}', '{4}', {5}, '{6}');", ObjEN.Id_Meta, ObjEN.Id_Kpi, ObjEN.Anio, ObjEN.Nombre, ObjEN.Meta_Propuesta, ObjEN.Id_Respondable, ObjEN.Usuario);
-                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-                consulta.Fill(tabla);
-                conectar.CerrarConexion();
-                return tabla;
-            }
-            return tabla;
+           conectar = new ConexionBD();
+           DataTable tabla = new DataTable();
+           conectar.AbrirConexion();
+           string query = string.Format("CALL sp_iu_meta_estrategica({0}, {1}, {2}, '{3}', '{4}', {5}, '{6}');", ObjEN.Id_Meta, ObjEN.Id_Kpi, ObjEN.Anio, ObjEN.Nombre, ObjEN.Meta_Propuesta, ObjEN.Id_Respondable, ObjEN.Usuario);
+           MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+           consulta.Fill(tabla);
+           conectar.CerrarConexion();
+           return tabla;
        }
 
        public DataTable BuscarId(string id)
@@ -236,20 +226,16 @@ namespace CapaAD
            return tabla;
        }
 
-       public DataTable EliminarPlanEstrategico(int id, string usuario)
+       public DataTable EliminarPlanEstrategico(int id)
        {
-            DataTable tabla = new DataTable();
-          
-                conectar = new ConexionBD();
-                
-                string query = String.Format("CALL sp_iue_planes_estrategicos({0}, '', '', 0, 0, '', 2);", id);
-                conectar.AbrirConexion();
-                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-                consulta.Fill(tabla);
-                conectar.CerrarConexion();
-                return tabla;
-           
-           
+           conectar = new ConexionBD();
+           DataTable tabla = new DataTable();
+           string query = String.Format("CALL sp_iue_planes_estrategicos({0}, '', '', 0, 0, '', 2);", id);
+           conectar.AbrirConexion();
+           MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+           consulta.Fill(tabla);
+           conectar.CerrarConexion();
+           return tabla;
        }
 
        public DataTable EliminarObjetivo(int id)
@@ -287,25 +273,5 @@ namespace CapaAD
            conectar.CerrarConexion();
            return tabla;
        }
-        public bool validarPermiso(string Usuario)
-        {
-            conectar = new ConexionBD();
-            conectar.AbrirConexion();
-            string permiso = string.Format("SELECT id_cargo_usuario from sipa_cargo_usuario where id_usuario="
-                 + "(select id_usuario from ccl_usuarios where Usuario = '{0}')  AND id_tipo_usuario=50;", Usuario);
-            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            if (dr.HasRows)
-            {
-                conectar.CerrarConexion();
-                return true;
-            }
-            else
-            {
-                conectar.CerrarConexion();
-                return false;
-            }
-        }
     }
 }

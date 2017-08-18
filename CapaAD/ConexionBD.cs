@@ -19,6 +19,7 @@ namespace CapaAD
         //BASE DE DATOS DE PRODUCCIÓN
         //private String contenido = System.Configuration.ConnectionString["dbcdagsipaConnectionString"].ConnectionString;
         private string contenido = ConfigurationManager.ConnectionStrings["dbcdagsipaConnectionString"].ConnectionString;
+
         public MySqlConnection conectar = new MySqlConnection();
         public MySqlDataAdapter adaptador = new MySqlDataAdapter();
         public DataTable tabla = new DataTable();
@@ -29,7 +30,7 @@ namespace CapaAD
         sConn = contenido;
         conectar = new MySqlConnection();
         conectar.ConnectionString = sConn;
-            
+        
 	   try 
 	    {	        
 		conectar.Open();

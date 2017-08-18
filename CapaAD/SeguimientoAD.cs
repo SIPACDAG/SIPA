@@ -13,124 +13,190 @@ namespace CapaAD
     {
         ConexionBD conectar;
 
-        public DataTable AlmacenarCalendario(SeguimientoCalendarioEN ObjEN, string usuario)
+        public DataTable AlmacenarCalendario(SeguimientoCalendarioEN ObjEN)
        {
-            
-            DataTable dt = new DataTable();
-            if (!validarPermiso(usuario))
-            {
-                conectar = new ConexionBD();
-                ObjEN.ENTREGA_ENERO = "'" + ObjEN.ENTREGA_ENERO + "'";
-                ObjEN.ENTREGA_FEBRERO = "'" + ObjEN.ENTREGA_FEBRERO + "'";
-                ObjEN.ENTREGA_MARZO = "'" + ObjEN.ENTREGA_MARZO + "'";
-                ObjEN.ENTREGA_ABRIL = "'" + ObjEN.ENTREGA_ABRIL + "'";
-                ObjEN.ENTREGA_MAYO = "'" + ObjEN.ENTREGA_MAYO + "'";
-                ObjEN.ENTREGA_JUNIO = "'" + ObjEN.ENTREGA_JUNIO + "'";
-                ObjEN.ENTREGA_JULIO = "'" + ObjEN.ENTREGA_JULIO + "'";
-                ObjEN.ENTREGA_AGOSTO = "'" + ObjEN.ENTREGA_AGOSTO + "'";
-                ObjEN.ENTREGA_SEPTIEMBRE = "'" + ObjEN.ENTREGA_SEPTIEMBRE + "'";
-                ObjEN.ENTREGA_OCTUBRE = "'" + ObjEN.ENTREGA_OCTUBRE + "'";
-                ObjEN.ENTREGA_NOVIEMBRE = "'" + ObjEN.ENTREGA_NOVIEMBRE + "'";
-                ObjEN.ENTREGA_DICIEMBRE = "'" + ObjEN.ENTREGA_DICIEMBRE + "'";
+           conectar = new ConexionBD();
+           DataTable dt = new DataTable();
 
-                ObjEN.ENTREGA_ENERO = ObjEN.ENTREGA_ENERO.Replace("''", "null");
-                ObjEN.ENTREGA_FEBRERO = ObjEN.ENTREGA_FEBRERO.Replace("''", "null");
-                ObjEN.ENTREGA_MARZO = ObjEN.ENTREGA_MARZO.Replace("''", "null");
-                ObjEN.ENTREGA_ABRIL = ObjEN.ENTREGA_ABRIL.Replace("''", "null");
-                ObjEN.ENTREGA_MAYO = ObjEN.ENTREGA_MAYO.Replace("''", "null");
-                ObjEN.ENTREGA_JUNIO = ObjEN.ENTREGA_JUNIO.Replace("''", "null");
-                ObjEN.ENTREGA_JULIO = ObjEN.ENTREGA_JULIO.Replace("''", "null");
-                ObjEN.ENTREGA_AGOSTO = ObjEN.ENTREGA_AGOSTO.Replace("''", "null");
-                ObjEN.ENTREGA_SEPTIEMBRE = ObjEN.ENTREGA_SEPTIEMBRE.Replace("''", "null");
-                ObjEN.ENTREGA_OCTUBRE = ObjEN.ENTREGA_OCTUBRE.Replace("''", "null");
-                ObjEN.ENTREGA_NOVIEMBRE = ObjEN.ENTREGA_NOVIEMBRE.Replace("''", "null");
-                ObjEN.ENTREGA_DICIEMBRE = ObjEN.ENTREGA_DICIEMBRE.Replace("''", "null");
+           ObjEN.ENTREGA_ENERO = "'" + ObjEN.ENTREGA_ENERO + "'";
+           ObjEN.ENTREGA_FEBRERO = "'" + ObjEN.ENTREGA_FEBRERO + "'";
+           ObjEN.ENTREGA_MARZO = "'" + ObjEN.ENTREGA_MARZO + "'";
+           ObjEN.ENTREGA_ABRIL = "'" + ObjEN.ENTREGA_ABRIL + "'";
+           ObjEN.ENTREGA_MAYO = "'" + ObjEN.ENTREGA_MAYO + "'";
+           ObjEN.ENTREGA_JUNIO = "'" + ObjEN.ENTREGA_JUNIO + "'";
+           ObjEN.ENTREGA_JULIO = "'" + ObjEN.ENTREGA_JULIO + "'";
+           ObjEN.ENTREGA_AGOSTO = "'" + ObjEN.ENTREGA_AGOSTO + "'";
+           ObjEN.ENTREGA_SEPTIEMBRE = "'" + ObjEN.ENTREGA_SEPTIEMBRE + "'";
+           ObjEN.ENTREGA_OCTUBRE = "'" + ObjEN.ENTREGA_OCTUBRE + "'";
+           ObjEN.ENTREGA_NOVIEMBRE = "'" + ObjEN.ENTREGA_NOVIEMBRE + "'";
+           ObjEN.ENTREGA_DICIEMBRE = "'" + ObjEN.ENTREGA_DICIEMBRE + "'";
 
-                //ObjEN.ID_ESTADO = ObjEN.ID_ESTADO.Replace("", "null");
-                //ObjEN.ACTIVO = ObjEN.ACTIVO.Replace("", "null");
-                ObjEN.USUARIO = ObjEN.USUARIO.Replace("''", "null");
+           ObjEN.ENTREGA_ENERO = ObjEN.ENTREGA_ENERO.Replace("''", "null");
+           ObjEN.ENTREGA_FEBRERO = ObjEN.ENTREGA_FEBRERO.Replace("''", "null");
+           ObjEN.ENTREGA_MARZO = ObjEN.ENTREGA_MARZO.Replace("''", "null");
+           ObjEN.ENTREGA_ABRIL = ObjEN.ENTREGA_ABRIL.Replace("''", "null");
+           ObjEN.ENTREGA_MAYO = ObjEN.ENTREGA_MAYO.Replace("''", "null");
+           ObjEN.ENTREGA_JUNIO = ObjEN.ENTREGA_JUNIO.Replace("''", "null");
+           ObjEN.ENTREGA_JULIO = ObjEN.ENTREGA_JULIO.Replace("''", "null");
+           ObjEN.ENTREGA_AGOSTO = ObjEN.ENTREGA_AGOSTO.Replace("''", "null");
+           ObjEN.ENTREGA_SEPTIEMBRE = ObjEN.ENTREGA_SEPTIEMBRE.Replace("''", "null");
+           ObjEN.ENTREGA_OCTUBRE = ObjEN.ENTREGA_OCTUBRE.Replace("''", "null");
+           ObjEN.ENTREGA_NOVIEMBRE = ObjEN.ENTREGA_NOVIEMBRE.Replace("''", "null");
+           ObjEN.ENTREGA_DICIEMBRE = ObjEN.ENTREGA_DICIEMBRE.Replace("''", "null");
 
-                ObjEN.USUARIO = "'" + ObjEN.USUARIO + "'";
-                string query = "CALL sp_iue_seguimiento_calendario(" + ObjEN.ID_SEGUIMIENTO_CALENDARIO + ", " + ObjEN.ID_PLAN + ", " + ObjEN.ANIO + ", " + ObjEN.ENTREGA_ENERO + ", " + ObjEN.ENTREGA_FEBRERO + ", " + ObjEN.ENTREGA_MARZO + ", " + ObjEN.ENTREGA_ABRIL + ", " + ObjEN.ENTREGA_MAYO + ", " + ObjEN.ENTREGA_JUNIO + ", " + ObjEN.ENTREGA_JULIO + ", " + ObjEN.ENTREGA_AGOSTO + ", " + ObjEN.ENTREGA_SEPTIEMBRE + ", " + ObjEN.ENTREGA_OCTUBRE + ", " + ObjEN.ENTREGA_NOVIEMBRE + ", " + ObjEN.ENTREGA_DICIEMBRE + ", " + ObjEN.ID_ESTADO + ", " + ObjEN.ACTIVO + ", " + ObjEN.USUARIO + ", 1);";
-                conectar.AbrirConexion();
-                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-                consulta.Fill(dt);
-                conectar.CerrarConexion();
-                return dt;
-            }
-            return dt;
-
+           //ObjEN.ID_ESTADO = ObjEN.ID_ESTADO.Replace("", "null");
+           //ObjEN.ACTIVO = ObjEN.ACTIVO.Replace("", "null");
+           ObjEN.USUARIO = ObjEN.USUARIO.Replace("''", "null");
            
+           ObjEN.USUARIO = "'" + ObjEN.USUARIO + "'";
+           string query = "CALL sp_iue_seguimiento_calendario(" + ObjEN.ID_SEGUIMIENTO_CALENDARIO + ", " + ObjEN.ID_PLAN + ", " + ObjEN.ANIO + ", " + ObjEN.ENTREGA_ENERO + ", " + ObjEN.ENTREGA_FEBRERO + ", " + ObjEN.ENTREGA_MARZO + ", " + ObjEN.ENTREGA_ABRIL + ", " + ObjEN.ENTREGA_MAYO + ", " + ObjEN.ENTREGA_JUNIO + ", " + ObjEN.ENTREGA_JULIO + ", " + ObjEN.ENTREGA_AGOSTO + ", " + ObjEN.ENTREGA_SEPTIEMBRE + ", " + ObjEN.ENTREGA_OCTUBRE + ", " + ObjEN.ENTREGA_NOVIEMBRE + ", " + ObjEN.ENTREGA_DICIEMBRE + ", " + ObjEN.ID_ESTADO + ", " + ObjEN.ACTIVO + ", " + ObjEN.USUARIO + ", 1);";
+           conectar.AbrirConexion();
+           MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+           consulta.Fill(dt);
+           conectar.CerrarConexion();
+           return dt;
        }
 
-        public DataSet AlmacenarSeguimiento(SEGUIMIENTOS_CMI ObjEN, string usuario)
+        public DataSet AlmacenarSeguimiento(SEGUIMIENTOS_CMI ObjEN)
         {
-            DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuario))
+            string query = "";
+            DataSet dsResultado;
+            DataTable dt;
+            DataTable dtEnc;
+            MySqlTransaction sqlTransaction;
+            MySqlDataAdapter sqlAdapter;
+            conectar = new ConexionBD();
+
+            ObjEN.ID_SEGUIMIENTO_CMI = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CMI, 1, ',');
+            ObjEN.ID_POA = ConstruirCampoInsertMySQL(ObjEN.ID_POA, 1, ',');
+            ObjEN.ID_UNIDAD = ConstruirCampoInsertMySQL(ObjEN.ID_UNIDAD, 1, ',');
+            ObjEN.ANIO = ConstruirCampoInsertMySQL(ObjEN.ANIO, 1, ',');
+            ObjEN.NO_CUATRIMESTRE = ConstruirCampoInsertMySQL(ObjEN.NO_CUATRIMESTRE, 1, ',');
+            ObjEN.MES = ConstruirCampoInsertMySQL(ObjEN.MES, 1, ',');
+            ObjEN.ID_ESTADO = ConstruirCampoInsertMySQL(ObjEN.ID_ESTADO, 1, ',');
+            ObjEN.ANEXO = ConstruirCampoInsertMySQL(ObjEN.ANEXO, 2, ',');
+            ObjEN.ID_SEGUIMIENTO_CALENDARIO = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CALENDARIO, 1, ',');
+            ObjEN.OBSERVACIONES_RECHAZO = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_RECHAZO, 2, ',');
+            ObjEN.OBSERVACIONES_DGE = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_DGE, 2, ',');
+            ObjEN.FECHA_RECEPCION = ConstruirCampoInsertMySQL(ObjEN.FECHA_RECEPCION, 2, ',');
+            ObjEN.ACTIVO = ConstruirCampoInsertMySQL(ObjEN.ACTIVO, 1, ',');
+            ObjEN.USUARIO = ConstruirCampoInsertMySQL(ObjEN.USUARIO, 2, ',');
+            
+            StringBuilder stringB = new StringBuilder();
+            stringB.Append("CALL sp_iue_seguimientos_cmi(");
+            stringB.Append(ObjEN.ID_SEGUIMIENTO_CMI);
+            stringB.Append(ObjEN.ID_POA);
+            stringB.Append(ObjEN.ID_UNIDAD);
+            stringB.Append(ObjEN.ANIO);
+            stringB.Append(ObjEN.NO_CUATRIMESTRE);
+            stringB.Append(ObjEN.MES);
+            stringB.Append(ObjEN.ID_ESTADO);
+            stringB.Append(ObjEN.ANEXO);
+            stringB.Append(ObjEN.ID_SEGUIMIENTO_CALENDARIO);
+            stringB.Append(ObjEN.OBSERVACIONES_RECHAZO);
+            stringB.Append(ObjEN.OBSERVACIONES_DGE);
+            stringB.Append(ObjEN.FECHA_RECEPCION);
+            stringB.Append(ObjEN.ACTIVO);
+            stringB.Append(ObjEN.USUARIO);
+            stringB.Append("1);");
+
+            query =  stringB.ToString();
+
+            dt = armarDsResultado().Tables[0].Copy();
+            dtEnc = armarDsResultado().Tables[0].Copy();
+
+            conectar.AbrirConexion();
+            sqlTransaction = conectar.conectar.BeginTransaction();
+            try
             {
-                string query = "";
+                dt = new DataTable();
+                sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                sqlAdapter.Fill(dt);
+                
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
 
-                DataTable dt;
-                DataTable dtEnc;
-                DataTable dtDet;
-                MySqlTransaction sqlTransaction;
-                MySqlDataAdapter sqlAdapter;
-                conectar = new ConexionBD();
+                int idPedidoEncabezado = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
+                dtEnc.Rows[0]["ERRORES"] = false;
+                dtEnc.Rows[0]["MSG_ERROR"] = "";
+                dtEnc.Rows[0]["VALOR"] = idPedidoEncabezado;
 
-                ObjEN.ID_SEGUIMIENTO_CMI = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CMI, 1, ',');
-                ObjEN.ID_POA = ConstruirCampoInsertMySQL(ObjEN.ID_POA, 1, ',');
-                ObjEN.ID_UNIDAD = ConstruirCampoInsertMySQL(ObjEN.ID_UNIDAD, 1, ',');
-                ObjEN.ANIO = ConstruirCampoInsertMySQL(ObjEN.ANIO, 1, ',');
-                ObjEN.NO_CUATRIMESTRE = ConstruirCampoInsertMySQL(ObjEN.NO_CUATRIMESTRE, 1, ',');
-                ObjEN.MES = ConstruirCampoInsertMySQL(ObjEN.MES, 1, ',');
-                ObjEN.ID_ESTADO = ConstruirCampoInsertMySQL(ObjEN.ID_ESTADO, 1, ',');
-                ObjEN.ANEXO = ConstruirCampoInsertMySQL(ObjEN.ANEXO, 2, ',');
-                ObjEN.ID_SEGUIMIENTO_CALENDARIO = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CALENDARIO, 1, ',');
-                ObjEN.OBSERVACIONES_RECHAZO = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_RECHAZO, 2, ',');
-                ObjEN.OBSERVACIONES_DGE = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_DGE, 2, ',');
-                ObjEN.FECHA_RECEPCION = ConstruirCampoInsertMySQL(ObjEN.FECHA_RECEPCION, 2, ',');
-                ObjEN.ACTIVO = ConstruirCampoInsertMySQL(ObjEN.ACTIVO, 1, ',');
-                ObjEN.USUARIO = ConstruirCampoInsertMySQL(ObjEN.USUARIO, 2, ',');
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                conectar.CerrarConexion();
 
-                StringBuilder stringB = new StringBuilder();
-                stringB.Append("CALL sp_iue_seguimientos_cmi(");
-                stringB.Append(ObjEN.ID_SEGUIMIENTO_CMI);
-                stringB.Append(ObjEN.ID_POA);
-                stringB.Append(ObjEN.ID_UNIDAD);
-                stringB.Append(ObjEN.ANIO);
-                stringB.Append(ObjEN.NO_CUATRIMESTRE);
-                stringB.Append(ObjEN.MES);
-                stringB.Append(ObjEN.ID_ESTADO);
-                stringB.Append(ObjEN.ANEXO);
-                stringB.Append(ObjEN.ID_SEGUIMIENTO_CALENDARIO);
-                stringB.Append(ObjEN.OBSERVACIONES_RECHAZO);
-                stringB.Append(ObjEN.OBSERVACIONES_DGE);
-                stringB.Append(ObjEN.FECHA_RECEPCION);
-                stringB.Append(ObjEN.ACTIVO);
-                stringB.Append(ObjEN.USUARIO);
-                stringB.Append("1);");
+                dtEnc.Rows[0]["ERRORES"] = true;
+                dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
+                dtEnc.Rows[0]["VALOR"] = "";
+            }
 
-                query = stringB.ToString();
+            /*dtDet = armarDsResultado().Tables[0].Copy();
+            dtDet.TableName = "DETALLES";
+            dtDet.Rows.RemoveAt(0);
 
-                dt = armarDsResultado().Tables[0].Copy();
-                dtEnc = armarDsResultado().Tables[0].Copy();
+            if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
+            {
+                int idEncabezado = int.Parse(dtEnc.Rows[0]["VALOR"].ToString());
 
-                conectar.AbrirConexion();
-                sqlTransaction = conectar.conectar.BeginTransaction();
                 try
                 {
-                    dt = new DataTable();
-                    sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
-                    sqlAdapter.Fill(dt);
+                    
+                    foreach (DataRow drDetalles in dsDetalles.Tables[0].Rows)
+                    {
+                        SEGUIMIENTOS_CMI_DET ObjEN_DET = new SEGUIMIENTOS_CMI_DET();
 
-                    if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
-                        throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+                        ObjEN_DET.ID_SEGUIMIENTO_CMI_DET = ConstruirCampoInsertMySQL(drDetalles["ID_SEGUIMIENTO_CMI_DET"].ToString(), 1, ',');
+                        ObjEN_DET.ID_SEGUIMIENTO_CMI = ConstruirCampoInsertMySQL(idEncabezado.ToString(), 1, ',');
+                        ObjEN_DET.ID_ACCION = ConstruirCampoInsertMySQL(drDetalles["ID_ACCION"].ToString(), 1, ',');
+                        ObjEN_DET.DESCRIPCION = ConstruirCampoInsertMySQL(drDetalles["DESCRIPCION"].ToString(), 2, ',');
+                        ObjEN_DET.PPTO_ANUAL = ConstruirCampoInsertMySQL(drDetalles["PPTO_ANUAL"].ToString(), 1, ',');
+                        ObjEN_DET.AVANCE_PPTO_CUATRIMESTRAL = ConstruirCampoInsertMySQL(drDetalles["AVANCE_PPTO_CUATRIMESTRAL"].ToString(), 1, ',');
+                        ObjEN_DET.AVANCE_PPTO_ACUMULADO = ConstruirCampoInsertMySQL(drDetalles["AVANCE_PPTO_ACUMULADO"].ToString(), 1, ',');
+                        ObjEN_DET.SALDO = ConstruirCampoInsertMySQL(drDetalles["SALDO"].ToString(), 1, ',');
+                        ObjEN_DET.MEDIOS_VERIFICACION = ConstruirCampoInsertMySQL(drDetalles["MEDIOS_VERIFICACION"].ToString(), 2, ',');
+                        ObjEN_DET.AVANCE_KPI = ConstruirCampoInsertMySQL(drDetalles["AVANCE_KPI"].ToString(), 1, ',');
+                        ObjEN_DET.DESCRIPCION_AVANCE_KPI = ConstruirCampoInsertMySQL(drDetalles["DESCRIPCION_AVANCE_KPI"].ToString(), 2, ',');
+                        ObjEN_DET.ANEXO = ConstruirCampoInsertMySQL(drDetalles["ANEXO"].ToString(), 2, ',');
+                        ObjEN_DET.OBSERVACIONES_DGE = ConstruirCampoInsertMySQL(drDetalles["OBSERVACIONES_DGE"].ToString(), 2, ',');
+                        ObjEN_DET.PLAN_ACCION = ConstruirCampoInsertMySQL(drDetalles["PLAN_ACCION"].ToString(), 1, ',');
+                        ObjEN_DET.ACTIVO = ConstruirCampoInsertMySQL(drDetalles["ACTIVO"].ToString(), 1, ',');
+                        ObjEN_DET.USUARIO = ConstruirCampoInsertMySQL(drDetalles["USUARIO"].ToString(), 2, ',');
 
-                    int idPedidoEncabezado = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
-                    dtEnc.Rows[0]["ERRORES"] = false;
-                    dtEnc.Rows[0]["MSG_ERROR"] = "";
-                    dtEnc.Rows[0]["VALOR"] = idPedidoEncabezado;
+                        stringB = new StringBuilder();
+                        stringB.Append("CALL sp_iue_seguimientos_cmi_det(");
+                        stringB.Append(ObjEN_DET.ID_SEGUIMIENTO_CMI_DET);
+                        stringB.Append(ObjEN_DET.ID_SEGUIMIENTO_CMI);
+                        stringB.Append(ObjEN_DET.ID_ACCION);
+                        stringB.Append(ObjEN_DET.DESCRIPCION);
+                        stringB.Append(ObjEN_DET.PPTO_ANUAL);
+                        stringB.Append(ObjEN_DET.AVANCE_PPTO_CUATRIMESTRAL);
+                        stringB.Append(ObjEN_DET.AVANCE_PPTO_ACUMULADO);
+                        stringB.Append(ObjEN_DET.SALDO);
+                        stringB.Append(ObjEN_DET.MEDIOS_VERIFICACION);
+                        stringB.Append(ObjEN_DET.AVANCE_KPI);
+                        stringB.Append(ObjEN_DET.DESCRIPCION_AVANCE_KPI);
+                        stringB.Append(ObjEN_DET.ANEXO);
+                        stringB.Append(ObjEN_DET.OBSERVACIONES_DGE);
+                        stringB.Append(ObjEN_DET.PLAN_ACCION);
+                        stringB.Append(ObjEN_DET.ACTIVO);
+                        stringB.Append(ObjEN_DET.USUARIO);
+                        stringB.Append("1);");
+                        
+                        query =  stringB.ToString();
 
+                        dt = new DataTable();
+                        sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                        sqlAdapter.Fill(dt);
+
+
+                        DataRow drDet = dtDet.NewRow();
+                        drDet["ERRORES"] = dt.Rows[0]["RESULTADO"].ToString();
+                        drDet["MSG_ERROR"] = "";
+                        drDet["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
+                        dtDet.Rows.Add(drDet);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -139,96 +205,18 @@ namespace CapaAD
 
                     dtEnc.Rows[0]["ERRORES"] = true;
                     dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
-                    dtEnc.Rows[0]["VALOR"] = "";
                 }
+            }*/
 
-                /*dtDet = armarDsResultado().Tables[0].Copy();
-                dtDet.TableName = "DETALLES";
-                dtDet.Rows.RemoveAt(0);
+            if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
+                sqlTransaction.Commit();
 
-                if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
-                {
-                    int idEncabezado = int.Parse(dtEnc.Rows[0]["VALOR"].ToString());
+            conectar.CerrarConexion();
 
-                    try
-                    {
+            dsResultado = new DataSet();
+            dsResultado.Tables.Add(dtEnc.Copy());
+            //dsResultado.Tables.Add(dtDet);
 
-                        foreach (DataRow drDetalles in dsDetalles.Tables[0].Rows)
-                        {
-                            SEGUIMIENTOS_CMI_DET ObjEN_DET = new SEGUIMIENTOS_CMI_DET();
-
-                            ObjEN_DET.ID_SEGUIMIENTO_CMI_DET = ConstruirCampoInsertMySQL(drDetalles["ID_SEGUIMIENTO_CMI_DET"].ToString(), 1, ',');
-                            ObjEN_DET.ID_SEGUIMIENTO_CMI = ConstruirCampoInsertMySQL(idEncabezado.ToString(), 1, ',');
-                            ObjEN_DET.ID_ACCION = ConstruirCampoInsertMySQL(drDetalles["ID_ACCION"].ToString(), 1, ',');
-                            ObjEN_DET.DESCRIPCION = ConstruirCampoInsertMySQL(drDetalles["DESCRIPCION"].ToString(), 2, ',');
-                            ObjEN_DET.PPTO_ANUAL = ConstruirCampoInsertMySQL(drDetalles["PPTO_ANUAL"].ToString(), 1, ',');
-                            ObjEN_DET.AVANCE_PPTO_CUATRIMESTRAL = ConstruirCampoInsertMySQL(drDetalles["AVANCE_PPTO_CUATRIMESTRAL"].ToString(), 1, ',');
-                            ObjEN_DET.AVANCE_PPTO_ACUMULADO = ConstruirCampoInsertMySQL(drDetalles["AVANCE_PPTO_ACUMULADO"].ToString(), 1, ',');
-                            ObjEN_DET.SALDO = ConstruirCampoInsertMySQL(drDetalles["SALDO"].ToString(), 1, ',');
-                            ObjEN_DET.MEDIOS_VERIFICACION = ConstruirCampoInsertMySQL(drDetalles["MEDIOS_VERIFICACION"].ToString(), 2, ',');
-                            ObjEN_DET.AVANCE_KPI = ConstruirCampoInsertMySQL(drDetalles["AVANCE_KPI"].ToString(), 1, ',');
-                            ObjEN_DET.DESCRIPCION_AVANCE_KPI = ConstruirCampoInsertMySQL(drDetalles["DESCRIPCION_AVANCE_KPI"].ToString(), 2, ',');
-                            ObjEN_DET.ANEXO = ConstruirCampoInsertMySQL(drDetalles["ANEXO"].ToString(), 2, ',');
-                            ObjEN_DET.OBSERVACIONES_DGE = ConstruirCampoInsertMySQL(drDetalles["OBSERVACIONES_DGE"].ToString(), 2, ',');
-                            ObjEN_DET.PLAN_ACCION = ConstruirCampoInsertMySQL(drDetalles["PLAN_ACCION"].ToString(), 1, ',');
-                            ObjEN_DET.ACTIVO = ConstruirCampoInsertMySQL(drDetalles["ACTIVO"].ToString(), 1, ',');
-                            ObjEN_DET.USUARIO = ConstruirCampoInsertMySQL(drDetalles["USUARIO"].ToString(), 2, ',');
-
-                            stringB = new StringBuilder();
-                            stringB.Append("CALL sp_iue_seguimientos_cmi_det(");
-                            stringB.Append(ObjEN_DET.ID_SEGUIMIENTO_CMI_DET);
-                            stringB.Append(ObjEN_DET.ID_SEGUIMIENTO_CMI);
-                            stringB.Append(ObjEN_DET.ID_ACCION);
-                            stringB.Append(ObjEN_DET.DESCRIPCION);
-                            stringB.Append(ObjEN_DET.PPTO_ANUAL);
-                            stringB.Append(ObjEN_DET.AVANCE_PPTO_CUATRIMESTRAL);
-                            stringB.Append(ObjEN_DET.AVANCE_PPTO_ACUMULADO);
-                            stringB.Append(ObjEN_DET.SALDO);
-                            stringB.Append(ObjEN_DET.MEDIOS_VERIFICACION);
-                            stringB.Append(ObjEN_DET.AVANCE_KPI);
-                            stringB.Append(ObjEN_DET.DESCRIPCION_AVANCE_KPI);
-                            stringB.Append(ObjEN_DET.ANEXO);
-                            stringB.Append(ObjEN_DET.OBSERVACIONES_DGE);
-                            stringB.Append(ObjEN_DET.PLAN_ACCION);
-                            stringB.Append(ObjEN_DET.ACTIVO);
-                            stringB.Append(ObjEN_DET.USUARIO);
-                            stringB.Append("1);");
-
-                            query =  stringB.ToString();
-
-                            dt = new DataTable();
-                            sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
-                            sqlAdapter.Fill(dt);
-
-
-                            DataRow drDet = dtDet.NewRow();
-                            drDet["ERRORES"] = dt.Rows[0]["RESULTADO"].ToString();
-                            drDet["MSG_ERROR"] = "";
-                            drDet["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
-                            dtDet.Rows.Add(drDet);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        sqlTransaction.Rollback();
-                        conectar.CerrarConexion();
-
-                        dtEnc.Rows[0]["ERRORES"] = true;
-                        dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
-                    }
-                }*/
-
-                if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
-                    sqlTransaction.Commit();
-
-                conectar.CerrarConexion();
-
-                dsResultado = new DataSet();
-                dsResultado.Tables.Add(dtEnc.Copy());
-                //dsResultado.Tables.Add(dtDet);
-
-                return dsResultado;
-            }
             return dsResultado;
         }
 
@@ -315,15 +303,15 @@ namespace CapaAD
                     sqlTransaction.Rollback();
                     conectar.CerrarConexion();
 
-                        dtEnc.Rows[0]["ERRORES"] = true;
-                        dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
-                    }
+                    dtEnc.Rows[0]["ERRORES"] = true;
+                    dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
                 }
+            }
 
-                if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
-                    sqlTransaction.Commit();
+            if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
+                sqlTransaction.Commit();
 
-                conectar.CerrarConexion();
+            conectar.CerrarConexion();
 
             dsResultado = new DataSet();
             dsResultado.Tables.Add(dtEnc.Copy());
@@ -333,91 +321,86 @@ namespace CapaAD
         }
 
 
-        public DataSet AlmacenarFechaRecepcion(SEGUIMIENTOS_CMI ObjEN,string usuario)
+        public DataSet AlmacenarFechaRecepcion(SEGUIMIENTOS_CMI ObjEN)
         {
+            string query = "";
             DataSet dsResultado = new DataSet();
-            if (!validarPermiso(usuario))
+            DataTable dt;
+            DataTable dtEnc;
+            MySqlTransaction sqlTransaction;
+            MySqlDataAdapter sqlAdapter;
+            conectar = new ConexionBD();
+
+            ObjEN.ID_SEGUIMIENTO_CMI = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CMI, 1, ',');
+            ObjEN.ID_POA = ConstruirCampoInsertMySQL(ObjEN.ID_POA, 1, ',');
+            ObjEN.ID_UNIDAD = ConstruirCampoInsertMySQL(ObjEN.ID_UNIDAD, 1, ',');
+            ObjEN.ANIO = ConstruirCampoInsertMySQL(ObjEN.ANIO, 1, ',');
+            ObjEN.NO_CUATRIMESTRE = ConstruirCampoInsertMySQL(ObjEN.NO_CUATRIMESTRE, 1, ',');
+            ObjEN.MES = ConstruirCampoInsertMySQL(ObjEN.MES, 1, ',');
+            ObjEN.ID_ESTADO = ConstruirCampoInsertMySQL(ObjEN.ID_ESTADO, 1, ',');
+            ObjEN.ANEXO = ConstruirCampoInsertMySQL(ObjEN.ANEXO, 2, ',');
+            ObjEN.ID_SEGUIMIENTO_CALENDARIO = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CALENDARIO, 1, ',');
+            ObjEN.OBSERVACIONES_RECHAZO = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_RECHAZO, 2, ',');
+            ObjEN.OBSERVACIONES_DGE = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_DGE, 2, ',');
+            ObjEN.FECHA_RECEPCION = ConstruirCampoInsertMySQL(ObjEN.FECHA_RECEPCION, 2, ',');
+            ObjEN.ACTIVO = ConstruirCampoInsertMySQL(ObjEN.ACTIVO, 1, ',');
+            ObjEN.USUARIO = ConstruirCampoInsertMySQL(ObjEN.USUARIO, 2, ',');
+
+            StringBuilder stringB = new StringBuilder();
+            stringB.Append("CALL sp_iue_seguimientos_cmi(");
+            stringB.Append(ObjEN.ID_SEGUIMIENTO_CMI);
+            stringB.Append(ObjEN.ID_POA);
+            stringB.Append(ObjEN.ID_UNIDAD);
+            stringB.Append(ObjEN.ANIO);
+            stringB.Append(ObjEN.NO_CUATRIMESTRE);
+            stringB.Append(ObjEN.MES);
+            stringB.Append(ObjEN.ID_ESTADO);
+            stringB.Append(ObjEN.ANEXO);
+            stringB.Append(ObjEN.ID_SEGUIMIENTO_CALENDARIO);
+            stringB.Append(ObjEN.OBSERVACIONES_RECHAZO);
+            stringB.Append(ObjEN.OBSERVACIONES_DGE);
+            stringB.Append(ObjEN.FECHA_RECEPCION);
+            stringB.Append(ObjEN.ACTIVO);
+            stringB.Append(ObjEN.USUARIO);
+            stringB.Append("10);");
+
+            query = stringB.ToString();
+
+            dt = armarDsResultado().Tables[0].Copy();
+            dtEnc = armarDsResultado().Tables[0].Copy();
+
+            conectar.AbrirConexion();
+            sqlTransaction = conectar.conectar.BeginTransaction();
+            try
             {
-                string query = "";
-                
-                DataTable dt;
-                DataTable dtEnc;
-                MySqlTransaction sqlTransaction;
-                MySqlDataAdapter sqlAdapter;
-                conectar = new ConexionBD();
+                dt = new DataTable();
+                sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                sqlAdapter.Fill(dt);
 
-                ObjEN.ID_SEGUIMIENTO_CMI = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CMI, 1, ',');
-                ObjEN.ID_POA = ConstruirCampoInsertMySQL(ObjEN.ID_POA, 1, ',');
-                ObjEN.ID_UNIDAD = ConstruirCampoInsertMySQL(ObjEN.ID_UNIDAD, 1, ',');
-                ObjEN.ANIO = ConstruirCampoInsertMySQL(ObjEN.ANIO, 1, ',');
-                ObjEN.NO_CUATRIMESTRE = ConstruirCampoInsertMySQL(ObjEN.NO_CUATRIMESTRE, 1, ',');
-                ObjEN.MES = ConstruirCampoInsertMySQL(ObjEN.MES, 1, ',');
-                ObjEN.ID_ESTADO = ConstruirCampoInsertMySQL(ObjEN.ID_ESTADO, 1, ',');
-                ObjEN.ANEXO = ConstruirCampoInsertMySQL(ObjEN.ANEXO, 2, ',');
-                ObjEN.ID_SEGUIMIENTO_CALENDARIO = ConstruirCampoInsertMySQL(ObjEN.ID_SEGUIMIENTO_CALENDARIO, 1, ',');
-                ObjEN.OBSERVACIONES_RECHAZO = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_RECHAZO, 2, ',');
-                ObjEN.OBSERVACIONES_DGE = ConstruirCampoInsertMySQL(ObjEN.OBSERVACIONES_DGE, 2, ',');
-                ObjEN.FECHA_RECEPCION = ConstruirCampoInsertMySQL(ObjEN.FECHA_RECEPCION, 2, ',');
-                ObjEN.ACTIVO = ConstruirCampoInsertMySQL(ObjEN.ACTIVO, 1, ',');
-                ObjEN.USUARIO = ConstruirCampoInsertMySQL(ObjEN.USUARIO, 2, ',');
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
 
-                StringBuilder stringB = new StringBuilder();
-                stringB.Append("CALL sp_iue_seguimientos_cmi(");
-                stringB.Append(ObjEN.ID_SEGUIMIENTO_CMI);
-                stringB.Append(ObjEN.ID_POA);
-                stringB.Append(ObjEN.ID_UNIDAD);
-                stringB.Append(ObjEN.ANIO);
-                stringB.Append(ObjEN.NO_CUATRIMESTRE);
-                stringB.Append(ObjEN.MES);
-                stringB.Append(ObjEN.ID_ESTADO);
-                stringB.Append(ObjEN.ANEXO);
-                stringB.Append(ObjEN.ID_SEGUIMIENTO_CALENDARIO);
-                stringB.Append(ObjEN.OBSERVACIONES_RECHAZO);
-                stringB.Append(ObjEN.OBSERVACIONES_DGE);
-                stringB.Append(ObjEN.FECHA_RECEPCION);
-                stringB.Append(ObjEN.ACTIVO);
-                stringB.Append(ObjEN.USUARIO);
-                stringB.Append("10);");
+                int idPedidoEncabezado = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
+                dtEnc.Rows[0]["ERRORES"] = false;
+                dtEnc.Rows[0]["MSG_ERROR"] = "";
+                dtEnc.Rows[0]["VALOR"] = idPedidoEncabezado;
 
-                query = stringB.ToString();
-
-                dt = armarDsResultado().Tables[0].Copy();
-                dtEnc = armarDsResultado().Tables[0].Copy();
-
-                conectar.AbrirConexion();
-                sqlTransaction = conectar.conectar.BeginTransaction();
-                try
-                {
-                    dt = new DataTable();
-                    sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
-                    sqlAdapter.Fill(dt);
-
-                    if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
-                        throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
-
-                    int idPedidoEncabezado = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
-                    dtEnc.Rows[0]["ERRORES"] = false;
-                    dtEnc.Rows[0]["MSG_ERROR"] = "";
-                    dtEnc.Rows[0]["VALOR"] = idPedidoEncabezado;
-
-                    sqlTransaction.Commit();
-                    conectar.CerrarConexion();
-                }
-                catch (Exception ex)
-                {
-                    sqlTransaction.Rollback();
-                    conectar.CerrarConexion();
-
-                    dtEnc.Rows[0]["ERRORES"] = true;
-                    dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
-                    dtEnc.Rows[0]["VALOR"] = "";
-                }
-
-                dsResultado = new DataSet();
-                dsResultado.Tables.Add(dtEnc.Copy());
-
-                return dsResultado;
+                sqlTransaction.Commit();
+                conectar.CerrarConexion();
             }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                conectar.CerrarConexion();
+
+                dtEnc.Rows[0]["ERRORES"] = true;
+                dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
+                dtEnc.Rows[0]["VALOR"] = "";
+            }
+
+            dsResultado = new DataSet();            
+            dsResultado.Tables.Add(dtEnc.Copy());
+
             return dsResultado;
         }
 
@@ -687,26 +670,5 @@ namespace CapaAD
            
            return campoMySQL;
        }
-
-        public bool validarPermiso(string Usuario)
-        {
-            conectar = new ConexionBD();
-            conectar.AbrirConexion();
-            string permiso = string.Format("SELECT id_cargo_usuario from sipa_cargo_usuario where id_usuario="
-                 + "(select id_usuario from ccl_usuarios where Usuario = '{0}')  AND id_tipo_usuario=50;", Usuario);
-            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            if (dr.HasRows)
-            {
-                conectar.CerrarConexion();
-                return true;
-            }
-            else
-            {
-                conectar.CerrarConexion();
-                return false;
-            }
-        }
     }
 }

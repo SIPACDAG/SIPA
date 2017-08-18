@@ -57,13 +57,13 @@ namespace CapaAD
            return tabla;
        }
 
-       public DataTable Insertar(EjesEN ObjEN, string usuario)
-       {
+        public DataTable Insertar(EjesEN ObjEN, string usuario)
+        {
             DataTable tabla = new DataTable();
             if (!validarPermiso(usuario))
             {
                 conectar = new ConexionBD();
-                
+
                 string query = string.Format("CALL insertar_eje({0}, '{1}', {2});", ObjEN.Codigo_Eje, ObjEN.Eje_Estrategico, ObjEN.Id_Plan);
                 conectar.AbrirConexion();
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
@@ -73,9 +73,9 @@ namespace CapaAD
             }
             return tabla;
 
-       }
+        }
 
-       public DataTable Existe(EjesEN ObjEN)
+        public DataTable Existe(EjesEN ObjEN)
        {
            conectar = new ConexionBD();
            DataTable tabla = new DataTable();
@@ -99,13 +99,13 @@ namespace CapaAD
            return tabla;
        }
 
-       public DataTable Actualizar(EjesEN ObjEN, string usuario)
-       {
+        public DataTable Actualizar(EjesEN ObjEN, string usuario)
+        {
             DataTable tabla = new DataTable();
             if (!validarPermiso(usuario))
             {
                 conectar = new ConexionBD();
-                
+
                 string query = String.Format("CALL actualizar_eje({0}, {1}, '{2}', {3});", ObjEN.Id_Eje_Estrategico, ObjEN.Codigo_Eje, ObjEN.Eje_Estrategico, ObjEN.Id_Plan);
                 conectar.AbrirConexion();
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
@@ -114,15 +114,15 @@ namespace CapaAD
                 return tabla;
             }
             return tabla;
-       }
+        }
 
-       public DataTable Eliminar(EjesEN ObjEN,string usuario)
-       {
+        public DataTable Eliminar(EjesEN ObjEN string usuario)
+        {
             DataTable tabla = new DataTable();
             if (!validarPermiso(usuario))
             {
                 conectar = new ConexionBD();
-               
+
                 string query = String.Format("CALL eliminar_eje({0});", ObjEN.Id_Eje_Estrategico);
                 conectar.AbrirConexion();
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
@@ -131,7 +131,7 @@ namespace CapaAD
                 return tabla;
             }
             return tabla;
-       }
+        }
 
         public bool validarPermiso(string Usuario)
         {
