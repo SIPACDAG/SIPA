@@ -280,9 +280,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 obtenerPresupuesto(idPoa, 0);
                 pAccionLN = new PlanAccionLN();
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-                if (ddlJefaturaUnidad.Items.Count > 0)
-                    ddlJefaturaUnidad.SelectedIndex = 0;
-                pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 ddlAcciones.Items[0].Text = "<< TODAS >>";
 
                 busqueda(sender, e);
@@ -334,53 +331,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
             catch (Exception ex)
             {
                 throw new Exception("obtenerPresupuesto(). " + ex.Message);
-            }
-        }
-
-        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-
-                int idPoa = 0;
-                int.TryParse(lblIdPoa.Text, out idPoa);
-
-                obtenerPresupuesto(idPoa, 0);
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-               
-                pOperativoLN.DdlDependencias(ddlJefaturaUnidad, ddlDependencia.SelectedValue);
-                ddlAcciones.Items[0].Text = "<< TODAS >>";
-
-                busqueda(sender, e);
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ddlAnios(). " + ex.Message;
-            }
-        }
-
-        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                validarPoa(int.Parse(ddlJefaturaUnidad.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-
-                int idPoa = 0;
-                int.TryParse(lblIdPoa.Text, out idPoa);
-
-                obtenerPresupuesto(idPoa, 0);
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-                
-                ddlAcciones.Items[0].Text = "<< TODAS >>";
-
-                busqueda(sender, e);
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ddlAnios(). " + ex.Message;
             }
         }
     }

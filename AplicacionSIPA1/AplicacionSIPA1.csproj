@@ -120,7 +120,6 @@
     <Content Include="Operativa\AdminPlanOperativo.aspx" />
     <Content Include="Operativa\Modificaciones\GESFOR2Listado.aspx" />
     <Content Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx" />
-    <Content Include="Operativa\Seguimiento\No1Seguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\VoBoN3.aspx" />
     <Content Include="Operativa\Seguimiento\VoBoN2.aspx" />
     <Content Include="Operativa\Seguimiento\VoBoN1.aspx" />
@@ -653,13 +652,6 @@
     </Compile>
     <Compile Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx.designer.cs">
       <DependentUpon>CalendarioSeguimiento.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.cs">
-      <DependentUpon>No1Seguimiento.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.designer.cs">
-      <DependentUpon>No1Seguimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Operativa\Seguimiento\VoBoN3.aspx.cs">
       <DependentUpon>VoBoN3.aspx</DependentUpon>
