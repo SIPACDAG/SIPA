@@ -113,8 +113,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ID_PEDIDO_DETALLE" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="1" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ID_PEDIDO_DETALLE" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="1" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="id" HeaderText="ID" Visible="False">
@@ -190,8 +189,8 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="text-align: center;" colspan="16">
-                        <asp:Button ID="btnAprobar" runat="server" class="btn btn-success" OnClick="btnAprobar_Click" Text="Aprobar" Width="300px" />
-                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Rechazar" Width="300px" />
+                        <asp:Button ID="btnAprobar" runat="server" class="btn btn-primary" OnClick="btnAprobar_Click" Text="Aprobar" Width="300px" />
+                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-default" OnClick="btnRechazar_Click" Text="Rechazar" Width="300px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

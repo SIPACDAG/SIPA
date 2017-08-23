@@ -166,14 +166,14 @@ namespace CapaLN
             }
         }
 
-        public DataSet AlmacenarViaticos(ViaticosEN pViaticosEN, DataTable dtDetalles, string usuario)
+        public DataSet AlmacenarViaticos(ViaticosEN pViaticosEN, DataTable dtDetalles, string usuario,string ip,string mac,string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataSet ds = ObjAD.AlmacenarViaticos(pViaticosEN, dtDetalles);
+                DataSet ds = ObjAD.AlmacenarViaticos(pViaticosEN, dtDetalles,ip,mac,pc);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -189,14 +189,14 @@ namespace CapaLN
         }
 
         //ENVIAR EL PEDIDO A EXISTENCIAS EN BODEGA(BIENES) O APROBACIÓN DE SUB/DIR(SERVICIO)
-        public DataSet EnviarViaticoARevision(int idPedido, int idTipoViatico, string usuario)
+        public DataSet EnviarViaticoARevision(int idPedido, int idTipoViatico, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.EnviarViaticoARevision(idPedido, idTipoViatico, usuario);
+                DataTable dt = ObjAD.EnviarViaticoARevision(idPedido, idTipoViatico, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -214,14 +214,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AprobacionJefeDirector(int idPedido, string observaciones, string usuario)
+        public DataSet AprobacionJefeDirector(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionJefeDirector(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.AprobacionJefeDirector(idPedido, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -240,14 +240,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet RechazoJefeDirector(int idPedido, string observaciones, string usuario)
+        public DataSet RechazoJefeDirector(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoJefeDirector(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.RechazoJefeDirector(idPedido, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -266,14 +266,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AprobacionSubgerente(int idSalida, string observaciones, string usuario)
+        public DataSet AprobacionSubgerente(int idSalida, string observaciones, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionSubgerente(idSalida, observaciones, usuario);
+                DataTable dt = ObjAD.AprobacionSubgerente(idSalida, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -292,14 +292,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet RechazoSubgerente(int idPedido, string observaciones, string usuario)
+        public DataSet RechazoSubgerente(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoSubgerente(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.RechazoSubgerente(idPedido, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -318,14 +318,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AprobacionFinanciera(int idSalida, string observaciones, string usuario, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal pasajes, decimal kilometraje)
+        public DataSet AprobacionFinanciera(int idSalida, string observaciones, string usuario, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal pasajes, decimal kilometraje, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionFinanciera(idSalida, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje);
+                DataTable dt = ObjAD.AprobacionFinanciera(idSalida, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -344,14 +344,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet RechazoFinanciera(int idPedido, string observaciones, string usuario)
+        public DataSet RechazoFinanciera(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoFinanciera(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.RechazoFinanciera(idPedido, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -370,14 +370,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet Liquidar(int idSalida, string observaciones, string usuario, decimal costoReal, decimal pasajes, decimal kilometraje)
+        public DataSet Liquidar(int idSalida, string observaciones, string usuario, decimal costoReal, decimal pasajes, decimal kilometraje, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.Liquidar(idSalida, observaciones, usuario, costoReal, pasajes, kilometraje);
+                DataTable dt = ObjAD.Liquidar(idSalida, observaciones, usuario, costoReal, pasajes, kilometraje,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -396,14 +396,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet RechazoMesaEntrada(int idPedido, string observaciones, string usuario)
+        public DataSet RechazoMesaEntrada(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoMesaEntrada(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.RechazoFinanciera(idPedido, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -422,14 +422,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet Anular(int idPedido, string observaciones, string usuario)
+        public DataSet Anular(int idPedido, string observaciones, string usuario,string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.Anular(idPedido, observaciones, usuario);
+                DataTable dt = ObjAD.Anular(idPedido, observaciones, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -448,13 +448,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet EliminarEncabezado(int id)
+        public DataSet EliminarEncabezado(int id, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.EliminarEncabezado(id);
+                DataTable dt = ObjAD.EliminarEncabezado(id,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());

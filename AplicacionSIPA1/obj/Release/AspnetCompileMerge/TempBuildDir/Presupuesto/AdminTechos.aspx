@@ -279,9 +279,9 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="text-align: center;" colspan="16">
-                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" OnClientClick="javascript:if(!confirm('¿Desea almacenar esta información?'))return false" />
-                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                                <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info"  Text="Ver Listado" Width="120px" OnClick="btnListado_Click" />
+                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" OnClientClick="javascript:if(!confirm('¿Desea almacenar esta información?'))return false" />
+                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                                <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-primary" PostBackUrl="~/Presupuesto/ListadoModTechos.aspx" Text="Ver Listado" Width="120px" />
                             </td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>

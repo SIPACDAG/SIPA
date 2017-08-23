@@ -167,10 +167,8 @@ namespace AplicacionSIPA1.Operativa
             bool resultado = false;
             try
             {
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
                 planOperativoLN = new PlanOperativoLN();
-                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuarioIng, "",ip[0],ip[1],ip[2],"ASIGNACION ANALISTA", " AplicacionSIPA1.Operativa.AsignarAnalista.btnGuardar()");
+                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuarioIng, "");
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -242,11 +240,8 @@ namespace AplicacionSIPA1.Operativa
                             int idPoa = int.Parse(gridPlanes.DataKeys[row.RowIndex].Value.ToString());
                             int anio = int.Parse(gridPlanes.DataKeys[row.RowIndex].Values[1].ToString());
                             int idUnidad = int.Parse(gridPlanes.DataKeys[row.RowIndex].Values[2].ToString());
-                            EnvioDeCorreos objEC = new EnvioDeCorreos();
-                            
 
                             cambiarEstado(idPoa, 4, anio, idUsuario.ToString(), usuarioAsignado, Session["usuario"].ToString(), "ASIGNADO");
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(idUsuario), " Nuevo CMI Enviado", " Nuevo CMI numero " + idPoa + ", " + lblSuccess.Text, Session["usuario"].ToString());
                             filtrarGridPlanes();
                             filtrarGridAsignados();
                         }

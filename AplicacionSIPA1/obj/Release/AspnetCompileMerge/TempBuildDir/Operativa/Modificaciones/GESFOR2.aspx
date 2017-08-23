@@ -770,11 +770,11 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center;">
-                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" Width="120px" />
-                                <asp:Button ID="btnEnviar" runat="server" class="btn btn-primary" Text="Enviar" Width="120px" />
-                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                                <asp:Button ID="btnListado" runat="server" class="btn btn-info" Text="Listado" Width="120px" PostBackUrl="~/Operativa/Modificaciones/GESFOR2Listado.aspx" />
-                                <asp:Button ID="btnImprimir" runat="server" CausesValidation="False" class="btn btn-default" OnClick="btnImprimir_Click" Text="Imprimir" Width="120px" />
+                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" Width="120px" />
+                                <asp:Button ID="btnEnviar" runat="server" class="btn btn-default" Text="Enviar" Width="120px" />
+                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-primary" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                                <asp:Button ID="btnListado" runat="server" class="btn btn-default" Text="Listado" Width="120px" PostBackUrl="~/Operativa/Modificaciones/GESFOR2Listado.aspx" />
+                                <asp:Button ID="btnImprimir" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnImprimir_Click" Text="Imprimir" Width="120px" />
                             </td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
@@ -966,7 +966,7 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="2" style="text-align: right">
+                            <td colspan="2">
                                 <asp:Label ID="lblPlanE" runat="server" Text="Plan Estratégico:"></asp:Label>
                             </td>
                             <td colspan="8">
@@ -982,10 +982,10 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="4" style="text-align: right">Año:<asp:Label ID="lblEAnio" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                            <td colspan="4">Año:<asp:Label ID="lblEAnio" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                             </td>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="5" style="text-align: right">Unidad:</td>
+                            <td colspan="5">Unidad:</td>
                             <td style="width: 4%">&nbsp;</td>
                             <td style="width: 4%">&nbsp;</td>
                             <td style="width: 4%">&nbsp;</td>
@@ -1012,7 +1012,7 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td class="text-center" colspan="15" style="text-align: right">
+                            <td class="text-center" colspan="15">
                                 <strong>
                                 <asp:Label ID="lblEncabezado" runat="server" Font-Bold="True" Font-Size="Medium" style="text-align: center"></asp:Label>
                                 </strong></td>
@@ -1020,9 +1020,9 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="5" style="text-align: right">Objetivos Operativos:<span class="auto-style25" style="font-size: small"><asp:Label ID="lblEObjetivo" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                            <td colspan="5">Objetivos Operativos:<span class="auto-style25" style="font-size: small"><asp:Label ID="lblEObjetivo" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                                 </span></td>
-                            <td colspan="5" style="text-align: right">Indicadores:<span class="auto-style25" style="font-size: small"><asp:Label ID="lblEIndicador" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                            <td colspan="5">Indicadores:<span class="auto-style25" style="font-size: small"><asp:Label ID="lblEIndicador" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                                 </span></td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -1050,7 +1050,7 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="2" style="text-align: right">
+                            <td colspan="2">
                                 <asp:Label ID="lblEPlan" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                             </td>
                             <td>&nbsp;</td>
@@ -1067,7 +1067,7 @@
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
                             <td colspan="16">
-                                <asp:GridView ID="gridPlanO" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="5" Width="95%" OnPageIndexChanging="gridPlanO_PageIndexChanging" OnSelectedIndexChanged="gridPlanO_SelectedIndexChanged" style="margin-left: 70px" CssClass="table table-hover table-responsive">
+                                <asp:GridView ID="gridPlanO" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="5" Width="95%" OnPageIndexChanging="gridPlanO_PageIndexChanging" OnSelectedIndexChanged="gridPlanO_SelectedIndexChanged">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
                                         <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="True">
@@ -1136,7 +1136,7 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="4" style="text-align: right">Acciones:</td>
+                            <td colspan="4">Acciones:</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -1155,7 +1155,7 @@
                             <td colspan="8">
                                 &nbsp;</td>
                             <td><span>
-                                <asp:Button ID="btnEliminarAccion" runat="server" CausesValidation="False" class="btn btn-danger" ForeColor="White" OnClick="btnEliminarAccion_Click" Text="-" Width="79%" Height="30px" />
+                                <asp:Button ID="btnEliminarAccion" runat="server" CausesValidation="False" class="btn btn-default" ForeColor="White" OnClick="btnEliminarAccion_Click" Text="-" Width="100%" />
                                 </span></td>
                             <td colspan="6">
                                 <asp:DropDownList ID="ddlMetas" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlMetas_SelectedIndexChanged" Width="100%">
@@ -1165,7 +1165,7 @@
                         </tr>
                         <tr>
                             <td style="width: 4%">&nbsp;</td>
-                            <td colspan="4" style="text-align: right">Dependencia:<asp:Label ID="lblEDependencia" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                            <td colspan="4">Dependencia:<asp:Label ID="lblEDependencia" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                             </td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -1249,7 +1249,7 @@
                         </tr>
                         <tr>
                             <td style="width: 4%; height: 19px;"></td>
-                            <td style="height: 19px; text-align: right;" colspan="2">
+                            <td style="height: 19px;" colspan="2">
                                 <asp:RangeValidator ID="rvCodigo" runat="server" ControlToValidate="txtCodigo" ErrorMessage="Entre 1 - 99" Font-Bold="True" ForeColor="Red" MaximumValue="99" MinimumValue="1" Type="Integer" ValidationGroup="grpDatos"></asp:RangeValidator>
                             </td>
                             <td style="height: 19px;">

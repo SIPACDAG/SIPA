@@ -88,10 +88,8 @@ namespace AplicacionSIPA1.Viaticos
                 ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
-                
-                //uUsuariosLN.dropUnidad(ddlUnidades);
-                pOperativoLN = new PlanOperativoLN();
-                pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
+
+                uUsuariosLN.dropUnidad(ddlUnidades);
 
                 if (ddlUnidades.Items.Count == 1)
                 {
@@ -554,11 +552,12 @@ namespace AplicacionSIPA1.Viaticos
                 if (errores.Equals("") == false)
                     throw new Exception(errores);
 
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 pViaticosLN = new ViaticosLN();
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                //DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje);
-                DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, "null", "null", "null", "null", "null", idDetalleAccion, pasajes, kilometraje);
+                DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje,ip[0],ip[1],ip[2]);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -605,8 +604,10 @@ namespace AplicacionSIPA1.Viaticos
                 {
                     pViaticosLN = new ViaticosLN();
                     string usuario = Session["usuario"].ToString();
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pViaticosLN.RechazoFinanciera(idPedido, observaciones, usuario);
+                    DataSet dsResultado = pViaticosLN.RechazoFinanciera(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

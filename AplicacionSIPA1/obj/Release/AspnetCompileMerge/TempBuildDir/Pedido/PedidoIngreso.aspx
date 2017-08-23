@@ -3,8 +3,6 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-    <p>
-        d</p>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -265,7 +263,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td><strong>
-                        <asp:Label ID="lblNoDet" runat="server" ForeColor="White"></asp:Label>
+                        <asp:Label ID="lblNoDet" runat="server" Visible="False"></asp:Label>
                         </strong></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -342,10 +340,9 @@
                         <asp:TextBox ID="txtCosto" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="12" Style="text-align: right" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="6">
-                        <asp:LinkButton ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="113px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" Text="Ver Listado" Width="120px"  />
-                       
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnListado_Click" Text="Ver Listado" Width="120px" PostBackUrl="~/Pedido/PedidoListado.aspx" />
                     </td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -367,19 +364,6 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td colspan="16" style="text-align: center">
-                        <asp:UpdateProgress ID="UpdateProgress1" runat="server">
-                            <ProgressTemplate>
-                                <img alt="Cargando" class="auto-style20" longdesc="Imagen de Cargando" src="../img/cargar.gif" />
-                            </ProgressTemplate>
-                        </asp:UpdateProgress>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                     <td colspan="16" style="text-align: center"><span>
                         <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
@@ -391,8 +375,8 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnEnviar" runat="server" class="btn btn-info" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" OnClientClick="javascript:if(!confirm('¿Desea ENVIAR este registro?'))return false" />
-                        <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
+                        <asp:Button ID="btnEnviar" runat="server" class="btn btn-primary" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" />
+                        <asp:Button ID="btnAnular" runat="server" class="btn btn-default" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -401,6 +385,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center"><span>
+                        <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red">IMPORTANTE! A partir de la fecha, si la requisición/vale se encuentra en estado 7 - Rechazado por presupuesto, al hacer clic en Enviar, enviará la requisición/vale a estado 6 - Revisión de Ppto, con el fin de agilizar el proceso de compra. </p><p></p> Si la requisición/vale se encuentra en estado 9 - Rechazado Mesa Entrada, al hacer clic en Enviar, enviará la requisición/vale a estado 8 - Imprimir, con el objetivo de agilizar el proceso de compra.</p></asp:Label>
                         </span></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -409,16 +394,16 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NUMERO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" OnRowDeleting="gridDet_RowDeleting" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" Font-Size="XX-Small" CssClass="table table-responsive table-hover">
+                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NUMERO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" OnRowDeleting="gridDet_RowDeleting" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" Font-Size="XX-Small">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
                                             <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:CommandField>
+                                            </asp:CommandField>
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" CommandName="Delete" ImageUrl="~/img/24_bits/delete.png" onclientclick="javascript:if(!confirm('¿Desea Eliminar Este Registro y su especificación técnica?'))return false" Text="Eliminar" />
+                                        <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" CommandName="Delete" ImageUrl="~/img/24_bits/delete.png" onclientclick="javascript:if(!confirm('¿Desea Eliminar Este Registro?'))return false" Text="Eliminar" />
                                     </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -534,7 +519,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

@@ -11,7 +11,7 @@
                 <ContentTemplate>
             <table style="width:100%;">
                 <tr>
-                    <td style="width: 8%">
+                    <td style="width: 5%">
                         <asp:Label ID="lblPlanE" runat="server" Text="*"></asp:Label>
                     </td>
                     <td style="width: 5%"><strong>
@@ -27,7 +27,7 @@
                         </strong></td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">
+                    <td>
                         &nbsp;</td>
                     <td colspan="18" style="text-align: center;"><strong>
                         <asp:Label ID="lblErrorPoa" runat="server" ForeColor="Red" style="font-size: medium"></asp:Label>
@@ -35,7 +35,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">
+                    <td>
                         &nbsp;</td>
                     <td colspan="9">
                         <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%" Visible="False">
@@ -49,7 +49,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -71,7 +71,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td colspan="5">Tipos de documento:</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -86,7 +86,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td colspan="9">
                         <asp:RadioButtonList ID="rblTipoDocto" runat="server" RepeatDirection="Horizontal" Width="95%" AutoPostBack="True" OnSelectedIndexChanged="rblTipoDocto_SelectedIndexChanged">
                             <asp:ListItem Selected="True" Value="1">Requisiciones</asp:ListItem>
@@ -103,12 +103,12 @@
                         </asp:DropDownList>
                     </td>
                     <td colspan="3">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -130,7 +130,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -152,10 +152,9 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="Id" Visible="false">
@@ -218,7 +217,7 @@
                 </tr>
 
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td colspan="10">
                         <asp:CheckBox ID="chkProveedores" runat="server" Text="Mostrar proveedores del cuadro de comparación" />
                     </td>
@@ -233,7 +232,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -255,10 +254,9 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td colspan="18" style="text-align: center">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -431,7 +429,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -446,16 +444,16 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                        <asp:Button ID="btnCalcular" runat="server" BackColor="#00cc99" class="btn" OnClick="btnCalcular_Click" Text="Calcular" Width="300px" style="color: #FFFFFF" />
+                        <asp:Button ID="btnCalcular" runat="server" class="btn btn-primary" OnClick="btnCalcular_Click" Text="Calcular" Width="300px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">Observaciones (en caso de anular el pedido):<strong><asp:Label ID="lblErrorObser" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
@@ -463,7 +461,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
                         <asp:TextBox ID="txtObser" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Height="75px" MaxLength="750" placeholder="Ingrese las observaciones del pedido en caso de rechazo" TextMode="MultiLine" Width="100%"></asp:TextBox>
@@ -472,7 +470,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -494,7 +492,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="8">
                         <asp:CheckBox ID="chkConstantes" runat="server" Text="Asignar todo el pedido con los siguiente datos:" AutoPostBack="True" OnCheckedChanged="chkConstantes_CheckedChanged" />
@@ -511,7 +509,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -533,7 +531,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="8">Proveedor:</td>
                     <td colspan="2">No. Orden</td>
@@ -543,7 +541,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="8">
                         <asp:DropDownList ID="ddlProveedoresC" runat="server" AutoPostBack="True" class="form-control" Width="100%">
@@ -565,7 +563,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="8"><strong>
                         <asp:Label ID="lblErrorProveedorC" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
@@ -583,7 +581,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;"><span>
                         <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
@@ -593,17 +591,17 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                        <asp:Button ID="btnAprobar" runat="server" class="btn btn-success" OnClick="btnAprobar_Click" Text="Guardar Montos" Width="300px" />
-                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Anular Pedido" Width="300px" />
+                        <asp:Button ID="btnAprobar" runat="server" class="btn btn-primary" OnClick="btnAprobar_Click" Text="Guardar Montos" Width="300px" />
+                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-default" OnClick="btnRechazar_Click" Text="Anular Pedido" Width="300px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -626,10 +624,9 @@
                 </tr>
 
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" Visible="False"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" Visible="False">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -694,7 +691,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -716,7 +713,7 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

@@ -47,3 +47,13 @@ C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\bin\Release\CapaEN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Release\CapaLN.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Release\CapaLN.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\CapaLN\obj\Release\CapaLN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\CapaLN.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\CapaLN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\CapaAD.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\CapaEN.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\MySql.Data.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\CapaAD.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\CapaEN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\obj\Release\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\obj\Release\CapaLN.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\obj\Release\CapaLN.pdb

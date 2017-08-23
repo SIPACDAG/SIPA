@@ -15,15 +15,11 @@
     <AssemblyName>AplicacionSIPA1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44360</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,17 +39,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>D:\CDAG_SIPA\INSTALADORES CDAGSIPA\Crystal 13\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\Crystal 13\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>D:\CDAG_SIPA\INSTALADORES CDAGSIPA\Crystal 13\CrystalDecisions.ReportSource.dll</HintPath>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\Crystal 13\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>D:\CDAG_SIPA\INSTALADORES CDAGSIPA\Crystal 13\CrystalDecisions.Shared.dll</HintPath>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\Crystal 13\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Web">
-      <HintPath>D:\CDAG_SIPA\INSTALADORES CDAGSIPA\Crystal 13\CrystalDecisions.Web.dll</HintPath>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\Crystal 13\CrystalDecisions.Web.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,12 +64,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.DLL</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,30 +111,30 @@
     <Content Include="Financiero\CostoRealTransferencia.aspx" />
     <Content Include="Financiero\CostoRealViatico.aspx" />
     <Content Include="Financiero\MesaEntradaFinanciero.aspx" />
+    <Content Include="img\cargar.gif" />
     <Content Include="img\logoBcoGuate.jpg" />
     <Content Include="Operativa\AdminAccionesPoaPpto.aspx" />
     <Content Include="Operativa\AdminPlanOperativo.aspx" />
     <Content Include="Operativa\Modificaciones\GESFOR2Listado.aspx" />
     <Content Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx" />
-    <Content Include="Operativa\Seguimiento\VoBoN3.aspx" />
-    <Content Include="Operativa\Seguimiento\VoBoN2.aspx" />
-    <Content Include="Operativa\Seguimiento\VoBoN1.aspx" />
     <Content Include="Operativa\Seguimiento\NoSeguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\SeguimientoIngreso.aspx" />
+    <Content Include="Operativa\Seguimiento\VoBoN1.aspx" />
+    <Content Include="Operativa\Seguimiento\VoBoN2.aspx" />
+    <Content Include="Operativa\Seguimiento\VoBoN3.aspx" />
+    <Content Include="Operativa\VerListadoMods.aspx" />
     <Content Include="Pac\AdminPac.aspx" />
-    <Content Include="Pac\NuPlan.aspx" />
+    <Content Include="Pac\NoPlan.aspx" />
     <Content Include="Pedido\Ajustes\AjusteIngreso.aspx" />
-    <Content Include="Pedido\Ajustes\VoBoN2.aspx" />
-    <Content Include="Pedido\Ajustes\VoBoN1.aspx" />
     <Content Include="Pedido\Ajustes\NoAjuste.aspx" />
+    <Content Include="Pedido\Ajustes\VoBoN1.aspx" />
+    <Content Include="Pedido\Ajustes\VoBoN2.aspx" />
     <Content Include="Pedido\PedidoAnulacion.aspx" />
     <Content Include="Pedido\PedidoGuardado.aspx" />
     <Content Include="Presupuesto\AdminTechos.aspx" />
     <Content Include="Presupuesto\ListadoModTechos.aspx" />
-    <Content Include="ReporteriaSistema\HistorialEstados.aspx" />
-    <Content Include="ReporteriaSistema\PruebaReporte.aspx" />
-    <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
+    <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
     <Content Include="ReporteriaSistema\SalidasBusqueda.aspx" />
     <Content Include="Reportes\frmReporte.aspx" />
     <Content Include="Service References\WsTipoCambio\AplicacionSIPA1.WsTipoCambio.DataVariable.datasource">
@@ -328,6 +324,7 @@
     <Content Include="img\24_bits\zoom_out.png" />
     <Content Include="img\btnNuevo.png" />
     <Content Include="img\btnSave.png" />
+    <Content Include="img\cargarCOG.gif" />
     <Content Include="img\close.png" />
     <Content Include="img\edit.png" />
     <Content Include="img\EnvioSolicitud.png" />
@@ -345,7 +342,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Pac\PacVoBo2.aspx" />
     <Content Include="Pac\IngresarPac.aspx" />
-    <Content Include="Pac\NoPlan.aspx" />
+    <Content Include="Pac\NoPlan0.aspx" />
     <Content Include="Pac\PacVoBo1.aspx" />
     <Content Include="PedidoInsumos\PedidoIngreso.aspx" />
     <Content Include="Pedido\EspecificacionesIngreso.aspx" />
@@ -386,32 +383,8 @@
     </Content>
     <Content Include="bin\AplicacionCOG.dll.config" />
     <Content Include="bin\AplicacionSIPA1.dll.config" />
-    <Content Include="dbcdagsipaDataSet.xsc">
-      <DependentUpon>dbcdagsipaDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="dbcdagsipaDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dbcdagsipaDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="dbcdagsipaDataSet.xss">
-      <DependentUpon>dbcdagsipaDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="dbcdagsipaDataSet1.xsc">
-      <DependentUpon>dbcdagsipaDataSet1.xsd</DependentUpon>
-    </Content>
-    <None Include="dbcdagsipaDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dbcdagsipaDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="dbcdagsipaDataSet1.xss">
-      <DependentUpon>dbcdagsipaDataSet1.xsd</DependentUpon>
-    </Content>
-    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\pub.pubxml" />
     <None Include="Properties\PublishProfiles\pubsipa.pubxml" />
-    <EmbeddedResource Include="ReporteriaSistema\Report1.rdlc" />
     <EmbeddedResource Include="Reportes\crccVale.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crccVale.cs</LastGenOutput>
@@ -520,16 +493,6 @@
     </Compile>
     <Compile Include="Compras\ETVoBoN1.aspx.designer.cs">
       <DependentUpon>ETVoBoN1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="dbcdagsipaDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbcdagsipaDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="dbcdagsipaDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbcdagsipaDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="EnvioDeCorreos.cs" />
     <Compile Include="FuncionesVarias.cs" />
@@ -653,27 +616,6 @@
     <Compile Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx.designer.cs">
       <DependentUpon>CalendarioSeguimiento.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Operativa\Seguimiento\VoBoN3.aspx.cs">
-      <DependentUpon>VoBoN3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\VoBoN3.aspx.designer.cs">
-      <DependentUpon>VoBoN3.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\VoBoN2.aspx.cs">
-      <DependentUpon>VoBoN2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\VoBoN2.aspx.designer.cs">
-      <DependentUpon>VoBoN2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\VoBoN1.aspx.cs">
-      <DependentUpon>VoBoN1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\VoBoN1.aspx.designer.cs">
-      <DependentUpon>VoBoN1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.cs">
       <DependentUpon>NoSeguimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -688,6 +630,34 @@
     <Compile Include="Operativa\Seguimiento\SeguimientoIngreso.aspx.designer.cs">
       <DependentUpon>SeguimientoIngreso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Operativa\Seguimiento\VoBoN1.aspx.cs">
+      <DependentUpon>VoBoN1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\VoBoN1.aspx.designer.cs">
+      <DependentUpon>VoBoN1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\VoBoN2.aspx.cs">
+      <DependentUpon>VoBoN2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\VoBoN2.aspx.designer.cs">
+      <DependentUpon>VoBoN2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\VoBoN3.aspx.cs">
+      <DependentUpon>VoBoN3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\VoBoN3.aspx.designer.cs">
+      <DependentUpon>VoBoN3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operativa\VerListadoMods.aspx.cs">
+      <DependentUpon>VerListadoMods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\VerListadoMods.aspx.designer.cs">
+      <DependentUpon>VerListadoMods.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pac\AdminPac.aspx.cs">
       <DependentUpon>AdminPac.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -695,12 +665,12 @@
     <Compile Include="Pac\AdminPac.aspx.designer.cs">
       <DependentUpon>AdminPac.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pac\NuPlan.aspx.cs">
-      <DependentUpon>NuPlan.aspx</DependentUpon>
+    <Compile Include="Pac\NoPlan.aspx.cs">
+      <DependentUpon>NoPlan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pac\NuPlan.aspx.designer.cs">
-      <DependentUpon>NuPlan.aspx</DependentUpon>
+    <Compile Include="Pac\NoPlan.aspx.designer.cs">
+      <DependentUpon>NoPlan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido\Ajustes\AjusteIngreso.aspx.cs">
       <DependentUpon>AjusteIngreso.aspx</DependentUpon>
@@ -709,12 +679,12 @@
     <Compile Include="Pedido\Ajustes\AjusteIngreso.aspx.designer.cs">
       <DependentUpon>AjusteIngreso.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pedido\Ajustes\VoBoN2.aspx.cs">
-      <DependentUpon>VoBoN2.aspx</DependentUpon>
+    <Compile Include="Pedido\Ajustes\NoAjuste.aspx.cs">
+      <DependentUpon>NoAjuste.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pedido\Ajustes\VoBoN2.aspx.designer.cs">
-      <DependentUpon>VoBoN2.aspx</DependentUpon>
+    <Compile Include="Pedido\Ajustes\NoAjuste.aspx.designer.cs">
+      <DependentUpon>NoAjuste.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido\Ajustes\VoBoN1.aspx.cs">
       <DependentUpon>VoBoN1.aspx</DependentUpon>
@@ -723,12 +693,12 @@
     <Compile Include="Pedido\Ajustes\VoBoN1.aspx.designer.cs">
       <DependentUpon>VoBoN1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pedido\Ajustes\NoAjuste.aspx.cs">
-      <DependentUpon>NoAjuste.aspx</DependentUpon>
+    <Compile Include="Pedido\Ajustes\VoBoN2.aspx.cs">
+      <DependentUpon>VoBoN2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pedido\Ajustes\NoAjuste.aspx.designer.cs">
-      <DependentUpon>NoAjuste.aspx</DependentUpon>
+    <Compile Include="Pedido\Ajustes\VoBoN2.aspx.designer.cs">
+      <DependentUpon>VoBoN2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido\PedidoAnulacion.aspx.cs">
       <DependentUpon>PedidoAnulacion.aspx</DependentUpon>
@@ -758,19 +728,12 @@
     <Compile Include="Presupuesto\ListadoModTechos.aspx.designer.cs">
       <DependentUpon>ListadoModTechos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReporteriaSistema\HistorialEstados.aspx.cs">
-      <DependentUpon>HistorialEstados.aspx</DependentUpon>
+    <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.cs">
+      <DependentUpon>SaldosRenglones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReporteriaSistema\HistorialEstados.aspx.designer.cs">
-      <DependentUpon>HistorialEstados.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteriaSistema\PruebaReporte.aspx.cs">
-      <DependentUpon>PruebaReporte.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteriaSistema\PruebaReporte.aspx.designer.cs">
-      <DependentUpon>PruebaReporte.aspx</DependentUpon>
+    <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.designer.cs">
+      <DependentUpon>SaldosRenglones.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx.cs">
       <DependentUpon>SaldosRenglonesDetalles.aspx</DependentUpon>
@@ -778,13 +741,6 @@
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx.designer.cs">
       <DependentUpon>SaldosRenglonesDetalles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.cs">
-      <DependentUpon>SaldosRenglones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.designer.cs">
-      <DependentUpon>SaldosRenglones.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\SalidasBusqueda.aspx.cs">
       <DependentUpon>SalidasBusqueda.aspx</DependentUpon>
@@ -826,11 +782,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="sipadataset.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>sipadataset.xsd</DependentUpon>
     </Compile>
     <Compile Include="Viaticos\ViaticosLiquidacion.aspx.cs">
       <DependentUpon>ViaticosLiquidacion.aspx</DependentUpon>
@@ -1001,12 +952,12 @@
     <Compile Include="Pac\IngresarPac.aspx.designer.cs">
       <DependentUpon>IngresarPac.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pac\NoPlan.aspx.cs">
-      <DependentUpon>NoPlan.aspx</DependentUpon>
+    <Compile Include="Pac\NoPlan0.aspx.cs">
+      <DependentUpon>NoPlan0.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pac\NoPlan.aspx.designer.cs">
-      <DependentUpon>NoPlan.aspx</DependentUpon>
+    <Compile Include="Pac\NoPlan0.aspx.designer.cs">
+      <DependentUpon>NoPlan0.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pac\PacVoBo1.aspx.cs">
       <DependentUpon>PacVoBo1.aspx</DependentUpon>
@@ -1312,17 +1263,6 @@
     <Content Include="fonts\iconic\iconic_stroke.ttf" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Service References\WsTipoCambio\TipoCambio.wsdl" />
-    <Content Include="sipadataset.xsc">
-      <DependentUpon>sipadataset.xsd</DependentUpon>
-    </Content>
-    <None Include="sipadataset.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>sipadataset.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="sipadataset.xss">
-      <DependentUpon>sipadataset.xsd</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1369,7 +1309,9 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Operativa\Seguimiento\ArchivoPDF\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

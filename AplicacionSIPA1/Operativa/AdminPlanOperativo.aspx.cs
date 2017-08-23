@@ -496,9 +496,8 @@ namespace AplicacionSIPA1.Operativa
                     txtObjetivo.Text = objetivosEN.Nombre;
                     objetivosEN.Anio = int.Parse(ddlAnios.SelectedValue);
                     objetivosEN.Usuario = Session["usuario"].ToString();
-                    FuncionesVarias fv = new FuncionesVarias();
-                    string[] ip = fv.DatosUsuarios();
-                    dsResultado = planOperativoLN.AlmacenarObjetivo(objetivosEN,Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
+
+                    dsResultado = planOperativoLN.AlmacenarObjetivo(objetivosEN,Session["usuario"].ToString());
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ el objetivo: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

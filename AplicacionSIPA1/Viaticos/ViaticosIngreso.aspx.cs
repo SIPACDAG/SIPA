@@ -18,7 +18,7 @@ namespace AplicacionSIPA1.Viaticos
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+       
         private ViaticosLN pViaticosLN;
         private ViaticosEN pViaticosEN;
 
@@ -639,7 +639,7 @@ namespace AplicacionSIPA1.Viaticos
                 limpiarControlesError();
                 NuevoEnc();
                 NuevoDet();
-
+                pOperativoLN = new PlanOperativoLN();
                 int anio = 0;
                 int idUnidad = 0;
 
@@ -656,6 +656,11 @@ namespace AplicacionSIPA1.Viaticos
 
                 pAccionLN = new PlanAccionLN();
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                if (ddlJefaturaUnidad.Items.Count>0)
+                {
+                    ddlJefaturaUnidad.SelectedIndex = 0;
+                }
+                pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 4);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
@@ -676,7 +681,9 @@ namespace AplicacionSIPA1.Viaticos
                 //NuevoPedidoDet();
 
                 int idAccion = 0;
-                int.TryParse(ddlAcciones.SelectedValue, out idAccion);               
+                int.TryParse(ddlAcciones.SelectedValue, out idAccion);
+
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -1037,8 +1044,8 @@ namespace AplicacionSIPA1.Viaticos
                         else if (txtFechaIni.Text.Contains("-"))
                             sValor = txtFechaIni.Text.Split('-');
 
-                        int dia, mes, anio, horas, minutos;
-                        dia = mes = anio = 0;
+                    int dia, mes, anio, horas, minutos;
+                    dia = mes = anio = 0;
 
                     if (sValor.Length != 3)
                         throw new Exception();
@@ -1515,8 +1522,10 @@ namespace AplicacionSIPA1.Viaticos
                     {
                         if (validarEstadoSolicitud(idViatico))
                         {
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             pViaticosLN = new ViaticosLN();
-                            DataSet dsResultado = pViaticosLN.AlmacenarViaticos(pViaticosEN, dsDetalles.Tables[0],Session["usuario"].ToString());
+                            DataSet dsResultado = pViaticosLN.AlmacenarViaticos(pViaticosEN, dsDetalles.Tables[0],Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception("No se INSERTÓ/ACTUALIZÓ la solcitud de viáticos: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1721,8 +1730,10 @@ namespace AplicacionSIPA1.Viaticos
                             if (idViatico == 0)
                                 throw new Exception("No existe Viático para finalizar");
 
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             pViaticosLN = new ViaticosLN();
-                            DataSet dsResultado = pViaticosLN.EnviarViaticoARevision(idViatico, 1, Session["usuario"].ToString());
+                            DataSet dsResultado = pViaticosLN.EnviarViaticoARevision(idViatico, 1, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
@@ -2106,5 +2117,75 @@ namespace AplicacionSIPA1.Viaticos
             }
         }
 
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoEnc();
+                NuevoDet();
+                pOperativoLN = new PlanOperativoLN();
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngreso(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                inicialesUnidad();
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+               
+                pOperativoLN.DdlDependencias(ddlJefaturaUnidad, idUnidad.ToString());
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 4);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoEnc();
+                NuevoDet();
+                pOperativoLN = new PlanOperativoLN();
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngreso(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                inicialesUnidad();
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+               
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 4);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
     }
 }

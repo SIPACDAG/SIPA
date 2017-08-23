@@ -140,8 +140,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NO_RENGLON" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" Width="100%" AllowPaging="True" OnPageIndexChanging="gridRenglon_PageIndexChanging" OnSelectedIndexChanging="gridRenglon_SelectedIndexChanging"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NO_RENGLON" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" Width="100%" AllowPaging="True" OnPageIndexChanging="gridRenglon_PageIndexChanging" OnSelectedIndexChanging="gridRenglon_SelectedIndexChanging">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -317,8 +316,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="12">
-                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" PageSize="12" ShowFooter="True" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" PageSize="12" ShowFooter="True" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -415,9 +413,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="15" style="text-align: center">
-                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                        <asp:Button ID="btnListadoPac" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListadoPac_Click" Text="Ver Listado" Width="120px" />
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                        <asp:Button ID="btnListadoPac" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnListadoPac_Click" Text="Ver Listado" Width="120px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -656,8 +654,8 @@
                             <tr>
                                 <td style="width: 5%">&nbsp;</td>
                                 <td colspan="18" style="text-align: center">
-                                    <asp:Button ID="btnAprobar" runat="server" class="btn btn-success" OnClick="btnAprobar_Click" Text="Aprobar" Width="120px" CausesValidation="False" />
-                                    <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Rechazar" Width="120px" />
+                                    <asp:Button ID="btnAprobar" runat="server" class="btn btn-primary" OnClick="btnAprobar_Click" Text="Aprobar" Width="120px" CausesValidation="False" />
+                                    <asp:Button ID="btnRechazar" runat="server" class="btn btn-default" OnClick="btnRechazar_Click" Text="Rechazar" Width="120px" />
                                     <asp:Button ID="btnVerReporte" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnVerReporte_Click" Text="Ver Reporte" Width="120px" />
                                     <asp:Button ID="btnModificar" runat="server" BackColor="#FF6600" class="btn btn-primary" Font-Bold="True" OnClick="btnModificar_Click" Text="Consultar" Visible="False" Width="120px" />
                                 </td>
@@ -665,7 +663,7 @@
                             </tr>
                             <tr>
                                 <td colspan="20">
-                                    <asp:GridView ID="gridPac" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" Font-Size="X-Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridPac_RowDataBound" OnRowDeleting="gridPac_RowDeleting" OnSelectedIndexChanged="gridPac_SelectedIndexChanged" ShowFooter="True" Width="99%" style="margin-left: 85px">
+                                    <asp:GridView ID="gridPac" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" Font-Size="X-Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridPac_RowDataBound" OnRowDeleting="gridPac_RowDeleting" OnSelectedIndexChanged="gridPac_SelectedIndexChanged" ShowFooter="True" Width="100%">
                                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                         <Columns>
                                             <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

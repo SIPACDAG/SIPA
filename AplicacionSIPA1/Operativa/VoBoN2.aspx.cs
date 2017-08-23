@@ -790,10 +790,6 @@ namespace AplicacionSIPA1.Operativa
 
                 txtObser.Text = string.Empty;
                 cambiarEstado(7, "APROBADA");
-                EnvioDeCorreos objEC = new EnvioDeCorreos();
-                objEC.EnvioCorreo(planOperativoLN.ObtenerCorreo(int.Parse(ddlUnidades.SelectedValue), 29), " Nuevo CMI APROBADO por Analista", " Nuevo CMI numero " + lblIdPoa.Text + ", " + lblSuccess.Text, Session["usuario"].ToString());
-
-                presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "APROBADO CMI Analista", txtObser.Text, 0, 0);
             }
             catch (Exception ex)
             {
@@ -828,11 +824,7 @@ namespace AplicacionSIPA1.Operativa
                 if (txtObser.Text.Equals(string.Empty))
                     lblError.Text = "Llene el campo de observaciones.";
                 else
-                {
                     cambiarEstado(6, "RECHAZADA");
-                    presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "RECHAZO CMI Analista", txtObser.Text, 0, 0);
-                }
-                    
             }
             catch (Exception ex)
             {
@@ -856,9 +848,7 @@ namespace AplicacionSIPA1.Operativa
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
-                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones,ip[0],ip[1],ip[2],"VoBoN2", " AplicacionSIPA1.Operativa.VoBoN2.btnAceptar()");
+                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

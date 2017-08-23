@@ -1290,8 +1290,10 @@ namespace AplicacionSIPA1.Viaticos
                     {
                         if (validarEstadoSolicitud(idViatico))
                         {
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             pViaticosLN = new ViaticosLN();
-                            DataSet dsResultado = pViaticosLN.AlmacenarViaticos(pViaticosEN, dsDetalles.Tables[0],Session["usuario"].ToString());
+                            DataSet dsResultado = pViaticosLN.AlmacenarViaticos(pViaticosEN, dsDetalles.Tables[0],Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception("No se INSERTÓ/ACTUALIZÓ la solcitud de viáticos: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1494,8 +1496,10 @@ namespace AplicacionSIPA1.Viaticos
                             if (idViatico == 0)
                                 throw new Exception("No existe Viático para finalizar");
 
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             pViaticosLN = new ViaticosLN();
-                            DataSet dsResultado = pViaticosLN.EnviarViaticoARevision(idViatico, 1, Session["usuario"].ToString());
+                            DataSet dsResultado = pViaticosLN.EnviarViaticoARevision(idViatico, 1, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());

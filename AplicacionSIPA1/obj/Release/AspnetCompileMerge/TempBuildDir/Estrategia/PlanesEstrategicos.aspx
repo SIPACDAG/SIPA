@@ -64,7 +64,7 @@
                         <tr>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
-                            <td colspan="12" style="color: #006699"><b>Nombre del Plan:</b><strong><asp:Label ID="lblErrorNombre" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" style="color: #CC0000">*</asp:Label>
+                            <td colspan="12">Nombre del Plan:<strong><asp:Label ID="lblErrorNombre" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red">*</asp:Label>
                                 </strong></td>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
@@ -99,7 +99,7 @@
                         <tr>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
-                            <td colspan="12" style="color: #006699"><b>Descripción del Plan:</b><strong><asp:Label ID="lblErrorDescripcion" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" style="color: #CC0000">*</asp:Label>
+                            <td colspan="12">Descripción del Plan:<strong><asp:Label ID="lblErrorDescripcion" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red">*</asp:Label>
                                 </strong></td>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
@@ -134,10 +134,10 @@
                         <tr>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
-                            <td colspan="4" style="color: #006699"><b>Año de inicio:</b><asp:Label ID="lblErrorAnioIni" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" style="font-weight: bold; color: #CC0000">*</asp:Label>
+                            <td colspan="4">Año de inicio:<asp:Label ID="lblErrorAnioIni" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red">*</asp:Label>
                             </td>
                             <td style="width:5%;">&nbsp;</td>
-                            <td colspan="4" style="color: #006699"><b>Año de finalización:</b><strong><asp:Label ID="lblErrorAnioFin" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" style="color: #CC0000">*</asp:Label>
+                            <td colspan="4">Año de finalización:<strong><asp:Label ID="lblErrorAnioFin" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red">*</asp:Label>
                                 </strong></td>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
@@ -193,10 +193,10 @@
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
                             <td colspan="12" style="text-align: center;">
-                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                                <asp:Button ID="btnEliminar" runat="server" class="btn btn-danger" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" />
-                                <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" Text="Buscar" Width="120px" PostBackUrl="~/Estrategia/PlanesEstrategicosB.aspx" />
-                                <asp:Button ID="btnNuevo" runat="server" class="btn btn-primary" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                                <asp:Button ID="btnEliminar" runat="server" class="btn btn-default" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" />
+                                <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" Text="Buscar" Width="120px" PostBackUrl="~/Estrategia/PlanesEstrategicosB.aspx" />
+                                <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
                             </td>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>

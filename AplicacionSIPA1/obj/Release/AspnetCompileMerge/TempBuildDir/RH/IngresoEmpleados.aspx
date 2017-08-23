@@ -32,7 +32,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="2" style="color: #006699"><b>No. Empleado:</b></td>
+                    <td colspan="2">No. Empleado:</td>
                     <td colspan="3">
                         <asp:TextBox ID="txtNoEmpleado" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Bold="True" Font-Size="Large" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
@@ -73,7 +73,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12" style="font-weight: bold"><span style="color: #006699">Nombres (1er, 2do y demás nombres sin comas):</span><strong><asp:Label ID="lblErrorNombres" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="12">Nombres (1er, 2do y demás nombres sin comas):<strong><asp:Label ID="lblErrorNombres" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -109,7 +109,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12" style="font-weight: bold"><span style="color: #006699">Apellidos (1er, 2do y demás apellidos sin comas):</span><strong><asp:Label ID="lblErrorApellidos" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="12">Apellidos (1er, 2do y demás apellidos sin comas):<strong><asp:Label ID="lblErrorApellidos" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -145,7 +145,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12" style="font-weight: bold"><span style="color: #006699">Dirección:</span><strong><asp:Label ID="lblErrorDireccion" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="12">Dirección:<strong><asp:Label ID="lblErrorDireccion" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -181,9 +181,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="6" style="color: #006699"><b>Género:</b><strong><asp:Label ID="lblErrorGenero" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Género:<strong><asp:Label ID="lblErrorGenero" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
-                    <td colspan="6"><span style="color: #006699"><b>Fecha de nacimiento (dd/mm/aaaa):</b></span><strong><asp:Label ID="lblErrorFechaNac" runat="server" ForeColor="Red" style="font-size: medium; color: #006699;">*</asp:Label>
+                    <td colspan="6">Fecha de nacimiento (dd/mm/aaaa):<strong><asp:Label ID="lblErrorFechaNac" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -196,13 +196,13 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:RadioButtonList ID="rblGenero" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Width="298px">
+                        <asp:RadioButtonList ID="rblGenero" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
                             <asp:ListItem Selected="True" Value="1">Masculino</asp:ListItem>
                             <asp:ListItem Value="2">Femenino</asp:ListItem>
                         </asp:RadioButtonList>
                     </td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtFechaNacimiento" runat="server" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="80%"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaNacimiento" runat="server" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="50%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -225,9 +225,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="6" style="color: #006699"><b>CUI(Sin espacios):</b><strong><asp:Label ID="lblErrorCui" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">CUI(Sin espacios):<strong><asp:Label ID="lblErrorCui" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
-                    <td colspan="6"><span style="color: #006699"><b>Nit:</b></span><strong><asp:Label ID="lblErrorNit" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Nit:<strong><asp:Label ID="lblErrorNit" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -240,10 +240,10 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtCui" runat="server" class="form-control" Enabled="true" MaxLength="15" placeholder="" Width="100%" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="txtCui" runat="server" class="form-control" Enabled="true" MaxLength="15" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtNit" runat="server" class="form-control" Enabled="true" MaxLength="10" placeholder="" Width="100%" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="txtNit" runat="server" class="form-control" Enabled="true" MaxLength="10" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -266,9 +266,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="6"  style="color: #006699"><b>Teléfono:</b><strong><asp:Label ID="lblErrorTel"  runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Teléfono:<strong><asp:Label ID="lblErrorTel" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
-                    <td colspan="6"><span style="color: #006699"><b>Email:</b></span><strong><asp:Label ID="lblErrorEmail" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Email:<strong><asp:Label ID="lblErrorEmail" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -281,10 +281,10 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtTel" runat="server" TextMode="Phone" class="form-control " Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtTel" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -318,7 +318,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="6" style="color: #006699"><b>Sueldo Base:</b><strong><asp:Label ID="lblErrorSueldo" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Sueldo Base:<strong><asp:Label ID="lblErrorSueldo" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -337,7 +337,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtSueldo" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="txtSueldo" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -355,9 +355,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="6" style="color: #006699"><b>Unidad Administrativa:</b><strong><asp:Label ID="lblErrorUnidades" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Unidad Administrativa:<strong><asp:Label ID="lblErrorUnidades" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
-                    <td colspan="6"><span style="color: #006699"><b>Puesto:</b></span><strong><asp:Label ID="lblErrorPuestos" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Puesto:<strong><asp:Label ID="lblErrorPuestos" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -409,9 +409,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="6" style="color: #006699"><b>Renglón:</b><strong><asp:Label ID="lblErrorRenglones" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Renglón:<strong><asp:Label ID="lblErrorRenglones" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
-                    <td colspan="6"><span style="color: #006699"><b>Estado:</b></span><strong><asp:Label ID="lblErrorEstado" runat="server" ForeColor="Red" style="font-size: medium; color: #FF0000;">*</asp:Label>
+                    <td colspan="6">Estado:<strong><asp:Label ID="lblErrorEstado" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -424,14 +424,14 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:DropDownList ID="ddlRenglones" runat="server" class="form-control" Width="100%">
+                        <asp:DropDownList ID="ddlRenglones" runat="server" class="form-control" Width="100%" Enabled="False">
                             <asp:ListItem Selected="True">011</asp:ListItem>
                             <asp:ListItem>021</asp:ListItem>
                             <asp:ListItem>022</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td colspan="6">
-                        <asp:DropDownList ID="ddlEstado" runat="server" class="form-control" Width="100%" CssClass="dropdown">
+                        <asp:DropDownList ID="ddlEstado" runat="server" class="form-control" Width="100%">
                             <asp:ListItem Selected="True" Value="1">Alta</asp:ListItem>
                             <asp:ListItem Value="2">Baja</asp:ListItem>
                         </asp:DropDownList>
@@ -477,10 +477,10 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" PostBackUrl="~/RH/ListadoEmpleados.aspx" Text="Ver Listado" Width="120px" />
-                        <asp:Button ID="btnEliminar" runat="server" class="btn btn-danger" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" Visible="False" />
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-primary" PostBackUrl="~/RH/ListadoEmpleados.aspx" Text="Ver Listado" Width="120px" />
+                        <asp:Button ID="btnEliminar" runat="server" class="btn btn-default" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" Visible="False" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

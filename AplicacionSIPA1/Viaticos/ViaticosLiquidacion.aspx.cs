@@ -90,9 +90,7 @@ namespace AplicacionSIPA1.Viaticos
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
 
-                //uUsuariosLN.dropUnidad(ddlUnidades);
-                pOperativoLN = new PlanOperativoLN();
-                pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
+                uUsuariosLN.dropUnidad(ddlUnidades);
 
                 if (ddlUnidades.Items.Count == 1)
                 {
@@ -748,10 +746,12 @@ namespace AplicacionSIPA1.Viaticos
 
                 if (btnLiquidar.Visible == true)
                 {
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     pViaticosLN = new ViaticosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    dsResultado = pViaticosLN.Liquidar(idPedido, observaciones, usuario, viaticos, pasajes, kilometraje);
+                    dsResultado = pViaticosLN.Liquidar(idPedido, observaciones, usuario, viaticos, pasajes, kilometraje,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -800,11 +800,12 @@ namespace AplicacionSIPA1.Viaticos
 
                     if (btnRechazar.Visible == true)
                     {
-
+                        FuncionesVarias fv = new FuncionesVarias();
+                        string[] ip = fv.DatosUsuarios();
                         pViaticosLN = new ViaticosLN();
                         string usuario = Session["usuario"].ToString();
                         string observaciones = txtObser.Text;
-                        DataSet dsResultado = pViaticosLN.RechazoMesaEntrada(idPedido, observaciones, usuario);
+                        DataSet dsResultado = pViaticosLN.RechazoMesaEntrada(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
                         
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1012,11 +1013,12 @@ namespace AplicacionSIPA1.Viaticos
 
                     if (btnAnular.Visible == true)
                     {
-
+                        FuncionesVarias fv = new FuncionesVarias();
+                        string[] ip = fv.DatosUsuarios();
                         pViaticosLN = new ViaticosLN();
                         string usuario = Session["usuario"].ToString();
                         string observaciones = txtObser.Text;
-                        DataSet dsResultado = pViaticosLN.Anular(idPedido, observaciones, usuario);
+                        DataSet dsResultado = pViaticosLN.Anular(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

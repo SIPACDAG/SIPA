@@ -57,18 +57,6 @@
         }
         .auto-style32 {
         }
-        .auto-style33 {
-            text-align: right;
-            color: #006699;
-            font-weight: bold;
-        }
-        .auto-style34 {
-            width: 15%;
-            height: 24px;
-            text-align: right;
-            color: #006699;
-            font-weight: bold;
-        }
         </style>
 </asp:Content>
 
@@ -95,9 +83,9 @@
                                 <td class="auto-style4">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td class="auto-style33">Planes Estratégicos:&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style3">Planes Estratégicos:</td>
                                 <td class="auto-style32" colspan="2">
-                                    <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="True"  CssClass="dropdown dropdown-primary " class="form-control" Width="100%">
+                                    <asp:DropDownList ID="ddlPlanE" runat="server" AutoPostBack="True" class="form-control" Width="100%">
                                     </asp:DropDownList>
                                 </td>
                                 <td class="auto-style3">&nbsp;</td>
@@ -113,9 +101,9 @@
                                 <td class="auto-style19"></td>
                             </tr>
                             <tr>
-                                <td class="auto-style34">Id:&nbsp;&nbsp;&nbsp; <br />
+                                <td class="auto-style12">Id:<br />
                                     <br />
-                                    Código:&nbsp;&nbsp;&nbsp; </td>
+                                    Código:</td>
                                 <td class="auto-style24">
                                     <asp:Label ID="lblID" runat="server"></asp:Label>
                                     <asp:TextBox ID="txtCodigo" runat="server" class="form-control" placeholder="Código" MaxLength="2" Width="85%"></asp:TextBox>
@@ -132,7 +120,7 @@
                                     &nbsp;</td>
                             </tr>
                             <tr>
-                                <td class="auto-style33">Eje Estratégico:&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style3">Eje Estratégico:</td>
                                 <td class="auto-style14" colspan="2">
                                     <asp:TextBox ID="txtEje" runat="server" class="form-control" placeholder="Eje Estratégico" Width="95%"></asp:TextBox>
                                 </td>
@@ -152,9 +140,9 @@
                             <tr>
                                 <td class="auto-style3">&nbsp;</td>
                                 <td class="auto-style14" colspan="2">
-                                    <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                                    <asp:Button ID="btnNuevo" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text=" Nuevo  " Width="120px" />
-                                    <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="120px" />
+                                    <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                                    <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text=" Nuevo  " Width="120px" />
+                                    <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="120px" />
                                     <br />
                                 </td>
                                 <td class="auto-style3">&nbsp;</td>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmReporte.aspx.cs" Inherits="Reporte.frmReporte" %>
 
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 
 <!DOCTYPE html>
 
@@ -18,10 +18,7 @@
 
     <div>
 
-       <%-- <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Height="100%">
-        </rsweb:ReportViewer>--%>
-        <rsweb:ReportViewer ID="ReportViwer1" runat="server" Width="100%" Height="100%">
-
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Height="100%">
         </rsweb:ReportViewer>
 
     </div>

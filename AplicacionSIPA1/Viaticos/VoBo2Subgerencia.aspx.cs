@@ -477,11 +477,12 @@ namespace AplicacionSIPA1.Viaticos
                     throw new Exception("Seleccione un PEDIDO!");
 
                 txtObser.Text = string.Empty;
-
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 pViaticosLN = new ViaticosLN();
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                DataSet dsResultado = pViaticosLN.AprobacionSubgerente(idPedido, observaciones, usuario);
+                DataSet dsResultado = pViaticosLN.AprobacionSubgerente(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -527,8 +528,10 @@ namespace AplicacionSIPA1.Viaticos
                 {
                     pViaticosLN = new ViaticosLN();
                     string usuario = Session["usuario"].ToString();
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pViaticosLN.RechazoSubgerente(idPedido, observaciones, usuario);
+                    DataSet dsResultado = pViaticosLN.RechazoSubgerente(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

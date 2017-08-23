@@ -827,8 +827,7 @@ namespace AplicacionSIPA1.Pac
 
                         string noPac = dsResultado.Tables[0].Rows[0]["VALOR"].ToString();
                         //lblSuccess.Text = "Plan Anual de Compras ALMACENADO exitosamente, número de Pac: " + noPac;
-                        //EnvioDeCorreos envio = new EnvioDeCorreos();
-                        //envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: " + lblNoPedido.Text, mensaje);
+                        
 
                        
 
@@ -1508,9 +1507,7 @@ namespace AplicacionSIPA1.Pac
                 pAnualLN = new PlanAnualLN();
                 int anio = int.Parse(ddlCAnios.SelectedValue);
                 string usuario = Session["usuario"].ToString();
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
-                DataSet dsResultado = pAnualLN.ActualizarEstadoPac(idPoa, 2, anio, null, "", usuario, "",ip[0],ip[1],ip[2],"ENVIAR", "AplicacionSIPA1.Pac.AdminPac.btnEnviar()");
+                DataSet dsResultado = pAnualLN.ActualizarEstadoPac(idPoa, 2, anio, null, "", usuario, "");
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ el Plan Anual de Compras: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

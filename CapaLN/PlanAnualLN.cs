@@ -260,13 +260,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet ActualizarEstadoPac(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones,string ip,string mac,string pc, string tipo,string boton)
+        public DataSet ActualizarEstadoPac(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanAnualAD();
             try
             {
-                DataTable dt = ObjAD.ActualizarEstadoPac(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
+                DataTable dt = ObjAD.ActualizarEstadoPac(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());

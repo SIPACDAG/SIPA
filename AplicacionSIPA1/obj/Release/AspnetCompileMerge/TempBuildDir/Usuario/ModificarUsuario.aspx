@@ -15,71 +15,20 @@
             text-align: center;
             font-size: x-large;
         }
-        .auto-style12 {
-            width: 31%;
-        }
-        .auto-style13 {
-            width: 27%;
-        }
-        .auto-style15 {
-            width: 161px;
-        }
-        .auto-style16 {
-            color: #006699;
-        }
-        .auto-style17 {
-            width: 15%;
-            font-weight: bold;
-            color: #006699;
-            text-align: right;
-        }
-        .auto-style18 {
-            width: 31%;
-            font-weight: bold;
-            height: 41px;
-            text-align: right;
-        }
-        .auto-style19 {
-            width: 31%;
-            font-weight: bold;
-            color: #006699;
-            text-align: right;
-        }
-        .auto-style20 {
-            width: 15%;
-            font-weight: bold;
-            color: #006699;
-            text-align: right;
-            height: 41px;
-        }
-        .auto-style21 {
-            width: 27%;
-            height: 41px;
-        }
-        .auto-style22 {
-            height: 41px;
-        }
     </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                        <ContentTemplate>
-                           <table style="width:100%; margin-left: auto; margin-right: auto;" >
+                           <table style="width:100%;">
                             <tr>
-                                <td class="auto-style15" style="font:40" colspan="2"><strong class="text-info">
-                                    &nbsp;
+                                <td><strong>
                                     <br />
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="auto-style16">&nbsp;Modificar Usuario</span></h3>
-                                    </strong></h3>
-                                </td>
+                                    Modificar Usuario</strong></td>
                             </tr>
                                <tr>
-                                   <td class="auto-style15">
-                                       <br />
-                                   </td>
                                    <td>
-                                       <asp:GridView ID="gridUsuario" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" CssClass="table table-hover table-responsive" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" Height="305px" HorizontalAlign="Center" OnPageIndexChanging="gridUsuario_PageIndexChanging" OnRowDeleting="gridUsuario_RowDeleting" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="74%">
+                                       <asp:GridView ID="gridUsuario" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="65%" OnRowDeleting="gridUsuario_RowDeleting" OnPageIndexChanging="gridUsuario_PageIndexChanging">
                                            <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                            <Columns>
                                                <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -87,6 +36,9 @@
                                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                </asp:CommandField>
                                                <asp:TemplateField ShowHeader="False">
+                                                   <ItemTemplate>
+                                                       <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" CommandName="Delete" ImageUrl="~/img/24_bits/delete.png" onclientclick="javascript:if(!confirm('¿Desea Eliminar Este Registro?'))return false" Text="Eliminar" />
+                                                   </ItemTemplate>
                                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                </asp:TemplateField>
@@ -119,9 +71,9 @@
                         <table style="width:80%;" >
                 <tr>
                     <td class="auto-style3">&nbsp;</td>
-                    <td class="auto-style13">
+                    <td class="auto-style4">
                         
-                        &nbsp;</td>
+                    </td>
                     <td class="auto-style12">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -129,31 +81,30 @@
                     <td class="auto-style11" colspan="4"><strong>Modificar Usuario</strong></td>
                 </tr>
                 <tr>
-                    <td class="auto-style20">Empleado:&nbsp;&nbsp;&nbsp; </td>
-                    <td class="auto-style21">
+                    <td class="auto-style3">Empleado:</td>
+                    <td class="auto-style4">
                         <asp:DropDownList ID="ddlEmpleados" runat="server" class="form-control" Width="100%">
                         </asp:DropDownList>
                     </td>
-                    <td class="auto-style18"><span class="auto-style16">Usuario</span><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="text_usuario" ErrorMessage="*" ForeColor="Red" ValidationGroup="vacios" CssClass="auto-style16"></asp:RequiredFieldValidator>
-                        &nbsp;&nbsp;&nbsp;
+                    <td class="auto-style12">Usuario<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="text_usuario" ErrorMessage="*" ForeColor="Red" ValidationGroup="vacios"></asp:RequiredFieldValidator>
                     </td>
-                    <td class="auto-style22">
+                    <td>
                         <asp:TextBox ID="text_usuario" runat="server" class="form-control" placeholder="Nombre de Usuario"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style17">Contraseña&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                    <td class="auto-style13">
+                    <td class="auto-style3">Contraseña</td>
+                    <td class="auto-style4">
                         <asp:TextBox ID="TextPass_Nuevo" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
                     </td>
-                    <td class="auto-style19">Confirmar&nbsp;&nbsp;&nbsp; </td>
+                    <td class="auto-style12">Confirmar</td>
                     <td>
                         <asp:TextBox ID="TextPass_Confirmar" runat="server" class="form-control" placeholder="Confirmar Contraseña" TextMode="Password"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style17">Activo&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                    <td class="auto-style13">
+                    <td class="auto-style3">Activo</td>
+                    <td class="auto-style4">
                         <asp:DropDownList ID="dropActivo" runat="server" class="form-control" Width="40%">
                             <asp:ListItem Value="1">Si</asp:ListItem>
                             <asp:ListItem Value="0">No</asp:ListItem>
@@ -165,7 +116,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">&nbsp;</td>
-                    <td class="auto-style13">
+                    <td class="auto-style4">
                         <span class="label label-danger"><asp:Label ID="lblError" runat="server" Text="Label"  visible="False" Font-Size="Medium" ></asp:Label></span>
                     <span class="label label-success"><asp:Label ID="lblSuccess" runat="server" Text="Label"  visible="False" Font-Size="Medium" ></asp:Label></span>      
                     </td>
@@ -174,9 +125,9 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">&nbsp;</td>
-                    <td class="auto-style13">
-                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Modificar" Width="142px" ValidationGroup="vacios" />
-                        <asp:Button ID="btnCancelar" runat="server" class="btn btn-danger" OnClick="btnCancelar_Click" Text="CANCELAR" />
+                    <td class="auto-style4">
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Modificar" Width="142px" ValidationGroup="vacios" />
+                        <asp:Button ID="btnCancelar" runat="server" class="btn btn-default" OnClick="btnCancelar_Click" Text="CANCELAR" />
                     </td>
                     <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style4">&nbsp;</td>

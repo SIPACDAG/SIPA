@@ -74,7 +74,7 @@ namespace CapaAD
        }
 
 
-       public DataSet AlmacenarViaticos(ViaticosEN ObjEN, DataTable dtDetalles)
+       public DataSet AlmacenarViaticos(ViaticosEN ObjEN, DataTable dtDetalles,string ip,string mac,string pc)
        {
            string query = "";
            DataSet dsResultado;
@@ -145,7 +145,8 @@ namespace CapaAD
                vid_grupo_paises = "null";
            }
 
-           query = "CALL sp_iue_viaticos(" + vid_viatico + ", " + vfecha_nombramiento + ", " + vid_poa + ", " + vid_accion + ", " + vid_tipo_viatico + ", " + vid_solicitante + ", " + vid_jefe_director + ", " + vid_tipo_persona + ", " + vid_unidad + ", " + vid_puesto + ", " + vnombre_solicitante + ", " + vnombre_unidad + ", " + vnombre_dependencia + ", " + vnombre_puesto + ", " + vsueldo_base + ", " + vtelefono + ", " + vnit + ", " + vjustificacion + ", " + vdestino + ", " + vfecha_ini + ", " + vfecha_fin + ", " + vhora_ini + ", " + vhora_fin + ", " + vutiliza_vehiculo + ", " + vkilometraje + ", " + vpasajes + ", " + vcuota_diaria + ", " + vobservaciones_viaticos + ", " + vtasa_de_cambio + ", " + vcosto + ", " + vobservaciones_rechazo + ", " + vid_subgerente + ", " + vemail + ", " + vid_categoria + ", " + vid_grupo_paises + ", " + vtasa_de_cambio_ds + ", " + vretorno_al_exterior + ", " + vtotal_dolares + ", '', '', '', '', '', 0, " + vusuario + ", 1)";
+           query = "CALL sp_iue_viaticos(" + vid_viatico + ", " + vfecha_nombramiento + ", " + vid_poa + ", " + vid_accion + ", " + vid_tipo_viatico + ", " + vid_solicitante + ", " + vid_jefe_director + ", " + vid_tipo_persona + ", " + vid_unidad + ", " + vid_puesto + ", " + vnombre_solicitante + ", " + vnombre_unidad + ", " + vnombre_dependencia + ", " + vnombre_puesto + ", " + vsueldo_base + ", " + vtelefono + ", " + vnit + ", " + vjustificacion + ", " + vdestino + ", " + vfecha_ini + ", " + vfecha_fin + ", " + vhora_ini + ", " + vhora_fin + ", " + vutiliza_vehiculo + ", " + vkilometraje + ", " + vpasajes + ", " + vcuota_diaria + ", " + vobservaciones_viaticos + ", " + vtasa_de_cambio + ", " + vcosto + ", " + vobservaciones_rechazo + ", " + vid_subgerente + ", " + vemail + ", " + vid_categoria + ", " + vid_grupo_paises + ", " + vtasa_de_cambio_ds + ", " + vretorno_al_exterior + ", " + vtotal_dolares + ", '', '', '', '', '', 0, " + vusuario + ", 1,'"
+                + ip+"','"+mac+"','"+pc+ "')";
 
            dt = armarDsResultado().Tables[0].Copy();
            dtEnc = armarDsResultado().Tables[0].Copy();
@@ -241,7 +242,7 @@ namespace CapaAD
            return dsResultado;
        }
 
-       private string QueryParaCambioEstados(int idEncabezado, int idTipoViatico, string usuario, string observacionesRechazo, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal costo, decimal pasajes, decimal kilometraje, string estado)
+       private string QueryParaCambioEstados(int idEncabezado, int idTipoViatico, string usuario, string observacionesRechazo, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal costo, decimal pasajes, decimal kilometraje, string estado,string ip,string mac,string pc)
        {
            string vid_viatico, vfecha_nombramiento, vid_poa, vid_accion, vid_subgerente, vid_tipo_viatico, vid_solicitante, vid_jefe_director, vid_tipo_persona, vid_unidad, vid_puesto, vnombre_solicitante, vnombre_unidad, vnombre_dependencia, vnombre_puesto, vsueldo_base, vtelefono, vemail, vnit, vjustificacion, vdestino, vfecha_ini, vfecha_fin, vhora_ini, vhora_fin, vutiliza_vehiculo, vkilometraje, vpasajes, vcuota_diaria, vobservaciones_viaticos, vtasa_de_cambio, vtasa_de_cambio_ds, vcosto, vobservaciones_rechazo, vid_categoria, vid_grupo_paises, vretorno_al_exterior, vtotal_dolares, vusuario;
            string vPRG, vSPRG, vPROY, vACT, vOBR, vidDetalleAccion = "";
@@ -306,18 +307,19 @@ namespace CapaAD
 
            vidDetalleAccion = idDetalleAccion.ToString();
 
-           string query = "CALL sp_iue_viaticos(" + vid_viatico + ", " + vfecha_nombramiento + ", " + vid_poa + ", " + vid_accion + ", " + vid_tipo_viatico + ", " + vid_solicitante + ", " + vid_jefe_director + ", " + vid_tipo_persona + ", " + vid_unidad + ", " + vid_puesto + ", " + vnombre_solicitante + ", " + vnombre_unidad + ", " + vnombre_dependencia + ", " + vnombre_puesto + ", " + vsueldo_base + ", " + vtelefono + ", " + vnit + ", " + vjustificacion + ", " + vdestino + ", " + vfecha_ini + ", " + vfecha_fin + ", " + vhora_ini + ", " + vhora_fin + ", " + vutiliza_vehiculo + ", " + vkilometraje + ", " + vpasajes + ", " + vcuota_diaria + ", " + vobservaciones_viaticos + ", " + vtasa_de_cambio + ", " + vcosto + ", " + vobservaciones_rechazo + ", " + vid_subgerente + ", " + vemail + ", " + vid_categoria + ", " + vid_grupo_paises + ", " + vtasa_de_cambio_ds + ", " + vretorno_al_exterior + ", " + vtotal_dolares + ", " + vPRG + ", " + vSPRG + ", " + vPROY + ", " + vACT + ", " + vOBR + ", " + vidDetalleAccion + ", " + vusuario + ", " + estado + ")";
+           string query = "CALL sp_iue_viaticos(" + vid_viatico + ", " + vfecha_nombramiento + ", " + vid_poa + ", " + vid_accion + ", " + vid_tipo_viatico + ", " + vid_solicitante + ", " + vid_jefe_director + ", " + vid_tipo_persona + ", " + vid_unidad + ", " + vid_puesto + ", " + vnombre_solicitante + ", " + vnombre_unidad + ", " + vnombre_dependencia + ", " + vnombre_puesto + ", " + vsueldo_base + ", " + vtelefono + ", " + vnit + ", " + vjustificacion + ", " + vdestino + ", " + vfecha_ini + ", " + vfecha_fin + ", " + vhora_ini + ", " + vhora_fin + ", " + vutiliza_vehiculo + ", " + vkilometraje + ", " + vpasajes + ", " + vcuota_diaria + ", " + vobservaciones_viaticos + ", " + vtasa_de_cambio + ", " + vcosto + ", " + vobservaciones_rechazo + ", " + vid_subgerente + ", " + vemail + ", " + vid_categoria + ", " + vid_grupo_paises + ", " + vtasa_de_cambio_ds + ", " + vretorno_al_exterior + ", " + vtotal_dolares + ", " + vPRG + ", " + vSPRG + ", " + vPROY + ", " + vACT + ", " + vOBR + ", " + vidDetalleAccion + ", " + vusuario + ", " + estado + ",'"
+                +ip+"','"+mac+"','"+pc+"')";
 
            return query;
        }
         //ENVIAR EL VIATICO A APROBACIÓN DE SUGBERENTE
-       public DataTable EnviarViaticoARevision(int idEncabezado, int idTipoViatico, string usuario)
+       public DataTable EnviarViaticoARevision(int idEncabezado, int idTipoViatico, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
 
-           string query = QueryParaCambioEstados(idEncabezado, idTipoViatico, usuario, "", "", "", "", "", "", 0, 0, 0, 0, "3");
+           string query = QueryParaCambioEstados(idEncabezado, idTipoViatico, usuario, "", "", "", "", "", "", 0, 0, 0, 0, "3",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -326,12 +328,12 @@ namespace CapaAD
        }
 
        //Vo.Bo. Nivel 1
-       public DataTable AprobacionJefeDirector(int idEncabezado, string observaciones, string usuario)
+       public DataTable AprobacionJefeDirector(int idEncabezado, string observaciones, string usuario,string ip,string mac,string pc)
        {
            //QueryParaCambioEstados(int idEncabezado, int idTipoViatico, string usuario, string observacionesRechazo, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal pasajes, decimal kilometraje, string estado)
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, "", "", "", "", "", "", 0, 0, 0, 0, "4");
+           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, "", "", "", "", "", "", 0, 0, 0, 0, "4",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -339,12 +341,12 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable RechazoJefeDirector(int idEncabezado, string observaciones, string usuario)
+       public DataTable RechazoJefeDirector(int idEncabezado, string observaciones, string usuario, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "5");
+           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "5",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -353,12 +355,12 @@ namespace CapaAD
        }
 
        //Vo.Bo. Nivel 2
-       public DataTable AprobacionSubgerente(int idEncabezado, string observaciones, string usuario)
+       public DataTable AprobacionSubgerente(int idEncabezado, string observaciones, string usuario, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, "", "", "", "", "", "", 0, 0, 0, 0, "6");
+           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, "", "", "", "", "", "", 0, 0, 0, 0, "6",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -366,12 +368,12 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable RechazoSubgerente(int idEncabezado, string observaciones, string usuario)
+       public DataTable RechazoSubgerente(int idEncabezado, string observaciones, string usuario, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "7");
+           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "7",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -380,12 +382,12 @@ namespace CapaAD
        }
 
         //Vo.Bo. Nivel 3
-       public DataTable AprobacionFinanciera(int idEncabezado, string observaciones, string usuario, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal pasajes, decimal kilometraje)
+       public DataTable AprobacionFinanciera(int idEncabezado, string observaciones, string usuario, string PRG, string SPRG, string PROY, string ACT, string OBR, int idDetalleAccion, decimal pasajes, decimal kilometraje, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, 0, pasajes, kilometraje, "8");
+           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, 0, pasajes, kilometraje, "8",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -393,12 +395,12 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable RechazoFinanciera(int idPedido, string observaciones, string usuario)
+       public DataTable RechazoFinanciera(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idPedido, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "9");
+           string query = QueryParaCambioEstados(idPedido, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "9",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -406,12 +408,12 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable Liquidar(int idEncabezado, string observaciones, string usuario, decimal costoReal, decimal pasajes, decimal kilometraje)
+       public DataTable Liquidar(int idEncabezado, string observaciones, string usuario, decimal costoReal, decimal pasajes, decimal kilometraje, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, "", "", "", "", "", 0, costoReal, pasajes, kilometraje, "10");
+           string query = QueryParaCambioEstados(idEncabezado, 0, usuario, observaciones, "", "", "", "", "", 0, costoReal, pasajes, kilometraje, "10",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -419,12 +421,12 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable RechazoMesaEntrada(int idPedido, string observaciones, string usuario)
+       public DataTable RechazoMesaEntrada(int idPedido, string observaciones, string usuario, string ip, string mac, string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idPedido, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "11");
+           string query = QueryParaCambioEstados(idPedido, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "11",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -432,12 +434,12 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable Anular(int idPedido, string observaciones, string usuario)
+       public DataTable Anular(int idPedido, string observaciones, string usuario,string ip,string mac,string pc)
        {
 
            conectar = new ConexionBD();
            DataTable dt = new DataTable();
-           string query = QueryParaCambioEstados(idPedido, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "12");
+           string query = QueryParaCambioEstados(idPedido, 0, usuario, observaciones, "", "", "", "", "", 0, 0, 0, 0, "12",ip,mac,pc);
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);
@@ -445,11 +447,11 @@ namespace CapaAD
            return dt;
        }
 
-       public DataTable EliminarEncabezado(int id)
+       public DataTable EliminarEncabezado(int id,string ip,string mac,string pc)
        {
            conectar = new ConexionBD();
            DataTable tabla = new DataTable();
-           string query = "CALL sp_iue_pedido(" + id + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 2);";
+           string query = "CALL sp_iue_pedido(" + id + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 2,'"+ip+"','"+mac+"','"+pc+"');";
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(tabla);

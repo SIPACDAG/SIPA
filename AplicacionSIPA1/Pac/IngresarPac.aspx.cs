@@ -25,7 +25,6 @@ namespace AplicacionSIPA1.Pac
         private PlanAnualEN pAnualEN;
         private DataSet dsPacDet;
         private PlanOperativoLN planOperativoLN;
-        private PresupuestoLN presupuestoLN;
 
         public DataSet dsPac
         {
@@ -816,11 +815,8 @@ namespace AplicacionSIPA1.Pac
                         btnNuevo_Click(sender, e);
 
                         string noPac = dsResultado.Tables[0].Rows[0]["VALOR"].ToString();
-                        presupuestoLN = new PresupuestoLN();
-                        presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "PAC No." + noPac, txtDescripcion.Text, Convert.ToDecimal(lblCodificadoP.Text), Convert.ToDecimal(lblDisponibleP.Text));
                         //lblSuccess.Text = "Plan Anual de Compras ALMACENADO exitosamente, número de Pac: " + noPac;
-                        //EnvioDeCorreos envio = new EnvioDeCorreos();
-                        //envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: " + lblNoPedido.Text, mensaje);
+                       
                         Response.Redirect("NuPlan.aspx?No=" + Convert.ToString(noPac) + "&monto=" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total) + "&msg=CREADO/ACTUALIZADO");
                     }               
 
@@ -856,8 +852,8 @@ namespace AplicacionSIPA1.Pac
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["MONTO"].ToString(), out montoActualPac);
 
             decimal diferenciaRenglonMontoN = (saldoRenglon + montoActualPac) - totalPac;
-            if(diferenciaRenglonMontoN < 0)
-                throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldoRenglon + montoActualPac)));
+            //if(diferenciaRenglonMontoN < 0)
+            //    throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldoRenglon + montoActualPac)));
 
 
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["CODIFICADO"].ToString(), out codificadoPac);
@@ -1510,18 +1506,12 @@ namespace AplicacionSIPA1.Pac
                     throw new Exception("Seleccione un Pac!");
 
                 pAnualLN = new PlanAnualLN();
-                planOperativoLN = new PlanOperativoLN();
                 int anio = int.Parse(ddlCAnios.SelectedValue);
                 string usuario = Session["usuario"].ToString();
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
-                DataSet dsResultado = pAnualLN.ActualizarEstadoPac(idPoa, 2, anio, null, "", usuario, "",ip[0],ip[1],ip[2],"ENVIAR", "AplicacionSIPA1.Pac.IngresarPac.btnEnviar()");
+                DataSet dsResultado = pAnualLN.ActualizarEstadoPac(idPoa, 2, anio, null, "", usuario, "");
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ el Plan Anual de Compras: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-                EnvioDeCorreos objEC = new EnvioDeCorreos();
-                objEC.EnvioCorreo(planOperativoLN.ObtenerCorreo(int.Parse(ddlUnidades.SelectedValue), 36), " Nuevo PAC Enviado", " Nuevo PAC numero " + lblIdPac.Text + ", " + lblSuccess.Text, Session["usuario"].ToString());
-
 
                 lblCSuccess.Text = "Planificación enviada exitosamente!";
                 btnEnviar.Visible = false;

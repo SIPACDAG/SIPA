@@ -42,7 +42,7 @@
                     <td>&nbsp;</td>
                     <td class="text-right" colspan="2">&nbsp;</td>
                     <td colspan="9" rowspan="8">
-                        <asp:GridView ID="gridAsignaciones" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ANIO,ID_UNIDAD" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="5" Width="97%" OnPageIndexChanging="gridAsignaciones_PageIndexChanging" OnRowDeleting="gridAsignaciones_RowDeleting" CssClass="table table-hover table-responsive" style="margin-left: 24px">
+                        <asp:GridView ID="gridAsignaciones" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ANIO,ID_UNIDAD" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="5" Width="100%" OnPageIndexChanging="gridAsignaciones_PageIndexChanging" OnRowDeleting="gridAsignaciones_RowDeleting">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField ShowHeader="False">
@@ -131,7 +131,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td class="text-center" colspan="6">
-                        <asp:Button ID="btnAsignar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnAsignar_Click" Text="Asignar POA" Width="120px" />
+                        <asp:Button ID="btnAsignar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnAsignar_Click" Text="Asignar POA" Width="120px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -150,7 +150,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="10">
-                        <asp:GridView ID="gridPlanes" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ANIO,ID_UNIDAD" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridPlanes_PageIndexChanging" OnSelectedIndexChanged="gridPlanes_SelectedIndexChanged" PageSize="20" Width="100%" CssClass="table table-hover table-responsive" >
+                        <asp:GridView ID="gridPlanes" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ANIO,ID_UNIDAD" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridPlanes_PageIndexChanging" OnSelectedIndexChanged="gridPlanes_SelectedIndexChanged" PageSize="20" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField>

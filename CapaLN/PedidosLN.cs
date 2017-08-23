@@ -661,7 +661,7 @@ namespace CapaLN
         }
 
         //ALMACENAR UNA SOLICITUD DE AJUSTE DE PEDIDO
-        public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles, string usuario)
+        public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles, string usuario,string ip,string mac,string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
@@ -683,14 +683,14 @@ namespace CapaLN
         }
 
         //ENVIAR EL PEDIDO A EXISTENCIAS EN BODEGA(BIENES) O APROBACIÓN DE SUB/DIR(SERVICIO)
-        public DataSet EnviarPedidoARevision(int idPedido, int idTipoSalida, string usuario,string ip,string mac,string pc)
+        public DataSet EnviarPedidoARevision(int idPedido, int idTipoSalida, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.EnviarPedidoARevision(idPedido, idTipoSalida, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.EnviarPedidoARevision(idPedido, idTipoSalida, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -716,7 +716,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.EnviarAjustePedidoARevision(idAjustePedido, idTipoSalida, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.EnviarAjustePedidoARevision(idAjustePedido, idTipoSalida, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -741,7 +741,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionBodega(idPedido, idTipoDocumento, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AprobacionBodega(idPedido, idTipoDocumento, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -766,7 +766,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoBodega(idPedido, idTipoDocumento, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.RechazoBodega(idPedido, idTipoDocumento, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -791,7 +791,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionEncargado(idSalida, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AprobacionEncargado(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -816,7 +816,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionEncargadoAjuste(idSalida, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AprobacionEncargadoAjuste(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -841,7 +841,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoEncargado(idPedido, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.RechazoEncargado(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -891,7 +891,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionPresupuesto(idSalida, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AprobacionPresupuesto(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -941,7 +941,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoPresupuesto(idPedido, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.RechazoPresupuesto(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -991,7 +991,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1016,7 +1016,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoMesaEntrada(idPedido, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.RechazoMesaEntrada(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1032,7 +1032,7 @@ namespace CapaLN
             }
 
             return dsResultado;
-        }        
+        }
 
         public DataSet AsignacionTecnicoCompras(int idSalida, int idTipoSalida, int idTecnico, string observaciones, string usuario, string ip, string mac, string pc)
         {
@@ -1041,7 +1041,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AsignacionTecnicoCompras(idSalida, idTipoSalida, idTecnico, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AsignacionTecnicoCompras(idSalida, idTipoSalida, idTecnico, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1059,14 +1059,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AsignarValorReal(DataSet dsDetalles)
+        public DataSet AsignarValorReal(DataSet dsDetalles,string ip,string mac,string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AsignarValorReal(dsDetalles);
+                DataSet ds = ObjAD.AsignarValorReal(dsDetalles,ip,mac,pc);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1088,7 +1088,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AprobacionTecnico(dsDetalles,ip,mac,pc);
+                DataSet ds = ObjAD.AprobacionTecnico(dsDetalles, ip, mac, pc);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1186,7 +1186,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.AnulacionTecnico(idPedido, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AnulacionTecnico(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1211,7 +1211,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.RechazoTecnico(idPedido, idTipoSalida, observaciones, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.RechazoTecnico(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1236,7 +1236,7 @@ namespace CapaLN
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.Reactivacion(idPedido, idTipoSalida, observaciones, usuario);
+                DataTable dt = ObjAD.Reactivacion(idPedido, idTipoSalida, observaciones, usuario, "null", "null", "null");
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -1577,7 +1577,6 @@ namespace CapaLN
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PedidosAD();
-
             try
             {
                 DataTable dt = ObjAD.InformacionCriteriosCompra(id, id2, criterio, opcion);
@@ -1589,7 +1588,6 @@ namespace CapaLN
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = "InformacionCuadroAdj(). " + ex.Message;
             }
-
             return dsResultado;
         }*/
 

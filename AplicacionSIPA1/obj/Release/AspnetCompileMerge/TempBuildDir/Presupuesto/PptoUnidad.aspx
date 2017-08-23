@@ -12,9 +12,6 @@
             text-align: center;
             font-size: x-large;
         }
-        .auto-style12 {
-            text-align: right;
-        }
     </style>
 </asp:Content>
 
@@ -35,22 +32,21 @@
                     <td class="auto-style11" colspan="4"><strong>PRESUPUESTO/UNIDAD</strong></td>
                 </tr>
                 <tr>
-                    <td class="auto-style12">&nbsp; Año&nbsp;&nbsp;&nbsp; </td>
+                    <td class="auto-style3">&nbsp; Año</td>
                     <td class="auto-style4" colspan="3">
                         <asp:DropDownList ID="dropAnio" runat="server" class="form-control" Width="20%" OnSelectedIndexChanged="dropAnio_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                 </tr>
                             <tr>
-                                <td class="auto-style12">&nbsp; Unidad&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style3">&nbsp; Unidad</td>
                                 <td class="auto-style4" colspan="3">
                                     <asp:DropDownList ID="dropUnidad" runat="server" class="form-control" OnSelectedIndexChanged="dropUnidad_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
                 <tr>
-                    <td class="auto-style12">&nbsp; Monto<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMonto" ErrorMessage="*" ForeColor="Red" ValidationGroup="vacios"></asp:RequiredFieldValidator>
-                        &nbsp;&nbsp;&nbsp;
+                    <td class="auto-style3">&nbsp; Monto<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMonto" ErrorMessage="*" ForeColor="Red" ValidationGroup="vacios"></asp:RequiredFieldValidator>
                     </td>
                     <td class="auto-style4">
                         <asp:TextBox ID="txtMonto" runat="server" class="form-control" placeholder="Monto a Asignar" Width="25%"></asp:TextBox>
@@ -70,8 +66,8 @@
                 <tr>
                     <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style4">
-                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" Width="120px" />
-                        <asp:Button ID="btnCancelar" runat="server" class="btn btn-warning" OnClick="btnCancelar_Click" Text="Nuevo" Width="120px" />
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" Width="120px" />
+                        <asp:Button ID="btnCancelar" runat="server" class="btn btn-default" OnClick="btnCancelar_Click" Text="Nuevo" Width="120px" />
                     </td>
                     <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style4">&nbsp;</td>
@@ -80,7 +76,7 @@
                                 <td class="auto-style7">
                                     &nbsp;</td>
                                 <td class="auto-style7" colspan="3">
-                                    <asp:GridView ID="gridPresupuesto" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridPresupuesto_RowDataBound" OnRowDeleting="gridPresupuesto_RowDeleting" PageSize="5" ShowFooter="True" Width="65%" CssClass="table table-hover table-responsive" OnSelectedIndexChanged="gridPresupuesto_SelectedIndexChanged">
+                                    <asp:GridView ID="gridPresupuesto" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridPresupuesto_RowDataBound" OnRowDeleting="gridPresupuesto_RowDeleting" PageSize="5" ShowFooter="True" Width="65%">
                                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                         <Columns>
                                             <asp:TemplateField ShowHeader="False">

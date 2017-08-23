@@ -222,11 +222,6 @@ namespace AplicacionSIPA1.Reporteria
 
         }
 
-        protected void btnBuscar_Click1(object sender, EventArgs e)
-        {
-
-        }
-
 
 
 

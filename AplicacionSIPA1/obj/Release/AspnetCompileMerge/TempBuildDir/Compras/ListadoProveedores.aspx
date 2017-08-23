@@ -31,7 +31,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:RadioButtonList ID="rblCriterio" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Width="467px">
+                        <asp:RadioButtonList ID="rblCriterio" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
                         </asp:RadioButtonList>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -73,8 +73,8 @@
                     <td colspan="12">
                         <asp:TextBox ID="txtBValor" runat="server" class="form-control" MaxLength="250" Width="100%"></asp:TextBox>
                     </td>
-                    <td colspan="4" style="text-align: center">
-                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" />
+                    <td colspan="4">
+                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -113,8 +113,7 @@
                 </tr>
                 <tr>
                     <td colspan="20">
-                        <asp:GridView ID="gridProveedores" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridProveedores_PageIndexChanging" OnSelectedIndexChanged="gridProveedores_SelectedIndexChanged" PageSize="100" Width="100%" style="margin-left: 37px"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridProveedores" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridProveedores_PageIndexChanging" OnSelectedIndexChanged="gridProveedores_SelectedIndexChanged" PageSize="100" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

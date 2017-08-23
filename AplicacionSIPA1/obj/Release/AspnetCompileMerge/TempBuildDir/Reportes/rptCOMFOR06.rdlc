@@ -912,7 +912,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!fecha_pedido.Value, "DataSet1")</Value>
+                <Value>=First(Fields!fecha.Value, "DataSet1")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1123,10 +1123,6 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="unidad_administrativa">
-          <DataField>unidad_administrativa</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="no_solicitud">
           <DataField>no_solicitud</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1135,20 +1131,12 @@
           <DataField>anio_solicitud</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="partida_ppto">
-          <DataField>partida_ppto</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="analista_ppto">
-          <DataField>analista_ppto</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="fecha">
           <DataField>fecha</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fecha_pedido">
-          <DataField>fecha_pedido</DataField>
+        <Field Name="unidad_administrativa">
+          <DataField>unidad_administrativa</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="solicitante">
@@ -1162,7 +1150,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DS_COMFOR06</rd:DataSetName>
-        <rd:SchemaPath>E:\REPORTES SIPA\Reporte\DS_COMFOR06.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Jose Miguel\Documents\Visual Studio 2013\Projects\Reporte\DS_COMFOR06.xsd</rd:SchemaPath>
         <rd:TableName>ENCABEZADO</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

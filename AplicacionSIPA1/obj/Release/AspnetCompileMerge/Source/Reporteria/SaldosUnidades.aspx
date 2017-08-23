@@ -33,7 +33,7 @@
                                     </asp:DropDownList>
                                 </td>
                                 <td>
-                                    <asp:Button ID="btnBuscar" runat="server" BackColor="#009933" class="btn btn-primary" PostBackUrl="~/Reporteria/saldosUnidadDetalle.aspx" Text="Buscar" OnClick="btnBuscar_Click1" />
+                                    <asp:Button ID="btnBuscar" runat="server" BackColor="#009933" class="btn btn-primary" PostBackUrl="~/Reporteria/saldosUnidadDetalle.aspx" Text="Buscar" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>

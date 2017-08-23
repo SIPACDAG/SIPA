@@ -12,7 +12,6 @@ using CapaEN;
 
 using Microsoft.Reporting.WebForms;
 using System.IO;
-using System.Net;
 
 namespace AplicacionSIPA1.Operativa
 {
@@ -34,8 +33,6 @@ namespace AplicacionSIPA1.Operativa
                 {
                     planEstrategicoLN = new PlanEstrategicoLN();
                     planEstrategicoLN.DdlPlanes(ddlPlanes);
-
-                    
 
                     string usuario = Session["Usuario"].ToString().ToLower();
                     int idPlan = 0;
@@ -85,10 +82,9 @@ namespace AplicacionSIPA1.Operativa
                     rblMostrar.SelectedValue = "1";
                     rblMostrar_SelectedIndexChanged(sender, e);
 
-                    txtObser.Enabled = true;
+                    
                     filtrarGridPlan();
                     generarReporte();
-                    
                 }
                 catch (Exception ex)
                 {
@@ -762,7 +758,6 @@ namespace AplicacionSIPA1.Operativa
                 planOperativoLN = new PlanOperativoLN();
                 txtObser.Text = string.Empty;
                 cambiarEstado(4, "APROBADA");
-                presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "Aprobacion CMI Subgerente", txtObser.Text, 0, 0);
 
 
 
@@ -801,11 +796,7 @@ namespace AplicacionSIPA1.Operativa
                 if (txtObser.Text.Equals(string.Empty))
                     lblError.Text = "Llene el campo de observaciones.";
                 else
-                {
                     cambiarEstado(3, "RECHAZADA");
-                    presupuestoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "RECHAZO CMI Subgerente", txtObser.Text, 0, 0);
-                }
-                    
             }
             catch (Exception ex)
             {
@@ -822,11 +813,9 @@ namespace AplicacionSIPA1.Operativa
                 planOperativoLN = new PlanOperativoLN();
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
                 for (int i = 0; i < depen.Count; i++)
                 {
-                    DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(depen[i], 4, anio, null, "", usuario, observaciones,ip[0],ip[1],ip[3],"VoBoN1", " AplicacionSIPA1.Operativa.VoBoN1.btnAceptar()");
+                    DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(depen[i], 4, anio, null, "", usuario, observaciones);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -859,9 +848,7 @@ namespace AplicacionSIPA1.Operativa
 
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
-                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones,ip[0],ip[1],ip[2],"VoBoN1", " AplicacionSIPA1.Operativa.VoBoN1.Rechazo()");
+                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

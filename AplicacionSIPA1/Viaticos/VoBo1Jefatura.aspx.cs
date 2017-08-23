@@ -477,11 +477,12 @@ namespace AplicacionSIPA1.Viaticos
                     throw new Exception("Seleccione un PEDIDO!");
 
                 txtObser.Text = string.Empty;
-
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 pViaticosLN = new ViaticosLN();
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                DataSet dsResultado = pViaticosLN.AprobacionJefeDirector(idPedido, observaciones, usuario);
+                DataSet dsResultado = pViaticosLN.AprobacionJefeDirector(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -523,10 +524,12 @@ namespace AplicacionSIPA1.Viaticos
                     lblError.Text = "Llene el campo de observaciones.";
                 else
                 {
+                    FuncionesVarias fv = new FuncionesVarias();
+                    string[] ip = fv.DatosUsuarios();
                     pViaticosLN = new ViaticosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pViaticosLN.RechazoJefeDirector(idPedido, observaciones, usuario);
+                    DataSet dsResultado = pViaticosLN.RechazoJefeDirector(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -534,7 +537,6 @@ namespace AplicacionSIPA1.Viaticos
                     filtrarDvPedidos();
                     filtrarGridDetalles();
                     filtrarGridPpto();
-
                     txtObser.Text = string.Empty;
 
                     string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();

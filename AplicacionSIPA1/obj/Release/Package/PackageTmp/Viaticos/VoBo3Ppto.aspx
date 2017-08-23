@@ -246,19 +246,19 @@
                     <td style="width: 5%">Año:</td>
                     <td style="width: 5%">Entidad:</td>
                     <td style="width: 5%; text-align: center;">
-                        <asp:Label ID="lblPRG" runat="server" Font-Bold="True" Text="PRG"></asp:Label>
+                        <asp:Label ID="lblPRG" runat="server" Font-Bold="True" Text="PRG" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%; text-align: center;">
-                        <asp:Label ID="lblSPRG" runat="server" Font-Bold="True" Text="SPRG"></asp:Label>
+                        <asp:Label ID="lblSPRG" runat="server" Font-Bold="True" Text="SPRG" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%; text-align: center;">
-                        <asp:Label ID="lblPROY" runat="server" Font-Bold="True" Text="PROY"></asp:Label>
+                        <asp:Label ID="lblPROY" runat="server" Font-Bold="True" Text="PROY" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%; text-align: center;">
-                        <asp:Label ID="lblACT" runat="server" Font-Bold="True" Text="ACT"></asp:Label>
+                        <asp:Label ID="lblACT" runat="server" Font-Bold="True" Text="ACT" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%; text-align: center;">
-                        <asp:Label ID="lblOBR" runat="server" Font-Bold="True" Text="OBR"></asp:Label>
+                        <asp:Label ID="lblOBR" runat="server" Font-Bold="True" Text="OBR" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%; text-align: center;">
                         <asp:Label ID="lblREN" runat="server" Font-Bold="True" Text="REN"></asp:Label>
@@ -284,31 +284,31 @@
                         <asp:Label ID="lblEntidad" runat="server" Text="1130-0061"></asp:Label>
                     </td>
                     <td style="width: 5%">
-                        <asp:DropDownList ID="ddlPRG" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlPRG_SelectedIndexChanged" Width="97%">
+                        <asp:DropDownList ID="ddlPRG" runat="server" AutoPostBack="True" class="" OnSelectedIndexChanged="ddlPRG_SelectedIndexChanged" Width="97%" Visible="False">
                             <asp:ListItem>--</asp:ListItem>
                             <asp:ListItem>11</asp:ListItem>
                             <asp:ListItem>99</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">
-                        <asp:DropDownList ID="ddlSPRG" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlSPRG_SelectedIndexChanged" Width="97%">
+                        <asp:DropDownList ID="ddlSPRG" runat="server" AutoPostBack="True" class="" OnSelectedIndexChanged="ddlSPRG_SelectedIndexChanged" Width="97%" Visible="False">
                             <asp:ListItem Selected="True">--</asp:ListItem>
                             <asp:ListItem>00</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">
-                        <asp:DropDownList ID="ddlPROY" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlPROY_SelectedIndexChanged" Width="97%">
+                        <asp:DropDownList ID="ddlPROY" runat="server" AutoPostBack="True" class="" OnSelectedIndexChanged="ddlPROY_SelectedIndexChanged" Width="97%" Visible="False">
                             <asp:ListItem>---</asp:ListItem>
                             <asp:ListItem>000</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">
-                        <asp:DropDownList ID="ddlACT" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlACT_SelectedIndexChanged" Width="97%">
+                        <asp:DropDownList ID="ddlACT" runat="server" AutoPostBack="True" class="" OnSelectedIndexChanged="ddlACT_SelectedIndexChanged" Width="97%" Visible="False">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">
-                        <asp:DropDownList ID="ddlOBR" runat="server" AutoPostBack="True" BackColor="#FFFF99" class="" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" Width="97%">
+                        <asp:DropDownList ID="ddlOBR" runat="server" AutoPostBack="True" class="" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" Width="97%" Visible="False">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>

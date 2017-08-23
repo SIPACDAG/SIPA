@@ -121,6 +121,24 @@ namespace AplicacionSIPA1.Viaticos {
         protected global::System.Web.UI.WebControls.DropDownList ddlUnidades;
         
         /// <summary>
+        /// Control ddlDependencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDependencia;
+        
+        /// <summary>
+        /// Control ddlJefaturaUnidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJefaturaUnidad;
+        
+        /// <summary>
         /// Control lblErrorAccion.
         /// </summary>
         /// <remarks>
@@ -740,5 +758,14 @@ namespace AplicacionSIPA1.Viaticos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridDet;
+        
+        /// <summary>
+        /// Control gridSaldos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridSaldos;
     }
 }

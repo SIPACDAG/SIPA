@@ -418,11 +418,11 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                     }
                     catch (Exception)
                     {
-                        (gridDet.Rows[i].FindControl("lblErrorMontoAjuste") as Label).Text = "¡Ingrese un valor válido!";
+                        (gridDet.Rows[i].FindControl("lblErrorMontoAjuste") as Label).Text = "¡Ingrese un monto válido!";
 
                         if (errorMontos == false)
                         {
-                            lblError.Text += "Ingrese una montos válidos. ";
+                            lblError.Text += "Ingrese montos válidos. ";
                             errorMontos = true;
                         }
                     }
@@ -440,55 +440,10 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                             errorRenglones = true;
                         }
                     }
-
-                    int idAjustePedidoDet = 0;
-                    int idPedidoDetalle = 0;
-                    int idPac = 0;
-
-                    int.TryParse(gridDet.DataKeys[i].Values["ID_AJUSTE_PEDIDO_DET"].ToString(), out idAjustePedidoDet);
-                    int.TryParse(gridDet.DataKeys[i].Values["ID_PEDIDO_DETALLE"].ToString(), out idPedidoDetalle);
-                    int.TryParse(gridDet.DataKeys[i].Values["ID_PAC"].ToString(), out idPac);
-                    int.TryParse(gridDet.DataKeys[i].Values["ID_DETALLE_ACCION"].ToString(), out idDetalleAccion);
-                    
-                    montoAjuste = funciones.StringToDecimal((gridDet.Rows[i].FindControl("txtMontoAjuste") as TextBox).Text);
-
-
-                    try
-                    {
-                        ValidarPptoUIDetalle(idPac, idPedidoDetalle, montoAjuste);
-                    }
-                    catch (Exception ex)
-                    {
-                        (gridDet.Rows[i].FindControl("lblErrorMontoAjuste") as Label).Text = ex.Message;
-
-                        if (errorValidarDetalle == false)
-                            errorValidarDetalle = true;
-                    }
-                    
-                    pInsumoLN = new PedidosLN();
-                    DataSet dsResultado = pInsumoLN.InformacionAjustesPedido(idDetalleAccion, 0, "", 4);
-
-                    if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                    decimal saldo = 0;
-                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["SALDO"].ToString(), out saldo);
-
-                    if (montoAjuste > saldo)
-                    {
-                        (gridDet.Rows[i].FindControl("lblErrorMontoAjuste") as Label).Text = "El monto del ajuste supera el saldo disponible del renglón presupuestario: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", saldo);
-
-                        if (lblError.Text.Contains("El pedido contiene artículos que sobrepasan el presupuesto del renglón. ") == false)
-                            lblError.Text += "El pedido contiene artículos que sobrepasan el presupuesto del renglón. ";
-                    }
-
                 }
 
                 if (alMenos1Ajuste == false)
-                    lblError.Text += "Ingrese por lo menos un ajuste mayor a Q. 00.00";
-
-                if (errorValidarDetalle == true)
-                    lblError.Text += "El pedido contiene artículos que sobrepasan el presupuuesto del PAC. ";
+                    lblError.Text += "Ingrese por lo menos un ajuste mayor a Q. 00.00";                
 
                 if (lblError.Text.Equals(string.Empty))
                     controlesValidos = true;
@@ -878,9 +833,10 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                                 dsDetalles.Tables[0].Rows.Add(dr);
                             }
-
+                            FuncionesVarias fv = new FuncionesVarias();
+                            string[] ip = fv.DatosUsuarios();
                             pInsumoLN = new PedidosLN();
-                            DataSet dsResultado = pInsumoLN.AlmacenarAjustePedido(aAjusteEN, dsDetalles,Session["usuario"].ToString());
+                            DataSet dsResultado = pInsumoLN.AlmacenarAjustePedido(aAjusteEN, dsDetalles,Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception("No se INSERTÓ/ACTUALIZÓ el ajuste: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -922,81 +878,6 @@ namespace AplicacionSIPA1.Pedido.Ajustes
             {
                 lblError.Text = "btnGuardar(). " + ex.Message;
             }
-        }
-
-        protected bool ValidarPptoUIDetalle(int idPac, int idDetallePedido, decimal subTotal)
-        {
-            pAccionLN = new PlanAccionLN();
-            pAnualLN = new PlanAnualLN();
-            bool pptoValido = false;
-
-            decimal saldoPac, saldoRenglon, montoDetPedido = 0;
-
-            if (idPac > 0)
-            {
-                //INFORMACIÓN DEL PLAN ANUAL DE COMPRAS
-                DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac);
-                if (dsInformacionPac.Tables.Count == 0)
-                    throw new Exception("Error al consultar la información del Plan: " + dsInformacionPac.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsInformacionPac.Tables[0].Rows.Count == 0)
-                    throw new Exception("No existe información del del Plan: " + dsInformacionPac.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                if (bool.Parse(dsInformacionPac.Tables[0].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception("No se consultó la información del Plan: " + dsInformacionPac.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                decimal saldo = 0;
-                decimal.TryParse(dsInformacionPac.Tables["ENCABEZADO"].Rows[0]["SALDO"].ToString(), out saldo);
-
-                int idDetalleAccion = 0;
-                int.TryParse(dsInformacionPac.Tables["ENCABEZADO"].Rows[0]["ID_DETALLE_ACCION"].ToString(), out idDetalleAccion);
-
-
-                //INFORMACIÓN DEL RENGLÓN AL QUE PERTENECE EL PAC
-                DataSet dsInformacionRenglon = pAccionLN.PptoRenglonAccion(idDetalleAccion);
-                if (dsInformacionRenglon.Tables.Count == 0)
-                    throw new Exception("Error al consultar la información del Plan: " + dsInformacionRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsInformacionRenglon.Tables[0].Rows.Count == 0)
-                    throw new Exception("No existe información del del Plan: " + dsInformacionRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                if (bool.Parse(dsInformacionRenglon.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception("No se consultó la información del Plan: " + dsInformacionRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                saldo = 0;
-                decimal.TryParse(dsInformacionRenglon.Tables["BUSQUEDA"].Rows[0]["SALDO_POA"].ToString(), out saldo);
-
-                //INFORMACIÓN DEL DETALLE DEL PEDIDO
-                pInsumoLN = new PedidosLN();
-                DataSet dsInformacionDetPedido = pInsumoLN.InformacionPedido(idDetallePedido, 0, 0, "", 4);
-                if (dsInformacionDetPedido.Tables.Count == 0)
-                    throw new Exception("Error al consultar la información del Plan: " + dsInformacionDetPedido.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsInformacionDetPedido.Tables[0].Rows.Count == 0)
-                    throw new Exception("No existe información del Plan: " + dsInformacionDetPedido.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                if (bool.Parse(dsInformacionDetPedido.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsInformacionDetPedido.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                
-                decimal.TryParse(dsInformacionPac.Tables["ENCABEZADO"].Rows[0]["SALDO"].ToString(), out saldoPac);
-                decimal.TryParse(dsInformacionRenglon.Tables["BUSQUEDA"].Rows[0]["SALDO_POA"].ToString(), out saldoRenglon);
-
-                if (idDetallePedido > 0)
-                    decimal.TryParse(dsInformacionDetPedido.Tables["BUSQUEDA"].Rows[0]["SUBTOTAL"].ToString(), out montoDetPedido);
-
-                decimal diferenciaPacDetPedido = (saldoPac + montoDetPedido) - subTotal;
-                decimal diferenciaRenglonDetPedido = (saldoRenglon + montoDetPedido) - subTotal;
-
-                if (diferenciaPacDetPedido < 0)
-                    throw new Exception("El monto del pedido supera al PAC en: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", diferenciaPacDetPedido));
-
-                //if (diferenciaRenglonDetPedido < 0)
-                //    throw new Exception("El monto del pedido supera al Renglón en: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", diferenciaRenglonDetPedido));
-            }
-
-            pptoValido = true;
-            return pptoValido;
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -1206,6 +1087,9 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 if (idAjustePedido == 0)
                     throw new Exception("No existe ajuste para finalizar");
 
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
+
                 int.TryParse(lblIdPoa.Text, out idPoa);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
                 int.TryParse(ddlAnios.SelectedValue, out anio);
@@ -1246,7 +1130,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
 
                             if (lblError.Text.Equals("") || lblError.Text.Equals(string.Empty))
                             {
-                                dsResultado = pInsumoLN.EnviarAjustePedidoARevision(idAjustePedido, 0, Session["usuario"].ToString());
+                                dsResultado = pInsumoLN.EnviarAjustePedidoARevision(idAjustePedido, 0, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());

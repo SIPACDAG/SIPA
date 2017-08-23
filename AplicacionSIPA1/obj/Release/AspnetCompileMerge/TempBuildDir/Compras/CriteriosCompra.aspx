@@ -74,10 +74,10 @@
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="2">
-                        <asp:TextBox ID="txtPuntuacion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Size="Large" MaxLength="5" Style="text-align: right" TextMode="Number" Width="86%"></asp:TextBox>
+                        <asp:TextBox ID="txtPuntuacion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Size="Large" MaxLength="5" Style="text-align: right" TextMode="Number" Width="95%"></asp:TextBox>
                     </td>
-                    <td colspan="3" style="text-align: center">
-                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar Criterio" Width="95%" />
+                    <td colspan="3">
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar Criterio" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -136,7 +136,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="4">
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="95%" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -163,8 +163,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="12">
-                        <asp:GridView ID="gridCriterios" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" OnRowDeleting="gridCriterios_RowDeleting" OnSelectedIndexChanged="gridCriterios_SelectedIndexChanged"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridCriterios" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" OnRowDeleting="gridCriterios_RowDeleting" OnSelectedIndexChanged="gridCriterios_SelectedIndexChanged">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

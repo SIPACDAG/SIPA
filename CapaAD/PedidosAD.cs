@@ -355,7 +355,7 @@ namespace CapaAD
                     descripcion = ObjEN.DESCRIPCION;
                     costoEstimado = ObjEN.COSTO_ESTIMADO.ToString();
 
-                    query = "CALL sp_iue_ccvale_detalles(" + idPedidoDetalle + ", " + idEncabezado + ", NULL, " + cantidad + ", " +idUnidadMedida + ", '" + descripcion + "', " + costoEstimado + ", '" + usuario + "', 1);";
+                    query = "CALL sp_iue_ccvale_detalles(" + idPedidoDetalle + ", " + idEncabezado + ", NULL, " + cantidad + ", " + idUnidadMedida + ", '" + descripcion + "', " + costoEstimado + ", '" + usuario + "', 1);";
 
                     dt = new DataTable();
                     sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
@@ -380,7 +380,7 @@ namespace CapaAD
                 }
             }
 
-            if(dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
+            if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
                 sqlTransaction.Commit();
 
             conectar.CerrarConexion();
@@ -578,7 +578,7 @@ namespace CapaAD
             idTipoDocumento = ObjEN.VID_TIPO_DOCUMENTO;
             usuario = ObjEN.USUARIO;
 
-            query = "CALL sp_iue_especificaciones(" + idEspecificacion + ", " + idTipoDocumento + ", "  + idPedido + ", 0, 0, '" + usuario + "', 1);";
+            query = "CALL sp_iue_especificaciones(" + idEspecificacion + ", " + idTipoDocumento + ", " + idPedido + ", 0, 0, '" + usuario + "', 1);";
 
             dt = armarDsResultado().Tables[0].Copy();
             dtEnc = armarDsResultado().Tables[0].Copy();
@@ -728,7 +728,7 @@ namespace CapaAD
         {
             DataSet dsResultado = new DataSet();
             string query = "";
-       
+
             DataTable dt;
             DataTable dtEnc;
             MySqlTransaction sqlTransaction;
@@ -831,6 +831,7 @@ namespace CapaAD
             stringB.Append(ObjEN.VID_ANALISTA_PPTO);
             stringB.Append(ObjEN.VUSUARIO);
             stringB.Append(ObjEN.VOPCION);
+        
 
             query = stringB.ToString();
 
@@ -990,8 +991,7 @@ namespace CapaAD
 
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
-            string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "',  2,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+            string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "',  2);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1049,8 +1049,7 @@ namespace CapaAD
 
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
-            string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "',  3,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+            string query = "CALL sp_iue_ajuste_pedido(" + idAjuste + ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '" + usuario + "',  3);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1191,7 +1190,7 @@ namespace CapaAD
             return dt;
         }
 
-        public DataSet AsignarValorReal(DataSet dsDetalles)
+        public DataSet AsignarValorReal(DataSet dsDetalles,string ip,string mac,string pc)
         {
             string query = "";
             DataSet dsResultado = new DataSet();
@@ -1205,7 +1204,8 @@ namespace CapaAD
             string idPedido = dsDetalles.Tables[0].Rows[0]["ID_PEDIDO"].ToString();
             string idTipoSalida = dsDetalles.Tables[0].Rows[0]["VID_TIPO_DOCUMENTO"].ToString();
 
-            query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', -1);";
+            query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', -1,'"
+                 + ip + "','" + mac + "','" + pc + "');";
 
             dt = armarDsResultado().Tables[0].Copy();
             dtEnc = armarDsResultado().Tables[0].Copy();
@@ -1472,12 +1472,13 @@ namespace CapaAD
             return dt;
         }
 
-        public DataTable AnulacionTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario)
+        public DataTable AnulacionTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
         {
 
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
-            string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 14);";
+            string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 14,'"
+                + ip + "','" + mac + "','" + pc + "');";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1485,7 +1486,7 @@ namespace CapaAD
             return dt;
         }
 
-        public DataTable RechazoTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip,string mac,string pc)
+        public DataTable RechazoTecnico(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
         {
 
             conectar = new ConexionBD();
@@ -1500,7 +1501,7 @@ namespace CapaAD
             return dt;
         }
 
-        public DataTable Reactivacion(int idPedido, int idTipoSalida, string observaciones, string usuario,string ip, string mac, string pc)
+        public DataTable Reactivacion(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
         {
 
             conectar = new ConexionBD();

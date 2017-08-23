@@ -119,9 +119,8 @@
                             <td style="width:5%;">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: right">
+                            <td colspan="4">
                                 <asp:Label ID="lblBPlan" runat="server" Text="Plan Estratégico:"></asp:Label>
-                                &nbsp;&nbsp;&nbsp;
                             </td>
                             <td colspan="5">
                                 <asp:DropDownList ID="ddlBPlanes" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlBAnio_SelectedIndexChanged" Width="100%">
@@ -136,7 +135,7 @@
                             <td style="width:5%;">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: right">Año:&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                            <td colspan="4">Año:</td>
                             <td colspan="5">
                                 <asp:DropDownList ID="ddlBAnio" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlBAnio_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
@@ -150,7 +149,7 @@
                             <td style="width:5%;">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: right">Unidad:&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                            <td colspan="4">Unidad:</td>
                             <td colspan="8">
                                 <asp:DropDownList ID="ddlBUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlBUnidades_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
@@ -161,7 +160,7 @@
                             <td style="width:5%;">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align: right">Objetivos Operativos:&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                            <td colspan="4">Objetivos Operativos:</td>
                             <td colspan="8">
                                 <asp:DropDownList ID="ddlBObjetivos" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlBObjetivos_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
@@ -199,7 +198,7 @@
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
                             <td colspan="6">
-                                <asp:Button ID="btnNuevo" runat="server" CausesValidation="False" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                                <asp:Button ID="btnNuevo" runat="server" CausesValidation="False" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
                             </td>
                             <td style="width:5%;">&nbsp;</td>
                             <td style="width:5%;">&nbsp;</td>
@@ -246,7 +245,7 @@
                         </tr>
                         <tr>
                             <td colspan="16">
-                                <asp:GridView ID="gridBusqueda" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridBusqueda_PageIndexChanging" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" PageSize="25" Width="95%" CssClass="table table-hover table-responsive" style="margin-left: 74px">
+                                <asp:GridView ID="gridBusqueda" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridBusqueda_PageIndexChanging" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" PageSize="25" Width="95%">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
                                         <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="True">
@@ -599,7 +598,7 @@
                                 <asp:Label ID="lblEPlan" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                             </td>
                             <td colspan="16">
-                                <asp:GridView ID="gridPlanE" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridPlanE_PageIndexChanging" OnSelectedIndexChanged="gridPlanE_SelectedIndexChanged" PageSize="3" Width="100%" CssClass="table table-hover table-responsive">
+                                <asp:GridView ID="gridPlanE" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridPlanE_PageIndexChanging" OnSelectedIndexChanged="gridPlanE_SelectedIndexChanged" PageSize="3" Width="100%">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
                                         <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="True">
@@ -695,21 +694,21 @@
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 5%"><span>
-                                <asp:Button ID="btnEliminarObjetivo" runat="server" CausesValidation="False" class="btn btn-danger" ForeColor="White" OnClick="btnEliminarObjetivo_Click" Text="-" Width="100%" />
+                                <asp:Button ID="btnEliminarObjetivo" runat="server" CausesValidation="False" class="btn btn-default" ForeColor="White" OnClick="btnEliminarObjetivo_Click" Text="-" Width="100%" />
                                 </span></td>
                             <td colspan="4">
                                 <asp:DropDownList ID="ddlIndicadores" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlIndicadores_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 5%"><span>
-                                <asp:Button ID="btnEliminarIndicador" runat="server" CausesValidation="False" class="btn btn-danger" ForeColor="White" OnClick="btnEliminarIndicador_Click" Text="-" Width="100%" />
+                                <asp:Button ID="btnEliminarIndicador" runat="server" CausesValidation="False" class="btn btn-default" ForeColor="White" OnClick="btnEliminarIndicador_Click" Text="-" Width="100%" />
                                 </span></td>
                             <td colspan="4">
                                 <asp:DropDownList ID="ddlMetas" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlMetas_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
                             </td>
                             <td><span>
-                                <asp:Button ID="btnEliminarMeta" runat="server" CausesValidation="False" class="btn btn-danger" ForeColor="White" OnClick="btnEliminarMeta_Click" Text="-" Width="100%" />
+                                <asp:Button ID="btnEliminarMeta" runat="server" CausesValidation="False" class="btn btn-default" ForeColor="White" OnClick="btnEliminarMeta_Click" Text="-" Width="100%" />
                                 </span></td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
@@ -826,9 +825,9 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="text-align: center;" colspan="16">
-                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                                <asp:Button ID="btnNuevaB" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnNuevaB_Click" Text="Buscar" Visible="False" Width="120px" />
+                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                                <asp:Button ID="btnNuevaB" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnNuevaB_Click" Text="Buscar" Visible="False" Width="120px" />
                                 <asp:Button ID="btnRevisarPlan" runat="server" class="btn btn-primary" OnClick="btnRevisarPlan_Click" Text="Revisar Plan" Width="120px" />
                             </td>
                             <td style="width: 5%">&nbsp;</td>

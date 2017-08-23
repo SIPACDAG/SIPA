@@ -30,9 +30,9 @@
             </table>
             <table style="width:80%;">
                 <tr>
-                    <td class="auto-style3" style="width: 180px; font-weight: 700; color: #006699; text-align: right;">Criterio de búsqueda:&nbsp;&nbsp; </td>
+                    <td class="auto-style3" style="width: 180px">Criterio de búsqueda:</td>
                     <td class="auto-style14" colspan="3">
-                        <asp:RadioButtonList ID="rblCriterio" runat="server" OnSelectedIndexChanged="rblCriterio_SelectedIndexChanged" RepeatDirection="Horizontal" AutoPostBack="True" Width="322px">
+                        <asp:RadioButtonList ID="rblCriterio" runat="server" OnSelectedIndexChanged="rblCriterio_SelectedIndexChanged" RepeatDirection="Horizontal" AutoPostBack="True">
                         </asp:RadioButtonList>
                     </td>
                 </tr>
@@ -45,12 +45,12 @@
             </table>
             <table style="width:80%;">
                 <tr>
-                    <td class="auto-style3" style="width: 180px; font-weight: 700; color: #006699; text-align: right;">&nbsp;Valor de búsqueda:&nbsp;&nbsp; </td>
+                    <td class="auto-style3" style="width: 180px">&nbsp;Valor de búsqueda:</td>
                     <td style="width: 425px">
                         <asp:TextBox ID="txtBValor" runat="server" class="form-control" MaxLength="250" Width="95%"></asp:TextBox>
                     </td>
                     <td class="auto-style14">
-                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" />
                     </td>
                 </tr>
             </table>
@@ -61,7 +61,7 @@
                 <tr>
                     <td class="auto-style3" style="width: 180px">&nbsp;</td>
                     <td class="auto-style14">
-                        <asp:GridView ID="gridBusqueda" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDeleting="gridBusqueda_RowDeleting" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" PageSize="5" Width="100%" OnPageIndexChanging="gridBusqueda_PageIndexChanging" CssClass="table table-responsive table-hover">
+                        <asp:GridView ID="gridBusqueda" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDeleting="gridBusqueda_RowDeleting" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" PageSize="5" Width="100%" OnPageIndexChanging="gridBusqueda_PageIndexChanging">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" HeaderText="Modificar">
@@ -140,7 +140,7 @@
                     <br />
                     <table style="width:80%;">
                         <tr>
-                            <td class="auto-style3" style="width: 80px; font-weight: 700; color: #006699; text-align: center;">Planes Estratégicos:&nbsp; </td>
+                            <td class="auto-style3" style="width: 80px">Planes Estratégicos:</td>
                             <td style="font-size: medium; ">
                                 <asp:DropDownList ID="ddlPlanesE" runat="server" AutoPostBack="True" class="form-control" Width="50%">
                                 </asp:DropDownList>
@@ -158,7 +158,7 @@
                     <br />
                     <table style="width:80%;">
                         <tr>
-                            <td class="auto-style3" style="width: 80px; font-weight: 700; color: #006699; text-align: right;">Código:&nbsp;&nbsp;&nbsp; </td>
+                            <td class="auto-style3" style="width: 80px">Código:</td>
                             <td class="auto-style11" style="font-size: medium; width: 107px;">
                                 <asp:TextBox ID="txtCodigo" runat="server" class="form-control" MaxLength="2" placeholder="Código" Width="85%"></asp:TextBox>
                             </td>
@@ -175,7 +175,7 @@
                     <br />
                     <table style="width:80%;">
                         <tr>
-                            <td class="auto-style3" style="width: 80px; font-weight: 700; color: #006699; text-align: right;">Eje:&nbsp;&nbsp;&nbsp; </td>
+                            <td class="auto-style3" style="width: 80px">Eje:</td>
                             <td class="auto-style11" style="font-size: medium; width: 441px;">
                                 <asp:TextBox ID="txtEje" runat="server" class="form-control" placeholder="Eje Estratégico" Width="95%"></asp:TextBox>
                             </td>
@@ -199,9 +199,9 @@
                         <tr>
                             <td class="auto-style3" style="width: 80px">&nbsp;</td>
                             <td class="auto-style11" style="font-size: medium">
-                                <asp:Button ID="btnModificar" runat="server" class="btn btn-success" OnClick="btnModificar_Click" Text="Modificar" ValidationGroup="grpDatos" Width="120px" />
-                                <asp:Button ID="btnEliminar" runat="server" class="btn btn-danger" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" CausesValidation="False" />
-                                <asp:Button ID="btnNuevaB" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnNuevaB_Click" Text="Buscar" Width="120px" />
+                                <asp:Button ID="btnModificar" runat="server" class="btn btn-primary" OnClick="btnModificar_Click" Text="Modificar" ValidationGroup="grpDatos" Width="120px" />
+                                <asp:Button ID="btnEliminar" runat="server" class="btn btn-default" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" CausesValidation="False" />
+                                <asp:Button ID="btnNuevaB" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnNuevaB_Click" Text="Buscar" Width="120px" />
                             </td>
                         </tr>
                     </table>

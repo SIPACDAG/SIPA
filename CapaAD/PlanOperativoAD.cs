@@ -40,7 +40,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
             conectar.AbrirConexion();
-            string query = string.Format("CALL slctUnidadesx('{0}');", usuario);
+            string query = string.Format("CALL slctUnidadesxUsuario('{0}');", usuario);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();
@@ -496,6 +496,26 @@ namespace CapaAD
             }
 
         }
+
+        public string ObtenerCorreoxUsuario(int unidad)
+        {
+            string correo = "";
+            conectar = new ConexionBD();
+            string permiso = string.Format(" call sp_CorreoxUsuario ({0}) ", unidad);
+            conectar.AbrirConexion();
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                correo = dr.GetString("email");
+                if (!string.IsNullOrEmpty(correo))
+                {
+                    return correo;
+                }
+            }
+            return correo = "Correo no encontrado";
+        }
+
 
         public DataTable DependenciasFaltantes(int anio, int unidad)
         {

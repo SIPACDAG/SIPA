@@ -139,6 +139,15 @@ namespace AplicacionSIPA1.Viaticos {
         protected global::System.Web.UI.WebControls.DetailsView dvPedido;
         
         /// <summary>
+        /// Control lblViaticosEstimado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblViaticosEstimado;
+        
+        /// <summary>
         /// Control lblPasajes.
         /// </summary>
         /// <remarks>

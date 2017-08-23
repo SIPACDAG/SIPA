@@ -913,15 +913,6 @@ namespace AplicacionSIPA1.Operativa {
         protected global::System.Web.UI.UpdatePanel upModRenglon;
         
         /// <summary>
-        /// Control ddlAccionModMonto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAccionModMonto;
-        
-        /// <summary>
         /// Control lblIdPoaModMonto.
         /// </summary>
         /// <remarks>
@@ -949,13 +940,58 @@ namespace AplicacionSIPA1.Operativa {
         protected global::System.Web.UI.WebControls.Label lblIdDetalleAccionModMonto;
         
         /// <summary>
-        /// Control ddlRenglonModMonto.
+        /// Control lblErrorAccionOrigen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRenglonModMonto;
+        protected global::System.Web.UI.WebControls.Label lblErrorAccionOrigen;
+        
+        /// <summary>
+        /// Control lblErrorAccionDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorAccionDestino;
+        
+        /// <summary>
+        /// Control ddlAccionOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccionOrigen;
+        
+        /// <summary>
+        /// Control ddlAccionDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccionDestino;
+        
+        /// <summary>
+        /// Control lblErrorRenglonOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorRenglonOrigen;
+        
+        /// <summary>
+        /// Control lblErrorRenglonDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorRenglonDestino;
         
         /// <summary>
         /// Control dropFuenteFModMonto.
@@ -967,31 +1003,139 @@ namespace AplicacionSIPA1.Operativa {
         protected global::System.Web.UI.WebControls.DropDownList dropFuenteFModMonto;
         
         /// <summary>
-        /// Control txtMontoActual.
+        /// Control ddlRenglonOrigen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoActual;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRenglonOrigen;
         
         /// <summary>
-        /// Control txtMontoOperar.
+        /// Control ddlRenglonDestino.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoOperar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRenglonDestino;
         
         /// <summary>
-        /// Control txtNuevoMonto.
+        /// Control lblCodificadoOrigen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNuevoMonto;
+        protected global::System.Web.UI.WebControls.Label lblCodificadoOrigen;
+        
+        /// <summary>
+        /// Control lblSaldoOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaldoOrigen;
+        
+        /// <summary>
+        /// Control lblCodificadoDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCodificadoDestino;
+        
+        /// <summary>
+        /// Control lblSaldoDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaldoDestino;
+        
+        /// <summary>
+        /// Control txtMontoActualOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMontoActualOrigen;
+        
+        /// <summary>
+        /// Control txtNuevoMontoOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoMontoOrigen;
+        
+        /// <summary>
+        /// Control txtDebito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDebito;
+        
+        /// <summary>
+        /// Control txtMontoActualDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMontoActualDestino;
+        
+        /// <summary>
+        /// Control txtNuevoMontoDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoMontoDestino;
+        
+        /// <summary>
+        /// Control txtCredito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCredito;
+        
+        /// <summary>
+        /// Control lblErrorMontoOrigen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMontoOrigen;
+        
+        /// <summary>
+        /// Control lblErrorJustificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorJustificacion;
+        
+        /// <summary>
+        /// Control txtJustificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtJustificacion;
         
         /// <summary>
         /// Control lblErrorModMonto.
@@ -1028,5 +1172,23 @@ namespace AplicacionSIPA1.Operativa {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// Control btnListadoModificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnListadoModificaciones;
+        
+        /// <summary>
+        /// Control btnNuevoTraslado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNuevoTraslado;
     }
 }

@@ -102,8 +102,8 @@
                         <asp:TextBox ID="txtBValor" runat="server" class="form-control" MaxLength="250" OnTextChanged="txtBValor_TextChanged" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="4">
-                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="120px" />
-                        <asp:Button ID="btnRegresar" runat="server" class="btn btn-warning" OnClick="btnRegresar_Click" Text="Regresar" Width="120px" />
+                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="120px" />
+                        <asp:Button ID="btnRegresar" runat="server" class="btn btn-default" OnClick="btnRegresar_Click" Text="Regresar" Width="120px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -143,7 +143,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:GridView ID="gridBusqueda" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" PageSize="2" ShowFooter="True" Width="100%" Font-Size="X-Small" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridBusqueda" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" PageSize="2" ShowFooter="True" Width="100%" Font-Size="X-Small" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ShowSelectButton="True">
@@ -390,7 +390,7 @@
                                 </asp:DropDownList>
                             </td>
                             <td style="text-align: center; border: 1px solid #000000;"><span>
-                                <asp:Button ID="btnEliminarAccion" runat="server" CausesValidation="False" class="btn btn-danger" ForeColor="White" OnClick="btnEliminarAccion_Click" Text="-" Width="100%" OnClientClick="javascript:if(!confirm('¿Desea Eliminar esta ACCIÓN?'))return false" />
+                                <asp:Button ID="btnEliminarAccion" runat="server" CausesValidation="False" class="btn btn-default" ForeColor="White" OnClick="btnEliminarAccion_Click" Text="-" Width="100%" OnClientClick="javascript:if(!confirm('¿Desea Eliminar esta ACCIÓN?'))return false" />
                                 </span></td>
                             <td style="width: 5%">
                                 <asp:DropDownList ID="ddlMetas" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMetas_SelectedIndexChanged" Visible="False" Width="100%">
@@ -847,7 +847,7 @@
                                                 <asp:TextBox ID="txtMonto" runat="server" Style="text-align: right" class="form-control" MaxLength="20" Width="100%" BackColor="#FFFF99">100000000</asp:TextBox>
                                             </td>
                                             <td style="border-left: 1px solid #000000; width: 5%">
-                                                <asp:Button ID="btnAgregarDetalle" runat="server" class="btn btn-success" Font-Bold="True" Font-Size="Large" OnClick="btnAgregarDetalle_Click" Text="+" ToolTip="Presione este botón para agregar un renglón presupuestario" Width="95%" />
+                                                <asp:Button ID="btnAgregarDetalle" runat="server" class="btn btn-default" Font-Bold="True" Font-Size="Large" OnClick="btnAgregarDetalle_Click" Text="+" ToolTip="Presione este botón para agregar un renglón presupuestario" Width="95%" />
                                             </td>
                                             <td style="width: 5%">&nbsp;</td>
                                             <td style="width: 5%">&nbsp;</td>
@@ -878,7 +878,7 @@
                                             <td style="width: 5%">&nbsp;</td>
                                             <td style="width: 5%">&nbsp;</td>
                                             <td colspan="15">
-                                                <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" OnRowDataBound="gridRenglon_RowDataBound" OnRowDeleting="gridRenglon_RowDeleting" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" PageSize="50" ShowFooter="True" Width="100%" CssClass="table table-hover table-responsive">
+                                                <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" OnRowDataBound="gridRenglon_RowDataBound" OnRowDeleting="gridRenglon_RowDeleting" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" PageSize="50" ShowFooter="True" Width="100%">
                                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -1015,10 +1015,10 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center">
-                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                                <asp:Button ID="btnRevisarPlan" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnNuevaB_Click" Text="RevisarPlan" Width="120px" />
-                                <asp:Button ID="btnDetalles" runat="server" class="btn btn-primary" OnClick="btnDetalles_Click" Text="Insumos" ValidationGroup="grpDatos" Width="120px" Visible="False" />
+                                <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
+                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                                <asp:Button ID="btnRevisarPlan" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnNuevaB_Click" Text="RevisarPlan" Width="120px" />
+                                <asp:Button ID="btnDetalles" runat="server" class="btn btn-default" OnClick="btnDetalles_Click" Text="Insumos" ValidationGroup="grpDatos" Width="120px" Visible="False" />
                                 </td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
@@ -1439,8 +1439,8 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnModMonto" runat="server" CausesValidation="False" class="btn btn-success" OnClick="btnGuardarMod" Text="Guardar" Width="120px" />
-                        <asp:Button ID="Button2" runat="server" class="btn btn-warning" OnClick="btnRegresar_Click" Text="Regresar" Width="120px" />
+                        <asp:Button ID="btnModMonto" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnGuardarMod" Text="Guardar" Width="120px" />
+                        <asp:Button ID="Button2" runat="server" class="btn btn-default" OnClick="btnRegresar_Click" Text="Regresar" Width="120px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

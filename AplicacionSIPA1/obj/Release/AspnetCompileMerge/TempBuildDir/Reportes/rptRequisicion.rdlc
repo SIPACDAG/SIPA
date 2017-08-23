@@ -20,7 +20,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>0.10328cm</Left>
         <Height>0.6cm</Height>
         <Width>2.02494cm</Width>
@@ -65,7 +65,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>lugar</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>1.50889cm</Left>
         <Height>0.6cm</Height>
         <Width>5.06298cm</Width>
@@ -98,7 +98,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>6.80118cm</Left>
         <Height>0.6cm</Height>
         <Width>1.07125cm</Width>
@@ -144,7 +144,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>dia</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>8.04882cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -177,7 +177,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>10.72521cm</Left>
         <Height>0.6cm</Height>
         <Width>1.33583cm</Width>
@@ -223,7 +223,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>mes</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>12.30923cm</Left>
         <Height>0.6cm</Height>
         <Width>1.89146cm</Width>
@@ -256,7 +256,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>14.37708cm</Left>
         <Height>0.6cm</Height>
         <Width>1.28292cm</Width>
@@ -302,7 +302,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>anio</rd:DefaultName>
-        <Top>0.3503cm</Top>
+        <Top>0.19155cm</Top>
         <Left>15.80111cm</Left>
         <Height>0.6cm</Height>
         <Width>1.80346cm</Width>
@@ -347,7 +347,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>1.2393cm</Top>
+        <Top>1.08055cm</Top>
         <Left>0.10328cm</Left>
         <Height>1.07625cm</Height>
         <Width>3.61006cm</Width>
@@ -383,7 +383,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>unidad_administrativa</rd:DefaultName>
-        <Top>1.24036cm</Top>
+        <Top>1.08161cm</Top>
         <Left>3.7302cm</Left>
         <Height>1.07625cm</Height>
         <Width>5.54059cm</Width>
@@ -440,7 +440,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>no_requisicion</rd:DefaultName>
-        <Top>1.24036cm</Top>
+        <Top>1.08161cm</Top>
         <Left>11.1615cm</Left>
         <Height>1.07625cm</Height>
         <Width>6.44307cm</Width>
@@ -473,7 +473,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.53534cm</Top>
+        <Top>2.37659cm</Top>
         <Left>0.10328cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -505,7 +505,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>ubicacion</rd:DefaultName>
-        <Top>2.53534cm</Top>
+        <Top>2.37659cm</Top>
         <Left>2.30924cm</Left>
         <Height>0.6cm</Height>
         <Width>8.23958cm</Width>
@@ -538,7 +538,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox22</rd:DefaultName>
-        <Top>2.53534cm</Top>
+        <Top>2.37659cm</Top>
         <Left>11.1615cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -572,7 +572,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>telefono</rd:DefaultName>
-        <Top>2.53534cm</Top>
+        <Top>2.37659cm</Top>
         <Left>12.72664cm</Left>
         <Height>0.6cm</Height>
         <Width>4.87793cm</Width>
@@ -1124,7 +1124,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet2</DataSetName>
-        <Top>3.24062cm</Top>
+        <Top>3.08187cm</Top>
         <Left>0.10328cm</Left>
         <Height>1.70271cm</Height>
         <Width>17.50129cm</Width>
@@ -1156,7 +1156,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox39</rd:DefaultName>
-        <Top>5.06151cm</Top>
+        <Top>4.90276cm</Top>
         <Left>14.82693cm</Left>
         <Height>0.6cm</Height>
         <Width>2.77764cm</Width>
@@ -1192,7 +1192,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>5.61564cm</Top>
+        <Top>5.45689cm</Top>
         <Left>0.10328cm</Left>
         <Height>0.6cm</Height>
         <Width>17.50129cm</Width>
@@ -1226,7 +1226,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>5.0615cm</Top>
+        <Top>4.90275cm</Top>
         <Left>0.10328cm</Left>
         <Height>0.6cm</Height>
         <Width>5.11819cm</Width>
@@ -1259,7 +1259,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>5.0615cm</Top>
+        <Top>4.90275cm</Top>
         <Left>4.74619cm</Left>
         <Height>0.6cm</Height>
         <Width>1.44468cm</Width>
@@ -1293,7 +1293,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox15</rd:DefaultName>
-        <Top>5.0615cm</Top>
+        <Top>4.90275cm</Top>
         <Left>6.81228cm</Left>
         <Height>0.6cm</Height>
         <Width>4.39981cm</Width>
@@ -1326,7 +1326,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>5.02623cm</Top>
+        <Top>4.86748cm</Top>
         <Left>11.03958cm</Left>
         <Height>0.63527cm</Height>
         <Width>1.6015cm</Width>
@@ -1361,7 +1361,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox18</rd:DefaultName>
-        <Top>5.03328cm</Top>
+        <Top>4.87453cm</Top>
         <Left>13.48396cm</Left>
         <Height>0.6cm</Height>
         <Width>1.49466cm</Width>
@@ -1376,6 +1376,277 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Textbox Name="eje_oe_oo_act">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(0)</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>eje_oe_oo_act</rd:DefaultName>
+            <Left>1.25411cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.34774cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox44">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Eje:</Value>
+                    <Style>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox44</rd:DefaultName>
+            <Left>0.45626cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.93896cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox47">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Objetivo estratégico:</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox47</rd:DefaultName>
+            <Left>3.05504cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.32255cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="eje_oe_oo_act2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(1)</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>eje_oe_oo_act</rd:DefaultName>
+            <Left>6.23647cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.39648cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox49">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Objetivo operativo:</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox49</rd:DefaultName>
+            <Left>8.08856cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.69062cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="eje_oe_oo_act1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(2)</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>eje_oe_oo_act1</rd:DefaultName>
+            <Left>10.93251cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox51">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Actividad</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox51</rd:DefaultName>
+            <Left>13.53834cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.94802cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="eje_oe_oo_act3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(3)</Value>
+                    <Style>
+                      <FontFamily>TIMEs New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>eje_oe_oo_act3</rd:DefaultName>
+            <Left>15.30997cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.87382cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>7.10163cm</Top>
+        <Left>0.10328cm</Left>
+        <Height>0.85034cm</Height>
+        <Width>17.50129cm</Width>
+        <ZIndex>23</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
       <Rectangle Name="Rectangle2">
         <ReportItems>
           <Textbox Name="Textbox41">
@@ -1449,666 +1720,382 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>6.25687cm</Top>
+        <Top>6.09812cm</Top>
         <Left>0.10328cm</Left>
         <Height>0.92908cm</Height>
         <Width>17.50129cm</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
           </Border>
         </Style>
       </Rectangle>
-      <Rectangle Name="Rectangle3">
-        <ReportItems>
-          <Textbox Name="Textbox53">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>F:</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox53</rd:DefaultName>
-            <Top>2.55023cm</Top>
-            <Height>0.6cm</Height>
-            <Width>0.87546cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Line Name="Line1">
-            <Top>2.85382cm</Top>
-            <Left>0.79297cm</Left>
-            <Height>0cm</Height>
-            <Width>8.30086cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Line>
-          <Textbox Name="Textbox54">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>NOMBRE:</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox54</rd:DefaultName>
-            <Top>4.7409cm</Top>
-            <Height>0.6cm</Height>
-            <Width>1.74329cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="solicitante">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!solicitante.Value, "DataSet1")</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>6pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>solicitante</rd:DefaultName>
-            <Top>4.83615cm</Top>
-            <Left>1.54361cm</Left>
-            <Height>0.6cm</Height>
-            <Width>7.07397cm</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox56">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>FIRMA Y SELLO DEL SOLICITANTE</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>7pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox56</rd:DefaultName>
-            <Top>3.03021cm</Top>
-            <Left>0.79297cm</Left>
-            <Height>0.6cm</Height>
-            <Width>8.30086cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox55">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>F:</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox53</rd:DefaultName>
-            <Top>2.55023cm</Top>
-            <Left>9.37958cm</Left>
-            <Height>0.6cm</Height>
-            <Width>1.97913cm</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Line Name="Line2">
-            <Top>2.88028cm</Top>
-            <Left>9.66943cm</Left>
-            <Height>0cm</Height>
-            <Width>7.60355cm</Width>
-            <ZIndex>6</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Line>
-          <Textbox Name="Textbox57">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>FIRMA Y SELLO DEL SUBGERENTE O DIRECTOR DE AREA</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>7pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox56</rd:DefaultName>
-            <Top>3.05667cm</Top>
-            <Left>9.66943cm</Left>
-            <Height>0.6cm</Height>
-            <Width>7.60355cm</Width>
-            <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox58">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>NOMBRE:</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox54</rd:DefaultName>
-            <Top>4.7409cm</Top>
-            <Left>9.0091cm</Left>
-            <Height>0.6cm</Height>
-            <Width>1.74329cm</Width>
-            <ZIndex>8</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="jefe_director">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!jefe_director.Value, "DataSet1")</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>6pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>jefe_director</rd:DefaultName>
-            <Top>4.83615cm</Top>
-            <Left>10.61128cm</Left>
-            <Height>0.6cm</Height>
-            <Width>6.89001cm</Width>
-            <ZIndex>9</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox59">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>F:</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox53</rd:DefaultName>
-            <Top>6.74596cm</Top>
-            <Left>4.15738cm</Left>
-            <Height>0.6cm</Height>
-            <Width>0.87546cm</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Line Name="Line5">
-            <Top>7.22425cm</Top>
-            <Left>4.64291cm</Left>
-            <Height>0cm</Height>
-            <Width>8.74018cm</Width>
-            <ZIndex>11</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Line>
-          <Textbox Name="Textbox61">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Vo.Bo. Gerente C.D.A.G.</Value>
-                    <Style>
-                      <FontFamily>TImes New Roman</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox56</rd:DefaultName>
-            <Top>7.24189cm</Top>
-            <Left>4.76473cm</Left>
-            <Height>0.6cm</Height>
-            <Width>8.30086cm</Width>
-            <ZIndex>12</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Rectangle Name="Rectangle1">
-            <ReportItems>
-              <Textbox Name="eje_oe_oo_act">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(0)</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                          <FontSize>12pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>eje_oe_oo_act</rd:DefaultName>
-                <Left>1.25411cm</Left>
-                <Height>0.6cm</Height>
-                <Width>1.34774cm</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox44">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Eje:</Value>
-                        <Style>
-                          <FontWeight>Normal</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Left>0.45626cm</Left>
-                <Height>0.6cm</Height>
-                <Width>0.93896cm</Width>
-                <ZIndex>1</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox47">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Objetivo estratégico:</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                          <FontWeight>Normal</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox47</rd:DefaultName>
-                <Left>3.05504cm</Left>
-                <Height>0.6cm</Height>
-                <Width>3.32255cm</Width>
-                <ZIndex>2</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="eje_oe_oo_act2">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(1)</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                          <FontSize>12pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>eje_oe_oo_act</rd:DefaultName>
-                <Left>6.23647cm</Left>
-                <Height>0.6cm</Height>
-                <Width>1.39648cm</Width>
-                <ZIndex>3</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox49">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Objetivo operativo:</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox49</rd:DefaultName>
-                <Left>8.08856cm</Left>
-                <Height>0.6cm</Height>
-                <Width>3.69062cm</Width>
-                <ZIndex>4</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="eje_oe_oo_act1">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(2)</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                          <FontSize>12pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>eje_oe_oo_act1</rd:DefaultName>
-                <Left>10.93251cm</Left>
-                <Height>0.6cm</Height>
-                <Width>2.5cm</Width>
-                <ZIndex>5</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox51">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Actividad</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox51</rd:DefaultName>
-                <Left>13.53834cm</Left>
-                <Height>0.6cm</Height>
-                <Width>1.94802cm</Width>
-                <ZIndex>6</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="eje_oe_oo_act3">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!eje_oe_oo_act.Value, "DataSet1").ToString().Split(".")(3)</Value>
-                        <Style>
-                          <FontFamily>TIMEs New Roman</FontFamily>
-                          <FontSize>12pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>eje_oe_oo_act3</rd:DefaultName>
-                <Left>15.30997cm</Left>
-                <Height>0.6cm</Height>
-                <Width>1.87382cm</Width>
-                <ZIndex>7</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </ReportItems>
-            <KeepTogether>true</KeepTogether>
-            <Top>0.15631cm</Top>
-            <Height>0.85034cm</Height>
-            <Width>17.50129cm</Width>
-            <ZIndex>13</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-            </Style>
-          </Rectangle>
-        </ReportItems>
+      <Textbox Name="Textbox53">
+        <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
-        <Top>7.18595cm</Top>
-        <Left>0.10328cm</Left>
-        <Height>8.02096cm</Height>
-        <Width>17.50129cm</Width>
-        <ZIndex>24</ZIndex>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>F:</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox53</rd:DefaultName>
+        <Top>9.56247cm</Top>
+        <Height>0.6cm</Height>
+        <Width>0.87546cm</Width>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
         </Style>
-      </Rectangle>
+      </Textbox>
+      <Line Name="Line1">
+        <Top>9.86606cm</Top>
+        <Left>0.79297cm</Left>
+        <Height>0cm</Height>
+        <Width>8.30086cm</Width>
+        <ZIndex>26</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox54">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>NOMBRE:</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox54</rd:DefaultName>
+        <Top>11.75314cm</Top>
+        <Height>0.6cm</Height>
+        <Width>1.74329cm</Width>
+        <ZIndex>27</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="solicitante">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!solicitante.Value, "DataSet1")</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>6pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>solicitante</rd:DefaultName>
+        <Top>11.84839cm</Top>
+        <Left>1.54361cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.07397cm</Width>
+        <ZIndex>28</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox56">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>FIRMA Y SELLO DEL SOLICITANTE</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox56</rd:DefaultName>
+        <Top>10.04245cm</Top>
+        <Left>0.79297cm</Left>
+        <Height>0.6cm</Height>
+        <Width>8.30086cm</Width>
+        <ZIndex>29</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox55">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>F:</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox53</rd:DefaultName>
+        <Top>9.56247cm</Top>
+        <Left>9.37958cm</Left>
+        <Height>0.6cm</Height>
+        <Width>1.97913cm</Width>
+        <ZIndex>30</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line2">
+        <Top>9.89252cm</Top>
+        <Left>9.66943cm</Left>
+        <Height>0cm</Height>
+        <Width>7.60355cm</Width>
+        <ZIndex>31</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox57">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>FIRMA Y SELLO DEL SUBGERENTE O DIRECTOR DE AREA</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox56</rd:DefaultName>
+        <Top>10.06891cm</Top>
+        <Left>9.66943cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.60355cm</Width>
+        <ZIndex>32</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox58">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>NOMBRE:</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox54</rd:DefaultName>
+        <Top>11.75314cm</Top>
+        <Left>9.0091cm</Left>
+        <Height>0.6cm</Height>
+        <Width>1.74329cm</Width>
+        <ZIndex>33</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="jefe_director">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!jefe_director.Value, "DataSet1")</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>6pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>jefe_director</rd:DefaultName>
+        <Top>11.84839cm</Top>
+        <Left>10.61128cm</Left>
+        <Height>0.6cm</Height>
+        <Width>6.89001cm</Width>
+        <ZIndex>34</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox59">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>F:</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox53</rd:DefaultName>
+        <Top>13.7582cm</Top>
+        <Left>4.15738cm</Left>
+        <Height>0.6cm</Height>
+        <Width>0.87546cm</Width>
+        <ZIndex>35</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line5">
+        <Top>14.23649cm</Top>
+        <Left>4.64291cm</Left>
+        <Height>0cm</Height>
+        <Width>8.74018cm</Width>
+        <ZIndex>36</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox61">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Vo.Bo. Gerente C.D.A.G.</Value>
+                <Style>
+                  <FontFamily>TImes New Roman</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox56</rd:DefaultName>
+        <Top>14.25413cm</Top>
+        <Left>4.76473cm</Left>
+        <Height>0.6cm</Height>
+        <Width>8.30086cm</Width>
+        <ZIndex>37</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>6.01822in</Height>
+    <Height>5.84808in</Height>
     <Style />
   </Body>
   <Width>6.95594in</Width>
@@ -2222,7 +2209,7 @@
           <Top>1.49437cm</Top>
           <Left>2.63856cm</Left>
           <Height>1.15604cm</Height>
-          <Width>3.55231cm</Width>
+          <Width>4.74702cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -2268,9 +2255,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
           <Top>1.49437cm</Top>
-          <Left>6.19087cm</Left>
+          <Left>7.38559cm</Left>
           <Height>1.15604cm</Height>
-          <Width>2.24128cm</Width>
+          <Width>2.36948cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -2290,20 +2277,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Vesión: </Value>
-                  <Style>
-                    <FontFamily>TImes New Roman</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>4</Value>
+                  <Value>Vesión: 3</Value>
                   <Style>
                     <FontFamily>TImes New Roman</FontFamily>
                   </Style>
@@ -2316,9 +2290,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>1.49437cm</Top>
-          <Left>8.43215cm</Left>
+          <Left>9.75507cm</Left>
           <Height>1.15604cm</Height>
-          <Width>1.51636cm</Width>
+          <Width>2.97157cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -2385,96 +2359,15 @@
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
           <Top>1.49437cm</Top>
-          <Left>13.48396cm</Left>
+          <Left>12.72664cm</Left>
           <Height>1.15604cm</Height>
-          <Width>4.12061cm</Width>
+          <Width>4.87793cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
               <Width>1.5pt</Width>
             </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox20">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Fecha de aprobación:</Value>
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=First(Fields!fecha_aprobacion_formato.Value, "DataSet1")</Value>
-                  <Style>
-                    <FontFamily>ARIAL</FontFamily>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>1.48167cm</Top>
-          <Left>9.95557cm</Left>
-          <Height>1.16874cm</Height>
-          <Width>3.52839cm</Width>
-          <ZIndex>6</ZIndex>
-          <Style>
-            <Border>
-              <Style>Solid</Style>
-              <Width>1.5pt</Width>
-            </Border>
-            <TopBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-            </TopBorder>
-            <BottomBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-            </BottomBorder>
-            <LeftBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-            </LeftBorder>
-            <RightBorder>
-              <Color>Black</Color>
-              <Style>Solid</Style>
-            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -2574,10 +2467,6 @@
           <DataField>anexos</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fecha_aprobacion_formato">
-          <DataField>fecha_aprobacion_formato</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="total">
           <DataField>total</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2585,7 +2474,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DS_REQUISICION</rd:DataSetName>
-        <rd:SchemaPath>E:\REPORTES SIPA\Reporte\DS_REQUISICION.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Jose Miguel\Documents\Visual Studio 2013\Projects\Reporte\DS_REQUISICION.xsd</rd:SchemaPath>
         <rd:TableName>REQUISICION</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -2618,14 +2507,10 @@
           <DataField>subtotal</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="total">
-          <DataField>total</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DS_REQUISICION</rd:DataSetName>
-        <rd:SchemaPath>E:\REPORTES SIPA\Reporte\DS_REQUISICION.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Jose Miguel\Documents\Visual Studio 2013\Projects\Reporte\DS_REQUISICION.xsd</rd:SchemaPath>
         <rd:TableName>DETALLE</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

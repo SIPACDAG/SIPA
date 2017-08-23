@@ -382,7 +382,7 @@ namespace CapaLN
             ObjAD = new PlanAccionAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarAccion(ObjEN,usuario);
+                DataTable dt = ObjAD.AlmacenarAccion(ObjEN);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -431,7 +431,7 @@ namespace CapaLN
             ObjAD = new PlanAccionAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarDetalle(ObjEN, usuario);
+                DataTable dt = ObjAD.AlmacenarDetalle(ObjEN);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());

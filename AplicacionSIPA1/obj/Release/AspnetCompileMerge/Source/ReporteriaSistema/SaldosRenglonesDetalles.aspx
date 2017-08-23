@@ -324,7 +324,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="busqueda" Text="Buscar" Width="200px" />
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="busqueda" Text="Buscar" Width="200px" />
                         <asp:Button ID="btnEnviarCorreo" runat="server" class="btn btn-primary" OnClick="btnEnviarCorreo_Click" Text="Enviar correo!" Visible="False" Width="200px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -355,8 +355,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridReportes" runat="server" OnRowDataBound="gridReportes_RowDataBound" OnSelectedIndexChanged="gridReportes_SelectedIndexChanged" Width="100%" ShowFooter="True"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridReportes" runat="server" OnRowDataBound="gridReportes_RowDataBound" OnSelectedIndexChanged="gridReportes_SelectedIndexChanged" Width="100%" ShowFooter="True">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <FooterStyle BackColor="White" BorderStyle="Inset" Font-Bold="True" ForeColor="Black" HorizontalAlign="Center" VerticalAlign="Middle" />
                             <HeaderStyle BackColor="#339933" Font-Bold="True" ForeColor="White" />

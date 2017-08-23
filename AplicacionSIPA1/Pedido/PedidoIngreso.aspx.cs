@@ -1348,7 +1348,7 @@ namespace AplicacionSIPA1.Pedido
 
                             mensaje = " finalizada correctamente!. El pedido fue enviado al estado: " + estadoActual + ". ";
                             EnvioDeCorreos objEC = new EnvioDeCorreos();
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(ddlJefes.SelectedValue)), "Nueva Requiscion Ingresada", " Requisicion No.  " +idPedido + ", " + lblSuccess.Text+ ", " + mensaje, ddlSolicitantes.Items.ToString());
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(ddlJefes.SelectedValue)), "Nueva Requiscion Ingresada", " Requisicion No.  " + idPedido + ", " + mensaje, ddlSolicitantes.SelectedItem.ToString());
                             
 
 

@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>CDAG - Guatemala</title>
+    <title>Comite Olimpico Guatemalteco</title>
 
 
     <script type="text/javascript">

@@ -165,7 +165,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="3">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="busqueda" Text="Buscar" Width="100%" />
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="busqueda" Text="Buscar" Width="100%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -201,7 +201,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:RadioButtonList ID="rblEstados" runat="server" AutoPostBack="True" OnSelectedIndexChanged="busqueda" RepeatDirection="Horizontal" Width="100%" Font-Size="XX-Small" Height="52px">
+                        <asp:RadioButtonList ID="rblEstados" runat="server" AutoPostBack="True" OnSelectedIndexChanged="busqueda" RepeatDirection="Horizontal" Width="100%" Font-Size="XX-Small">
                             <asp:ListItem Selected="True" Value="0">TODOS</asp:ListItem>
                             <asp:ListItem Value="1">Ing</asp:ListItem>
                             <asp:ListItem Value="2">Rev. Alm.</asp:ListItem>
@@ -312,8 +312,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="1" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="1" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="id" HeaderText="ID" Visible="False">

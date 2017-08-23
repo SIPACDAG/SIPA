@@ -1277,9 +1277,7 @@ namespace AplicacionSIPA1.Pac
                 int anio = int.Parse(ddlCAnios.SelectedValue);
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                FuncionesVarias fv = new FuncionesVarias();
-                string[] ip = fv.DatosUsuarios();
-                DataSet dsResultado = pAnualLN.ActualizarEstadoPac(idPoa, idEstado, anio, null, "", usuario, observaciones,ip[0],ip[1],ip[2],"VoBo1", "AplicacionSIPA1.Pac.VoBo1.btnAprobar()");
+                DataSet dsResultado = pAnualLN.ActualizarEstadoPac(idPoa, idEstado, anio, null, "", usuario, observaciones);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ el Plan Anual de Compras: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

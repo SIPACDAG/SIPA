@@ -121,7 +121,7 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="text-align: center;" colspan="16">
-                                <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="200px" />
+                                <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="200px" />
                             </td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
@@ -136,7 +136,7 @@
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="18">
-                                <asp:GridView ID="gridReportes" runat="server" OnRowDataBound="gridReportes_RowDataBound" OnSelectedIndexChanged="gridReportes_SelectedIndexChanged" Width="100%" CssClass="table table-hover table-responsive">
+                                <asp:GridView ID="gridReportes" runat="server" OnRowDataBound="gridReportes_RowDataBound" OnSelectedIndexChanged="gridReportes_SelectedIndexChanged" Width="100%">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <FooterStyle BackColor="White" BorderStyle="Inset" Font-Bold="True" ForeColor="Black" HorizontalAlign="Center" VerticalAlign="Middle" />
                                     <HeaderStyle BackColor="#339933" Font-Bold="True" ForeColor="White" />

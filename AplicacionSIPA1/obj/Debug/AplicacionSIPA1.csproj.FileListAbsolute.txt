@@ -62,54 +62,58 @@ C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll.config
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\Microsoft.ReportViewer.WebForms.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\NumeroaLetras.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.pdb
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.pdb
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\obj\Debug\RdlCompile.cache
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
-C:\Users\user Dell\Documents\Trabajo\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\AplicacionSIPA1.dll.config
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\AplicacionSIPA1.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaEN.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaLN.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\Microsoft.ReportViewer.WebForms.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaAD.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\NumeroaLetras.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaEN.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaLN.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\CapaAD.pdb
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\RdlCompile.cache
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.cache
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\AplicacionSIPA1.dll.config
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\AplicacionSIPA1.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.ReportViewer.WebForms.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\NumeroaLetras.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll
-C:\SIPA\SIPADESARROLLO\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll.config
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\NumeroaLetras.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\MySql.Data.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.pdb
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.pdb
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\obj\Debug\RdlCompile.cache
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
+C:\Users\Administrador\Desktop\CDAG_SIPA\20022017\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\NumeroaLetras.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\MySql.Data.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.pdb
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.pdb
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
+C:\Users\Administrator\Desktop\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\NumeroaLetras.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\MySql.Data.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
+C:\Users\Administrator\Desktop\PRODUCCION\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\NumeroaLetras.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\MySql.Data.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
+C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb

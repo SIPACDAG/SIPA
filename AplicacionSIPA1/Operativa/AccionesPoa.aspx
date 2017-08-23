@@ -1247,11 +1247,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">Acción:</td>
-                    <td colspan="7">
-                        <asp:DropDownList ID="ddlAccionModMonto" runat="server" AutoPostBack="True" class="form-control" Width="100%">
-                        </asp:DropDownList>
-                    </td>
+                    
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -1291,24 +1287,61 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
+               
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">Renglón:</td>
-                    <td colspan="7">
-                        <asp:DropDownList ID="ddlRenglonModMonto" runat="server" AutoPostBack="True" class="form-control" Width="100%">
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8" style="text-align: center; font-size: large;"><b>ORIGEN</b></td>
+                    </b>
+                    <td colspan="8" style="text-align: center; font-size: large;"><b>DESTINO</b></td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8">Acción:<span><asp:Label ID="lblErrorAccionOrigen" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
+                        </span></td>
+                    <td colspan="8">Acción:<span><asp:Label ID="lblErrorAccionDestino" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
+                        </span></td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8">
+                        <asp:DropDownList ID="ddlAccionOrigen" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlAccionOrigen_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="8">
+                        <asp:DropDownList ID="ddlAccionDestino" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlAccionDestino_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
@@ -1333,21 +1366,84 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
+                    <td style="width: 5%">
+                        &nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8">Renglón:<span><asp:Label ID="lblErrorRenglonOrigen" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
+                        </span></td>
+                    <td colspan="8">Renglón:<span><asp:Label ID="lblErrorRenglonDestino" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
+                        </span></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">Financ.</td>
-                    <td colspan="7">
-                        <asp:DropDownList ID="dropFuenteFModMonto" runat="server" AutoPostBack="True" class="form-control" Width="100%">
+                </tr>
+                <tr>
+                    <td style="width: 5%">
+                        <asp:DropDownList ID="dropFuenteFModMonto" runat="server" AutoPostBack="True" class="form-control" Visible="False" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8">
+                        <asp:DropDownList ID="ddlRenglonOrigen" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlRenglonOrigen_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="8">
+                        <asp:DropDownList ID="ddlRenglonDestino" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlRenglonDestino_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="4">Codificado:</td>
+                    <td colspan="4">Saldo:</td>
+                    <td colspan="4">Codificado:</td>
+                    <td colspan="4">Saldo:</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="4" style="text-align: right;"><span>
+                        <asp:Label ID="lblCodificadoOrigen" runat="server" Font-Bold="False" Font-Size="Medium" ForeColor="Black"></asp:Label>
+                        </span></td>
+                    <td colspan="4" style="text-align: right;"><span>
+                        <asp:Label ID="lblSaldoOrigen" runat="server" Font-Bold="False" Font-Size="Medium" ForeColor="Black"></asp:Label>
+                        </span></td>
+                    <td colspan="4" style="text-align: right;"><span>
+                        <asp:Label ID="lblCodificadoDestino" runat="server" Font-Bold="False" Font-Size="Medium" ForeColor="Black"></asp:Label>
+                        </span></td>
+                    <td colspan="4" style="text-align: right;"><span>
+                        <asp:Label ID="lblSaldoDestino" runat="server" Font-Bold="False" Font-Size="Medium" ForeColor="Black"></asp:Label>
+                        </span></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -1376,34 +1472,53 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="3">Monto Actual:</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="3">Nuevo Monto:</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="3">&nbsp;</td>
+                    <td colspan="2">Monto Actual:</td>
+                    <td colspan="2">Nuevo monto:</td>
+                    <td colspan="3">Débito:</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="2">Monto Actual:</td>
+                    <td colspan="2">Nuevo monto:</td>
+                    <td colspan="3">Crédito:</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">Actual:</td>
+                    <td colspan="2">
+                        <asp:TextBox ID="txtMontoActualOrigen" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%">100000000</asp:TextBox>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="txtNuevoMontoOrigen" runat="server" BackColor="#FFFF99" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" Style="text-align: right" Width="100%" ForeColor="Black">100000000</asp:TextBox>
+                    </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtMontoActual" runat="server" class="form-control" MaxLength="20" Style="text-align: right" Width="100%" ReadOnly="True">100000000</asp:TextBox>
+                        <asp:TextBox ID="txtDebito" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%" ForeColor="Red">100000000</asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="2">
+                        <asp:TextBox ID="txtMontoActualDestino" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%">100000000</asp:TextBox>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="txtNuevoMontoDestino" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" ForeColor="Black" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%">100000000</asp:TextBox>
+                    </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtMontoOperar" runat="server" class="form-control" MaxLength="20" Style="text-align: right" Width="100%" BackColor="#FFFF99">100000000</asp:TextBox>
+                        <asp:TextBox ID="txtCredito" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" ForeColor="#00CC00" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%">100000000</asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="3">
-                        <asp:TextBox ID="txtNuevoMonto" runat="server" class="form-control" MaxLength="20" Style="text-align: right" Width="100%" Visible="False">100000000</asp:TextBox>
-                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8"><strong>
+                        <asp:Label ID="lblErrorMontoOrigen" runat="server" ForeColor="Red" style="font-size: medium"></asp:Label>
+                        </strong></td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -1414,42 +1529,17 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="3">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="16">Justificación:<strong><asp:Label ID="lblErrorJustificacion" runat="server" ForeColor="Red" style="font-size: medium"></asp:Label>
+                        </strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="16">
+                        <asp:TextBox ID="txtJustificacion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Height="100px" MaxLength="750" placeholder="Ingrese la justificación de la transferencia" TextMode="MultiLine" Width="100%"></asp:TextBox>
+                    </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -1467,8 +1557,10 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnModMonto" runat="server" CausesValidation="False" class="btn btn-success" OnClick="btnGuardarMod" Text="Guardar" Width="120px" />
-                        <asp:Button ID="Button2" runat="server" class="btn btn-warning" OnClick="btnRegresar_Click" Text="Regresar" Width="120px" />
+                        <asp:Button ID="btnModMonto" runat="server" CausesValidation="False" class="btn btn-success" OnClick="btnGuardarMod" Text="Guardar" Width="120px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
+                        <asp:Button ID="Button2" runat="server" class="btn btn-default" OnClick="btnRegresar_Click" Text="Regresar" Width="120px" />
+                        <asp:Button ID="btnListadoModificaciones" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnNuevaB_Click" Text="Listado" Width="120px" />
+                        <asp:Button ID="btnNuevoTraslado" runat="server" class="btn btn-warning" OnClick="btnNuevoTraslado_Click" Text="Nuevo" Width="120px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

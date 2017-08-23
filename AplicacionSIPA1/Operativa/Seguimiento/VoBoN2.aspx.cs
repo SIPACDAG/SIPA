@@ -346,7 +346,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
             try
             {
-                /*Label lblErrorAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("lblErrorAvanceKpi") as Label);
+                Label lblErrorAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("lblErrorAvanceKpi") as Label);
                 string sAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("txtAvanceKpi") as TextBox).Text;
                 sAvanceKpi = sAvanceKpi.Replace('\'', ' ').Replace(';', ' ');
                 sAvanceKpi = sAvanceKpi.Trim();
@@ -364,9 +364,9 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                     else
                         lblErrorAvanceKpi.Text = string.Empty;
 
-                }*/
+                }
 
-                /*Label lblErrorDescripcionAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("lblErrorDescripcionAvanceKpi") as Label);
+                Label lblErrorDescripcionAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("lblErrorDescripcionAvanceKpi") as Label);
                 string sDescripcionAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("txtDescripcionAvanceKpi") as TextBox).Text;
                 sDescripcionAvanceKpi = sDescripcionAvanceKpi.Replace('\'', ' ').Replace(';', ' ');
                 sDescripcionAvanceKpi = sDescripcionAvanceKpi.Trim();
@@ -375,7 +375,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 if (sDescripcionAvanceKpi.Equals(""))
                     lblErrorDescripcionAvanceKpi.Text = "Ingrese un valor";
                 else
-                    lblErrorDescripcionAvanceKpi.Text = string.Empty;*/
+                    lblErrorDescripcionAvanceKpi.Text = string.Empty;
 
                 Label lblErrorObservacionesDge = (gridDet.Rows[gridDet.SelectedIndex].FindControl("lblErrorObservacionesDge") as Label);
                 string sObservacionesDge = (gridDet.Rows[gridDet.SelectedIndex].FindControl("txtObservacionesDge") as TextBox).Text;
@@ -389,7 +389,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                     lblErrorObservacionesDge.Text = string.Empty;
 
 
-                if (/*lblErrorAvanceKpi.Text.Equals(string.Empty) && lblErrorDescripcionAvanceKpi.Text.Equals(string.Empty) && */lblErrorObservacionesDge.Text.Equals(string.Empty))
+                if (lblErrorAvanceKpi.Text.Equals(string.Empty) && lblErrorDescripcionAvanceKpi.Text.Equals(string.Empty) && lblErrorObservacionesDge.Text.Equals(string.Empty))
                     controlesValidos = true;
 
                 Page.Validate();
@@ -762,16 +762,10 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                     string sDescripcion = gridDet.SelectedDataKey["DESCRIPCION"].ToString();
                     string sMediosVerificacion = gridDet.SelectedDataKey["MEDIOS_VERIFICACION"].ToString();
 
-                    string sAvanceKpi = gridDet.SelectedDataKey["AVANCE_KPI"].ToString(); //(gridDet.Rows[gridDet.SelectedIndex].FindControl("txtAvanceKpi") as TextBox).Text;
-                    string sDescripcionAvanceKpi = gridDet.SelectedDataKey["DESCRIPCION_AVANCE_KPI"].ToString(); //(gridDet.Rows[gridDet.SelectedIndex].FindControl("txtDescripcionAvanceKpi") as TextBox).Text;
-                    
+                    string sAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("txtAvanceKpi") as TextBox).Text;
+                    string sDescripcionAvanceKpi = (gridDet.Rows[gridDet.SelectedIndex].FindControl("txtDescripcionAvanceKpi") as TextBox).Text;
                     string sObservacionesDge = (gridDet.Rows[gridDet.SelectedIndex].FindControl("txtObservacionesDge") as TextBox).Text;
-                    string sPlanAccion = "";
-
-                    if ((gridDet.Rows[gridDet.SelectedIndex].FindControl("CheckBox1") as CheckBox).Checked == true)
-                        sPlanAccion = "1";
-                    else
-                        sPlanAccion = "0";
+                    string sPlanAccion = (gridDet.Rows[gridDet.SelectedIndex].FindControl("rblPlanAccion") as RadioButtonList).SelectedValue;
 
                     decimal dPptoAnual = funciones.StringToDecimal(sPptoAnual);
                     decimal dAvancePptoCuatrimestral = funciones.StringToDecimal(sAvancePptoCuatrimestral);
@@ -803,10 +797,10 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                     if (validarEstadoSeguimiento(idSeguimientoCmi))
                     {
                         sSeguimientoLN = new SeguimientoLN();
-                        DataSet dsResultado = sSeguimientoLN.AlmacenarSeguimientoDet(dsDetalles, 3);
+                        DataSet dsResultado = sSeguimientoLN.AlmacenarSeguimiento(sSeguimientoEN,Session["usuario"].ToString());
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                            throw new Exception("No se INSERTÓ/ACTUALIZÓ el detalle del informe de seguimiento al CMI: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                            throw new Exception("No se INSERTÓ/ACTUALIZÓ el informe de seguimiento al CMI: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                         //int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idSeguimientoCmi);
                         //lblIdSeguimientoCmi.Text = lblNoSeguimientoCmi.Text = idSeguimientoCmi.ToString();
@@ -820,7 +814,6 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
             catch (Exception ex)
             {
                 lblError.Text = "gridDet(). " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('gridDet(): " + ex.Message + "');", true);
             }
         }
 
@@ -828,7 +821,6 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
         {
             try
             {
-                limpiarControlesError();
                 int idSeguimientoCmi, idPoa, idUnidad, anio, noCuatrimestre, mes = 0;
 
                 int.TryParse(lblIdSeguimientoCmi.Text, out idSeguimientoCmi);
@@ -885,27 +877,6 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
             catch (Exception ex)
             {
                 lblError.Text = "btnGuardarFecha(). " + ex.Message;
-            }
-        }
-
-        protected void chkFiltroColumnas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (gridDet.Columns.Count > 0)
-                {
-                    for (int i = 0; i < chkFiltroColumnas.Items.Count; i++)
-                    {
-                        if (chkFiltroColumnas.Items[i].Selected == true)
-                            gridDet.Columns[int.Parse(chkFiltroColumnas.Items[i].Value)].Visible = true;
-                        else
-                            gridDet.Columns[int.Parse(chkFiltroColumnas.Items[i].Value)].Visible = false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "chkFiltroColumnas(). " + ex.Message;
             }
         }
     }

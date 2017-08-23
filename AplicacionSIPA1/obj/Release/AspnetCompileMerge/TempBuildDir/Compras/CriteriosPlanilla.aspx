@@ -94,11 +94,11 @@
                         <asp:TextBox ID="txtNo" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" MaxLength="5" TextMode="Number" Width="95%" Font-Size="Large" Style="text-align: right"></asp:TextBox>
                     </td>
                     <td colspan="3">
-                        <asp:DropDownList ID="ddlAnios" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="91%">
+                        <asp:DropDownList ID="ddlAnios" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
-                    <td colspan="3" style="text-align: center">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
+                    <td colspan="3">
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -149,8 +149,7 @@
 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="Id" Visible="false">
@@ -237,8 +236,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18" style="text-align: center">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -458,10 +456,10 @@
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="2">
-                        <asp:TextBox ID="txtPuntuacion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Size="Large" MaxLength="5" Style="text-align: right" TextMode="Number" Width="84%"></asp:TextBox>
+                        <asp:TextBox ID="txtPuntuacion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Size="Large" MaxLength="5" Style="text-align: right" TextMode="Number" Width="95%"></asp:TextBox>
                     </td>
-                    <td colspan="3" style="text-align: center">
-                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar Criterio" Width="95%" />
+                    <td colspan="3">
+                        <asp:Button ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar Criterio" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -504,8 +502,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="12">
-                        <asp:GridView ID="gridCriterios" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID_CRITERIO_PEDIDO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" OnRowDeleting="gridCriterios_RowDeleting" OnSelectedIndexChanged="gridCriterios_SelectedIndexChanged"
-                            CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridCriterios" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID_CRITERIO_PEDIDO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" OnRowDeleting="gridCriterios_RowDeleting" OnSelectedIndexChanged="gridCriterios_SelectedIndexChanged">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

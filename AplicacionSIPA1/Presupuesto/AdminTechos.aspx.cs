@@ -291,7 +291,6 @@ namespace AplicacionSIPA1.Presupuesto
                     lblIdModificacion.Text = "0";
 
                     obtenerPresupuesto(2);
-                    pptoLN.InsertarBitacora(Session["usuario"].ToString(), ddlUnidades.SelectedValue, "ip", "Asginacion de Presupuesto", "N/A", techoActual, Convert.ToDecimal(txtNuevoTecho.Text));
                     txtNuevoTecho.Text = "";
                     lblSuccess.Text = "Solicitud No. " + idModificacion + " ALMACENADA/MODIFICADA exitosamente: ";
                     ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + lblSuccess.Text + "');", true);

@@ -58,6 +58,26 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
+                    <td colspan="9">Dependencia:</td>
+                    <td colspan="3">Jefatura/Unidad:</td>
+                    <td class="text-right" colspan="6">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlDependencia" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="18">Acciones:<strong><asp:Label ID="lblErrorAccion" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
@@ -849,28 +869,6 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
