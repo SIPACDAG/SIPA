@@ -694,8 +694,8 @@ namespace AplicacionSIPA1.Pedido
                             NuevaAprobacion();
                             lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " APROBADA con éxito!";
                             EnvioDeCorreos objEC = new EnvioDeCorreos();
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto",  lblSuccess.Text, usuario);
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto",   lblSuccess.Text, usuario);
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto",  lblSuccess.Text, usuario);
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto",   lblSuccess.Text, usuario);
 
                             ddlPRG.ClearSelection();
                             ddlSPRG.ClearSelection();
@@ -965,8 +965,8 @@ namespace AplicacionSIPA1.Pedido
                     NuevaAprobacion();
                     lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " RECHAZADA con éxito!";
                     EnvioDeCorreos objEC = new EnvioDeCorreos();
-                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Nueva REQUISICIÓN/VALE RECHAZADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);
-                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Nueva REQUISICIÓN/VALE RECHAZADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE RECHAZADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva REQUISICIÓN/VALE RECHAZADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);
 
                 }
             }

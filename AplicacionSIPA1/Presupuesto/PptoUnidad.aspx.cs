@@ -55,7 +55,7 @@ namespace AplicacionSIPA1.Presupuesto
 
                     if (ddlPlanE.SelectedValue.Equals("0") || ddlPlanE.SelectedValue.ToString().Equals(""))
                         throw new Exception("Seleccione plan estratégico institucional. ");
-
+                    
                     if (Convert.ToInt32(ddlUnidad.SelectedValue) > 0)
                     {
                         presupuestoLN = new PresupuestoLN();
@@ -79,6 +79,9 @@ namespace AplicacionSIPA1.Presupuesto
                         presupuestoEN.usuario = ((Label)Master.FindControl("lblUsuario")).Text;
                         presupuestoEN.monto_global = txtMontoGlobal.Text;
                         
+                        if(presupuestoEN.anio <=2017)
+                            throw new Exception(" El año no es correcto. ");
+
                         if (presupuestoLN.valPresUnidad(presupuestoEN) == 0)
                         {
                             if ((ddlJefaturasSub.SelectedIndex <= 0))

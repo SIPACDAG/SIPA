@@ -24,6 +24,7 @@ namespace CapaEN
         public int ID_ESTADO { get; set; }
         public decimal SUELDO_NOMINAL { get; set; }
         public string USUARIO { get; set; }
-        
+        public string Motivo_Baja { get; set; }
+
     }
 }

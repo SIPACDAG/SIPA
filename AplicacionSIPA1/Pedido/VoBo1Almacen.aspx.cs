@@ -551,8 +551,8 @@ namespace AplicacionSIPA1.Pedido
 
                     lblSuccess.Text = "REQUISICIÓN/VALE NO. " + noSolicitud + " APROBADO con éxito!";
                     EnvioDeCorreos objEC = new EnvioDeCorreos();
-                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Nueva Requiscion Aprobada por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text  , usuario);
-                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Nueva Requiscion Aprobada por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva Requiscion Aprobada por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text  , usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva Requiscion Aprobada por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
 
                     btnAprobar.Visible = btnRechazar.Visible = false;
                     //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=APROBADO");
@@ -610,8 +610,8 @@ namespace AplicacionSIPA1.Pedido
                     txtObser.Text = string.Empty;
                     lblSuccess.Text = "REQUISICIÓN/VALE NO. " + noSolicitud + " RECHAZADO con éxito!";
                     EnvioDeCorreos objEC = new EnvioDeCorreos();
-                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Nueva REQUISICIÓN/VALE RECHAZADA por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
-                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Nueva REQUISICIÓN/VALE RECHAZADA por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE RECHAZADA por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
+                    objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva REQUISICIÓN/VALE RECHAZADA por Almacen", " Requisicion No.  " + idPedido + ", " + lblSuccess.Text, usuario);
 
                     //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=RECHAZADO");
                 }

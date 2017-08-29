@@ -8,6 +8,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\inetpub\wwwroot\CDAGSIPA</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AplicacionCOG.dll.config">

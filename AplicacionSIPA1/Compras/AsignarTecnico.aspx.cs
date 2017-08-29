@@ -504,6 +504,7 @@ namespace AplicacionSIPA1.Compras
         {
             try
             {
+                
                 limpiarControlesError();
                 planOperativoLN = new PlanOperativoLN();
                 int idSalida, idTipoSalida, idTecnico;
@@ -528,7 +529,8 @@ namespace AplicacionSIPA1.Compras
                 //observaciones = txtObser.Text;
                 FuncionesVarias fv = new FuncionesVarias();
                 string[] ip = fv.DatosUsuarios();
-               
+                string tempo = ddlTecnicos.SelectedItem.Text.ToString();
+                string[] datostecnico = tempo.Split('-');
                 DataSet dsResultado = pInsumoLN.AsignacionTecnicoCompras(idSalida, idTipoSalida, idTecnico, observaciones, usuario,ip[0],ip[1],ip[2]);
                 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
@@ -540,7 +542,8 @@ namespace AplicacionSIPA1.Compras
                 NuevaAprobacion();
                 lblSuccess.Text = "Solicitud No. " + noSolicitud + " INGRESADA con éxito!";
                 EnvioDeCorreos objEC = new EnvioDeCorreos();
-                objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(idTecnico), "Nueva REQUISICIÓN/VALE ASIGANDA ", lblSuccess.Text + ", " + observaciones, usuario);
+                
+                objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(datostecnico[1].ToString().Trim()), "Nueva REQUISICIÓN/VALE ASIGANDA ", lblSuccess.Text + ", " + observaciones, usuario);
 
             }
             catch (Exception ex)
@@ -597,7 +600,7 @@ namespace AplicacionSIPA1.Compras
         {
             dvPedido.DataSource = null;
             dvPedido.DataBind();
-
+            
             NuevaAprobacion();
         }
 

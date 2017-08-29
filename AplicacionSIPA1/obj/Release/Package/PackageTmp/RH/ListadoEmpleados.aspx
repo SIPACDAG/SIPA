@@ -74,7 +74,7 @@
                         <asp:TextBox ID="txtBValor" runat="server" class="form-control" MaxLength="250" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="4">
-                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" />
+                        <asp:Button ID="btnBuscar" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -113,7 +113,8 @@
                 </tr>
                 <tr>
                     <td colspan="20">
-                        <asp:GridView ID="gridEmpleados" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridEmpleados_PageIndexChanging" OnSelectedIndexChanged="gridEmpleados_SelectedIndexChanged" PageSize="100" Width="100%">
+                        <asp:GridView ID="gridEmpleados" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridEmpleados_PageIndexChanging" OnSelectedIndexChanged="gridEmpleados_SelectedIndexChanged" PageSize="100" Width="100%"
+                            CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

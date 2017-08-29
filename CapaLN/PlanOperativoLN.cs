@@ -308,14 +308,14 @@ namespace CapaLN
             grid.DataBind();
         }
 
-        public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario)
+        public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario,string ip,string mac,string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PlanOperativoAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN, usuario);
+                DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN, usuario,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -651,7 +651,7 @@ namespace CapaLN
             ObjAD = new PlanOperativoAD();
             return ObjAD.CantidadPpto(anio,unidad);
         }
-        public string ObtenerCorreoxUsuario(int idempleado)
+        public string ObtenerCorreoxUsuario(string idempleado)
         {
             ObjAD = new PlanOperativoAD();
             return ObjAD.ObtenerCorreoxUsuario(idempleado);

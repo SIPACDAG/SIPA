@@ -33,3 +33,6 @@ using System.Runtime.InteropServices;
 // mediante el carácter '*', como se muestra a continuación:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: InternalsVisibleTo("AplicacionSIPA1.Tests")]
+[assembly: InternalsVisibleTo("AplicacionSIPA1.Explorables")]
+

@@ -27,12 +27,7 @@ namespace AplicacionSIPA1.Pac
                 }
 
 
-                if (Request.Url.Segments[Request.Url.Segments.Length - 1].ToString() != "~/Inicio.aspx")
-                {
-
-
-                }
-
+               
 
 
 

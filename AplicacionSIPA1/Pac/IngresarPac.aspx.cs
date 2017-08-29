@@ -817,7 +817,7 @@ namespace AplicacionSIPA1.Pac
                         string noPac = dsResultado.Tables[0].Rows[0]["VALOR"].ToString();
                         //lblSuccess.Text = "Plan Anual de Compras ALMACENADO exitosamente, número de Pac: " + noPac;
                        
-                        Response.Redirect("NuPlan.aspx?No=" + Convert.ToString(noPac) + "&monto=" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total) + "&msg=CREADO/ACTUALIZADO");
+                        Response.Redirect("NoPlan.aspx?No=" + Convert.ToString(noPac) + "&monto=" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total) + "&msg=CREADO/ACTUALIZADO");
                     }               
 
                 }

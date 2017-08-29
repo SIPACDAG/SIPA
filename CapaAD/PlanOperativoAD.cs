@@ -232,14 +232,14 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario)
+        public DataTable AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario,string ip,string mac,string pc)
         {
             DataTable tabla = new DataTable();
 
             conectar = new ConexionBD();
 
             conectar.AbrirConexion();
-            string query = string.Format("CALL sp_iu_obj_operativo({0}, {1}, {2}, {3}, '{4}', {5}, {6}, '{7}');", ObjEN.Id_Objetivo_Operativo, ObjEN.Id_Objetivo_Estrategico, ObjEN.Id_Meta, ObjEN.Codigo, ObjEN.Nombre, ObjEN.Anio, ObjEN.Id_Unidad, ObjEN.Usuario);
+            string query = string.Format("CALL sp_iu_obj_operativo({0}, {1}, {2}, {3}, '{4}', {5}, {6}, '{7}','{8}','{9}','{10}');", ObjEN.Id_Objetivo_Operativo, ObjEN.Id_Objetivo_Estrategico, ObjEN.Id_Meta, ObjEN.Codigo, ObjEN.Nombre, ObjEN.Anio, ObjEN.Id_Unidad, ObjEN.Usuario,ip,mac,pc);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();
@@ -497,11 +497,11 @@ namespace CapaAD
 
         }
 
-        public string ObtenerCorreoxUsuario(int unidad)
+        public string ObtenerCorreoxUsuario(string empleado)
         {
             string correo = "";
             conectar = new ConexionBD();
-            string permiso = string.Format(" call sp_CorreoxUsuario ({0}) ", unidad);
+            string permiso = string.Format(" call sp_CorreoxUsuario ('%"+empleado+"%') ");
             conectar.AbrirConexion();
             MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
             MySqlDataReader dr = cmd.ExecuteReader();

@@ -1345,10 +1345,12 @@ namespace AplicacionSIPA1.Pedido
 
                             idEstadoPedido = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString());
                             estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_PEDIDO"].ToString();
+                            string tempo = ddlJefes.SelectedItem.Text.ToString();
+                            string[] datostecnico = tempo.Split('-');
 
                             mensaje = " finalizada correctamente!. El pedido fue enviado al estado: " + estadoActual + ". ";
                             EnvioDeCorreos objEC = new EnvioDeCorreos();
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(int.Parse(ddlJefes.SelectedValue)), "Nueva Requiscion Ingresada", " Requisicion No.  " + idPedido + ", " + mensaje, ddlSolicitantes.SelectedItem.ToString());
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(datostecnico[1].ToString().Trim()), "Nueva Requiscion Ingresada", " Requisicion No.  " + idPedido + ", " + mensaje, ddlSolicitantes.SelectedItem.ToString());
                             
 
 

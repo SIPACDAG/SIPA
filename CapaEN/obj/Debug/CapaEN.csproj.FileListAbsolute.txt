@@ -44,12 +44,12 @@ C:\SIPA\SIPADESARROLLO\CapaEN\bin\Debug\CapaEN.dll
 C:\SIPA\SIPADESARROLLO\CapaEN\bin\Debug\CapaEN.pdb
 C:\SIPA\SIPADESARROLLO\CapaEN\obj\Debug\CapaEN.dll
 C:\SIPA\SIPADESARROLLO\CapaEN\obj\Debug\CapaEN.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\bin\Debug\CapaEN.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\bin\Debug\CapaEN.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Debug\CapaEN.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Debug\CapaEN.pdb
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\bin\Debug\CapaEN.dll
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\bin\Debug\CapaEN.pdb
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\obj\Debug\CapaEN.dll
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\obj\Debug\CapaEN.pdb
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\obj\Debug\CapaEN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaEN\obj\Debug\CapaEN.pdb

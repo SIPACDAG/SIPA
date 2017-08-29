@@ -325,7 +325,7 @@ namespace AplicacionSIPA1.RH
                     eEmpleadosEN.ID_ESTADO = int.Parse(ddlEstado.SelectedValue);
                     eEmpleadosEN.SUELDO_NOMINAL = decimal.Parse(txtSueldo.Text);
                     eEmpleadosEN.USUARIO = Session["USUARIO"].ToString();
-
+                    eEmpleadosEN.Motivo_Baja = txtmBaja.Text;
                     if (validarEstadoEmpleado(idEmpleado))
                     {
                         eEmpleadosLN = new EmpleadosLN();

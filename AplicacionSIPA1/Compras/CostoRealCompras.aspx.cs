@@ -689,8 +689,8 @@ namespace AplicacionSIPA1.Compras
                         NuevaAprobacion();
                         lblSuccess.Text = "Solicitud No. " + noSolicitud + " LIQUIDADA con éxito!";
                         EnvioDeCorreos objEC = new EnvioDeCorreos();
-                        objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Costo Real Requiscion Aprobada ",  lblSuccess.Text, usuario);
-                        objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Costo Real Requiscion Aprobada ",  lblSuccess.Text, usuario);
+                        objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Costo Real Requiscion Aprobada ",  lblSuccess.Text, usuario);
+                        objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Costo Real Requiscion Aprobada ",  lblSuccess.Text, usuario);
 
                     }
                     else
@@ -753,8 +753,8 @@ namespace AplicacionSIPA1.Compras
                     NuevaAprobacion();
                     lblSuccess.Text = "Solicitud No. " + noSolicitud + " RECHAZADA con éxito!";
                     EnvioDeCorreos objEC = new EnvioDeCorreos();
-                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text+", " + observaciones, usuario);
-                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text+", " + observaciones, usuario);
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
 
                 }
             }
@@ -1329,8 +1329,8 @@ namespace AplicacionSIPA1.Compras
                     NuevaAprobacion();
                     lblSuccess.Text = "Solicitud No. " + noSolicitud + " ANULADA con éxito!";
                     EnvioDeCorreos objEC = new EnvioDeCorreos();
-                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(jefeTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
-                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(int.Parse(solicitanteTemp[0].Trim())), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
+                    objEC.EnvioCorreo(pOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Costo Real Requiscion RECHAZADA ", lblSuccess.Text + ", " + observaciones, usuario);
 
                 }
             }

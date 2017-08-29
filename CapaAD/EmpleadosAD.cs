@@ -82,7 +82,7 @@ namespace CapaAD
            //idEstado = idEstado.Replace("0", "null");
            sueldoNominal = ObjEN.SUELDO_NOMINAL.ToString();
 
-           string query = "CALL sp_iue_empleados(" + idEmpleado + ", " + nombres + ", " + apellidos + ", " + direccion + ", " + telefono + ", " + email + ", " + idGenero + ", " + nit + ", " + cui + ", " + fechaNac + ", " + idPuesto + ", " + renglon + ", " + idUnidad + ", " + idEstado + ", " + sueldoNominal + ", '" + usuario + "', 1);";
+           string query = "CALL sp_iue_empleados(" + idEmpleado + ", " + nombres + ", " + apellidos + ", " + direccion + ", " + telefono + ", " + email + ", " + idGenero + ", " + nit + ", " + cui + ", " + fechaNac + ", " + idPuesto + ", " + renglon + ", " + idUnidad + ", " + idEstado + ", " + sueldoNominal + ", '" + usuario + "', 1,'"+ObjEN.Motivo_Baja+"');";
            conectar.AbrirConexion();
            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
            consulta.Fill(dt);

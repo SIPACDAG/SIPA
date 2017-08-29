@@ -75,13 +75,6 @@ C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\bin\Debug\CapaEN.pdb
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
 C:\Users\it\Desktop\CDAG_SIPA\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaAD.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaAD.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaEN.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaEN.pdb
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\bin\Debug\CapaAD.dll
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\bin\Debug\CapaAD.pdb
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\bin\Debug\CapaEN.dll
@@ -89,3 +82,10 @@ C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\bin\Debug\CapaE
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\obj\Debug\CapaAD.dll
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaAD\obj\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaAD.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\CapaAD\obj\Debug\CapaAD.pdb
