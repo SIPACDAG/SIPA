@@ -19,9 +19,7 @@
                         <asp:DropDownList ID="ddlPlanes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPlanes_SelectedIndexChanged" Width="50%" Visible="False">
                         </asp:DropDownList>
                         </strong></td>
-                    <td style="font-size: x-large; text-align: center;" class="text-center" colspan="16"><strong>COSTO REAL DE REQUISICIONES, VALES, TRANSFERENCIAS, APOYOS,
-                        <br />
-                        OTROS GASTOS Y VIÁTICOS </strong></td>
+                    <td style="font-size: x-large; text-align: center;" class="text-center" colspan="16"><strong>COSTO REAL DE TRANSFERENCIAS, APOYOS Y OTROS GASTOS</strong></td>
                     <td class="text-right" colspan="2" style="font-size: x-large;"><strong>
                         <asp:Label ID="lblIdPoa" runat="server" style="font-size: medium" ForeColor="White">0</asp:Label>
                         </strong></td>
@@ -89,10 +87,7 @@
                     <td style="width: 8%">&nbsp;</td>
                     <td colspan="9">
                         <asp:RadioButtonList ID="rblTipoDocto" runat="server" RepeatDirection="Horizontal" Width="95%" AutoPostBack="True" OnSelectedIndexChanged="rblTipoDocto_SelectedIndexChanged">
-                            <asp:ListItem Selected="True" Value="1">Requisiciones</asp:ListItem>
-                            <asp:ListItem Value="2">Vales</asp:ListItem>
-                            <asp:ListItem Value="3">Transferencias, apoyos y otros gastos</asp:ListItem>
-                            <asp:ListItem Value="4">Viáticos</asp:ListItem>
+                            <asp:ListItem Value="3" Selected="True">Transferencias, apoyos y otros gastos</asp:ListItem>
                         </asp:RadioButtonList>
                     </td>
                     <td colspan="3">
@@ -209,6 +204,13 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#FF6600" />
                                 </asp:BoundField>
+                                <asp:TemplateField HeaderText="Anexos">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkButton1" runat="server" NavigateUrl="" Text='<%# Eval("tipo_anexo") %>' OnClick="LinkButton1_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
                             <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Names="Algerian" Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
@@ -220,7 +222,7 @@
                 <tr>
                     <td style="width: 8%">&nbsp;</td>
                     <td colspan="10">
-                        <asp:CheckBox ID="chkProveedores" runat="server" Text="Mostrar proveedores del cuadro de comparación" />
+                       <asp:CheckBox ID="chkProveedores" runat="server" Text="Mostrar proveedores del cuadro de comparación" Visible="False" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -255,10 +257,20 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="width: 8%">&nbsp;</td>
-                    <td colspan="18" style="text-align: center">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound"
-                            CssClass="table table-hover table-responsive">
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="18"><strong>Cambios importantes:</strong><br /> * Liquidación en base a la cantidad y SUBTOTAL adjudicado sin IVA(en vez de monto individual), siempre y cuando no sea superado el monto del renglón de presupuesto ni el monto planificado en el PAC.<br />
+                        * Selección del tipo de documento de compra
+                        <br />
+                        * Si el producto no se adquirió, se pude liquidar con cantidad y subtotal adjudicado de cero (Q.0.00) el sistema no solicitará los datos restantes concluyendo que el producto no se adquirió, sin embargo para liquidar deberá existir por lo menos un item adquirido<br />
+                        * Posibilidad de rechazar (18 - Rechazado técnico compras) una requisición cuando se encuentre en estado 12 - Liquidado
+                        <br />
+                        * Si el artículo se adquirió con valor cero (Q. 0.00), deje los campos numéricos en cero y selecciones los datos restantes (proveedor, tipo docto. compra, etc.)<br />
+                        <span class="auto-style2">* Posibilidad de liquidar nuevamente una requisición que se encuentre en estado 12 - Liquidado.</span><br /> <br /> </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="20">
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridDetalle_RowDataBound" PageSize="12" ShowFooter="True" Width="100%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -347,7 +359,7 @@
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <div class="text-right">
-                                            <asp:TextBox ID="txtCostoUReal" Style="text-align: right" runat="server" Text='<%# Bind("costo_u_compras", "Q.{0:0,0.00}") %>' Width="85px"></asp:TextBox>
+                                            <asp:TextBox ID="txtCostoUReal" runat="server" ReadOnly="True" Style="text-align: right" Text='<%# Bind("costo_u_compras", "Q.{0:0,0.00}") %>' Width="85px"></asp:TextBox>
                                             <asp:Label ID="lblErrorCostoUReal" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
                                         </div>
                                     </ItemTemplate>
@@ -378,6 +390,18 @@
                                         </div>
                                     </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="TOTAL MULTIANUAL">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextBox33" runat="server" Text='<%# Bind("total_pedido_multianual") %>' Font-Bold="True"></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <div class="text-right">
+                                            <asp:Label ID="Label33" runat="server" Text='<%# Bind("total_pedido_multianual", "Q.{0:0,0.00}") %>' Font-Bold="True"></asp:Label>
+                                        </div>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="PROVEEDOR">
@@ -392,7 +416,19 @@
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="NO ORDEN C.">
+                                <asp:TemplateField HeaderText="TIPO DOCTO. COMPRA">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:DropDownList ID="dropTipoDoctoDetalle" runat="server" class="chzn-select" data-placeholder="Busque Tipo Docto...." Style="width: auto;">
+                                        </asp:DropDownList>
+                                        <asp:Label ID="lblErrorTipoDoctoDetalle" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="NO DOCTO. COMPRA">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                                     </EditItemTemplate>
@@ -403,7 +439,7 @@
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="FECHA ORDEN C.">
+                                <asp:TemplateField HeaderText="FECHA DOCTO. COMPRA">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
                                     </EditItemTemplate>
@@ -414,7 +450,11 @@
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="PAGO F.">
+                                <asp:BoundField DataField="no_renglon_ppto" HeaderText="RENGLÓN PPTO.">
+                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="PAGOS P.">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkLiquidacionParcial" runat="server" />
                                     </ItemTemplate>
@@ -535,9 +575,10 @@
                 <tr>
                     <td style="width: 8%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">Proveedor:</td>
-                    <td colspan="2">No. Orden</td>
-                    <td colspan="3">Fecha de la orden de compra:</td>
+                    <td colspan="6">Proveedor&nbsp;</td>
+                    <td colspan="2">Tipo Docto. de compra</td>
+                    <td colspan="2">No. documento Compra</td>
+                    <td colspan="3">Fecha documento de compra:</td>
                     <td colspan="3">Liquidaciones Parciales:</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -550,7 +591,11 @@
                         </asp:DropDownList>
                     </td>
                     <td colspan="2">
-                        <asp:TextBox ID="txtNoOrdenC" runat="server" class="form-control" Enabled="true" placeholder="" TextMode="Number" Width="100%"></asp:TextBox>
+                        <asp:DropDownList ID="ddlTipoDocumentoCompraC" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlTipoDocumentoCompraC_SelectedIndexChanged" Visible="False">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="2">
+                        <asp:TextBox ID="txtNoOrdenC" runat="server" class="form-control" Enabled="true" placeholder="" TextMode="Number" Width="100%" Visible="False"></asp:TextBox>
                     </td>
                     <td colspan="3">
                         <asp:TextBox ID="txtFechaOrdenC" runat="server" class="form-control" Enabled="true" placeholder="Ingrese las observaciones del pedido en caso de rechazo" TextMode="Date" Width="100%"></asp:TextBox>
@@ -569,6 +614,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="8"><strong>
                         <asp:Label ID="lblErrorProveedorC" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
+                        </strong></td>
+                    <td colspan="2"><strong>
+                        <asp:Label ID="lblErrorTipoDoctoCompraC" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td colspan="2"><strong>
                         <asp:Label ID="lblErrorOrdenC" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
@@ -596,8 +644,10 @@
                     <td style="width: 8%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                        <asp:Button ID="btnAprobar" runat="server" class="btn btn-success" OnClick="btnAprobar_Click" Text="Guardar Montos" Width="300px" />
-                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Anular Pedido" Width="300px" />
+                        <asp:Button ID="btnAprobar" runat="server" class="btn btn-success" OnClick="btnAprobar_Click" Text="Guardar Montos" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
+                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Rechazar Gasto" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea RECHAZAR este registro?'))return false" />
+                        
+                        <asp:Button ID="btnAnular" runat="server" class="btn btn-primary" OnClick="btnAnular_Click" Text="Anular Gasto" Width="300px" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

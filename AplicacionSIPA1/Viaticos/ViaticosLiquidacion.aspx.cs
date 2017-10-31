@@ -45,10 +45,11 @@ namespace AplicacionSIPA1.Viaticos
                 txtKilometraje.Text = "0";
                 txtPasajes.Text = "0";
                 txtViaticos.Text = "0";
-
+                txtPasajePlanificado.Text = "0";
+                txtKilometrajePlan.Text = "0";
                 filtrarDvPedidos();
                 filtrarGridDetalles();
-                filtrarGridPpto();                
+                filtrarGridPpto();
             }
             catch (Exception ex)
             {
@@ -90,7 +91,9 @@ namespace AplicacionSIPA1.Viaticos
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
 
-                uUsuariosLN.dropUnidad(ddlUnidades);
+                //uUsuariosLN.dropUnidad(ddlUnidades);
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
 
                 if (ddlUnidades.Items.Count == 1)
                 {
@@ -137,7 +140,7 @@ namespace AplicacionSIPA1.Viaticos
                 else
                 {
                     //if (idPoa > 0)
-                    if(true)
+                    if (true)
                     {
                         dsResultado = pViaticosLN.InformacionViatico(int.Parse(ddlAnios.SelectedValue), 0, 6);
 
@@ -186,21 +189,26 @@ namespace AplicacionSIPA1.Viaticos
                             {
                                 int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
-                            dsResultado = pViaticosLN.InformacionViatico(idSalida, 0, 2);
+                                dsResultado = pViaticosLN.InformacionViatico(idSalida, 0, 2);
 
-                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                            lblPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES"].ToString()));
-                            lblKilometraje.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE"].ToString()));
-                            lblViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_VIATICO"].ToString()));
+                                lblPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES"].ToString()));
+                                txtPasajePlanificado.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES"].ToString()));
+                                lblKilometraje.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE"].ToString()));
+                                txtKilometrajePlan.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE"].ToString()));
+                                lblViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_VIATICO"].ToString()));
 
-                            txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES_REAL"].ToString()));
-                            txtKilometraje.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE_REAL"].ToString()));
-                            txtViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_REAL"].ToString()));
-
+                                txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES_REAL"].ToString()));
+                                txtKilometraje.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE_REAL"].ToString()));
+                                txtViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_REAL"].ToString()));
+                                if (txtViaticos.Text == "Q.00.00")
+                                {
+                                    txtViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_VIATICO"].ToString()));
+                                }
                                 lblViaticosEstimado.Text = (decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES_ESTIMADO"].ToString()) + decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE_ESTIMADO"].ToString()) + decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_ESTIMADO"].ToString())).ToString();
-                                
+
                                 ddlPRG.ClearSelection();
                                 ddlSPRG.ClearSelection();
                                 ddlPROY.ClearSelection();
@@ -208,91 +216,91 @@ namespace AplicacionSIPA1.Viaticos
                                 ddlOBR.ClearSelection();
                                 ddlRenglones.ClearSelection();
 
-                            ListItem item = new ListItem();
+                                ListItem item = new ListItem();
 
-                            //PROGRAMA
-                            string prg = "";
-                            if (dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString().Equals("N/A") == false)
-                            {
-                                prg = dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString();
-
-                                item = ddlPRG.Items.FindByValue(prg.ToString());
-                                if (item != null)
+                                //PROGRAMA
+                                string prg = "";
+                                if (dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString().Equals("N/A") == false)
                                 {
-                                    ddlPRG.SelectedValue = prg.ToString();
-                                    ddlPRG_SelectedIndexChanged(new Object(), new EventArgs());
+                                    prg = dsResultado.Tables["BUSQUEDA"].Rows[0]["PRO"].ToString();
+
+                                    item = ddlPRG.Items.FindByValue(prg.ToString());
+                                    if (item != null)
+                                    {
+                                        ddlPRG.SelectedValue = prg.ToString();
+                                        ddlPRG_SelectedIndexChanged(new Object(), new EventArgs());
+                                    }
                                 }
-                            }
 
-                            //SUBPROGRAMA
-                            string sprg = "";
-                            if (dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString().Equals("N/A") == false)
-                            {
-                                sprg = dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString();
-
-                                item = ddlSPRG.Items.FindByValue(sprg.ToString());
-                                if (item != null)
+                                //SUBPROGRAMA
+                                string sprg = "";
+                                if (dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString().Equals("N/A") == false)
                                 {
-                                    ddlSPRG.SelectedValue = sprg.ToString();
-                                    ddlSPRG_SelectedIndexChanged(new Object(), new EventArgs());
-                                }
-                            }
-                            
-                            //PROYECTO
-                            string proy = "";
-                            if (dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString().Equals("N/A") == false)
-                            {
-                                proy = dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString();
+                                    sprg = dsResultado.Tables["BUSQUEDA"].Rows[0]["SPRO"].ToString();
 
-                                item = ddlPROY.Items.FindByValue(proy.ToString());
-                                if (item != null)
+                                    item = ddlSPRG.Items.FindByValue(sprg.ToString());
+                                    if (item != null)
+                                    {
+                                        ddlSPRG.SelectedValue = sprg.ToString();
+                                        ddlSPRG_SelectedIndexChanged(new Object(), new EventArgs());
+                                    }
+                                }
+
+                                //PROYECTO
+                                string proy = "";
+                                if (dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString().Equals("N/A") == false)
                                 {
-                                    ddlPROY.SelectedValue = proy.ToString();
-                                    ddlPROY_SelectedIndexChanged(new Object(), new EventArgs());
+                                    proy = dsResultado.Tables["BUSQUEDA"].Rows[0]["PROY"].ToString();
+
+                                    item = ddlPROY.Items.FindByValue(proy.ToString());
+                                    if (item != null)
+                                    {
+                                        ddlPROY.SelectedValue = proy.ToString();
+                                        ddlPROY_SelectedIndexChanged(new Object(), new EventArgs());
+                                    }
                                 }
-                            }
-                            
-                            //ACTIVIDAD
-                            string act = "";
-                            if (dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString().Equals("N/A") == false)
-                            {
-                                act = dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString();
 
-                                item = ddlACT.Items.FindByValue(act.ToString());
-                                if (item != null)
-                                    ddlACT.SelectedValue = act.ToString();
-                            }
-                            
-                            //OBRA
-                            string obr = "";
-                            if (dsResultado.Tables["BUSQUEDA"].Rows[0]["OBR"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["OBR"].ToString().Equals("") == false)
-                            {
-                                obr = dsResultado.Tables["BUSQUEDA"].Rows[0]["OBR"].ToString();
+                                //ACTIVIDAD
+                                string act = "";
+                                if (dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString().Equals("") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString().Equals("N/A") == false)
+                                {
+                                    act = dsResultado.Tables["BUSQUEDA"].Rows[0]["ACT"].ToString();
 
-                                item = ddlOBR.Items.FindByValue(obr.ToString());
-                                if (item != null)
-                                    ddlOBR.SelectedValue = obr.ToString();
-                            }
+                                    item = ddlACT.Items.FindByValue(act.ToString());
+                                    if (item != null)
+                                        ddlACT.SelectedValue = act.ToString();
+                                }
 
-                            int idTipoViatico = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString());
+                                //OBRA
+                                string obr = "";
+                                if (dsResultado.Tables["BUSQUEDA"].Rows[0]["OBR"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["OBR"].ToString().Equals("") == false)
+                                {
+                                    obr = dsResultado.Tables["BUSQUEDA"].Rows[0]["OBR"].ToString();
 
-                            PedidosLN pInsumoLN = new PedidosLN();
+                                    item = ddlOBR.Items.FindByValue(obr.ToString());
+                                    if (item != null)
+                                        ddlOBR.SelectedValue = obr.ToString();
+                                }
 
-                            if (idTipoViatico == 1)
-                                pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 4);
-                            else
-                                pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 5);
+                                int idTipoViatico = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString());
 
-                            //RENGLÓN
-                            int idDetalle = 0;
-                            if (dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DETALLE_ACCION"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DETALLE_ACCION"].ToString().Equals("") == false)
-                            {
-                                idDetalle = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DETALLE_ACCION"].ToString());
+                                PedidosLN pInsumoLN = new PedidosLN();
 
-                                item = ddlRenglones.Items.FindByValue(idDetalle.ToString());
-                                if (item != null)
-                                    ddlRenglones.SelectedValue = idDetalle.ToString();
-                            }
+                                if (idTipoViatico == 1)
+                                    pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 4);
+                                else
+                                    pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 5);
+
+                                //RENGLÓN
+                                int idDetalle = 0;
+                                if (dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DETALLE_ACCION"].ToString().Equals("null") == false && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DETALLE_ACCION"].ToString().Equals("") == false)
+                                {
+                                    idDetalle = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DETALLE_ACCION"].ToString());
+
+                                    item = ddlRenglones.Items.FindByValue(idDetalle.ToString());
+                                    if (item != null)
+                                        ddlRenglones.SelectedValue = idDetalle.ToString();
+                                }
 
                                 txtObser.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES_RECHAZO"].ToString();
                                 validarEstadoViatico(idSalida);
@@ -321,7 +329,7 @@ namespace AplicacionSIPA1.Viaticos
                 gridDetalle.SelectedIndex = -1;
 
                 int idPedido = 0;
-                if(dvPedido.SelectedValue != null)
+                if (dvPedido.SelectedValue != null)
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
 
                 pViaticosLN = new ViaticosLN();
@@ -338,7 +346,7 @@ namespace AplicacionSIPA1.Viaticos
                     dsResultado = pViaticosLN.InformacionViatico(idPedido, 0, 2);
 
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());                   
+                        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
                 }
                 else
                 {
@@ -415,7 +423,7 @@ namespace AplicacionSIPA1.Viaticos
                 pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 ddlAcciones.Items[0].Text = "<< Todas las acciones >>";
                 NuevaAprobacion();
-                
+
                 lblAnio.Text = anio.ToString();
             }
             catch (Exception ex)
@@ -487,9 +495,9 @@ namespace AplicacionSIPA1.Viaticos
 
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -526,7 +534,7 @@ namespace AplicacionSIPA1.Viaticos
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected void validarEstadoViatico(int idViatico)
@@ -558,13 +566,13 @@ namespace AplicacionSIPA1.Viaticos
 
                     int idEstadoViatico = 0;
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_VIATICO"].ToString(), out idEstadoViatico);
-                    
+
                     //8 - IMPRIMIR, 12 - LIQUIDADO: SE PERMITIRÁ LIQUIDAR
                     if (idEstadoViatico == 8 || idEstadoViatico == 12)
                     {
                         lblErrorPoa.Text = lblError.Text = "";
                     }//3 - RECHAZADO NIVEL I, 5 - RECHAZADO NIVEL II, 7 - RECHAZADO NIVEL III, 9 - RECHAZADO MESA DE ENTRADA, 11 - ANULADO
-                    else if (idEstadoViatico == 3 || idEstadoViatico == 5 || idEstadoViatico == 7 ||  idEstadoViatico == 9 ||  idEstadoViatico == 11)
+                    else if (idEstadoViatico == 3 || idEstadoViatico == 5 || idEstadoViatico == 7 || idEstadoViatico == 9 || idEstadoViatico == 11)
                     {
                         lblErrorPoa.Text = lblError.Text = "El VIÁTICO seleccionado se encuenta en estado: " + estadoViatico + ", por: " + dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES_RECHAZO"].ToString();
                     }
@@ -580,7 +588,7 @@ namespace AplicacionSIPA1.Viaticos
                     //11 - ANULADO. EN ESTE CASO SÓLO SE PÓDRÁ RECHAZAR EL VIÁTICO
                     else if (idEstadoViatico == 11)
                     {
-                        btnLiquidar.Visible = false; 
+                        btnLiquidar.Visible = false;
                         btnRechazar.Visible = true;
                         btnAnular.Visible = false;
                     }
@@ -642,6 +650,7 @@ namespace AplicacionSIPA1.Viaticos
                 decimal pasajesPlanificado = 0;
                 decimal kilometrajePlanificado = 0;
                 decimal viaticosPlanificado = 0;
+                decimal pasajes_plan = 0;
 
                 if (dvPedido.SelectedValue != null)
                 {
@@ -660,7 +669,7 @@ namespace AplicacionSIPA1.Viaticos
                     pasajesPlanificado = decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES"].ToString());
                     kilometrajePlanificado = decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE"].ToString());
                     viaticosPlanificado = decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_VIATICO"].ToString());
-                }                    
+                }
 
                 if (idPedido == 0)
                     throw new Exception("Seleccione un VIÁTICO!");
@@ -676,8 +685,7 @@ namespace AplicacionSIPA1.Viaticos
                 s = s.Trim();
                 txtObser.Text = s;
 
-                if (txtObser.Text.Equals(string.Empty))
-                    errores += "Llene el campo de observaciones.";
+                
 
                 viaticos = funciones.StringToDecimal(txtViaticos.Text);
 
@@ -687,19 +695,20 @@ namespace AplicacionSIPA1.Viaticos
                     errores += "Ingrese monto válido. Si el viático a liquidar es mayor al planificado, realice un nuevo nombramiento como complemento. ";
 
                 pasajes = funciones.StringToDecimal(txtPasajes.Text);
+                pasajes_plan = funciones.StringToDecimal(txtPasajePlanificado.Text);
 
-                if (pasajes >= 0 && pasajes <= pasajesPlanificado)
-                    txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pasajes);                    
-                else
-                    errores += "Ingrese pasaje válido. Si el pasaje a liquidar es mayor al planificado, realice un nuevo nombramiento como complemento. ";
+                //if (pasajes >= 0 && pasajes <= pasajesPlanificado)
+                //    txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pasajes);                    
+                //else
+                //    errores += "Ingrese pasaje válido. Si el pasaje a liquidar es mayor al planificado, realice un nuevo nombramiento como complemento. ";
 
 
                 kilometraje = int.Parse(funciones.StringToDecimal(txtKilometraje.Text).ToString().Split('.')[0]);
-
-                if (kilometraje >= 0 && kilometraje <= kilometrajePlanificado)
-                    txtKilometraje.Text = kilometraje.ToString();
-                else
-                    errores += "Ingrese kilometraje válido. Si el kilometraje a liquidar es mayor al planificado, realice un nuevo nombramiento como complemento. ";
+                kilometrajePlanificado = int.Parse(funciones.StringToDecimal(txtKilometrajePlan.Text).ToString().Split('.')[0]);
+                //if (kilometraje >= 0 && kilometraje <= kilometrajePlanificado)
+                //    txtKilometraje.Text = kilometraje.ToString();
+                //else
+                //    errores += "Ingrese kilometraje válido. Si el kilometraje a liquidar es mayor al planificado, realice un nuevo nombramiento como complemento. ";
 
                 dsResultado = new DataSet();
                 decimal sumaTotal = viaticos + pasajes + decimal.Parse(kilometraje.ToString());
@@ -712,7 +721,7 @@ namespace AplicacionSIPA1.Viaticos
                     //VALIDANDO EL PRESUPUESTO
                     int idAccion = int.Parse(ddlAcciones.SelectedValue);
                     dsResultado = new DataSet();
-                    
+
                     PlanAccionLN planAccionLN = new PlanAccionLN();
                     dsResultado = planAccionLN.InformacionAccionDetalles(int.Parse(ddlRenglones.SelectedValue), 0, "", 6);
 
@@ -729,10 +738,15 @@ namespace AplicacionSIPA1.Viaticos
                         decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIFICADO"].ToString(), out codificado);
                         decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["SALDO"].ToString(), out saldo);
 
-                        decimal saldoPostAprobacion = codificado - totalViaticosEstimado + sumaTotal;
+                        /*decimal saldoPostAprobacion = codificado - totalViaticosEstimado + sumaTotal;
 
                         if (saldoPostAprobacion > (saldo + totalViaticosEstimado))
                             errores += "El monto de la liquidación excede por " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldo - saldoPostAprobacion)) + " al presupuesto disponible para esta operación: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldo + totalViaticosEstimado));
+                         * */
+                        decimal codificadoPostAprobacion = codificado - totalViaticosEstimado + sumaTotal;
+
+                        if (codificadoPostAprobacion > montoActual)
+                            errores += "El monto de la liquidación excede por " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (montoActual - codificadoPostAprobacion)) + " al presupuesto disponible para esta operación: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldo));
                     }
                     else
                         errores += "Renglón presupuestario no encontrado: " + ddlRenglones.SelectedItem.Text;
@@ -746,27 +760,36 @@ namespace AplicacionSIPA1.Viaticos
 
                 if (btnLiquidar.Visible == true)
                 {
-                    FuncionesVarias fv = new FuncionesVarias();
-                    string[] ip = fv.DatosUsuarios();
-                    pViaticosLN = new ViaticosLN();
-                    string usuario = Session["usuario"].ToString();
-                    string observaciones = txtObser.Text;
-                    dsResultado = pViaticosLN.Liquidar(idPedido, observaciones, usuario, viaticos, pasajes, kilometraje,ip[0],ip[1],ip[2]);
+                    if (pasajes <= pasajes_plan)
+                    {
 
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                        FuncionesVarias fv = new FuncionesVarias();
+                        string[] ip = fv.DatosUsuarios();
+                        pViaticosLN = new ViaticosLN();
+                        string usuario = Session["usuario"].ToString();
+                        string observaciones = txtObser.Text;
+                        dsResultado = pViaticosLN.Liquidar(idPedido, observaciones, usuario, viaticos, pasajes_plan, pasajes, kilometrajePlanificado,kilometraje, ip[0], ip[1], ip[2]);
 
-                    filtrarDvPedidos();
-                    filtrarGridDetalles();
-                    filtrarGridPpto();
-                    //txtObser.Text = string.Empty;
+                        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                    string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
-                    lblSuccess.Text = "Viático NO. " + noAnioSolicitud + " LIQUIDADO con éxito!";
+                        filtrarDvPedidos();
+                        filtrarGridDetalles();
+                        filtrarGridPpto();
+                        //txtObser.Text = string.Empty;
 
-                    lblSuccess.Focus();
-                    validarEstadoViatico(idPedido);
-                    //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=APROBADO");
+                        string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
+                        lblSuccess.Text = "Viático NO. " + idPedido + noAnioSolicitud + " LIQUIDADO con éxito!";
+
+                        lblSuccess.Focus();
+                        validarEstadoViatico(idPedido);
+                        //Response.Redirect("NoPedido.aspx?No=" + Convert.ToString(idPedido) + "&msg=PEDIDO" + "&acc=APROBADO");
+                    }
+                    else
+                    {
+                        lblError.Text += "El Monto del pasaje liquidado tiene que ser menor o igual al planificado";
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -805,8 +828,8 @@ namespace AplicacionSIPA1.Viaticos
                         pViaticosLN = new ViaticosLN();
                         string usuario = Session["usuario"].ToString();
                         string observaciones = txtObser.Text;
-                        DataSet dsResultado = pViaticosLN.RechazoMesaEntrada(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
-                        
+                        DataSet dsResultado = pViaticosLN.RechazoMesaEntrada(idPedido, observaciones, usuario, ip[0], ip[1], ip[2]);
+
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
@@ -908,7 +931,7 @@ namespace AplicacionSIPA1.Viaticos
         {
             try
             {
-                limpiarControlesError();            
+                limpiarControlesError();
             }
             catch (Exception ex)
             {
@@ -920,7 +943,7 @@ namespace AplicacionSIPA1.Viaticos
         {
             try
             {
-                limpiarControlesError();                
+                limpiarControlesError();
             }
             catch (Exception ex)
             {
@@ -944,7 +967,7 @@ namespace AplicacionSIPA1.Viaticos
         {
             try
             {
-                limpiarControlesError();               
+                limpiarControlesError();
             }
             catch (Exception ex)
             {
@@ -1018,7 +1041,7 @@ namespace AplicacionSIPA1.Viaticos
                         pViaticosLN = new ViaticosLN();
                         string usuario = Session["usuario"].ToString();
                         string observaciones = txtObser.Text;
-                        DataSet dsResultado = pViaticosLN.Anular(idPedido, observaciones, usuario,ip[0],ip[1],ip[2]);
+                        DataSet dsResultado = pViaticosLN.Anular(idPedido, observaciones, usuario, ip[0], ip[1], ip[2]);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

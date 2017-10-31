@@ -58,7 +58,6 @@ namespace CapaLN
             drop.DataTextField = "texto";
             drop.DataValueField = "id";
             drop.DataBind();
-
             if (drop.Items.Count == 2)
                 drop.Items.RemoveAt(0);
         }

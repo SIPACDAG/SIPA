@@ -59,6 +59,28 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
+                    <td colspan="9">Dependencias:</td>
+                    <td colspan="3">Jefaturas/Unidad:</td>
+                    <td class="text-right" colspan="6">&nbsp;</td>
+                    <td style="width: 5%"><strong>
+                        <asp:Label ID="Label1" runat="server" ForeColor="White" style="font-size: medium">0</asp:Label>
+                        </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlDependencias" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddl" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="18">Acciones:</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -119,7 +141,7 @@
                         <asp:TextBox ID="txtNo" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Font-Size="Large" MaxLength="5" Style="text-align: right" TextMode="Number" Width="95%"></asp:TextBox>
                     </td>
                     <td colspan="3">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
+                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-info" OnClick="btnBuscar_Click" Text="Buscar" Width="95%" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -148,7 +170,8 @@
 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%">
+                        <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
+                            CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="false">
@@ -301,9 +324,39 @@
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                 </tr>
                 <tr>
+                    
+                    <td style="width: 5%">&nbsp;</td>
+                     <td colspan="3">Pasajes Planificado (Q.):
+                        </td>
+                    <td colspan="3">Kilometraje Planificado :
+                        </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                  <tr>
+                     
+                    <td style="width: 5%">&nbsp;</td>
+                      <td colspan="3">
+                        <asp:TextBox ID="txtPasajePlanificado" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                    </td>
+                    <td colspan="3">
+                        <asp:TextBox ID="txtKilometrajePlan" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                    </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -325,7 +378,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="3">Pasajes (Q.):
-                        <asp:Label ID="lblPasajes" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="lblPasajes" runat="server" Text="0" Visible="False"></asp:Label>
                     </td>
                     <td colspan="3">Kilometraje:
                         <asp:Label ID="lblKilometraje" runat="server" Text="0"></asp:Label>
@@ -436,7 +489,8 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%">
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%"
+                            CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -575,9 +629,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
-                        <asp:Button ID="btnLiquidar" runat="server" class="btn btn-primary" OnClick="btnLiquidar_Click" Text="Liquidar" Width="200px" OnClientClick="javascript:if(!confirm('¿Desea LIQUIDAR este viático?'))return false" />
+                        <asp:Button ID="btnLiquidar" runat="server" class="btn btn-success" OnClick="btnLiquidar_Click" Text="Liquidar" Width="200px" OnClientClick="javascript:if(!confirm('¿Desea LIQUIDAR este viático?'))return false" />
                         &nbsp;&nbsp;
-                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-default" OnClick="btnRechazar_Click" Text="Rechazar" Width="200px" OnClientClick="javascript:if(!confirm('¿Desea RECHAZAR este viático?'))return false" />
+                        <asp:Button ID="btnRechazar" runat="server" class="btn btn-danger" OnClick="btnRechazar_Click" Text="Rechazar" Width="200px" OnClientClick="javascript:if(!confirm('¿Desea RECHAZAR este viático?'))return false" />
                         &nbsp;&nbsp;
                         <asp:Button ID="btnAnular" runat="server" class="btn btn-primary" OnClick="btnAnular_Click" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este viático?'))return false" Text="Anular" Width="200px" />
                     </td>
@@ -655,7 +709,8 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%">
+                        <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%"
+                            CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

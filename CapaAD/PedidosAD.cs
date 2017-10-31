@@ -276,6 +276,126 @@ namespace CapaAD
             return dsResultado;
         }
 
+        public DataSet AlmacenarPedidoMultianual(PedidosEN ObjEN, string usuariop)
+        {
+            DataSet dsResultado = new DataSet();
+
+            string query = "";
+
+            DataTable dt;
+            DataTable dtEnc;
+            DataTable dtDet;
+            MySqlTransaction sqlTransaction;
+            MySqlDataAdapter sqlAdapter;
+            conectar = new ConexionBD();
+
+            string idPedido, idPoa, idAccion, idTipoPedido, idSolicitante, idJefe, justificacion, destino, idFand, multianual, idTipoAnexo, usuario;
+            idPedido = ObjEN.ID_PEDIDO.ToString();
+            idPoa = ObjEN.ID_POA.ToString();
+            idAccion = ObjEN.ID_ACCION.ToString();
+            idTipoPedido = ObjEN.ID_TIPO_PEDIDO.ToString();
+            idSolicitante = ObjEN.ID_SOLICITANTE.ToString();
+            idJefe = ObjEN.ID_JEFE_DIRECCION.ToString();
+            justificacion = ObjEN.JUSTIFICACION;
+            destino = ObjEN.DESTINO.ToString();
+            idFand = ObjEN.ID_FAND.ToString();
+            multianual = ObjEN.MULTIANUAL.ToString();
+            idTipoAnexo = ObjEN.ID_TIPO_ANEXO.ToString();
+            usuario = ObjEN.USUARIO;
+
+
+            if (destino.Equals("1"))
+                idFand = "null";
+
+            query = "CALL sp_iue_pedido_multianual(" + idPedido + ", " + idPoa + ", " + idAccion + ", " + idTipoPedido + ", " + idSolicitante + ", " + idJefe + ", '" + justificacion + "', " + idFand + ", " + idTipoAnexo + ", 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 1, '" + usuario + "', 1,null,null,null);";
+
+            dt = armarDsResultado().Tables[0].Copy();
+            dtEnc = armarDsResultado().Tables[0].Copy();
+
+            conectar.AbrirConexion();
+            sqlTransaction = conectar.conectar.BeginTransaction();
+            try
+            {
+                dt = new DataTable();
+                sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                sqlAdapter.Fill(dt);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                int idPedidoEncabezado = int.Parse(dt.Rows[0]["MENSAJE"].ToString());
+                dtEnc.Rows[0]["ERRORES"] = false;
+                dtEnc.Rows[0]["MSG_ERROR"] = "";
+                dtEnc.Rows[0]["VALOR"] = idPedidoEncabezado;
+
+            }
+            catch (Exception ex)
+            {
+                sqlTransaction.Rollback();
+                conectar.CerrarConexion();
+
+                dtEnc.Rows[0]["ERRORES"] = true;
+                dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
+                dtEnc.Rows[0]["VALOR"] = "";
+            }
+
+            dtDet = armarDsResultado().Tables[0].Copy();
+            dtDet.TableName = "DETALLES";
+            dtDet.Rows.RemoveAt(0);
+            if (ObjEN.ID_PEDIDO_DETALLE >= 0 && dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
+            {
+                int idEncabezado = int.Parse(dtEnc.Rows[0]["VALOR"].ToString());
+
+                try
+                {
+                    string idPedidoDetalle, idPac, cantidad, idUnidadMedida, descripcion, costoEstimado, cantidadMultianual, costoMultianual;
+                    idPedidoDetalle = ObjEN.ID_PEDIDO_DETALLE.ToString();
+                    idPac = ObjEN.ID_PAC.ToString();
+                    cantidad = ObjEN.CANTIDAD_ESTIMADA.ToString();
+                    idUnidadMedida = ObjEN.ID_UNIDAD_MEDIDA.ToString();
+                    descripcion = ObjEN.DESCRIPCION;
+                    costoEstimado = ObjEN.COSTO_ESTIMADO.ToString();
+
+                    cantidadMultianual = ObjEN.VCANTIDAD_PEDIDO_MULTIANUAL;
+                    costoMultianual = ObjEN.VCOSTO_PEDIDO_MULTIANUAL.ToString();
+
+                    query = "CALL sp_iue_pedido_detalles_multianual(" + idPedidoDetalle + ", " + idEncabezado + ", " + idPac + ", " + cantidad + ", " + idUnidadMedida + ", '" + descripcion + "', " + costoEstimado + ", 0, 0, 0, 0, '', 0, 0, 0, " + cantidadMultianual + ", "+ costoMultianual + ", 0, '" + usuario + "', 1);";
+
+                    dt = new DataTable();
+                    sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
+                    sqlAdapter.Fill(dt);
+
+                    if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                        throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                    DataRow drDet = dtDet.NewRow();
+                    drDet["ERRORES"] = dt.Rows[0]["RESULTADO"].ToString();
+                    drDet["MSG_ERROR"] = "";
+                    drDet["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
+                    dtDet.Rows.Add(drDet);
+                }
+                catch (Exception ex)
+                {
+                    sqlTransaction.Rollback();
+                    conectar.CerrarConexion();
+
+                    dtEnc.Rows[0]["ERRORES"] = true;
+                    dtEnc.Rows[0]["MSG_ERROR"] = ex.Message;
+                }
+            }
+
+            if (dtEnc.Rows.Count > 0 && !bool.Parse(dtEnc.Rows[0]["ERRORES"].ToString()))
+                sqlTransaction.Commit();
+
+            conectar.CerrarConexion();
+
+            dsResultado = new DataSet();
+            dsResultado.Tables.Add(dtEnc.Copy());
+            dsResultado.Tables.Add(dtDet);
+
+            return dsResultado;
+        }
+
         public DataSet AlmacenarVale(PedidosEN ObjEN, string usuariop)
         {
             DataSet dsResultado = new DataSet();
@@ -1101,6 +1221,20 @@ namespace CapaAD
             return dt;
         }
 
+        public DataTable RecodificacionPpto(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+
+            conectar = new ConexionBD();
+            DataTable dt = new DataTable();
+            string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 17 ,'"
+                 + ip + "','" + mac + "','" + pc + "');";
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(dt);
+            conectar.CerrarConexion();
+            return dt;
+        }
+
         public DataTable AprobacionPresupuestoAjuste(int idAjuste, int idTipoSalida, string observaciones, string usuario)
         {
 
@@ -1492,7 +1626,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
 
-            string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 14,'"
+            string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 15,'"
                  + ip + "','" + mac + "','" + pc + "');";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);

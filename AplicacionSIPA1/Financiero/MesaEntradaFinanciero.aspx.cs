@@ -580,11 +580,11 @@ namespace AplicacionSIPA1.Financiero
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                //string s = txtNo.Text;
-                //txtNo.Text = s;
+                        //string s = txtNo.Text;
+                        //txtNo.Text = s;
 
-                string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
-                txtNo.Text = string.Empty;
+                        string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
+                        txtNo.Text = string.Empty;
 
                         NuevaAprobacion();
                         lblSuccess.Text = "Solicitud No. " + noSolicitud + " INGRESADA con éxito!";

@@ -528,6 +528,28 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public DataSet AlmacenarPedidoMultianual(PedidosEN pInsumoEN, string usuario)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataSet ds = ObjAD.AlmacenarPedidoMultianual(pInsumoEN, usuario);
+
+                if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarPedidoMultianual(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
         public DataSet AlmacenarVale(PedidosEN pInsumoEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
@@ -904,6 +926,31 @@ namespace CapaLN
             catch (Exception ex)
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionPresupuesto(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet RecodificacionPpto(int idSalida, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.RecodificacionPpto(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idSalida;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RecodificacionPpto(). " + ex.Message;
             }
 
             return dsResultado;

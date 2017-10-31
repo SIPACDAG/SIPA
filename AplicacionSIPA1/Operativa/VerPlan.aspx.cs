@@ -54,7 +54,7 @@ namespace AplicacionSIPA1.Operativa
 
                     planOperativoLN = new PlanOperativoLN();
                     planOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
-
+                    
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlAccionesPoa(ddlAcciones, 0);
                     ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
@@ -71,7 +71,7 @@ namespace AplicacionSIPA1.Operativa
                             validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                         }
                     }
-
+                    planOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
                     int idPoa = 0;
                     int.TryParse(lblIdPoa.Text, out idPoa);
                     planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
@@ -851,8 +851,8 @@ namespace AplicacionSIPA1.Operativa
                     DataTable dt = new DataTable();
                     GridView gridPlan = new GridView();
                     PlanAccionLN pAccionLN = new PlanAccionLN();
-                    pAccionLN.GridPlan(gridPlan, 0, idPoa);
-
+                    
+                    pAccionLN.GridPlanCompleto(gridPlan, idUnidad, idPoa, int.Parse(ddlAnios.SelectedValue));
                     dt = gridPlan.DataSource as System.Data.DataTable;
                     ReportDataSource RD = new ReportDataSource();
                     RD.Value = dt;

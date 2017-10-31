@@ -25,7 +25,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
         private SeguimientoLN sSeguimientoLN;
         private SEGUIMIENTOS_CMI sSeguimientoEN;
         private SEGUIMIENTOS_CMI_DET sSeguimientoEN_DET;
-
+        private bool bDepencia=false;
         private FuncionesVarias funciones;
 
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -35,6 +35,9 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 try
                 {
                     btnNuevo_Click(sender, e);
+                    pOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 }
                 catch (Exception ex)
                 {
@@ -218,6 +221,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                 pOperativoLN.DdlMeses(ddlMeses);
                 pAccionLN = new PlanAccionLN();
                 ddlMeses.Items[0].Text = "<< Elija un valor >>";
@@ -578,7 +582,19 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                     
                     int.TryParse(lblIdSeguimientoCmi.Text, out idSeguimientoCmi);
                     int.TryParse(lblIdPoa.Text, out idPoa);
-                    int.TryParse(ddlUnidades.SelectedValue.ToString(), out idUnidad);
+                    if (ddlJefatura.SelectedValue != "" && int.Parse(ddlJefatura.SelectedValue) > 0)
+                    {
+                        int.TryParse(ddlJefatura.SelectedValue.ToString(), out idUnidad);
+                    }
+                    else if (int.Parse(ddlDependencia.SelectedValue) > 0)
+                    {
+                        int.TryParse(ddlDependencia.SelectedValue.ToString(), out idUnidad);
+                    }
+                    else
+                    {
+                        int.TryParse(ddlUnidades.SelectedValue.ToString(), out idUnidad);
+                    }
+                    
                     int.TryParse(ddlAnios.SelectedValue.ToString(), out anio);
                     int.TryParse(ddlMeses.SelectedValue.ToString(), out mes);
 
@@ -767,7 +783,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                         lblSuccess.Text = "Informe finalizado correctamente!. El informe fue enviado al estado: " + lblEstadoSeguimiento.Text + ". ";
 
-                        Response.Redirect("NoSeguimiento.aspx?No=" + lblNoSeguimientoCmi.Text + "&msg=SEGUIMIENTO" + "&acc=" + mensaje);
+                        //Response.Redirect("NoSeguimiento.aspx?No=" + lblNoSeguimientoCmi.Text + "&msg=SEGUIMIENTO" + "&acc=" + mensaje);
                     }
                 }
              }
@@ -1066,6 +1082,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                         ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('ALMACENADO/MODIFICADO exitosamente!');", true);
                         lblSuccess.Text = "ALMACENADO/MODIFICADO exitosamente!";
+                        filtrarGridDetalles(int.Parse(lblIdPoa.Text), int.Parse(ddlMeses.SelectedValue));
                     }
                 }
             }
@@ -1157,6 +1174,72 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 throw new Exception("validarControlesABCDetalle(). " + ex.Message);
             }
             return controlesValidos;
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoSeguimientoEnc();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoSeguimiento(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlDependencias(ddlJefatura, idUnidad.ToString());
+                pOperativoLN.DdlMeses(ddlMeses);
+                pAccionLN = new PlanAccionLN();
+                ddlMeses.Items[0].Text = "<< Elija un valor >>";
+                bDepencia = true;
+                NuevoSeguimientoDet();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlDependencia_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefatura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoSeguimientoEnc();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoSeguimiento(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pOperativoLN = new PlanOperativoLN();
+                
+                pOperativoLN.DdlMeses(ddlMeses);
+                pAccionLN = new PlanAccionLN();
+                ddlMeses.Items[0].Text = "<< Elija un valor >>";
+
+                NuevoSeguimientoDet();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
     }
 }

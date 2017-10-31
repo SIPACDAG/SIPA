@@ -110,6 +110,7 @@
                         <asp:Label ID="lblTechoU" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Blue" Text="0.00"></asp:Label>
                     </td>
                     <td class="text-right" colspan="4">
+                       
                         <asp:Label ID="lblDisponibleU" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" Text="0.00"></asp:Label>
                     </td>
                     <td style="width: 5%">&nbsp;</td>

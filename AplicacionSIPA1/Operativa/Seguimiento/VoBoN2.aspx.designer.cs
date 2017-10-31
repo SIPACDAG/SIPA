@@ -157,6 +157,15 @@ namespace AplicacionSIPA1.Operativa.Seguimiento {
         protected global::System.Web.UI.WebControls.Label lblEstadoSeguimiento;
         
         /// <summary>
+        /// Control chkFiltroColumnas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkFiltroColumnas;
+        
+        /// <summary>
         /// Control gridDet.
         /// </summary>
         /// <remarks>
@@ -229,15 +238,6 @@ namespace AplicacionSIPA1.Operativa.Seguimiento {
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
         
         /// <summary>
-        /// Control lblError.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
-        
-        /// <summary>
         /// Control lblSuccess.
         /// </summary>
         /// <remarks>
@@ -245,6 +245,15 @@ namespace AplicacionSIPA1.Operativa.Seguimiento {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuccess;
+        
+        /// <summary>
+        /// Control lblError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// Control gridSaldos.

@@ -290,6 +290,8 @@ namespace AplicacionSIPA1.Pedido
 
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoVale(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -322,6 +324,8 @@ namespace AplicacionSIPA1.Pedido
 
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoVale(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);

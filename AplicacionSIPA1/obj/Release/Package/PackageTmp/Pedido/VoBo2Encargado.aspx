@@ -455,6 +455,18 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
+                                <asp:TemplateField HeaderText="TOTAL MULTIANUAL">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("total_pedido_multianual") %>' Font-Bold="True"></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <div class="text-right">
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("total_pedido_multianual", "Q.{0:0,0.00}") %>' Font-Bold="True"></asp:Label>
+                                        </div>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
                             </Columns>
                             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                             <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />

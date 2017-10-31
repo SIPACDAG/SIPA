@@ -93,7 +93,9 @@ namespace AplicacionSIPA1.Pedido
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
 
-                uUsuariosLN.dropUnidad(ddlUnidades);
+                //uUsuariosLN.dropUnidad(ddlUnidades);
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
 
                 if (ddlUnidades.Items.Count == 1)
                 {
@@ -173,7 +175,8 @@ namespace AplicacionSIPA1.Pedido
                         if (!ddlAcciones.SelectedValue.Equals("0"))
                             filtro += " AND id_accion = " + ddlAcciones.SelectedValue;
 
-                        filtro += " AND id_estado_pedido IN (3, 5, 7, 9)";
+                        //3 - Rechazado Almacen, 5 - Rechazado Sub/Dir, 7 - Rechazado Ppto, 9 - Rechazado Mesa de Entrada, 11 - Anulado
+                        filtro += " AND id_estado_pedido IN (1,3, 5, 7, 9, 11, 18)";
 
                         dv.RowFilter = filtro;
                         dvPedido.DataSource = dv;
@@ -378,6 +381,8 @@ namespace AplicacionSIPA1.Pedido
                 lblErrorPoa.Text = string.Empty;
                 if (anio > 0 && idUnidad > 0)
                     validarPoaAprobacionPedido(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -407,6 +412,8 @@ namespace AplicacionSIPA1.Pedido
                 lblErrorPoa.Text = string.Empty;
                 if (anio > 0 && idUnidad > 0)
                     validarPoaAprobacionPedido(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -472,6 +479,12 @@ namespace AplicacionSIPA1.Pedido
                 }
                 else
                 {
+                    //btnReactivar.Visible = true;
+                    btnReactivar.Visible = false;
+                    poaValido = true;
+                }
+                /*else
+                {
                     string estadoPac = dsPoa.Tables[0].Rows[0]["ESTADO_PAC"].ToString();
                     if (!estadoPac.Split('-')[0].Trim().Equals("6"))
                     {
@@ -483,7 +496,7 @@ namespace AplicacionSIPA1.Pedido
                         btnReactivar.Visible = true;
                         poaValido = true;
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -502,7 +515,6 @@ namespace AplicacionSIPA1.Pedido
             {
                 if (idPedido == 0)
                 {
-                    btnReactivar.Visible = true;
                     lblErrorPoa.Text = lblError.Text = "";
                     pedidoValido = true;
                 }
@@ -533,19 +545,30 @@ namespace AplicacionSIPA1.Pedido
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstado);
 
                     //EL PEDIDO ESTÁ EN ESTADO APROBACIÓN DE PPTO
-                    if (idEstado != 3 && idEstado != 5 && idEstado != 7 && idEstado != 9)
-                    {
-                        btnAnular.Visible = false;
-                        lblErrorPoa.Text = lblError.Text = "La REQUISICIÓN/VALE/GASTO seleccionado se encuentra en estado: " + estadoPedido + " y no se puede ANULAR!";
-                        pedidoValido = false;   
-                    }
-                    else
+                    if (idEstado == 1 || idEstado == 3 || idEstado == 5 || idEstado == 7 || idEstado == 9 || idEstado ==18)
                     {
                         btnAnular.Visible = true;
+                        btnReactivar.Visible = false;
+                        lblErrorPoa.Text = lblError.Text = string.Empty;
+                        pedidoValido = true;   
+                    }
+                    else if (idEstado == 11)
+                    {
+                        btnAnular.Visible = false;
+                        btnReactivar.Visible = true;
                         lblErrorPoa.Text = lblError.Text = string.Empty;
                         pedidoValido = true;
                     }
+                    else
+                    {
+                        btnAnular.Visible = false;
+                        btnReactivar.Visible = false;
+                        lblErrorPoa.Text = lblError.Text = "La REQUISICIÓN/VALE/GASTO seleccionado se encuentra en estado: " + estadoPedido + " y no se puede ANULAR!";
+                        pedidoValido = false;
+                    }
                 }
+
+                btnReactivar.Visible = false;
             }
             catch (Exception ex)
             {
@@ -761,26 +784,81 @@ namespace AplicacionSIPA1.Pedido
                     lblErrorObser.Text = lblError.Text = "Llene el campo de observaciones.";
                 else
                 {
-                    pInsumoLN = new PedidosLN();
-                    string usuario = Session["usuario"].ToString();
-                    string observaciones = txtObser.Text;
-                    FuncionesVarias fv = new FuncionesVarias();
-                    string[] ip = fv.DatosUsuarios();
-                    DataSet dsResultado = pInsumoLN.AnulacionTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
+                    validarEstadoPedido(idSalida);
+                    if (btnAnular.Visible == true)
+                    {
+                        pInsumoLN = new PedidosLN();
+                        FuncionesVarias fv = new FuncionesVarias();
+                        string[] ip = fv.DatosUsuarios();
+                        string usuario = Session["usuario"].ToString();
+                        string observaciones = txtObser.Text;
+                        DataSet dsResultado = pInsumoLN.AnulacionTecnico(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
 
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                    string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
-                    txtNo.Text = string.Empty;
+                        string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
+                        txtNo.Text = string.Empty;
 
-                    NuevaAprobacion();
-                    lblSuccess.Text = "Solicitud No. " + noSolicitud + " ANULADA con éxito!";
+                        NuevaAprobacion();
+                        lblSuccess.Text = "Solicitud No. " + noSolicitud + " ANULADA con éxito!";
+                    }
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = "btnAnular(). " + ex.Message;
+            }
+        }
+
+        protected void btnReactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+
+                int idSalida, idTipoSalida;
+                idSalida = idTipoSalida = 0;
+                if (dvPedido.SelectedValue != null)
+                    int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
+
+                int.TryParse(rblTipoDocto.SelectedValue, out idTipoSalida);
+
+                if (idSalida == 0)
+                    throw new Exception("Seleccione un PEDIDO!");
+
+                string s = txtObser.Text;
+                s = s.Replace('\'', ' ');
+                s = s.Trim();
+                txtObser.Text = s;
+
+                if (txtObser.Text.Equals(string.Empty))
+                    lblErrorObser.Text = lblError.Text = "Llene el campo de observaciones.";
+                else
+                {
+                    validarEstadoPedido(idSalida);
+
+                    if (btnReactivar.Visible == true)
+                    {
+                        pInsumoLN = new PedidosLN();
+                        string usuario = Session["usuario"].ToString();
+                        string observaciones = txtObser.Text;
+                        DataSet dsResultado = pInsumoLN.Reactivacion(idSalida, idTipoSalida, txtObser.Text, Session["usuario"].ToString());
+
+                        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se REACTIVÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                        string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
+                        txtNo.Text = string.Empty;
+
+                        NuevaAprobacion();
+                        lblSuccess.Text = "Solicitud No. " + noSolicitud + " REACTIVADA con éxito!";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnReactivar(). " + ex.Message;
             }
         }
     }

@@ -23,7 +23,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanOperativoLN planOperativoLN;
         private PedidosLN pInsumoLN;
         private PedidosEN pInsumoEN;
-
+        private bool bDepencia = false;
         private FuncionesVarias funciones;
 
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -35,7 +35,9 @@ namespace AplicacionSIPA1.Pedido
                     btnNuevo_Click(sender, e);
 
                     string s = Convert.ToString(Request.QueryString["No"]);
-
+                    planOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                     if (s != null)
                     {
                         int idEncabezado = 0;
@@ -125,6 +127,8 @@ namespace AplicacionSIPA1.Pedido
 
                         lblIdPedido.Text = idEncabezado.ToString();
                         lblNoPedido.Text = noSolicitud;
+
+                       
                     }
                 }
                 catch (Exception ex)
@@ -189,7 +193,7 @@ namespace AplicacionSIPA1.Pedido
 
                 InformacionPublica_TribunalHonor();
 
-                ddlAnios.Enabled = true;
+                ddlAnios.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -321,6 +325,8 @@ namespace AplicacionSIPA1.Pedido
 
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoPedido(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -358,7 +364,8 @@ namespace AplicacionSIPA1.Pedido
                     planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
                     validarPoaIngresoPedido(idUnidad, anio);
                 }
-                    
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -805,12 +812,6 @@ namespace AplicacionSIPA1.Pedido
             limpiarControlesError();
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-           
-
-        }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -890,7 +891,7 @@ namespace AplicacionSIPA1.Pedido
                             filtrarGridPpto();
                             lblSuccess.Text = "Pedido No. " + lblNoPedido.Text + " ALMACENADO/MODIFICADO exitosamente: ";
                             //FormsAuthentication.RedirectFromLoginPage(this.lblSuccess.Text,false);
-                            //Response.Redirect("~/Pedido/PedidoGuardado.aspx?lblsucces="+lblSuccess.Text);
+                            ///Response.Redirect("~/Pedido/NoPedido.aspx?No=" + lblNoPedido.Text + "&msg=" + lblSuccess.Text + "&acc=Ingresado corretamente");
                             btnGuardar.Visible = true;   
 
                         }
@@ -1449,7 +1450,7 @@ namespace AplicacionSIPA1.Pedido
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-
+                bDepencia = true;
                 InformacionPublica_TribunalHonor();
 
             }

@@ -258,16 +258,14 @@
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="18"><strong>Cambios importantes:</strong><br /> * Liquidación en base a la cantidad y SUBTOTAL adjudicado sin IVA(en vez de monto indivudual)
-                        <br />
+                    <td colspan="18"><strong>Cambios importantes:</strong><br /> * Liquidación en base a la cantidad y SUBTOTAL adjudicado sin IVA(en vez de monto individual), siempre y cuando no sea superado el monto del renglón de presupuesto ni el monto planificado en el PAC.<br />
                         * Selección del tipo de documento de compra
                         <br />
                         * Si el producto no se adquirió, se pude liquidar con cantidad y subtotal adjudicado de cero (Q.0.00) el sistema no solicitará los datos restantes concluyendo que el producto no se adquirió, sin embargo para liquidar deberá existir por lo menos un item adquirido<br />
                         * Posibilidad de rechazar (18 - Rechazado técnico compras) una requisición cuando se encuentre en estado 12 - Liquidado
                         <br />
-                        * Posibilidad de liquidar nuevamente una requisición que se encuentre en estado 12 - Liquidado
-                        <br />
-                        * Liquidación en base al monto total de la requisición y no en base al monto individual, siempre y cuando no sea superado el monto del renglón de presupuesto ni el monto planificado en el PAC.<br /> <br /> </td>
+                        * Si el artículo se adquirió con valor cero (Q. 0.00), deje los campos numéricos en cero y selecciones los datos restantes (proveedor, tipo docto. compra, etc.)<br />
+                        <span class="auto-style2">* Posibilidad de liquidar nuevamente una requisición que se encuentre en estado 12 - Liquidado.</span><br /> <br /> </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
@@ -389,6 +387,18 @@
                                         <div class="text-right">
                                             <asp:TextBox ID="txtIva" runat="server" ReadOnly="True" Style="text-align: right" Text='<%# Bind("iva", "Q.{0:0,0.00}") %>' Width="95px"></asp:TextBox>
                                             <asp:Label ID="lblErrorIva" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+                                        </div>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="TOTAL MULTIANUAL">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextBox33" runat="server" Text='<%# Bind("total_pedido_multianual") %>' Font-Bold="True"></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <div class="text-right">
+                                            <asp:Label ID="Label33" runat="server" Text='<%# Bind("total_pedido_multianual", "Q.{0:0,0.00}") %>' Font-Bold="True"></asp:Label>
                                         </div>
                                     </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />

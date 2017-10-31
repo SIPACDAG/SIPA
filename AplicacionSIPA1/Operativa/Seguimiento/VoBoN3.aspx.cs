@@ -805,6 +805,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                         ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('ALMACENADO/MODIFICADO exitosamente!');", true);
                         lblSuccess.Text = "ALMACENADO/MODIFICADO exitosamente!";
+                        filtrarGridDetalles(int.Parse(lblIdPoa.Text), int.Parse(ddlMeses.SelectedValue));
                     }
                 }
             }

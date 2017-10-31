@@ -362,7 +362,7 @@
                         <asp:TextBox ID="txtCosto" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="12" Style="text-align: right" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="6">
-                        <asp:LinkButton ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="113px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
+                        <asp:LinkButton ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
                         <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
                         <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" Text="Ver Listado" Width="120px"  />
                        
@@ -401,8 +401,9 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="16" style="text-align: center"><span>
-                        <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         </span></td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

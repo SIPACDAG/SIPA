@@ -25,7 +25,7 @@ namespace AplicacionSIPA1.Pac
         private PlanAnualEN pAnualEN;
         private DataSet dsPacDet;
         private PlanOperativoLN planOperativoLN;
-
+        private bool bDepencia = false;
         public DataSet dsPac
         {
             get
@@ -35,7 +35,7 @@ namespace AplicacionSIPA1.Pac
             }
             set { ViewState["dsPac"] = value; }
         }
-        
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -46,16 +46,23 @@ namespace AplicacionSIPA1.Pac
                     NuevaAccion();
                     NuevoPacEnc();
                     NuevoPacDet();
+                    planOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+
 
                     string mensaje = Convert.ToString(Request.QueryString["msg"]);
                     if (mensaje != null && mensaje.Equals("Listado"))
                     {
                         btnListadoPac_Click(sender, e);
+                        planOperativoLN.DdlDependencias(ddlCDependencia, ddlUnidades.SelectedValue);
                     }
                     else
                     {
 
                     }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -236,7 +243,7 @@ namespace AplicacionSIPA1.Pac
 
                 pAnualLN = new PlanAnualLN();
                 pAnualLN.DdlCategorias(ddlCategorias, noRenglon);
-            }            
+            }
         }
 
         protected void filtrarDetalleAccion()
@@ -297,7 +304,7 @@ namespace AplicacionSIPA1.Pac
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-                    
+
             }
             catch (Exception ex)
             {
@@ -351,11 +358,11 @@ namespace AplicacionSIPA1.Pac
                     lblError.Text += "Seleccione una modalidad. ";
                 }
 
-                if(gridRenglon.SelectedIndex < 0)
+                if (gridRenglon.SelectedIndex < 0)
                 {
                     lblError.Text += "Seleccione un Renglón. ";
                 }
-                
+
                 if ((ddlCategorias.SelectedValue.Equals("0") || ddlCategorias.Items.Count == 0))
                 {
                     lblErrorCategoria.Text = "*";
@@ -368,9 +375,9 @@ namespace AplicacionSIPA1.Pac
                 if (!rfvDescripcion.IsValid)
                     lblError.Text += "Ingrese una descripción";
 
-                if(txtDescripcion.Text.Length < 40)
+                if (txtDescripcion.Text.Length < 40)
                     lblError.Text += "Ingrese por lo menos 40 caracteres en la descripción";
-                
+
                 bool valido = true;
                 int vacios = 0;
                 double totalQ = 0;
@@ -427,9 +434,16 @@ namespace AplicacionSIPA1.Pac
                     gridDet.FooterRow.Cells[1].Text = "Total (Q): ";
                     gridDet.FooterRow.Cells[2].Text = totalC.ToString();
                     gridDet.FooterRow.Cells[3].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalQ);
-
-                    if(totalC == 0 || totalQ == 0)
-                        lblErrorDetalles.Text = "El total de cantidad y quetzales debe ser mayor a 0";
+                    if (int.Parse(lblIdPac.Text) > 0)
+                    {
+                        if (totalC < 0 || totalQ < 0)
+                            lblErrorDetalles.Text = "El total de cantidad y quetzales debe ser mayor  a 0";
+                    }
+                    else
+                    {
+                        if (totalC == 0 || totalQ == 0)
+                            lblErrorDetalles.Text = "El total de cantidad y quetzales debe ser mayor a 0";
+                    }
                 }
 
                 if (lblError.Text.Equals(string.Empty) && lblErrorDetalles.Text.Equals(string.Empty))
@@ -487,10 +501,10 @@ namespace AplicacionSIPA1.Pac
             lblIdPoa.Text = "0";
             btnLimpiarC.Visible = btnGuardar.Visible = gridPac.Columns[1].Visible = false;
             try
-            {                
-                pOperativoLN = new PlanOperativoLN();                
+            {
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -575,7 +589,7 @@ namespace AplicacionSIPA1.Pac
             }
 
             //btnLimpiarC.Visible = btnGuardar.Visible = gridPac.Columns[1].Visible = true;
-            return pacValido;            
+            return pacValido;
         }
 
         protected bool validarPoaListadoPac(int idUnidad, int anio)
@@ -597,7 +611,7 @@ namespace AplicacionSIPA1.Pac
                 int idPoa = 0;
                 int.TryParse(dsPoa.Tables[0].Rows[0]["ID_POA"].ToString(), out idPoa);
                 lblCIdPoa.Text = idPoa.ToString();
-                
+
                 string estadoPoa = dsPoa.Tables[0].Rows[0]["ID_ESTADO"].ToString() + " - " + dsPoa.Tables[0].Rows[0]["ESTADO"].ToString();
 
                 string estadoPac = dsPoa.Tables[0].Rows[0]["ID_ESTADO_PAC"].ToString();
@@ -608,7 +622,8 @@ namespace AplicacionSIPA1.Pac
                 //1	Sin Enviar a Revision
                 if (estadoPac.Equals("1"))
                 {
-                    /*lblErrorPac.Text = lblError.Text = */lblCErrorPac.Text = lblCError.Text = string.Empty;
+                    /*lblErrorPac.Text = lblError.Text = */
+                    lblCErrorPac.Text = lblCError.Text = string.Empty;
 
                     btnGuardar.Visible = true;
                     btnEnviar.Visible = true;
@@ -621,7 +636,8 @@ namespace AplicacionSIPA1.Pac
                 //2	Revisión Subgerencia, 4	Revisión Analista Compras
                 else if (estadoPac.Equals("2") || estadoPac.Equals("4"))
                 {
-                    /*lblErrorPac.Text = lblError.Text = */lblCErrorPac.Text = lblCError.Text = "El PLAN ANUAL DE COMPRAS seleccionado se encuenta en estado: " + lblEstadoPac.Text + " y no se puede modificar";
+                    /*lblErrorPac.Text = lblError.Text = */
+                    lblCErrorPac.Text = lblCError.Text = "El PLAN ANUAL DE COMPRAS seleccionado se encuenta en estado: " + lblEstadoPac.Text + " y no se puede modificar";
 
                     btnGuardar.Visible = false;
                     btnEnviar.Visible = false;
@@ -632,7 +648,8 @@ namespace AplicacionSIPA1.Pac
                 //3	Rechazado Subgerencia, 5	Rechazado Analista Compras
                 else if (estadoPac.Equals("3") || estadoPac.Equals("5"))
                 {
-                    /*lblErrorPac.Text = lblError.Text = */lblCErrorPac.Text = lblCError.Text = "El PLAN ANUAL DE COMPRAS seleccionado se encuenta en estado: " + lblEstadoPoa.Text + ", por: " + observacionesPac + " y no se puede modificar";
+                    /*lblErrorPac.Text = lblError.Text = */
+                    lblCErrorPac.Text = lblCError.Text = "El PLAN ANUAL DE COMPRAS seleccionado se encuenta en estado: " + lblEstadoPoa.Text + ", por: " + observacionesPac + " y no se puede modificar";
 
                     btnGuardar.Visible = true;
                     btnEnviar.Visible = true;
@@ -645,7 +662,8 @@ namespace AplicacionSIPA1.Pac
                 //6	Aprobado Compras
                 else if (estadoPac.Equals("6"))
                 {
-                    /*lblErrorPac.Text = lblError.Text = */lblCErrorPac.Text = lblCError.Text = string.Empty;
+                    /*lblErrorPac.Text = lblError.Text = */
+                    lblCErrorPac.Text = lblCError.Text = string.Empty;
 
                     btnGuardar.Visible = false;
                     btnEnviar.Visible = false;
@@ -655,7 +673,8 @@ namespace AplicacionSIPA1.Pac
                 }
                 else
                 {
-                    /*lblErrorPac.Text = lblError.Text = */lblCErrorPac.Text = lblCError.Text = "Estado desconocido: " + estadoPac + ", por favor consulte con el administrador del sistema";
+                    /*lblErrorPac.Text = lblError.Text = */
+                    lblCErrorPac.Text = lblCError.Text = "Estado desconocido: " + estadoPac + ", por favor consulte con el administrador del sistema";
 
                     btnGuardar.Visible = false;
                     btnEnviar.Visible = false;
@@ -691,7 +710,7 @@ namespace AplicacionSIPA1.Pac
             {
                 lblCErrorPac.Text = lblCError.Text = "Error: " + ex.Message;
             }
-            return pacValido;  
+            return pacValido;
         }
 
         protected void ddlAcciones_SelectedIndexChanged(object sender, EventArgs e)
@@ -701,7 +720,7 @@ namespace AplicacionSIPA1.Pac
                 limpiarControlesError();
                 NuevoPacEnc();
                 NuevoPacDet();
-                filtrarGridDetallesAccion();                
+                filtrarGridDetallesAccion();
             }
             catch (Exception ex)
             {
@@ -807,7 +826,7 @@ namespace AplicacionSIPA1.Pac
                     if (ValidarPpto(idDetalleAccion, idPac, total))
                     {
                         pAnualLN = new PlanAnualLN();
-                        DataSet dsResultado = pAnualLN.AlmacenarPac(dsPac,Session["usuario"].ToString());
+                        DataSet dsResultado = pAnualLN.AlmacenarPac(dsPac, Session["usuario"].ToString());
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se INSERTÓ/ACTUALIZÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -816,9 +835,9 @@ namespace AplicacionSIPA1.Pac
 
                         string noPac = dsResultado.Tables[0].Rows[0]["VALOR"].ToString();
                         //lblSuccess.Text = "Plan Anual de Compras ALMACENADO exitosamente, número de Pac: " + noPac;
-                       
+
                         Response.Redirect("NoPlan.aspx?No=" + Convert.ToString(noPac) + "&monto=" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total) + "&msg=CREADO/ACTUALIZADO");
-                    }               
+                    }
 
                 }
             }
@@ -857,10 +876,10 @@ namespace AplicacionSIPA1.Pac
 
 
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["CODIFICADO"].ToString(), out codificadoPac);
-            decimal diferenciaCodificadoMontoN = totalPac - codificadoPac; 
+            decimal diferenciaCodificadoMontoN = totalPac - codificadoPac;
             if (diferenciaCodificadoMontoN < 0)
                 throw new Exception("El monto mínimo debe ser igual o mayor al monto codificado/comprometido: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificadoPac));
-                
+
             pptoValido = true;
             return pptoValido;
         }
@@ -941,7 +960,7 @@ namespace AplicacionSIPA1.Pac
 
                 int i = e.NewSelectedIndex;
                 string noRenglon = gridRenglon.DataKeys[i].Values["NO_RENGLON"].ToString();
-                
+
                 pAnualLN = new PlanAnualLN();
                 pAnualLN.DdlCategorias(ddlCategorias, noRenglon);
 
@@ -954,7 +973,7 @@ namespace AplicacionSIPA1.Pac
             {
                 lblError.Text = "gridRenglon_PageIndexChanging(). " + ex.Message;
             }
-            
+
         }
 
         protected void ddlPac_SelectedIndexChanged(object sender, EventArgs e)
@@ -969,13 +988,15 @@ namespace AplicacionSIPA1.Pac
                 upIngreso.Visible = false;
 
                 nuevaBusqueda();
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlDependencias(ddlCDependencia, ddlUnidades.SelectedValue);
                 generarReporte();
             }
             catch (Exception ex)
             {
                 lblCError.Text = "btnListadoPac_Click()" + ex.Message;
             }
-            
+
         }
 
         protected void nuevaBusqueda()
@@ -1032,7 +1053,7 @@ namespace AplicacionSIPA1.Pac
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }            
+            }
         }
 
         protected void ddlCAnios_SelectedIndexChanged(object sender, EventArgs e)
@@ -1040,7 +1061,7 @@ namespace AplicacionSIPA1.Pac
             try
             {
                 limpiarControlesError();
-                
+
                 int idUnidad = 0;
                 int.TryParse(ddlCUnidades.SelectedValue, out idUnidad);
                 string id_unidad = ddlCUnidades.SelectedItem.Value;
@@ -1052,7 +1073,7 @@ namespace AplicacionSIPA1.Pac
                     planOperativoLN.DdlDependencias(ddlCDependencia, id_unidad);
                 }
                 validarPoaListadoPac(idUnidad, anio);
-                
+
                 int idPoa = 0;
                 int.TryParse(lblCIdPoa.Text, out idPoa);
 
@@ -1085,7 +1106,7 @@ namespace AplicacionSIPA1.Pac
 
                 int idPoa = 0;
                 int.TryParse(lblCIdPoa.Text, out idPoa);
-                
+
                 string usuario = Session["usuario"].ToString();
                 pAnualLN = new PlanAnualLN();
                 pAnualLN.GridListadoPacs(gridPac, usuario, idPoa.ToString());
@@ -1144,7 +1165,7 @@ namespace AplicacionSIPA1.Pac
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }           
+            }
         }
 
         protected void ddlCAcciones_SelectedIndexChanged(object sender, EventArgs e)
@@ -1200,7 +1221,7 @@ namespace AplicacionSIPA1.Pac
             try
             {
                 limpiarControlesError();
-              
+
                 int idPac = 0;
                 int.TryParse(gridPac.SelectedValue.ToString(), out idPac);
 
@@ -1210,7 +1231,7 @@ namespace AplicacionSIPA1.Pac
                     upConsulta.Visible = false;
 
                     pAnualLN = new PlanAnualLN();
-                    
+
                     DataSet dsResultado = pAnualLN.InformacionPac(idPac);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
@@ -1318,7 +1339,7 @@ namespace AplicacionSIPA1.Pac
                     gridDet.FooterRow.Cells[1].Text = "Total (Q): ";
                     gridDet.FooterRow.Cells[2].Text = cantidadDetalle.ToString();
                     gridDet.FooterRow.Cells[3].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", monto);
-                    
+
                     validarPoaIngresoPac(idUnidad, anio);
                 }
             }
@@ -1446,7 +1467,7 @@ namespace AplicacionSIPA1.Pac
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                   
+
                     ReportDataSource RD = new ReportDataSource();
                     RD.Value = dsResultado.Tables[1];
                     RD.Name = "DataSet1";
@@ -1457,7 +1478,7 @@ namespace AplicacionSIPA1.Pac
                     rViewer.LocalReport.ReportPath = @"Reportes\\rptPAC.rdlc";
                     rViewer.LocalReport.Refresh();
 
-                    
+
                     byte[] bytes = rViewer.LocalReport.Render(
                        "Excel", null, out mimeType, out encoding,
                         out extension,
@@ -1502,7 +1523,7 @@ namespace AplicacionSIPA1.Pac
                 int idPoa = 0;
                 int.TryParse(lblCIdPoa.Text, out idPoa);
 
-                if(idPoa == 0)
+                if (idPoa == 0)
                     throw new Exception("Seleccione un Pac!");
 
                 pAnualLN = new PlanAnualLN();
@@ -1564,6 +1585,7 @@ namespace AplicacionSIPA1.Pac
 
                     }
                 }
+                bDepencia = true;
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoPac(idUnidad, anio);
 
@@ -1596,7 +1618,7 @@ namespace AplicacionSIPA1.Pac
                 string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
-               
+
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoPac(idUnidad, anio);
 
@@ -1634,7 +1656,7 @@ namespace AplicacionSIPA1.Pac
                         planOperativoLN.DdlDependencias(ddlCJefaturaUnidad, id_unidad);
 
                     }
-                    
+
                 }
                 validarPoaListadoPac(idUnidad, anio);
 
@@ -1669,7 +1691,7 @@ namespace AplicacionSIPA1.Pac
                 string id_unidad = ddlCJefaturaUnidad.SelectedItem.Value;
                 int anio = 0;
                 int.TryParse(ddlCAnios.SelectedValue, out anio);
-               
+
                 validarPoaListadoPac(idUnidad, anio);
 
                 int idPoa = 0;

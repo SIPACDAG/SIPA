@@ -370,14 +370,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet Liquidar(int idSalida, string observaciones, string usuario, decimal costoReal, decimal pasajes, decimal kilometraje, string ip, string mac, string pc)
+        public DataSet Liquidar(int idSalida, string observaciones, string usuario, decimal costoReal, decimal pasajes_plan ,decimal pasajes, decimal kilometraje_plan ,decimal kilometraje, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new ViaticosAD();
             try
             {
-                DataTable dt = ObjAD.Liquidar(idSalida, observaciones, usuario, costoReal, pasajes, kilometraje,ip,mac,pc);
+                DataTable dt = ObjAD.Liquidar(idSalida, observaciones, usuario, costoReal, pasajes_plan ,pasajes,kilometraje_plan, kilometraje,ip,mac,pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());

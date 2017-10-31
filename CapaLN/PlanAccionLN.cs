@@ -346,10 +346,10 @@ namespace CapaLN
             grid.DataSource = ObjAD.GridPlan(idUnidad, idPoa);
             grid.DataBind();
         }
-        public void GridPlanCompleto(GridView grid, int idUnidad, int idPoa,int anio)
+        public void GridPlanCompleto(GridView grid, int idUnidad, int idPoa, int anio)
         {
             ObjAD = new PlanAccionAD();
-            grid.DataSource = ObjAD.GridPlanCompleto(idUnidad, idPoa,anio);
+            grid.DataSource = ObjAD.GridPlanCompleto(idUnidad, idPoa, anio);
             grid.DataBind();
         }
         public void GridInsumosRenglon(GridView grid, string noRenglon, string criterio, int opcion)
@@ -375,7 +375,7 @@ namespace CapaLN
             grid.DataBind();
         }
 
-        public DataSet AlmacenarAccion(AccionesEN ObjEN,string usuario)
+        public DataSet AlmacenarAccion(AccionesEN ObjEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
@@ -424,7 +424,7 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AlmacenarDetalle(AccionesDetEN ObjEN,string usuario)
+        public DataSet AlmacenarDetalle(AccionesDetEN ObjEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
@@ -716,7 +716,7 @@ namespace CapaLN
 
             try
             {
-                DataTable dt = ObjAD.PptoPoa(idPoa,idDependencia);
+                DataTable dt = ObjAD.PptoPoa(idPoa, idDependencia);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -883,5 +883,24 @@ namespace CapaLN
         }
 
         //REGION GESFOR2 FINAL
+        public DataSet CostoEstimado(int unidad)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanAccionAD();
+
+            try
+            {
+                DataTable dt = ObjAD.CostoEstimado(unidad);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.PptoPoa(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
     }
 }

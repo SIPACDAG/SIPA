@@ -19,6 +19,7 @@ namespace AplicacionSIPA1.Operativa
         private ObjOperativosEN objetivosEN;
         private IndOperativosEN indicadoresEN;
         private MetasOperativasEN metasEN;
+        private bool bDepencia = false;
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
@@ -204,6 +205,10 @@ namespace AplicacionSIPA1.Operativa
 
                 planOperativoLN = new PlanOperativoLN();
                 planOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
+                if (!bDepencia)
+                    planOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
+
+
                 planOperativoLN.DdlProcesos(ddlProcesos);
                 lblIdPoa.Text = string.Empty;
 
@@ -856,9 +861,22 @@ namespace AplicacionSIPA1.Operativa
                         ddlMetasE_SelectedIndexChanged(sender, e);
                     }
                 }
-                
+                int iUnidad = 0;
+                if (ddlUnidadJefatura.SelectedValue != "" && int.Parse(ddlUnidadJefatura.SelectedValue) > 0)
+                {
+                    iUnidad = Convert.ToInt32(ddlUnidadJefatura.SelectedValue);
+                }
+                else if (int.Parse(ddlDependencias.SelectedValue) > 0)
+                {
+                    iUnidad = Convert.ToInt32(ddlDependencias.SelectedValue);
+                }
+                else
+                {
+                    iUnidad = Convert.ToInt32(ddlUnidades.SelectedValue);
+                }
+
                 planOperativoLN = new PlanOperativoLN();
-                planOperativoLN.DdlObjetivosxMeta(ddlObjetivosO, idMeta, int.Parse(ddlUnidades.SelectedValue));
+                planOperativoLN.DdlObjetivosxMeta(ddlObjetivosO, idMeta, iUnidad);
 
                 filtrarGridPlanE(idMeta.ToString());
             }
@@ -992,7 +1010,20 @@ namespace AplicacionSIPA1.Operativa
                 if (chkModAlineacion.Checked == false)
                 {
                     planOperativoLN = new PlanOperativoLN();
-                    planOperativoLN.DdlObjetivosxMeta(ddlObjetivosO, int.Parse(gridPlanE.SelectedValue.ToString()), int.Parse(ddlUnidades.SelectedValue));
+                    int iUnidad = 0;
+                    if (ddlUnidadJefatura.SelectedValue != "" && int.Parse(ddlUnidadJefatura.SelectedValue) > 0)
+                    {
+                        iUnidad = Convert.ToInt32(ddlUnidadJefatura.SelectedValue);
+                    }
+                    else if (int.Parse(ddlDependencias.SelectedValue) > 0)
+                    {
+                        iUnidad = Convert.ToInt32(ddlDependencias.SelectedValue);
+                    }
+                    else
+                    {
+                        iUnidad = Convert.ToInt32(ddlUnidades.SelectedValue);
+                    }
+                    planOperativoLN.DdlObjetivosxMeta(ddlObjetivosO, int.Parse(gridPlanE.SelectedValue.ToString()),iUnidad);
                     ddlObjetivosO_SelectedIndexChanged(new Object(), new EventArgs());
                     txtCodigo.Visible = false;
                 }
@@ -1342,6 +1373,7 @@ namespace AplicacionSIPA1.Operativa
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 int idUnidad = int.Parse(ddlDependencias.SelectedValue);
                 int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                bDepencia = true;
                 btnNuevo_Click(sender, e);
                 ddlPlanes.SelectedValue = idPlan.ToString();
                 ddlAnios.SelectedValue = anio.ToString();

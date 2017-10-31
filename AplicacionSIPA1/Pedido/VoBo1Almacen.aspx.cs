@@ -239,50 +239,57 @@ namespace AplicacionSIPA1.Pedido
                 gridDetalle.SelectedIndex = -1;
 
                 int idPedido = 0;
-                if(dvPedido.SelectedValue != null)
+                if (dvPedido.SelectedValue != null)
+                {
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
 
-                pInsumoLN = new PedidosLN();
-                DataSet dsResultado = new DataSet();
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = new DataSet();
 
-                int idTipoDocto = 0;
-                int.TryParse(lblIdTipoDocto.Text, out idTipoDocto);
-
-                if (idTipoDocto == 1)
-                    dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 3);
-                else if (idTipoDocto == 2)
-                    dsResultado = pInsumoLN.InformacionVale(idPedido, 0, 3);
-
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
-                {
-                    gridDetalle.DataSource = dsResultado.Tables["BUSQUEDA"];
-                    gridDetalle.DataBind();
-
-                    decimal cantidadArticulos = 0;
-                    decimal totalPedido = 0;
+                    int idTipoDocto = 0;
+                    int.TryParse(lblIdTipoDocto.Text, out idTipoDocto);
 
                     if (idTipoDocto == 1)
-                        dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
+                        dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 3);
                     else if (idTipoDocto == 2)
-                        dsResultado = pInsumoLN.InformacionVale(idPedido, 0, 2);
+                        dsResultado = pInsumoLN.InformacionVale(idPedido, 0, 3);
 
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CANTIDAD"].ToString(), out cantidadArticulos);
-                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["TOTAL"].ToString(), out totalPedido);
+                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
+                    {
+                        gridDetalle.DataSource = dsResultado.Tables["BUSQUEDA"];
+                        gridDetalle.DataBind();
 
-                    gridDetalle.FooterRow.Cells[3].Text = "Totales";
-                    gridDetalle.FooterRow.Cells[5].Text = cantidadArticulos.ToString();
-                    gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
-                }
-                else
-                {
-                    gridDetalle.DataSource = null;
-                    gridDetalle.DataBind();
+                        decimal cantidadArticulos = 0;
+                        decimal totalPedido = 0;
+
+                        if (idTipoDocto == 1)
+                            dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
+                        else if (idTipoDocto == 2)
+                            dsResultado = pInsumoLN.InformacionVale(idPedido, 0, 2);
+
+                        if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CANTIDAD"].ToString(), out cantidadArticulos);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["TOTAL"].ToString(), out totalPedido);
+
+                        gridDetalle.FooterRow.Cells[3].Text = "Totales";
+                        gridDetalle.FooterRow.Cells[5].Text = cantidadArticulos.ToString();
+                        gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
+
+                        decimal totalPedidoAnual = 0;
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["TOTAL_COSTO_PEDIDO_MULTIANUAL"].ToString(), out totalPedidoAnual);
+                        gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
+
+                    }
+                    else
+                    {
+                        gridDetalle.DataSource = null;
+                        gridDetalle.DataBind();
+                    }
                 }
             }
             catch (Exception ex)

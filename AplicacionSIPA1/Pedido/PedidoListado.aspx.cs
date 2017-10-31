@@ -23,7 +23,8 @@ namespace AplicacionSIPA1.Pedido
         private PlanAnualLN pAnualLN;
         private PlanOperativoLN planOperativoLN;
         private PedidosLN pInsumoLN;
-        
+        private bool bDepencia = false;
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -32,6 +33,9 @@ namespace AplicacionSIPA1.Pedido
                 {
                     nuevaBusqueda();
                     InformacionPublica_TribunalHonor();
+                    planOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 }
                 catch (Exception ex)
                 {
@@ -223,6 +227,8 @@ namespace AplicacionSIPA1.Pedido
 
                 if (anio > 0 && idUnidad > 0)
                     validarPoaListadoPedido(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
                 
 
                 int idPoa = 0;
@@ -567,7 +573,7 @@ namespace AplicacionSIPA1.Pedido
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-
+                bDepencia = true;
                 InformacionPublica_TribunalHonor();
 
                 filtrarGridDetalles(idPoa);

@@ -25,6 +25,7 @@ namespace AplicacionSIPA1.Pac
         private PlanAnualEN pAnualEN;
         private DataSet dsPacDet;
         private PlanOperativoLN planOperativoLN;
+        private bool bDepencia = false;
         double totalmp, totalcp, totalsp = 0;
         int contarp = 0;
 
@@ -50,7 +51,10 @@ namespace AplicacionSIPA1.Pac
                     NuevoPacDet();
 
                     btnListadoPac_Click(sender, e);
-                    
+                    planOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+
                     /*string mensaje = Convert.ToString(Request.QueryString["msg"]);
                     if (mensaje != null && mensaje.Equals("Listado"))
                     {
@@ -1387,7 +1391,7 @@ namespace AplicacionSIPA1.Pac
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
-
+                bDepencia = true;
                 pAccionLN = new PlanAccionLN();
                 pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";

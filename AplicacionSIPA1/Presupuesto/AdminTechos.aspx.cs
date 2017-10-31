@@ -211,7 +211,7 @@ namespace AplicacionSIPA1.Presupuesto
                     {
                         pptoEN.id_unidad = ddlJefaturaUnidad.SelectedValue;
                     }
-                    else if (int.Parse(ddlDependencia.SelectedValue) > 0)
+                    else if (ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
                     {
                         pptoEN.id_unidad = ddlDependencia.SelectedValue;
                     }
@@ -234,7 +234,16 @@ namespace AplicacionSIPA1.Presupuesto
                     {
                         if (pptoLN.validarMontoDependecias(anio, idUnidad,2) <= nuevoTecho)
                         {
-                            dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
+                            if (anio <= 2017)
+                            {
+                                dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 1);
+                                dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
+                            }
+                            else
+                            {
+                                dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
+                            }
+                            
                         }
                         else
                         {
@@ -261,6 +270,7 @@ namespace AplicacionSIPA1.Presupuesto
                             if (((pptoLN.validarMontoDependecias(anio, Int32.Parse(ddlUnidades.SelectedValue),2) + nuevoTecho - techoActual) <= pptoLN.ObtenerMontoGlobal(anio, idUnidad))&&
                                 (pptoLN.validarMontoDependecias(anio, Convert.ToInt32(pptoEN.id_unidad), 1)<=nuevoTecho))
                             {
+
                                 dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);
                             }
                             else
@@ -271,6 +281,7 @@ namespace AplicacionSIPA1.Presupuesto
                     }
                     else
                     {
+                      
                         if ((pptoLN.validarMontoDependecias(anio, idUnidad,2) + nuevoTecho <= pptoLN.ObtenerMontoGlobal(anio, idUnidad)))
                         {
                             dsResultado = pptoLN.AlmacenarModificacionTechoPpto(pptoEN, Session["usuario"].ToString(), 2);

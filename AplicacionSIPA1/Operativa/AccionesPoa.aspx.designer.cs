@@ -1138,15 +1138,6 @@ namespace AplicacionSIPA1.Operativa {
         protected global::System.Web.UI.WebControls.TextBox txtJustificacion;
         
         /// <summary>
-        /// Control lblErrorModMonto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorModMonto;
-        
-        /// <summary>
         /// Control lblSuccessMonto.
         /// </summary>
         /// <remarks>
@@ -1154,6 +1145,15 @@ namespace AplicacionSIPA1.Operativa {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuccessMonto;
+        
+        /// <summary>
+        /// Control lblErrorModMonto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorModMonto;
         
         /// <summary>
         /// Control btnModMonto.

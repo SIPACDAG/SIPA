@@ -532,7 +532,7 @@ namespace CapaAD
 
             conectar = new ConexionBD();
             conectar.AbrirConexion();
-            string permiso = string.Format("SELECT 	 pu.id_Poa FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = 2018" +
+            string permiso = string.Format("SELECT 	 pu.id_Poa FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = 2017" +
                 "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = (select id_unidad from sipa_poa where id_Poa = {0}));", id);
             MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
             List<string> id_poas = new List<string>();
@@ -680,5 +680,18 @@ namespace CapaAD
             return dsResultado;
         }
         //REGION GESFOR2 FINAL
+        public DataTable CostoEstimado(int unidad)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("SELECT SUM(up.gasto) AS Gasto FROM unionpedido up INNER JOIN sipa_detalles_accion d ON up.id_detalle_accion = d.id_detalle INNER JOIN sipa_acciones aa" +
+                                    " ON aa.id_accion = d.id_accion  inner join sipa_poa poa on poa.id_poa = aa.id_poa " +
+                                     "WHERE(up.estado_financiero = 1) AND poa.id_unidad = {0} and poa.anio = {1} ", unidad,2017);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
     }
 }

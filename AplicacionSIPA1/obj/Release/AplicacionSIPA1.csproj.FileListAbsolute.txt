@@ -75,7 +75,6 @@ C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.ReportViewer.WebForms.DLL
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\NumeroaLetras.dll
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\MySql.Data.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.pdb

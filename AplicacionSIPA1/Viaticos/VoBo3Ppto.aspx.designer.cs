@@ -166,6 +166,15 @@ namespace AplicacionSIPA1.Viaticos {
         protected global::System.Web.UI.WebControls.Label lblREN;
         
         /// <summary>
+        /// Control txtViaticos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtViaticos;
+        
+        /// <summary>
         /// Control txtPasajes.
         /// </summary>
         /// <remarks>

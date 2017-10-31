@@ -21,7 +21,7 @@ namespace AplicacionSIPA1.Viaticos
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+        private bool bDepencia = false;
         private ViaticosLN pViaticosLN;
         
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -31,6 +31,9 @@ namespace AplicacionSIPA1.Viaticos
                 try
                 {
                     nuevaBusqueda();
+                    pOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        pOperativoLN.DdlDependencias(ddlDepencia, ddlUnidades.SelectedValue);
                 }
                 catch (Exception ex)
                 {
@@ -199,7 +202,11 @@ namespace AplicacionSIPA1.Viaticos
 
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
-
+                if (idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddlDepencia, ddlUnidades.SelectedValue);
+                }
                 if (anio > 0 && idUnidad > 0)
                     validarPoaListadoPedido(idUnidad, anio);
 
@@ -506,6 +513,78 @@ namespace AplicacionSIPA1.Viaticos
             {
                 lblError.Text = "btnEliminar(). " + ex.Message;
             }*/
+        }
+
+        protected void ddlDepencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDepencia.SelectedValue, out idUnidad);
+                if (idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    if (idUnidad != int.Parse(ddlUnidades.SelectedValue))
+                    {
+                        pOperativoLN.DdlDependencias(ddlJefatura, idUnidad.ToString());
+
+                    }
+                }
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaListadoPedido(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                ddlAcciones_SelectedIndexChanged(sender, e);
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefatura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefatura.SelectedValue, out idUnidad);
+                
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaListadoPedido(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+                ddlAcciones_SelectedIndexChanged(sender, e);
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
     }
 }

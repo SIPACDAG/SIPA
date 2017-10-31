@@ -73,7 +73,7 @@ namespace AplicacionSIPA1.Operativa
                             validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                         }
                     }
-
+                    planOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
                     int idPoa = 0;
                     int.TryParse(lblIdPoa.Text, out idPoa);
                     planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);

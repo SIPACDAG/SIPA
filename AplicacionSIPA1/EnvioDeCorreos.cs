@@ -26,6 +26,7 @@ namespace AplicacionSIPA1
                 cliente.Send(mail);
                 cliente.Dispose();
                 mail.Dispose();
+                
             }
             catch (Exception ex)
             {

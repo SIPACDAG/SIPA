@@ -271,6 +271,10 @@ namespace AplicacionSIPA1.Compras
                     gridDetalle.FooterRow.Cells[12].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costoCompras);
 
                     gridDetalle.FooterRow.Cells[13].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", iva);
+
+                    decimal totalPedidoAnual = 0;
+                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Compute("SUM(TOTAL_PEDIDO_MULTIANUAL)", "").ToString(), out totalPedidoAnual);
+                    gridDetalle.FooterRow.Cells[14].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
                 }
                 else
                 {
@@ -617,9 +621,19 @@ namespace AplicacionSIPA1.Compras
                         vid_pedido = dvPedido.SelectedValue.ToString();
                         vid_tipo_documento = rblTipoDocto.SelectedValue;
                         vid_pedido_detalle = gridDetalle.DataKeys[i].Value.ToString();
+                        
                         vid_proveedor = (gridDetalle.Rows[i].FindControl("dropProveedor") as DropDownList).SelectedValue;
+                        if (vid_proveedor.Equals("0"))
+                            vid_proveedor = "null";
+
                         vid_tipo_documento_compra = (gridDetalle.Rows[i].FindControl("dropTipoDoctoDetalle") as DropDownList).SelectedValue;
+                        if (vid_tipo_documento_compra.Equals("0"))
+                            vid_tipo_documento_compra = "null";
+
                         vno_orden_compra = (gridDetalle.Rows[i].FindControl("txtNoOrdenDetalle") as TextBox).Text;
+
+                        if (rblTipoDocto.SelectedValue.ToString().Equals("1") && (vno_orden_compra.Equals("") || vno_orden_compra.Equals(string.Empty)))
+                            vno_orden_compra = "null";
                         vcantidad_compra = (gridDetalle.Rows[i].FindControl("txtCantidadReal") as TextBox).Text;
                         vcosto_unitario_compra = (gridDetalle.Rows[i].FindControl("txtCostoUReal") as TextBox).Text;
                         vcosto_real = (gridDetalle.Rows[i].FindControl("txtCostoReal") as TextBox).Text;
@@ -635,6 +649,9 @@ namespace AplicacionSIPA1.Compras
                         DataRow dr = dsFecha.Tables[0].Rows[0];
 
                         vfecha_orden_compra = dr["FECHA_FORMATO_INSERT_MYSQL"].ToString();
+                        if (vfecha_orden_compra.Equals("") || vfecha_orden_compra.Equals(string.Empty))
+                            vfecha_orden_compra = "null";
+
                         vliquidaciones_parciales = (gridDetalle.Rows[i].FindControl("chkLiquidacionParcial") as CheckBox).Checked ? "1" : "0";
 
                         dsDetalles.Tables[0].Rows.Add(vid_pedido, vid_tipo_documento, vid_pedido_detalle, vid_proveedor, vid_tipo_documento_compra, vno_orden_compra, vcantidad_compra, vcosto_unitario_compra, vcosto_real, viva, vfecha_orden_compra, vliquidaciones_parciales, Session["usuario"].ToString());
@@ -648,8 +665,10 @@ namespace AplicacionSIPA1.Compras
                     string observaciones = txtObser.Text;
                     FuncionesVarias fv = new FuncionesVarias();
                     string[] ip = fv.DatosUsuarios();
-                    dsResultado = pInsumoLN.AprobacionTecnico(dsDetalles,ip[0],ip[1],ip[2]);
+                    dsResultado = pInsumoLN.AsignarValorReal(dsDetalles,ip[0],ip[1],ip[2]);
                     
+ 					if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
                     if (idTipoSalida == 1)
                     {
@@ -1015,32 +1034,6 @@ namespace AplicacionSIPA1.Compras
                                 chkLiquidaciones = (gridDetalle.Rows[i].FindControl("chkLiquidacionParcial") as CheckBox);
                             }
 
-                            if (ddlProveedor.SelectedValue.Equals("0") || ddlProveedor.Items.Count == 0)
-                            {
-                                (gridDetalle.Rows[i].FindControl("lblErrorProveedor") as Label).Text = "Seleccione un proveedor";
-                                lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
-                            }
-                            else
-                            {
-                                if (chkConstantes.Checked)
-                                    (gridDetalle.Rows[i].FindControl("dropProveedor") as DropDownList).SelectedValue = ddlProveedor.SelectedValue;
-
-                                (gridDetalle.Rows[i].FindControl("lblErrorProveedor") as Label).Text = string.Empty;
-                            }
-
-                            if (ddlTipoDoctoCompra.SelectedValue.Equals("0") || ddlTipoDoctoCompra.Items.Count == 0)
-                            {
-                                (gridDetalle.Rows[i].FindControl("lblErrorTipoDoctoDetalle") as Label).Text = "Seleccione un tipo de documento";
-                                lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
-                            }
-                            else
-                            {
-                                if (chkConstantes.Checked)
-                                    (gridDetalle.Rows[i].FindControl("dropTipoDoctoDetalle") as DropDownList).SelectedValue = ddlTipoDoctoCompra.SelectedValue;
-
-                                (gridDetalle.Rows[i].FindControl("lblErrorTipoDoctoDetalle") as Label).Text = string.Empty;
-                            }
-
                             //string sCantidad = funciones.StringToDecimal(txtCantidad.Text).ToString();
                             string sCantidad = funciones.StringToDecimal(txtCantidad.Text).ToString();
                             if (esDecimal(sCantidad) == false)
@@ -1096,20 +1089,57 @@ namespace AplicacionSIPA1.Compras
                                 }
                             }
 
-                            //string sCostoUnitario = funciones.StringToDecimal(txtCosto.Text).ToString();
-                            string sCostoUnitario = (subTotal / cantidad).ToString();
-                            if (esDecimal(sCostoUnitario) == false)
+                            if (subTotal > 0 && cantidad > 0)
                             {
-                                (gridDetalle.Rows[i].FindControl("lblErrorCostoUReal") as Label).Text = "Número no válido";
-                                lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
+                                //string sCostoUnitario = funciones.StringToDecimal(txtCosto.Text).ToString();
+                                string sCostoUnitario = (subTotal / cantidad).ToString();
+                                if (esDecimal(sCostoUnitario) == false)
+                                {
+                                    (gridDetalle.Rows[i].FindControl("lblErrorCostoUReal") as Label).Text = "Número no válido";
+                                    lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
+                                }
+                                else
+                                {
+                                    (gridDetalle.Rows[i].FindControl("txtCostoUReal") as TextBox).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.0000000000}", decimal.Parse(sCostoUnitario));//funciones.StringToDecimal(sCostoUnitario));
+                                    (gridDetalle.Rows[i].FindControl("lblErrorCostoUReal") as Label).Text = string.Empty;
+                                    //costoUnitario = funciones.StringToDecimal(sCostoUnitario);
+                                    costoUnitario = decimal.Parse(sCostoUnitario);
+                                    sumCosto += costoUnitario;
+                                }
                             }
                             else
                             {
-                                (gridDetalle.Rows[i].FindControl("txtCostoUReal") as TextBox).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.0000000000}", decimal.Parse(sCostoUnitario));//funciones.StringToDecimal(sCostoUnitario));
+                                (gridDetalle.Rows[i].FindControl("txtCostoUReal") as TextBox).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.0000000000}", decimal.Parse("0"));//funciones.StringToDecimal(sCostoUnitario));
                                 (gridDetalle.Rows[i].FindControl("lblErrorCostoUReal") as Label).Text = string.Empty;
-                                //costoUnitario = funciones.StringToDecimal(sCostoUnitario);
-                                costoUnitario = decimal.Parse(sCostoUnitario);
-                                sumCosto += costoUnitario;
+                            }
+
+                            if (subTotal > 0 && cantidad > 0)
+                            {
+                                if (ddlProveedor.SelectedValue.Equals("0") || ddlProveedor.Items.Count == 0)
+                                {
+                                    (gridDetalle.Rows[i].FindControl("lblErrorProveedor") as Label).Text = "Seleccione un proveedor";
+                                    lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
+                                }
+                                else
+                                {
+                                    if (chkConstantes.Checked)
+                                        (gridDetalle.Rows[i].FindControl("dropProveedor") as DropDownList).SelectedValue = ddlProveedor.SelectedValue;
+
+                                    (gridDetalle.Rows[i].FindControl("lblErrorProveedor") as Label).Text = string.Empty;
+                                }
+
+                                if (ddlTipoDoctoCompra.SelectedValue.Equals("0") || ddlTipoDoctoCompra.Items.Count == 0)
+                                {
+                                    (gridDetalle.Rows[i].FindControl("lblErrorTipoDoctoDetalle") as Label).Text = "Seleccione un tipo de documento";
+                                    lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
+                                }
+                                else
+                                {
+                                    if (chkConstantes.Checked)
+                                        (gridDetalle.Rows[i].FindControl("dropTipoDoctoDetalle") as DropDownList).SelectedValue = ddlTipoDoctoCompra.SelectedValue;
+
+                                    (gridDetalle.Rows[i].FindControl("lblErrorTipoDoctoDetalle") as Label).Text = string.Empty;
+                                }
                             }
 
                             //EL PROVEEDOR FUE SELECCIONADO ADECUADAMENTE
@@ -1118,33 +1148,39 @@ namespace AplicacionSIPA1.Compras
                             {
                                 (gridDetalle.Rows[i].FindControl("txtIva") as TextBox).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (subTotal * decimal.Parse("1.12") - subTotal));
                             }
-                            
-                            if (esEntero(txtNoOrden.Text) == false || int.Parse(txtNoOrden.Text) < 1)
-                            {
-                                (gridDetalle.Rows[i].FindControl("lblErrorNoOrden") as Label).Text = "Número no válido";
-                                lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
-                            }
-                            else
-                            {
-                                if (chkConstantes.Checked)
-                                    (gridDetalle.Rows[i].FindControl("txtNoOrdenDetalle") as TextBox).Text = txtNoOrden.Text;
 
-                                (gridDetalle.Rows[i].FindControl("lblErrorNoOrden") as Label).Text = string.Empty;
+                            if (subTotal > 0 && cantidad > 0)
+                            {
+                                if (esEntero(txtNoOrden.Text) == false || int.Parse(txtNoOrden.Text) < 1)
+                                {
+                                    (gridDetalle.Rows[i].FindControl("lblErrorNoOrden") as Label).Text = "Número no válido";
+                                    lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
+                                }
+                                else
+                                {
+                                    if (chkConstantes.Checked)
+                                        (gridDetalle.Rows[i].FindControl("txtNoOrdenDetalle") as TextBox).Text = txtNoOrden.Text;
+
+                                    (gridDetalle.Rows[i].FindControl("lblErrorNoOrden") as Label).Text = string.Empty;
+                                }
                             }
 
                             DataSet dsResultado = funciones.StringToFechaMySql(txtFechaOrden.Text);
 
-                            if (dsResultado.Tables[0].Rows[0]["FECHA_VALIDA"].ToString().Equals("false"))
+                            if (subTotal > 0 && cantidad > 0)
                             {
-                                (gridDetalle.Rows[i].FindControl("lblErrorFechaNoOrden") as Label).Text = "Fecha no válida";
-                                lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
-                            }
-                            else
-                            {
-                                if (chkConstantes.Checked)
-                                    (gridDetalle.Rows[i].FindControl("txtFechaOrdenDetalle") as TextBox).Text = txtFechaOrden.Text;
+                                if (dsResultado.Tables[0].Rows[0]["FECHA_VALIDA"].ToString().Equals("false"))
+                                {
+                                    (gridDetalle.Rows[i].FindControl("lblErrorFechaNoOrden") as Label).Text = "Fecha no válida";
+                                    lblErrorCalculo.Text = lblError.Text = "Se detectaron errores. ";
+                                }
+                                else
+                                {
+                                    if (chkConstantes.Checked)
+                                        (gridDetalle.Rows[i].FindControl("txtFechaOrdenDetalle") as TextBox).Text = txtFechaOrden.Text;
 
-                                (gridDetalle.Rows[i].FindControl("lblErrorFechaNoOrden") as Label).Text = string.Empty;
+                                    (gridDetalle.Rows[i].FindControl("lblErrorFechaNoOrden") as Label).Text = string.Empty;
+                                }
                             }
 
                             if (chkConstantes.Checked)
@@ -1157,7 +1193,7 @@ namespace AplicacionSIPA1.Compras
 
                             //SI LA CANTIDAD Y EL SUBTOTAL SON DECIMALES E IGUALES CERO, SE PROCEDERÁ A LIMPIAR LOS CAMPOS RESTANTES
                             //ESTO SERÁ PARA PODER LIQUIDAR ARTÍCULO CON VALOR 0, SIGNIFICA QUE NO FUERON ADQUIRIDOS
-                            if (esDecimal(sCantidad) == true && esDecimal(sSubTotal) == true)
+                            /*if (esDecimal(sCantidad) == true && esDecimal(sSubTotal) == true)
                             {
                                 if (decimal.Parse(sCantidad) == 0 && decimal.Parse(sSubTotal) == 0)
                                 {
@@ -1175,13 +1211,48 @@ namespace AplicacionSIPA1.Compras
                                     //LIQUIDACIONES PARCIALES
                                     (gridDetalle.Rows[i].FindControl("chkLiquidacionParcial") as CheckBox).Checked = false;
                                 }   
-                            }
+                            }*/
+                            //DERIVADO DE LA CAPACITACIÓN DEL DÍA 07/08/2017 SE DETERMINÓ QUE SI ES POSIBLE LIQUIDAR REQUISICIONES CON VALOR 0.00
                         }
 
-                        if (sumSubtotal <= 0)
+                        if (sumSubtotal < 0)
                         {
-                            lblErrorCalculo.Text += "No se puede liquidar una requisición con valor cero (0). ";
-                            lblError.Text = "No se puede liquidar una requisición con valor cero (0). ";
+                            lblErrorCalculo.Text += "No se puede liquidar una requisición con valor menor que cero (0). ";
+                            lblError.Text = "No se puede liquidar una requisición con valor menor que cero (0). ";
+                        }
+                        else
+                        {
+                            int idSalida, idTipoSalida;
+                            idSalida = idTipoSalida = 0;
+
+                            if (dvPedido.SelectedValue != null)
+                                int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
+
+                            int.TryParse(rblTipoDocto.SelectedValue, out idTipoSalida);
+
+                            pInsumoLN = new PedidosLN();
+                            DataSet dsResultado = pInsumoLN.DetallesPedidoAprobacion(idSalida, idTipoSalida, "", 1);
+
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
+                            {
+                                decimal costoPedido = 0;
+                                string sSubtotalPedido = dsResultado.Tables["BUSQUEDA"].Compute("(SUM(SUBTOTAL) + SUM(AJUSTE_MONTO))", "").ToString();
+                                decimal.TryParse(sSubtotalPedido, out costoPedido);
+
+                                if (sumSubtotal > costoPedido)
+                                {
+                                    lblErrorCalculo.Text += "El MONTO TOTAL ADJUDICADO (" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumSubtotal) + ")no puede superar al MONTO TOTAL ESTIMADO (" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costoPedido) + "). ";
+                                    lblError.Text = "El MONTO TOTAL ADJUDICADO (" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumSubtotal) + ")no puede superar al MONTO TOTAL ESTIMADO (" + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costoPedido) + "). ";
+                                }
+                            }
+                            else
+                            {
+                                lblErrorCalculo.Text += "No se puede calcular el MONTO TOTAL ESTIMADO del pedido. ";
+                                lblError.Text = "No se puede calcular el MONTO TOTAL ESTIMADO del pedido. ";
+                            }
                         }
 
                         if (lblError.Text.Equals(string.Empty))
@@ -1194,7 +1265,7 @@ namespace AplicacionSIPA1.Compras
                         else
                             controlesValidos = false;
 
-                        if (controlesValidos == true)
+                        //if (controlesValidos == true)
                         {
                             gridDetalle.FooterRow.Cells[10].Text = sumCantidad.ToString();//String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumCantidad);
                             gridDetalle.FooterRow.Cells[11].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumCosto);

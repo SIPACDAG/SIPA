@@ -89,7 +89,7 @@
                         <asp:RadioButtonList ID="rblTipoDocto" runat="server" RepeatDirection="Horizontal" Width="95%" AutoPostBack="True" OnSelectedIndexChanged="rblTipoDocto_SelectedIndexChanged">
                             <asp:ListItem Selected="True" Value="1">Requisiciones</asp:ListItem>
                             <asp:ListItem Value="2">Vales</asp:ListItem>
-                            <asp:ListItem Value="3" Enabled="False">Transferencias, apoyos y otros gastos</asp:ListItem>
+                            <asp:ListItem Value="3" Enabled="true">Transferencias, apoyos y otros gastos</asp:ListItem>
                         </asp:RadioButtonList>
                     </td>
                     <td colspan="3">
@@ -297,6 +297,18 @@
                                     <ItemTemplate>
                                         <div class="text-right">
                                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("subtotal", "Q.{0:0,0.00}") %>' Font-Bold="True"></asp:Label>
+                                        </div>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="TOTAL MULTIANUAL">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextBox33" runat="server" Text='<%# Bind("total_pedido_multianual") %>' Font-Bold="True"></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <div class="text-right">
+                                            <asp:Label ID="Label33" runat="server" Text='<%# Bind("total_pedido_multianual", "Q.{0:0,0.00}") %>' Font-Bold="True"></asp:Label>
                                         </div>
                                     </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />

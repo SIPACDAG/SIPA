@@ -48,6 +48,9 @@ namespace CapaEN
         public string SUBPROGRAMA { get; set; }
         public string ACTIVIDAD { get; set; }
         public double REAJUSTE { get; set; }
+        //public string VCOSTO_PEDIDO_MULTIANUAL { get; set; }
+        public string VCANTIDAD_PEDIDO_MULTIANUAL { get; set; }
+        public string VCOSTO_PEDIDO_MULTIANUAL { get; set; }
         
         //VALES
         public int ccidVale { get; set; }
@@ -72,6 +75,7 @@ namespace CapaEN
         public string VIVA { get; set; }
         public string VID_TIPO_DOCUMENTO { get; set; }
         public string VID_PROVEEDOR { get; set; }
+        public string MULTIANUAL { get; set; }
         
     }
 

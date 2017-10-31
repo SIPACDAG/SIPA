@@ -112,6 +112,24 @@ namespace AplicacionSIPA1.Pedido {
         protected global::System.Web.UI.WebControls.DropDownList ddlUnidades;
         
         /// <summary>
+        /// Control ddlDependencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDependencia;
+        
+        /// <summary>
+        /// Control ddlJefatura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJefatura;
+        
+        /// <summary>
         /// Control ddlAcciones.
         /// </summary>
         /// <remarks>

@@ -88,8 +88,10 @@ namespace AplicacionSIPA1.Viaticos
                 ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
-
-                uUsuariosLN.dropUnidad(ddlUnidades);
+                
+                //uUsuariosLN.dropUnidad(ddlUnidades);
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
 
                 if (ddlUnidades.Items.Count == 1)
                 {
@@ -163,20 +165,30 @@ namespace AplicacionSIPA1.Viaticos
                             dvPedido.DataSource = dv;
                             dvPedido.DataBind();
 
-                            txtPasajes.Text = "0";
-                            txtKilometraje.Text = "0";
-
                             int idSalida = 0;
-                            int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
-                            int idTipoViatico = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString());
+                            if (dvPedido.SelectedValue != null)
+                            {
+                                int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
+
+                                dsResultado = pViaticosLN.InformacionViatico(idSalida, 0, 2);
+
+                                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                                
+                                txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PASAJES"].ToString()));
+                                txtKilometraje.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["KILOMETRAJE"].ToString()));
+                                txtViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", decimal.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_VIATICO"].ToString()));
+
+                                int idTipoViatico = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString());
 
                             PedidosLN pInsumoLN = new PedidosLN();
 
-                            if(idTipoViatico == 1)
-                                pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 4);
-                            else
-                                pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 5);
+                                if (idTipoViatico == 1)
+                                    pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 4);
+                                else
+                                    pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglones, idSalida, 0, "", 5);
+                            }
                         }
                         else
                         {
@@ -491,6 +503,8 @@ namespace AplicacionSIPA1.Viaticos
             try
             {
                 limpiarControlesError();
+                
+                DataSet dsResultado = new DataSet();
                 int idPedido = 0;
                 if(dvPedido.SelectedValue != null)
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
@@ -501,25 +515,72 @@ namespace AplicacionSIPA1.Viaticos
                 txtObser.Text = string.Empty;
 
                 string errores = "";
-                decimal kilometraje, pasajes;
+                decimal viaticos, kilometraje, pasajes;
                 kilometraje = pasajes = 0;
 
                 FuncionesVarias funciones = new FuncionesVarias();
 
+                viaticos = funciones.StringToDecimal(txtViaticos.Text);
+
+                if (viaticos < 0)
+                    errores += "Ingrese monto válido. ";
+                else
+                    txtViaticos.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", viaticos);
+                    
                 pasajes = funciones.StringToDecimal(txtPasajes.Text);
 
-                if (pasajes >= 0)
-                    txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pasajes);                    
-                else
+                if (pasajes < 0)
                     errores += "Ingrese pasaje válido. ";
-
+                else
+                    txtPasajes.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pasajes);
 
                 kilometraje = int.Parse(funciones.StringToDecimal(txtKilometraje.Text).ToString().Split('.')[0]);
 
-                if (kilometraje >= 0)
-                    txtKilometraje.Text = kilometraje.ToString();
-                else
+                if (kilometraje < 0)
                     errores += "Ingrese kilometraje válido. ";
+                else
+                    txtKilometraje.Text = kilometraje.ToString();
+
+                decimal sumaTotal = viaticos + pasajes + decimal.Parse(kilometraje.ToString());
+                if (sumaTotal <= 0)
+                    errores += "El monto total del viático debe ser mayor a cero. ";
+                else
+                {
+                    //VALIDANDO EL PRESUPUESTO
+                    int idAccion = int.Parse(ddlAcciones.SelectedValue);
+                    dsResultado = new DataSet();
+
+                    PlanAccionLN planAccionLN = new PlanAccionLN();
+                    dsResultado = planAccionLN.InformacionAccionDetalles(int.Parse(ddlRenglones.SelectedValue), 0, "", 6);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        errores += "No se CONSULTÓ el Renglón: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString();
+
+                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                    {
+
+                        decimal montoActual, codificado, saldo = 0;
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["MONTO"].ToString(), out montoActual);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIFICADO"].ToString(), out codificado);
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["SALDO"].ToString(), out saldo);
+
+                        /*decimal saldoPostAprobacion = codificado - totalViaticosEstimado + sumaTotal;
+
+                        if (saldoPostAprobacion > (saldo + totalViaticosEstimado))
+                            errores += "El monto de la liquidación excede por " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldo - saldoPostAprobacion)) + " al presupuesto disponible para esta operación: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldo + totalViaticosEstimado));
+                         * */
+
+                        decimal codificadoPostAprobacion = codificado + sumaTotal;
+
+                        if (codificadoPostAprobacion > montoActual)
+                            errores += "El monto de la liquidación excede por " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (montoActual - codificadoPostAprobacion)) + " al presupuesto disponible para esta operación: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldo));
+                    }
+                    else
+                        errores += "Renglón presupuestario no encontrado: " + ddlRenglones.SelectedItem.Text;
+                }
+
+                if (errores.Equals("") == false)
+                    throw new Exception(errores);
 
                 string PRG, SPRG, PROY, ACT, OBR = "";
                 PRG = ddlPRG.SelectedValue;
@@ -557,10 +618,12 @@ namespace AplicacionSIPA1.Viaticos
                 pViaticosLN = new ViaticosLN();
                 string usuario = Session["usuario"].ToString();
                 string observaciones = txtObser.Text;
-                DataSet dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje,ip[0],ip[1],ip[2]);
+                dsResultado = pViaticosLN.AprobacionFinanciera(idPedido, observaciones, usuario, PRG, SPRG, PROY, ACT, OBR, idDetalleAccion, pasajes, kilometraje, ip[0], ip[1], ip[2]);
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
 
                 filtrarDvPedidos();
                 filtrarGridDetalles();
@@ -568,8 +631,7 @@ namespace AplicacionSIPA1.Viaticos
                 txtObser.Text = string.Empty;
 
                 ddlRenglones.ClearSelection();
-
-                string noAnioSolicitud = dsResultado.Tables[0].Rows[0]["CODIGO"].ToString();
+                
                 lblSuccess.Text = "Viático NO. " + noAnioSolicitud + " APROBADO con éxito!";
                 
                 lblSuccess.Focus();

@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString2.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RenglonesxAccionesTableAdapter" GeneratorDataComponentClassName="RenglonesxAccionesTableAdapter" Name="RenglonesxAcciones" UserDataComponentName="RenglonesxAccionesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString2 (Web.config)" DbObjectName="SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT no_solicitud, Año, Accion, Documento, fecha_pedido, Descripcion, Estado, unidad_administrativa, Pedido, costo_estimado, costo_real, no_renglon, no_pac, anio_solicitud, id_unidad, id_accion, id_tipo_documento, id_estado_pedido, Solicitante FROM (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4)) t WHERE (1 &gt; 0) AND (id_estado_pedido IN (8, 10, 12)) ORDER BY id_unidad</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="anio_solicitud" DataSetColumn="anio_solicitud" />
+              <Mapping SourceColumn="Accion" DataSetColumn="Accion" />
+              <Mapping SourceColumn="Documento" DataSetColumn="Documento" />
+              <Mapping SourceColumn="fecha_pedido" DataSetColumn="fecha_pedido" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="costo_estimado" DataSetColumn="costo_estimado" />
+              <Mapping SourceColumn="costo_real" DataSetColumn="costo_real" />
+              <Mapping SourceColumn="Año" DataSetColumn="Año" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="unidad_administrativa" DataSetColumn="unidad_administrativa" />
+              <Mapping SourceColumn="Pedido" DataSetColumn="Pedido" />
+              <Mapping SourceColumn="no_renglon" DataSetColumn="no_renglon" />
+              <Mapping SourceColumn="no_pac" DataSetColumn="no_pac" />
+              <Mapping SourceColumn="id_unidad" DataSetColumn="id_unidad" />
+              <Mapping SourceColumn="id_accion" DataSetColumn="id_accion" />
+              <Mapping SourceColumn="id_tipo_documento" DataSetColumn="id_tipo_documento" />
+              <Mapping SourceColumn="id_estado_pedido" DataSetColumn="id_estado_pedido" />
+              <Mapping SourceColumn="Solicitante" DataSetColumn="Solicitante" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PedidosTableAdapter" GeneratorDataComponentClassName="PedidosTableAdapter" Name="Pedidos" UserDataComponentName="PedidosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT p.no_solicitud, ep.nombre_estado, u.Unidad FROM sipa_pedidos p INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_pedido INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="nombre_estado" DataSetColumn="nombre_estado" />
+              <Mapping SourceColumn="Unidad" DataSetColumn="Unidad" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViaticosTableAdapter" GeneratorDataComponentClassName="ViaticosTableAdapter" Name="Viaticos" UserDataComponentName="ViaticosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT v.no_solicitud, ev.nombre_estado, u.id_unidad, u.Unidad, v.id_tipo_viatico FROM sipa_viaticos v INNER JOIN sipa_estados_viaticos ev ON ev.id_estado_viatico = v.id_estado_viatico INNER JOIN ccl_unidades u ON u.id_unidad = v.id_unidad GROUP BY v.id_tipo_viatico</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="nombre_estado" DataSetColumn="nombre_estado" />
+              <Mapping SourceColumn="Unidad" DataSetColumn="Unidad" />
+              <Mapping SourceColumn="id_unidad" DataSetColumn="id_unidad" />
+              <Mapping SourceColumn="id_tipo_viatico" DataSetColumn="id_tipo_viatico" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MontoUnidadTableAdapter" GeneratorDataComponentClassName="MontoUnidadTableAdapter" Name="MontoUnidad" UserDataComponentName="MontoUnidadTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(d.monto) AS monto
+FROM     sipa_detalles_accion d INNER JOIN
+                  sipa_acciones aa ON aa.id_accion = d.id_accion INNER JOIN
+                  sipa_renglones r ON d.no_renglon = r.No_Renglon INNER JOIN
+                  sipa_tipos_financiamiento f ON d.id_tipo_financiamiento = f.id_tipo
+WHERE  (aa.id_poa = 23)
+GROUP BY d.no_renglon</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="monto" DataSetColumn="monto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString2 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SUM(up.gasto) AS Gasto
+FROM     unionpedido up INNER JOIN
+                  sipa_detalles_accion d ON up.id_detalle_accion = d.id_detalle INNER JOIN
+                  sipa_acciones aa ON aa.id_accion = d.id_accion
+WHERE  (up.estado_financiero = 1) AND (aa.id_poa = 23)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Gasto" DataSetColumn="Gasto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValesTableAdapter" GeneratorDataComponentClassName="ValesTableAdapter" Name="Vales" UserDataComponentName="ValesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT p.no_solicitud, ep.nombre_estado, u.Unidad
+FROM     sipa_ccvale p INNER JOIN
+                  sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_vale INNER JOIN
+                  ccl_unidades u ON u.id_unidad = p.id_unidad</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="nombre_estado" DataSetColumn="nombre_estado" />
+              <Mapping SourceColumn="Unidad" DataSetColumn="Unidad" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RenglonesxAcciones" msprop:Generator_TableClassName="RenglonesxAccionesDataTable" msprop:Generator_TableVarName="tableRenglonesxAcciones" msprop:Generator_RowChangedName="RenglonesxAccionesRowChanged" msprop:Generator_TablePropName="RenglonesxAcciones" msprop:Generator_RowDeletingName="RenglonesxAccionesRowDeleting" msprop:Generator_RowChangingName="RenglonesxAccionesRowChanging" msprop:Generator_RowEvHandlerName="RenglonesxAccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="RenglonesxAccionesRowDeleted" msprop:Generator_RowClassName="RenglonesxAccionesRow" msprop:Generator_UserTableName="RenglonesxAcciones" msprop:Generator_RowEvArgName="RenglonesxAccionesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" minOccurs="0" />
+              <xs:element name="anio_solicitud" msprop:Generator_ColumnVarNameInTable="columnanio_solicitud" msprop:Generator_ColumnPropNameInRow="anio_solicitud" msprop:Generator_ColumnPropNameInTable="anio_solicitudColumn" msprop:Generator_UserColumnName="anio_solicitud" type="xs:int" minOccurs="0" />
+              <xs:element name="Accion" msprop:Generator_ColumnVarNameInTable="columnAccion" msprop:Generator_ColumnPropNameInRow="Accion" msprop:Generator_ColumnPropNameInTable="AccionColumn" msprop:Generator_UserColumnName="Accion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Documento" msprop:Generator_ColumnVarNameInTable="columnDocumento" msprop:Generator_ColumnPropNameInRow="Documento" msprop:Generator_ColumnPropNameInTable="DocumentoColumn" msprop:Generator_UserColumnName="Documento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="33" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fecha_pedido" msprop:Generator_ColumnVarNameInTable="columnfecha_pedido" msprop:Generator_ColumnPropNameInRow="fecha_pedido" msprop:Generator_ColumnPropNameInTable="fecha_pedidoColumn" msprop:Generator_UserColumnName="fecha_pedido" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="costo_estimado" msprop:Generator_ColumnVarNameInTable="columncosto_estimado" msprop:Generator_ColumnPropNameInRow="costo_estimado" msprop:Generator_ColumnPropNameInTable="costo_estimadoColumn" msprop:Generator_UserColumnName="costo_estimado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="costo_real" msprop:Generator_ColumnVarNameInTable="columncosto_real" msprop:Generator_ColumnPropNameInRow="costo_real" msprop:Generator_ColumnPropNameInTable="costo_realColumn" msprop:Generator_UserColumnName="costo_real" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Año" msprop:Generator_ColumnVarNameInTable="columnAño" msprop:Generator_ColumnPropNameInRow="Año" msprop:Generator_ColumnPropNameInTable="AñoColumn" msprop:Generator_UserColumnName="Año" type="xs:int" minOccurs="0" />
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="unidad_administrativa" msprop:Generator_ColumnVarNameInTable="columnunidad_administrativa" msprop:Generator_ColumnPropNameInRow="unidad_administrativa" msprop:Generator_ColumnPropNameInTable="unidad_administrativaColumn" msprop:Generator_UserColumnName="unidad_administrativa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pedido" msprop:Generator_ColumnVarNameInTable="columnPedido" msprop:Generator_ColumnPropNameInRow="Pedido" msprop:Generator_ColumnPropNameInTable="PedidoColumn" msprop:Generator_UserColumnName="Pedido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_renglon" msprop:Generator_ColumnVarNameInTable="columnno_renglon" msprop:Generator_ColumnPropNameInRow="no_renglon" msprop:Generator_ColumnPropNameInTable="no_renglonColumn" msprop:Generator_UserColumnName="no_renglon">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_pac" msprop:Generator_ColumnVarNameInTable="columnno_pac" msprop:Generator_ColumnPropNameInRow="no_pac" msprop:Generator_ColumnPropNameInTable="no_pacColumn" msprop:Generator_UserColumnName="no_pac">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="id_unidad" msprop:Generator_ColumnVarNameInTable="columnid_unidad" msprop:Generator_ColumnPropNameInRow="id_unidad" msprop:Generator_ColumnPropNameInTable="id_unidadColumn" msprop:Generator_UserColumnName="id_unidad" type="xs:int" minOccurs="0" />
+              <xs:element name="id_accion" msprop:Generator_ColumnVarNameInTable="columnid_accion" msprop:Generator_ColumnPropNameInRow="id_accion" msprop:Generator_ColumnPropNameInTable="id_accionColumn" msprop:Generator_UserColumnName="id_accion" type="xs:int" />
+              <xs:element name="id_tipo_documento" msprop:Generator_ColumnVarNameInTable="columnid_tipo_documento" msprop:Generator_ColumnPropNameInRow="id_tipo_documento" msprop:Generator_ColumnPropNameInTable="id_tipo_documentoColumn" msprop:Generator_UserColumnName="id_tipo_documento" type="xs:long" />
+              <xs:element name="id_estado_pedido" msprop:Generator_ColumnVarNameInTable="columnid_estado_pedido" msprop:Generator_ColumnPropNameInRow="id_estado_pedido" msprop:Generator_ColumnPropNameInTable="id_estado_pedidoColumn" msprop:Generator_UserColumnName="id_estado_pedido" type="xs:int" minOccurs="0" />
+              <xs:element name="Solicitante" msprop:Generator_ColumnVarNameInTable="columnSolicitante" msprop:Generator_ColumnPropNameInRow="Solicitante" msprop:Generator_ColumnPropNameInTable="SolicitanteColumn" msprop:Generator_UserColumnName="Solicitante" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="264" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pedidos" msprop:Generator_TableClassName="PedidosDataTable" msprop:Generator_TableVarName="tablePedidos" msprop:Generator_TablePropName="Pedidos" msprop:Generator_RowDeletingName="PedidosRowDeleting" msprop:Generator_RowChangingName="PedidosRowChanging" msprop:Generator_RowEvHandlerName="PedidosRowChangeEventHandler" msprop:Generator_RowDeletedName="PedidosRowDeleted" msprop:Generator_UserTableName="Pedidos" msprop:Generator_RowChangedName="PedidosRowChanged" msprop:Generator_RowEvArgName="PedidosRowChangeEvent" msprop:Generator_RowClassName="PedidosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" />
+              <xs:element name="nombre_estado" msprop:Generator_ColumnVarNameInTable="columnnombre_estado" msprop:Generator_ColumnPropNameInRow="nombre_estado" msprop:Generator_ColumnPropNameInTable="nombre_estadoColumn" msprop:Generator_UserColumnName="nombre_estado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Unidad" msprop:Generator_ColumnVarNameInTable="columnUnidad" msprop:Generator_ColumnPropNameInRow="Unidad" msprop:Generator_ColumnPropNameInTable="UnidadColumn" msprop:Generator_UserColumnName="Unidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Viaticos" msprop:Generator_TableClassName="ViaticosDataTable" msprop:Generator_TableVarName="tableViaticos" msprop:Generator_TablePropName="Viaticos" msprop:Generator_RowDeletingName="ViaticosRowDeleting" msprop:Generator_RowChangingName="ViaticosRowChanging" msprop:Generator_RowEvHandlerName="ViaticosRowChangeEventHandler" msprop:Generator_RowDeletedName="ViaticosRowDeleted" msprop:Generator_UserTableName="Viaticos" msprop:Generator_RowChangedName="ViaticosRowChanged" msprop:Generator_RowEvArgName="ViaticosRowChangeEvent" msprop:Generator_RowClassName="ViaticosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" minOccurs="0" />
+              <xs:element name="nombre_estado" msprop:Generator_ColumnVarNameInTable="columnnombre_estado" msprop:Generator_ColumnPropNameInRow="nombre_estado" msprop:Generator_ColumnPropNameInTable="nombre_estadoColumn" msprop:Generator_UserColumnName="nombre_estado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Unidad" msprop:Generator_ColumnVarNameInTable="columnUnidad" msprop:Generator_ColumnPropNameInRow="Unidad" msprop:Generator_ColumnPropNameInTable="UnidadColumn" msprop:Generator_UserColumnName="Unidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="id_unidad" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_unidad" msprop:Generator_ColumnPropNameInRow="id_unidad" msprop:Generator_ColumnPropNameInTable="id_unidadColumn" msprop:Generator_UserColumnName="id_unidad" type="xs:int" />
+              <xs:element name="id_tipo_viatico" msprop:Generator_ColumnVarNameInTable="columnid_tipo_viatico" msprop:Generator_ColumnPropNameInRow="id_tipo_viatico" msprop:Generator_ColumnPropNameInTable="id_tipo_viaticoColumn" msprop:Generator_UserColumnName="id_tipo_viatico" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MontoUnidad" msprop:Generator_TableClassName="MontoUnidadDataTable" msprop:Generator_TableVarName="tableMontoUnidad" msprop:Generator_TablePropName="MontoUnidad" msprop:Generator_RowDeletingName="MontoUnidadRowDeleting" msprop:Generator_RowChangingName="MontoUnidadRowChanging" msprop:Generator_RowEvHandlerName="MontoUnidadRowChangeEventHandler" msprop:Generator_RowDeletedName="MontoUnidadRowDeleted" msprop:Generator_UserTableName="MontoUnidad" msprop:Generator_RowChangedName="MontoUnidadRowChanged" msprop:Generator_RowEvArgName="MontoUnidadRowChangeEvent" msprop:Generator_RowClassName="MontoUnidadRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="monto" msprop:Generator_ColumnVarNameInTable="columnmonto" msprop:Generator_ColumnPropNameInRow="monto" msprop:Generator_ColumnPropNameInTable="montoColumn" msprop:Generator_UserColumnName="monto" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Gasto" msprop:Generator_ColumnVarNameInTable="columnGasto" msprop:Generator_ColumnPropNameInRow="Gasto" msprop:Generator_ColumnPropNameInTable="GastoColumn" msprop:Generator_UserColumnName="Gasto" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vales" msprop:Generator_TableClassName="ValesDataTable" msprop:Generator_TableVarName="tableVales" msprop:Generator_TablePropName="Vales" msprop:Generator_RowDeletingName="ValesRowDeleting" msprop:Generator_RowChangingName="ValesRowChanging" msprop:Generator_RowEvHandlerName="ValesRowChangeEventHandler" msprop:Generator_RowDeletedName="ValesRowDeleted" msprop:Generator_UserTableName="Vales" msprop:Generator_RowChangedName="ValesRowChanged" msprop:Generator_RowEvArgName="ValesRowChangeEvent" msprop:Generator_RowClassName="ValesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" />
+              <xs:element name="nombre_estado" msprop:Generator_ColumnVarNameInTable="columnnombre_estado" msprop:Generator_ColumnPropNameInRow="nombre_estado" msprop:Generator_ColumnPropNameInTable="nombre_estadoColumn" msprop:Generator_UserColumnName="nombre_estado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Unidad" msprop:Generator_ColumnVarNameInTable="columnUnidad" msprop:Generator_ColumnPropNameInRow="Unidad" msprop:Generator_ColumnPropNameInTable="UnidadColumn" msprop:Generator_UserColumnName="Unidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Viaticos" />
+      <xs:field xpath="mstns:id_unidad" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

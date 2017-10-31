@@ -64,8 +64,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.DLL</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Trabajo\SIPA Archivos\Deploy\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -85,6 +93,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.aspx" />
     <Content Include="bin\AplicacionSIPA1.dll" />
     <Content Include="bin\AplicacionSIPA1.pdb" />
     <Content Include="bin\CapaAD.dll" />
@@ -106,6 +115,8 @@
     <Content Include="Compras\IngresoProveedores.aspx" />
     <Content Include="Compras\ListadoProveedores.aspx" />
     <Content Include="Compras\MesaEntradaCompras.aspx" />
+    <Content Include="Copia de Pedido\gastoEstado.aspx" />
+    <Content Include="Inicio.aspx" />
     <Content Include="Estrategia\PlanesEstrategicos.aspx" />
     <Content Include="Estrategia\PlanesEstrategicosB.aspx" />
     <Content Include="Financiero\CostoRealTransferencia.aspx" />
@@ -117,6 +128,7 @@
     <Content Include="Operativa\AdminPlanOperativo.aspx" />
     <Content Include="Operativa\Modificaciones\GESFOR2Listado.aspx" />
     <Content Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx" />
+    <Content Include="Operativa\Seguimiento\No1Seguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\NoSeguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\SeguimientoIngreso.aspx" />
     <Content Include="Operativa\Seguimiento\VoBoN1.aspx" />
@@ -129,15 +141,22 @@
     <Content Include="Pedido\Ajustes\NoAjuste.aspx" />
     <Content Include="Pedido\Ajustes\VoBoN1.aspx" />
     <Content Include="Pedido\Ajustes\VoBoN2.aspx" />
+    <Content Include="Pedido\GastoaPedido.aspx" />
+    <Content Include="Pedido\Multianuales\PedidoMultianual.aspx" />
     <Content Include="Pedido\PedidoAnulacion.aspx" />
-    <Content Include="Pedido\PedidoGuardado.aspx" />
+    <Content Include="Pedido\NoPedidoG.aspx" />
+    <Content Include="Pedido\VoBo3PptoRecodificacion.aspx" />
     <Content Include="Presupuesto\AdminTechos.aspx" />
     <Content Include="Presupuesto\ListadoModTechos.aspx" />
     <Content Include="ReporteriaSistema\cargar.gif" />
     <Content Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx" />
+    <Content Include="ReporteriaSistema\ReportePedidos.aspx" />
+    <Content Include="ReporteriaSistema\ReportePedidos2.aspx" />
+    <Content Include="ReporteriaSistema\SaldosPorUnidad.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
     <Content Include="ReporteriaSistema\SalidasBusqueda.aspx" />
+    <Content Include="Reporteria\SaldosRenglonesPen.aspx" />
     <Content Include="Reportes\frmReporte.aspx" />
     <Content Include="Service References\WsTipoCambio\AplicacionSIPA1.WsTipoCambio.DataVariable.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -176,7 +195,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
+    <Content Include="Viaticos\ViaticoGuardado.aspx" />
     <Content Include="Viaticos\ViaticosLiquidacion.aspx" />
+    <Content Include="Viaticos\ViaticosRecodficar.aspx" />
     <Content Include="Viaticos\VoBo3Ppto.aspx" />
     <Content Include="Viaticos\VoBo2Subgerencia.aspx" />
     <Content Include="Viaticos\NoViatico.aspx" />
@@ -338,7 +359,7 @@
     <Content Include="img\prev.png" />
     <Content Include="css\img\print.png" />
     <Content Include="img\save.png" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="Inicio1.aspx" />
     <Content Include="js\lightbox-2.6.min.js" />
     <Content Include="js\modernizr.custom.js" />
     <Content Include="Login.aspx" />
@@ -385,12 +406,34 @@
     </Content>
     <Content Include="bin\AplicacionCOG.dll.config" />
     <Content Include="bin\AplicacionSIPA1.dll.config" />
+    <Content Include="Reportes\DataSetDatosRenglones.xsc">
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\DataSetDatosRenglones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetDatosRenglones.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\DataSetDatosRenglones.xss">
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\pub.pubxml" />
     <None Include="Properties\PublishProfiles\pubsipa.pubxml" />
     <EmbeddedResource Include="Reportes\crccVale.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crccVale.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Reporte.xsc">
+      <DependentUpon>Reporte.xsd</DependentUpon>
+    </Content>
+    <None Include="Reporte.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Reporte.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Reporte.xss">
+      <DependentUpon>Reporte.xsd</DependentUpon>
+    </Content>
     <None Include="Reportes\dsSipa.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -441,6 +484,17 @@
     <Content Include="Reportes\rptFINFOR23.rdlc" />
     <Content Include="Reportes\rptViaticosInt.rdlc" />
     <Content Include="Reportes\rptViaticosExt.rdlc" />
+    <Content Include="Reportes\RequisicionesEstados.xsc">
+      <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\RequisicionesEstados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RequisicionesEstados.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\RequisicionesEstados.xss">
+      <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -482,6 +536,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Compras\ETVoBoN2.aspx.cs">
       <DependentUpon>ETVoBoN2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -495,6 +556,25 @@
     </Compile>
     <Compile Include="Compras\ETVoBoN1.aspx.designer.cs">
       <DependentUpon>ETVoBoN1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Copia de Pedido\gastoEstado.aspx.cs">
+      <DependentUpon>gastoEstado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Copia de Pedido\gastoEstado.aspx.designer.cs">
+      <DependentUpon>gastoEstado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetDatosRenglones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
     </Compile>
     <Compile Include="EnvioDeCorreos.cs" />
     <Compile Include="FuncionesVarias.cs" />
@@ -618,6 +698,13 @@
     <Compile Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx.designer.cs">
       <DependentUpon>CalendarioSeguimiento.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.cs">
+      <DependentUpon>No1Seguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.designer.cs">
+      <DependentUpon>No1Seguimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.cs">
       <DependentUpon>NoSeguimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -702,6 +789,20 @@
     <Compile Include="Pedido\Ajustes\VoBoN2.aspx.designer.cs">
       <DependentUpon>VoBoN2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pedido\GastoaPedido.aspx.cs">
+      <DependentUpon>GastoaPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedido\GastoaPedido.aspx.designer.cs">
+      <DependentUpon>GastoaPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido\Multianuales\PedidoMultianual.aspx.cs">
+      <DependentUpon>PedidoMultianual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedido\Multianuales\PedidoMultianual.aspx.designer.cs">
+      <DependentUpon>PedidoMultianual.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pedido\PedidoAnulacion.aspx.cs">
       <DependentUpon>PedidoAnulacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -709,12 +810,19 @@
     <Compile Include="Pedido\PedidoAnulacion.aspx.designer.cs">
       <DependentUpon>PedidoAnulacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pedido\PedidoGuardado.aspx.cs">
-      <DependentUpon>PedidoGuardado.aspx</DependentUpon>
+    <Compile Include="Pedido\NoPedidoG.aspx.cs">
+      <DependentUpon>NoPedidoG.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pedido\PedidoGuardado.aspx.designer.cs">
-      <DependentUpon>PedidoGuardado.aspx</DependentUpon>
+    <Compile Include="Pedido\NoPedidoG.aspx.designer.cs">
+      <DependentUpon>NoPedidoG.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido\VoBo3PptoRecodificacion.aspx.cs">
+      <DependentUpon>VoBo3PptoRecodificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedido\VoBo3PptoRecodificacion.aspx.designer.cs">
+      <DependentUpon>VoBo3PptoRecodificacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presupuesto\AdminTechos.aspx.cs">
       <DependentUpon>AdminTechos.aspx</DependentUpon>
@@ -730,12 +838,38 @@
     <Compile Include="Presupuesto\ListadoModTechos.aspx.designer.cs">
       <DependentUpon>ListadoModTechos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reporte.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx.cs">
       <DependentUpon>HistorialEstados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx.designer.cs">
       <DependentUpon>HistorialEstados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\ReportePedidos.aspx.cs">
+      <DependentUpon>ReportePedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\ReportePedidos.aspx.designer.cs">
+      <DependentUpon>ReportePedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\ReportePedidos2.aspx.cs">
+      <DependentUpon>ReportePedidos2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\ReportePedidos2.aspx.designer.cs">
+      <DependentUpon>ReportePedidos2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosPorUnidad.aspx.cs">
+      <DependentUpon>SaldosPorUnidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosPorUnidad.aspx.designer.cs">
+      <DependentUpon>SaldosPorUnidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.cs">
       <DependentUpon>SaldosRenglones.aspx</DependentUpon>
@@ -757,6 +891,13 @@
     </Compile>
     <Compile Include="ReporteriaSistema\SalidasBusqueda.aspx.designer.cs">
       <DependentUpon>SalidasBusqueda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\SaldosRenglonesPen.aspx.cs">
+      <DependentUpon>SaldosRenglonesPen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporteria\SaldosRenglonesPen.aspx.designer.cs">
+      <DependentUpon>SaldosRenglonesPen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DS_ADQUISICIONES.Designer.cs" />
     <Compile Include="Reportes\DS_ADQUISICIONES1.Designer.cs">
@@ -787,10 +928,22 @@
     <Compile Include="Reportes\frmReporte.aspx.designer.cs">
       <DependentUpon>frmReporte.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RequisicionesEstados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WsTipoCambio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Viaticos\ViaticoGuardado.aspx.cs">
+      <DependentUpon>ViaticoGuardado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Viaticos\ViaticoGuardado.aspx.designer.cs">
+      <DependentUpon>ViaticoGuardado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Viaticos\ViaticosLiquidacion.aspx.cs">
       <DependentUpon>ViaticosLiquidacion.aspx</DependentUpon>
@@ -798,6 +951,13 @@
     </Compile>
     <Compile Include="Viaticos\ViaticosLiquidacion.aspx.designer.cs">
       <DependentUpon>ViaticosLiquidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Viaticos\ViaticosRecodficar.aspx.cs">
+      <DependentUpon>ViaticosRecodficar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Viaticos\ViaticosRecodficar.aspx.designer.cs">
+      <DependentUpon>ViaticosRecodficar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Viaticos\VoBo3Ppto.aspx.cs">
       <DependentUpon>VoBo3Ppto.aspx</DependentUpon>
@@ -933,12 +1093,12 @@
     <Compile Include="Estrategia\EjesEstrategicos.aspx.designer.cs">
       <DependentUpon>EjesEstrategicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="Inicio1.aspx.cs">
+      <DependentUpon>Inicio1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="Inicio1.aspx.designer.cs">
+      <DependentUpon>Inicio1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -1272,6 +1432,8 @@
     <Content Include="fonts\iconic\iconic_stroke.ttf" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Service References\WsTipoCambio\TipoCambio.wsdl" />
+    <Content Include="Viaticos\ArchivoPDF\ViaticosExt.pdf" />
+    <Content Include="Viaticos\ArchivoPDF\ViaticosInt.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1280,6 +1442,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaAD\CapaAD.csproj">
+      <Project>{CDC88454-6BF6-4734-82F6-E14860C638A1}</Project>
+      <Name>CapaAD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaEN\CapaEN.csproj">
       <Project>{7ab9d40c-0e73-4252-b310-fc27f9837082}</Project>
       <Name>CapaEN</Name>
@@ -1290,6 +1456,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\dashboard.rdlc" />
+    <EmbeddedResource Include="Reportes\Movimientos.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteSaldosAccionesPor.rdlc" />
+    <EmbeddedResource Include="Reportes\rptGES_FOR_03.rdlc" />
     <EmbeddedResource Include="Reportes\rptMatrizGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptMatrizGeneral.cs</LastGenOutput>
@@ -1320,6 +1490,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Operativa\Seguimiento\ArchivoPDF\" />
+    <Folder Include="Pedido\xxx\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

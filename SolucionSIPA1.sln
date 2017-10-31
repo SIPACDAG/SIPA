@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaLN", "CapaLN\CapaLN.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionSIPA1", "AplicacionSIPA1\AplicacionSIPA1.csproj", "{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionSIPA1.Tests", "AplicacionSIPA1.Tests\AplicacionSIPA1.Tests.csproj", "{D3F3E2A9-7410-4522-A206-9A9A924DAE79}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A91E3AD5-0813-4504-AA5C-AD5DE1A89809}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3F3E2A9-7410-4522-A206-9A9A924DAE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3F3E2A9-7410-4522-A206-9A9A924DAE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3F3E2A9-7410-4522-A206-9A9A924DAE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3F3E2A9-7410-4522-A206-9A9A924DAE79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

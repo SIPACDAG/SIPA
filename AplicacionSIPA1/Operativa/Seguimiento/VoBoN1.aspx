@@ -58,6 +58,24 @@
                         <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
+                    <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="9">Dependica:</td>
+                    <td colspan="3">Jefatura/Unidad:</td>
+                    <td class="text-right" colspan="6">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlDependencia" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
@@ -468,8 +486,9 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="16" style="text-align: center"><span>
-                        <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         </span></td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

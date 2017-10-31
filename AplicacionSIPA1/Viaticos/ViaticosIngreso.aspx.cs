@@ -21,7 +21,7 @@ namespace AplicacionSIPA1.Viaticos
        
         private ViaticosLN pViaticosLN;
         private ViaticosEN pViaticosEN;
-
+        private bool bDepencia = false;
         private EmpleadosLN eEmpleadosLN;
 
         public DateTime fechaNombramiento
@@ -62,7 +62,9 @@ namespace AplicacionSIPA1.Viaticos
                 try
                 {
                     btnNuevo_Click(sender, e);
-
+                    pOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                     string s = Convert.ToString(Request.QueryString["No"]);
 
                     if (s != null)
@@ -803,7 +805,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 if (txtDependencia.Text.Equals(""))
                 {
-                    lblErrorEmail.Text = "Ingrese Dependencia. ";
+                    lblErrorDependencia.Text = "Ingrese Dependencia. ";
                     lblError.Text += "Ingrese Dependencia. ";
                 }
 
@@ -1783,7 +1785,8 @@ namespace AplicacionSIPA1.Viaticos
                 txtPuesto.ReadOnly = false;
                 txtPuesto.Text = string.Empty;
                 //txtPuesto.Visible = false;
-
+                txtSueldoBase.ReadOnly = false;
+                
                 txtSueldoBase.Text = "0";
 
                 pViaticosLN = new ViaticosLN();
@@ -1792,7 +1795,7 @@ namespace AplicacionSIPA1.Viaticos
                 ddlEmpleados.ClearSelection();
                 ddlEmpleados.Items.Clear();
                 ddlEmpleados.DataBind();
-
+                txtSueldoBase.Enabled = true;
                 if (rblTipoPersonal.SelectedValue.Equals("2"))
                 {
                     rblCategoria.SelectedValue = "38";

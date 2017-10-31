@@ -221,6 +221,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                 pOperativoLN = new PlanOperativoLN();
                 pOperativoLN.DdlMeses(ddlMeses);
+                pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                 pAccionLN = new PlanAccionLN();
                 ddlMeses.Items[0].Text = "<< Elija un valor >>";
 
@@ -500,7 +501,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                         //EnvioDeCorreos envio = new EnvioDeCorreos();
                         //envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: " + lblNoPedido.Text, mensaje);
 
-                        Response.Redirect("~/Operativa/Seguimiento/No1Seguimiento.aspx?No=" + lblNoSeguimientoCmi.Text + "&msg=SUBGERENCIA" + "&acc=" + lblSuccess.Text);
+                        Response.Redirect("~/Operativa/Seguimiento/NoSeguimiento.aspx?No=" + lblNoSeguimientoCmi.Text + "&msg=SUBGERENCIA" + "&acc=" + lblSuccess.Text);
                     }
                 }
             }
@@ -633,6 +634,93 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
             catch (Exception ex)
             {
                 throw new Exception("filtrarGridPpto(). " + ex.Message);
+            }
+        }
+
+        protected void chkFiltroColumnas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridDet.Columns.Count > 0)
+                {
+                    for (int i = 0; i < chkFiltroColumnas.Items.Count; i++)
+                    {
+                        if (chkFiltroColumnas.Items[i].Selected == true)
+                            gridDet.Columns[int.Parse(chkFiltroColumnas.Items[i].Value)].Visible = true;
+                        else
+                            gridDet.Columns[int.Parse(chkFiltroColumnas.Items[i].Value)].Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "chkFiltroColumnas(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoSeguimientoEnc();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoSeguimiento(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlMeses(ddlMeses);
+                pOperativoLN.DdlDependencias(ddlJefaturaUnidad, idUnidad.ToString());
+                pAccionLN = new PlanAccionLN();
+                ddlMeses.Items[0].Text = "<< Elija un valor >>";
+
+                NuevoSeguimientoDet();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoSeguimientoEnc();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoSeguimiento(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlMeses(ddlMeses);
+                
+                pAccionLN = new PlanAccionLN();
+                ddlMeses.Items[0].Text = "<< Elija un valor >>";
+
+                NuevoSeguimientoDet();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

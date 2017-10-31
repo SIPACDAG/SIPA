@@ -49,7 +49,7 @@ namespace AplicacionSIPA1.Pedido
                 filtrarDvPedidos();
                 filtrarGridDetalles();
                 filtrarGridPpto();
-                txtObser.Text = string.Empty;                
+                txtObser.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -90,7 +90,7 @@ namespace AplicacionSIPA1.Pedido
                 ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
-                
+
                 lblAnio.Text = anioActual.ToString();
                 uUsuariosLN.dropUnidad(ddlUnidades);
 
@@ -131,9 +131,9 @@ namespace AplicacionSIPA1.Pedido
 
                 pInsumoLN = new PedidosLN();
                 DataSet dsResultado = new DataSet();
-                int anio, idTipoDocumento, noSolicitud; 
+                int anio, idTipoDocumento, noSolicitud;
                 anio = idTipoDocumento = noSolicitud = 0;
-                
+
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(rblTipoDocto.SelectedValue, out idTipoDocumento);
                 int.TryParse(txtNo.Text, out noSolicitud);
@@ -243,38 +243,44 @@ namespace AplicacionSIPA1.Pedido
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
                 if (dvPedido.SelectedValue != null)
+                {
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
-                idTipoSalida = tipoDoc();
-                pInsumoLN = new PedidosLN();
-                DataSet dsResultado = pInsumoLN.DetallesPedidoAprobacion(idSalida, idTipoSalida, "", 1);
+                    idTipoSalida = tipoDoc();
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = pInsumoLN.DetallesPedidoAprobacion(idSalida, idTipoSalida, "", 1);
 
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                    if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
-                {
+                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
+                    {
 
-                    gridDetalle.DataSource = dsResultado.Tables["BUSQUEDA"];
-                    gridDetalle.DataBind();
+                        gridDetalle.DataSource = dsResultado.Tables["BUSQUEDA"];
+                        gridDetalle.DataBind();
 
-                    decimal cantidadArticulos = 0;
-                    decimal totalPedido = 0;
+                        decimal cantidadArticulos = 0;
+                        decimal totalPedido = 0;
 
-                    string sCantidad = dsResultado.Tables["BUSQUEDA"].Compute("SUM(CANTIDAD)", "").ToString();
-                    string sSubtotal = dsResultado.Tables["BUSQUEDA"].Compute("SUM(SUBTOTAL)", "").ToString();
+                        string sCantidad = dsResultado.Tables["BUSQUEDA"].Compute("SUM(CANTIDAD)", "").ToString();
+                        string sSubtotal = dsResultado.Tables["BUSQUEDA"].Compute("SUM(SUBTOTAL)", "").ToString();
 
-                    decimal.TryParse(sCantidad, out cantidadArticulos);
-                    decimal.TryParse(sSubtotal, out totalPedido);
+                        decimal.TryParse(sCantidad, out cantidadArticulos);
+                        decimal.TryParse(sSubtotal, out totalPedido);
 
-                    gridDetalle.FooterRow.Cells[3].Text = "Totales";
-                    gridDetalle.FooterRow.Cells[5].Text = cantidadArticulos.ToString();
-                    gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
-                }
-                else
-                {
-                    gridDetalle.DataSource = null;
-                    gridDetalle.DataBind();
+                        gridDetalle.FooterRow.Cells[3].Text = "Totales";
+                        gridDetalle.FooterRow.Cells[5].Text = cantidadArticulos.ToString();
+                        gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
+
+                        decimal totalPedidoAnual = 0;
+                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Compute("SUM(TOTAL_PEDIDO_MULTIANUAL)", "").ToString(), out totalPedidoAnual);
+                        gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
+                    }
+                    else
+                    {
+                        gridDetalle.DataSource = null;
+                        gridDetalle.DataBind();
+                    }
                 }
             }
             catch (Exception ex)
@@ -330,11 +336,14 @@ namespace AplicacionSIPA1.Pedido
 
                 switch (dvPedido.Rows[3].Cells[1].Text)
                 {
-                    case "REQUISICION": tipo = 1;
+                    case "REQUISICION":
+                        tipo = 1;
                         break;
-                    case "VALE": tipo = 2;
+                    case "VALE":
+                        tipo = 2;
                         break;
-                    case "TRANSFERENCIA, APOYO U OTRO GASTO": tipo = 3;
+                    case "TRANSFERENCIA, APOYO U OTRO GASTO":
+                        tipo = 3;
                         break;
                 }
             }
@@ -432,9 +441,9 @@ namespace AplicacionSIPA1.Pedido
                 btnAprobar.Visible = btnRechazar.Visible = false;
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -470,7 +479,7 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected bool validarEstadoPedido(int idPedido)
@@ -493,10 +502,10 @@ namespace AplicacionSIPA1.Pedido
 
                     int.TryParse(ddlAnios.SelectedValue, out anio);
                     int.TryParse(rblTipoDocto.SelectedValue, out idTipoDocumento);
-                    
+
                     pInsumoLN = new PedidosLN();
                     DataSet dsResultado = pInsumoLN.InformacionPedido(anio, idPedido, idTipoDocumento, "ESTADO", 7);
-                    
+
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -527,7 +536,7 @@ namespace AplicacionSIPA1.Pedido
 
 
                     //LA PERSONA CON ROL DE ADMINISTRACIÓN PODRÁ ASIGNAR PARTIDA PRESUPUESTARIA NO IMPORTANDO EL ESTADO DE LA REQUISICIÓN
-                    if (btnAprobar.Visible == false && btnRechazar.Visible == false)
+                    /*if (btnAprobar.Visible == false && btnRechazar.Visible == false)
                     {
                         pInsumoLN = new PedidosLN();
                         dsResultado = pInsumoLN.InformacionPermisos(0, 0, Session["usuario"].ToString(), 9);
@@ -539,7 +548,7 @@ namespace AplicacionSIPA1.Pedido
                             btnAprobar.Visible = btnRechazar.Visible = true;
                         else
                             btnAprobar.Visible = btnRechazar.Visible = false;
-                    }
+                    }*/
 
                 }
             }
@@ -572,15 +581,17 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnAprobar_Click(object sender, EventArgs e)
         {
+
+            limpiarControlesError();
+            planOperativoLN = new PlanOperativoLN();
+            int idSalida, idTipoSalida;
+            idSalida = idTipoSalida = 0;
+
             try
             {
-                limpiarControlesError();
-                planOperativoLN = new PlanOperativoLN();
                 if (validarControlesABC())
                 {
 
-                    int idSalida, idTipoSalida;
-                    idSalida = idTipoSalida = 0;
                     if (dvPedido.SelectedValue != null)
                         int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
@@ -606,8 +617,8 @@ namespace AplicacionSIPA1.Pedido
                     if (idTipoSalida == 1)
                     {
                         //VALIDACIÓN DE LOS RENGLONES CODIFICADOS PARA CADA DETALLE DE UN PEDIDO, SÓLO APLICA CUANDO SE ESTÁ APROBANDO UN PEDIDO
-                        
-                        
+
+
                         /*dsResultado = pInsumoLN.PptoCodificarSalida(idSalida, 0, "", 4);
 
                         if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
@@ -650,28 +661,18 @@ namespace AplicacionSIPA1.Pedido
                     }
 
                     if (!errorSaldo.Trim().Equals(string.Empty))
-                    {
-                        dsResultado = pInsumoLN.CodificarSalida(idSalida, idTipoSalida, 0, "", "", "", "", "", 2);
-                        filtrarGridDetalles();
-                        ddlPRG.ClearSelection();
-                        ddlSPRG.ClearSelection();
-                        ddlPROY.ClearSelection();
-                        ddlACT.ClearSelection();
-                        ddlOBR.ClearSelection();
-                        ddlRenglonesC.ClearSelection();
-
                         throw new Exception(errorSaldo);
-                    }
                     else
                     {
                         if (validarEstadoPedido(idSalida))
+                        //if (true)
                         {
                             txtObser.Text = string.Empty;
                             FuncionesVarias fv = new FuncionesVarias();
                             string[] ip = fv.DatosUsuarios();
                             string usuario = Session["usuario"].ToString();
                             string observaciones = txtObser.Text;
-                            dsResultado = pInsumoLN.AprobacionPresupuesto(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
+                            dsResultado = pInsumoLN.AprobacionPresupuesto(idSalida, idTipoSalida, observaciones, usuario, ip[0], ip[1], ip[2]);
 
                             if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             {
@@ -693,9 +694,9 @@ namespace AplicacionSIPA1.Pedido
 
                             NuevaAprobacion();
                             lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " APROBADA con éxito!";
-                            EnvioDeCorreos objEC = new EnvioDeCorreos();
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto",  lblSuccess.Text, usuario);
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto",   lblSuccess.Text, usuario);
+                            //EnvioDeCorreos objEC = new EnvioDeCorreos();
+                            //objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto", lblSuccess.Text, usuario);
+                            //objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto", lblSuccess.Text, usuario);
 
                             ddlPRG.ClearSelection();
                             ddlSPRG.ClearSelection();
@@ -706,12 +707,24 @@ namespace AplicacionSIPA1.Pedido
                             btnAprobar.Visible = btnRechazar.Visible = false;
                             generarReporte(idSalida, idTipoSalida);
                         }
+                        else
+                            throw new Exception(lblError.Text);
                     }
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = "btnAprobar(). " + ex.Message;
+
+                pInsumoLN = new PedidosLN();
+                DataSet dsResultado = pInsumoLN.CodificarSalida(idSalida, idTipoSalida, 0, "", "", "", "", "", 2);
+                filtrarGridDetalles();
+                ddlPRG.ClearSelection();
+                ddlSPRG.ClearSelection();
+                ddlPROY.ClearSelection();
+                ddlACT.ClearSelection();
+                ddlOBR.ClearSelection();
+                ddlRenglonesC.ClearSelection();
             }
         }
 
@@ -747,9 +760,9 @@ namespace AplicacionSIPA1.Pedido
                     RD.Value = dsResultado.Tables[1];
                     RD.Name = "DataSet1";
 
-                    if(idTipoSalida == 1)
+                    if (idTipoSalida == 1)
                         dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 3);
-                    else if(idTipoSalida == 2)
+                    else if (idTipoSalida == 2)
                         dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 3);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
@@ -809,7 +822,7 @@ namespace AplicacionSIPA1.Pedido
                 {
                     lblObs = (Label)(gridDetalle.Rows[i].FindControl("lblObs"));
                     lblObs.Text = "";
-                }            
+                }
             }
             catch (Exception ex)
             {
@@ -850,9 +863,9 @@ namespace AplicacionSIPA1.Pedido
                         lblError.Text = lblObs.Text = lblObs.Text.Replace("Programa no válido. ", "");
                     else
                     {
-                        if(lblObs.Text.Contains("Programa no válido. ") == false)
+                        if (lblObs.Text.Contains("Programa no válido. ") == false)
                             lblObs.Text += "Programa no válido. ";
-                        
+
                         lblError.Text = "Existen errores, por favor revise";
                     }
 
@@ -902,7 +915,7 @@ namespace AplicacionSIPA1.Pedido
 
                         lblError.Text = "Existen errores, por favor revise";
                     }
-                    
+
                 }
 
                 if (lblError.Text.Trim().Equals(string.Empty) || lblError.Text.Trim().Equals(""))
@@ -954,7 +967,7 @@ namespace AplicacionSIPA1.Pedido
                     string[] jefeTemp = jefe.Split('-');
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.RechazoPresupuesto(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
+                    DataSet dsResultado = pInsumoLN.RechazoPresupuesto(idSalida, idTipoSalida, observaciones, usuario, ip[0], ip[1], ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1020,7 +1033,7 @@ namespace AplicacionSIPA1.Pedido
         }
 
         protected void ddlRenglon_SelectedIndexChanged(object sender, EventArgs e)
-        {        
+        {
         }
 
         protected void gridDetalle_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1033,7 +1046,7 @@ namespace AplicacionSIPA1.Pedido
                     int idSalida = 0;
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
-                    
+
                     DropDownList ddlRenglon = (DropDownList)e.Row.FindControl("ddlRenglon");
                     pInsumoLN.DdlRenglonesCodificarPedido(ddlRenglon, idSalida, 0, "", tipoDoc());
 
@@ -1054,7 +1067,7 @@ namespace AplicacionSIPA1.Pedido
             catch (Exception ex)
             {
                 lblError.Text = "gridDetalle(). " + ex.Message;
-            }            
+            }
         }
 
         protected void ddlPRG_SelectedIndexChanged(object sender, EventArgs e)
@@ -1140,7 +1153,7 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblError.Text = "ddlPRG(). " + ex.Message;
             }
-             
+
         }
 
         protected void ddlSPRG_SelectedIndexChanged(object sender, EventArgs e)

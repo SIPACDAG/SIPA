@@ -233,6 +233,8 @@ namespace AplicacionSIPA1.Pedido
 
                 int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idEspecificacion);
                 lblNoAnexo.Text = idEspecificacion.ToString();
+
+                generarReporte(idPedido);
                 
                 lblError.Text = string.Empty;
                 lblSuccess.Text = "Especificaciones ALMACENADAS/MODIFICADAS exitosamente: ";

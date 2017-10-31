@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <td style="height: 18px">&nbsp;</td>
-                    <td style="height: 18px" colspan="18">Acciones:</td>
+                    <td style="height: 18px" colspan="18">&nbsp;</td>
                     <td style="width: 5%; height: 18px;">&nbsp;</td>
                 </tr>
                 <tr>

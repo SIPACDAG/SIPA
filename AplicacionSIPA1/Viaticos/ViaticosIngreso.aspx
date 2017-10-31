@@ -326,7 +326,7 @@
                         <asp:TextBox ID="txtNit" runat="server" BackColor="#FFFF99" class="" Style="text-align: left" Width="95%"></asp:TextBox>
                     </td>
                     <td colspan="4" class="text-right">
-                        <asp:TextBox ID="txtSueldoBase" runat="server" BackColor="#FFFF99" class="" Style="text-align: right" Width="95%" ReadOnly="True" ForeColor="#FFFF99"></asp:TextBox>
+                        <asp:TextBox ID="txtSueldoBase" runat="server" BackColor="#FFFF99" class="" Style="text-align: right" Width="95%" ReadOnly="True" ForeColor="Black"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

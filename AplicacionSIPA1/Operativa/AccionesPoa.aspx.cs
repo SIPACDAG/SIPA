@@ -22,6 +22,7 @@ namespace AplicacionSIPA1.Operativa
         private MetasAccionEN metasEN;
         private AccionesDetEN accionDetEN;
         private AccionesDetTransferenciasEN accionDetTransferenciasEN = new AccionesDetTransferenciasEN();
+        private bool bDepencia = false;
 
         decimal totalP, totalC, totalS = 0;
 
@@ -32,6 +33,10 @@ namespace AplicacionSIPA1.Operativa
                 try
                 {
                     btnNuevo_Click(sender, e);
+                    planOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        planOperativoLN.DdlDependencias(ddlDependen, ddlUnidades.SelectedValue);
+
                 }
                 catch (Exception ex)
                 {
@@ -89,10 +94,13 @@ namespace AplicacionSIPA1.Operativa
 
                 planOperativoLN = new PlanOperativoLN();
                 planOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
+                if (!bDepencia)
+                    planOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
+
 
                 obtenerPresupuesto(0, 0);
                 planAccionLN = new PlanAccionLN();
-                planAccionLN.DdlDependenciasUsuario(ddlDependencias, "", 0);
+                //planAccionLN.DdlDependenciasUsuario(ddlDependencias, "", 0);
                 limpiarCNuevaAccion();
                 limpiarCNuevaMeta();
                 limpiarCPlanOperativo();
@@ -102,7 +110,7 @@ namespace AplicacionSIPA1.Operativa
 
                 if (ddlUnidades.Items.Count == 1)
                 {
-                    planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
+                    //planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
 
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
@@ -2009,7 +2017,7 @@ namespace AplicacionSIPA1.Operativa
                         planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
 
                     }
-                   
+                    bDepencia = true;
                     ddlDependen.SelectedValue = idUnidad.ToString();
                     ddlUnidades.SelectedValue = idUnidadTemp.ToString();
                     if (anio > 0 && idUnidad > 0)

@@ -18,7 +18,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+        private bool bDepencia = false;
         private PedidosLN pInsumoLN;
         private PedidosEN pInsumoEN;
 
@@ -31,7 +31,9 @@ namespace AplicacionSIPA1.Pedido
                 try
                 {                    
                     btnNuevo_Click(sender, e);
-
+                    pOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        pOperativoLN.DdlDependencias(ddldepencia, ddlUnidades.SelectedValue);
                     string s = Convert.ToString(Request.QueryString["No"]);
 
                     if (s != null)
@@ -121,7 +123,7 @@ namespace AplicacionSIPA1.Pedido
                         filtrarGridDetalles(idEncabezado);
                         validarEstadoVale(idEncabezado);
                         ddlAnios.Enabled = ddlUnidades.Enabled = /*ddlAcciones.Enabled =*/ false;
-
+                       
                         lblIdVale.Text = idEncabezado.ToString();
                         lblNoVale.Text = noSolicitud;
                     }
@@ -316,6 +318,8 @@ namespace AplicacionSIPA1.Pedido
 
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoVale(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -344,9 +348,15 @@ namespace AplicacionSIPA1.Pedido
 
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
-
+                if (idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddldepencia, ddlUnidades.SelectedValue);
+                }
                 if (anio > 0 && idUnidad > 0)
                     validarPoaIngresoVale(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -738,10 +748,10 @@ namespace AplicacionSIPA1.Pedido
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
-                        btnGuardar.Visible = true;
-                    else
-                        btnGuardar.Visible = false;
+                    //if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                    //    btnGuardar.Visible = true;
+                    //else
+                    //    btnGuardar.Visible = false;
                 }
 
                 if (idEstadoVale == 13 || idEstadoVale == 14 || idEstadoVale == 15 || idEstadoVale == 16 || idEstadoVale == 17)
@@ -1240,5 +1250,81 @@ namespace AplicacionSIPA1.Pedido
             }
         }
 
+        protected void ddldepencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoValeEnc();
+                NuevoValeDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddldepencia.SelectedValue, out idUnidad);
+
+                if (idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    if (idUnidad != int.Parse(ddlUnidades.SelectedValue))
+                    {
+                        pOperativoLN.DdlDependencias(ddlJefatura, idUnidad.ToString());
+
+                    }
+                }
+                    if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoVale(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefatura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoValeEnc();
+                NuevoValeDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefatura.SelectedValue, out idUnidad);
+               
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoVale(idUnidad, anio);
+                else
+                    lblIdPoa.Text = "0";
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
     }
 }

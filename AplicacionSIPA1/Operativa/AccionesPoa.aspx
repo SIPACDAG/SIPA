@@ -1225,6 +1225,11 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td colspan="8">
+                        
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -1547,8 +1552,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center"><span>
-                        <asp:Label ID="lblErrorModMonto" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         <asp:Label ID="lblSuccessMonto" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblErrorModMonto" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         </span></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

@@ -54,6 +54,26 @@
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
+                 <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="9">Depencias:</td>
+                    <td colspan="3">Jefatura/Unidad:</td>
+                    <td class="text-right" colspan="6">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddldepencia" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddldepencia_SelectedIndexChanged" class="form-control"  Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlJefatura" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJefatura_SelectedIndexChanged" class="form-control" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="18">Acciones:<strong><asp:Label ID="lblErrorAccion" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>

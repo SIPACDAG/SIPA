@@ -211,6 +211,15 @@ namespace AplicacionSIPA1.Financiero {
         protected global::System.Web.UI.WebControls.DropDownList ddlProveedoresC;
         
         /// <summary>
+        /// Control ddlTipoDocumentoCompraC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDocumentoCompraC;
+        
+        /// <summary>
         /// Control txtNoOrdenC.
         /// </summary>
         /// <remarks>
@@ -245,6 +254,15 @@ namespace AplicacionSIPA1.Financiero {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorProveedorC;
+        
+        /// <summary>
+        /// Control lblErrorTipoDoctoCompraC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorTipoDoctoCompraC;
         
         /// <summary>
         /// Control lblErrorOrdenC.
@@ -308,6 +326,15 @@ namespace AplicacionSIPA1.Financiero {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRechazar;
+        
+        /// <summary>
+        /// Control btnAnular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAnular;
         
         /// <summary>
         /// Control gridSaldos.

@@ -11,13 +11,15 @@ using System.IO;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using AplicacionSIPA1.Reportes;
+using CapaLN;
+using CapaEN;
 
 namespace AplicacionSIPA1.Pedido
 {
     public partial class gastoEstado : System.Web.UI.Page
     {
-        PedidoLN pedidoLN;
-        PedidoEN pedidoEN;
+        PedidoLNBorrar pedidoLN;
+        PedidoENBorrar pedidoEN;
         public int NoGasto
         {
             get
@@ -31,8 +33,8 @@ namespace AplicacionSIPA1.Pedido
 
             if (IsPostBack == false)
             {
-                pedidoLN = new PedidoLN();
-                pedidoEN = new PedidoEN();
+                pedidoLN = new PedidoLNBorrar();
+                pedidoEN = new PedidoENBorrar();
                 pedidoEN.usuario = ((Label)Master.FindControl("lblUsuario")).Text;
                 pedidoLN.gridEstadoGasto(gridEstado, pedidoEN);
             }
@@ -41,8 +43,8 @@ namespace AplicacionSIPA1.Pedido
 
         protected void gridEstado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            pedidoLN = new PedidoLN();
-            pedidoEN = new PedidoEN();
+            pedidoLN = new PedidoLNBorrar();
+            pedidoEN = new PedidoENBorrar();
             gridEstado.PageIndex = e.NewPageIndex;
             pedidoEN.usuario = ((Label)Master.FindControl("lblUsuario")).Text;
             pedidoLN.gridEstadoGasto(gridEstado, pedidoEN);
@@ -66,8 +68,8 @@ namespace AplicacionSIPA1.Pedido
 
                 if (HttpUtility.HtmlDecode(row.Cells[5].Text) == "Aprobado")
                 {
-                    pedidoLN = new PedidoLN();
-                    pedidoEN = new PedidoEN();
+                    pedidoLN = new PedidoLNBorrar();
+                    pedidoEN = new PedidoENBorrar();
                     pedidoEN.idGasto = Convert.ToInt32(gridEstado.SelectedValue);
 
                     DataTable tabla, tabladetalle;

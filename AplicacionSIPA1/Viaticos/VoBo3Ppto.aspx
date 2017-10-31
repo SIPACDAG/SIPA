@@ -238,11 +238,9 @@
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
+                    <td colspan="3">Viaticos:</td>
                     <td colspan="3">Pasajes:</td>
-                    <td colspan="3">Kilometraje:</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="3">Kilometraje</td>
                     <td style="width: 5%">Año:</td>
                     <td style="width: 5%">Entidad:</td>
                     <td style="width: 5%; text-align: center;">
@@ -269,14 +267,14 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtPasajes" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="90%" BackColor="#FFFF99"></asp:TextBox>
+                        <asp:TextBox ID="txtViaticos" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="90%" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtKilometraje" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                        <asp:TextBox ID="txtPasajes" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="90%" ReadOnly="True"></asp:TextBox>
                     </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="3">
+                        <asp:TextBox ID="txtKilometraje" runat="server" class="form-control" MaxLength="10" Style="text-align: right" Width="100%" ReadOnly="True"></asp:TextBox>
+                    </td>
                     <td style="width: 5%">
                         <asp:Label ID="lblAnio" runat="server" Text="0"></asp:Label>
                     </td>

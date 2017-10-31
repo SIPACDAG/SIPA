@@ -224,6 +224,10 @@ namespace AplicacionSIPA1.Compras
                     gridDetalle.FooterRow.Cells[3].Text = "Totales";
                     gridDetalle.FooterRow.Cells[5].Text = cantidadArticulos.ToString();
                     gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
+
+                    decimal totalPedidoAnual = 0;
+                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Compute("SUM(TOTAL_PEDIDO_MULTIANUAL)", "").ToString(), out totalPedidoAnual);
+                    gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
                 }
                 else
                 {
