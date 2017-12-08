@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HistorialEstados.aspx.cs" Inherits="AplicacionSIPA1.ReporteriaSistema.Pedidos.HistorialEstadosBK" MasterPageFile="~/Principal.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HistorialEstadosBK.aspx.cs" Inherits="AplicacionSIPA1.ReporteriaSistema.Pedidos.HistorialEstadosBK" MasterPageFile="~/Principal.Master" %>
 
 
 

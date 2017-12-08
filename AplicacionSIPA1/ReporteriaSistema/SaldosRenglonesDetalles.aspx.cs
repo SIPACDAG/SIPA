@@ -1,19 +1,14 @@
-﻿using System;
+﻿using CapaLN;
+using Microsoft.Reporting.WebForms;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Globalization;
-using CapaLN;
-using CapaEN;
-
-using Microsoft.Reporting.WebForms;
-using System.IO;
-using ExportToExcel;
-
 
 namespace AplicacionSIPA1.ReporteriaSistema
 {
@@ -23,64 +18,22 @@ namespace AplicacionSIPA1.ReporteriaSistema
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-        
+        public string thisConnectionString = ConfigurationManager.ConnectionStrings["dbcdagsipaConnectionString1"].ConnectionString;
         private PedidosLN pInsumoLN;
-
-        double total = 0, total2 = 0, total3 = 0, total4 = 0, total5 = 0;
-
-        protected void Page_LoadComplete(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (!IsPostBack)
             {
-                try
-                {
-
-                    NuevoEncabezadoPoa();                    
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = "Page_LoadComplete(). " + ex.Message;
-                }
-            }
-        }
-
-
-        public void NuevoEncabezadoPoa()
-        {
-            try
-            {
-                upIngreso.Visible = true;
-                pEstrategicoLN = new PlanEstrategicoLN();
+                pInsumoLN = new PedidosLN();
                 pOperativoLN = new PlanOperativoLN();
-                pAccionLN = new PlanAccionLN();
-                pAnualLN = new PlanAnualLN();
-
-                pEstrategicoLN.DdlPlanes(ddlPlanes);
-
-                int idPlan = 0;
-                int anioIni = 0;
-                int anioFin = 0;
-                if (ddlPlanes.Items.Count == 2)
-                {
-                    ddlPlanes.SelectedIndex = 1;
-                    idPlan = int.Parse(ddlPlanes.SelectedValue);
-                    anioIni = int.Parse(ddlPlanes.SelectedItem.Text.Split('-')[0].Trim());
-                    anioFin = int.Parse(ddlPlanes.SelectedItem.Text.Split('-')[1].Trim());
-                    lblPlanE.Visible = false;
-                    ddlPlanes.Visible = false;
-                }
-                pEstrategicoLN.DdlAniosPlan(ddlAnios, anioIni, anioFin);
+                pEstrategicoLN = new PlanEstrategicoLN();
+                pEstrategicoLN.DdlAniosPlan(ddlAnios, 2017, 2020);
                 ddlAnios.Items.RemoveAt(0);
-
-                int anioActual = DateTime.Now.Year;
-
-                ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
-                if (item != null)
-                    ddlAnios.SelectedValue = anioActual.ToString();
-
+                pInsumoLN.ChkEstadosPedido(chkEstados);
+                chkEstados.Items.RemoveAt(0);
+                for (int i = 0; i < chkEstados.Items.Count; i++)
+                    chkEstados.Items[i].Selected = true;
                 string usuario = Session["Usuario"].ToString().ToLower();
-
-
                 string criterio = "AND c.id_tipo IN(48) AND a.usuario = ''" + usuario + "''";
                 pInsumoLN = new PedidosLN();
                 DataSet dsResultado = pInsumoLN.InformacionPermisos(0, 0, criterio, 12);
@@ -93,42 +46,85 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 else
                     pOperativoLN.DdlUnidades(ddlUnidades, usuario);
 
-                if (ddlUnidades.Items.Count == 1)
+                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                int idPoa = 0;
+                int.TryParse(lblPoa.Text, out idPoa);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< TODAS >>";
+                System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+                stringBuilder.Append(consulta());
+                if (ddlUnidades.Items.Count==1)
                 {
-                    if (!ddlAnios.SelectedValue.Equals("0"))
-                    {
-                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));                        
-                    }
+                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                }
+                stringBuilder.Append(" Order by t.no_solicitud");
+                MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+                DataSet thisDataSet = new System.Data.DataSet();
+
+                /* Put the stored procedure result into a dataset */
+                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+                ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+                ReportViewer1.LocalReport.DataSources.Clear();
+                ReportViewer1.LocalReport.DataSources.Add(datasource);
+                if (thisDataSet.Tables[0].Rows.Count == 0)
+                {
+
                 }
 
-                int idPoa = 0;
-                int.TryParse(lblIdPoa.Text, out idPoa);
-
-                obtenerPresupuesto(idPoa, 0);
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, 0, 0, "", 3);
-                ddlAcciones.Items[0].Text = "<< TODAS >>";
-
-                pInsumoLN = new PedidosLN();
-                pInsumoLN.ChkEstadosPedido(chkEstados);
-                chkEstados.Items.RemoveAt(0);
-
-                for(int i = 0; i < chkEstados.Items.Count; i++)
-                    chkEstados.Items[i].Selected = true;
-
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlRenglones(ddlRenglones);
-                ddlRenglones.Items[0].Text = "<< TODOS >>";
-                ddlRenglones.Items.Add(new ListItem("S/A", "S/A"));
-
-                filtrarGrid();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("NuevoEncabezadoPoa(). " + ex.Message);
+                ReportViewer1.LocalReport.Refresh();
             }
         }
 
+        protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            int idPoa = 0;
+            int.TryParse(lblPoa.Text, out idPoa);
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            ddlAcciones.Items[0].Text = "<< TODAS >>";
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
+
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
+
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
+            {
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
+            }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
+        }
 
         protected bool validarPoa(int idUnidad, int anio)
         {
@@ -146,367 +142,274 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
                 int idPoa = 0;
                 int.TryParse(dsPoa.Tables[0].Rows[0]["ID_POA"].ToString(), out idPoa);
-                lblIdPoa.Text = idPoa.ToString();
+                lblPoa.Text = idPoa.ToString();
             }
             catch (Exception ex)
             {
-                lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
+
             }
             return poaValido;
         }
 
-        protected void filtrarGrid()
+        public string consulta()
         {
-            try
-            {
-                gridReportes.DataSource = null;
-                gridReportes.DataBind();
-                gridReportes.SelectedIndex = -1;
-                DataSet dsResultado = new DataSet();
-
-                System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-
-
-                if (ddlAnios.SelectedValue.Equals("0") == false)
-                    stringBuilder.Append(" AND t.anio_solicitud = " + ddlAnios.SelectedValue);
-
-                if (ddlUnidades.SelectedValue.Equals("0") == false)
-                    stringBuilder.Append(" AND t.id_unidad = " + ddlUnidades.SelectedValue);
-                else
-                {
-                    stringBuilder.Append(" AND t.id_unidad IN(");
-
-                    int cantidad = (ddlUnidades.Items.Count - 1);
-
-                    for (int i = 1; i <= cantidad; i++)
-                    {
-                        stringBuilder.Append(ddlUnidades.Items[i].Value.ToString());
-
-                        if(i < cantidad)
-                            stringBuilder.Append(", ");
-                    }
-
-                    stringBuilder.Append(")");
-                }
-
-                if (ddlAcciones.SelectedValue.Equals("0") == false)
-                    stringBuilder.Append(" AND t.id_accion = " + ddlAcciones.SelectedValue);                
-
-                string tiposSalida = "";
-                for (int i = 0; i < chkTiposSalida.Items.Count; i++)
-                    if (chkTiposSalida.Items[i].Selected == true)
-                        tiposSalida += chkTiposSalida.Items[i].Value + ", ";
-                
-                if(tiposSalida.Equals("") == false)
-                    stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
-
-                string estadosSalida = "";
-                for (int i = 0; i < chkEstados.Items.Count; i++)
-                    if (chkEstados.Items[i].Selected == true)
-                        estadosSalida += chkEstados.Items[i].Value + ", ";
-
-                if(estadosSalida.Equals("") == false)
-                    stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
-
-                if (ddlRenglones.SelectedValue.Equals("0") == false)
-                    stringBuilder.Append(" AND t.renglon_ppto = ''" + ddlRenglones.SelectedValue + "''");
-
-                if (ddlNumeroDocumento.SelectedValue.Equals("0") == false && ddlNumeroDocumento.SelectedValue.Equals("") == false)
-                    stringBuilder.Append(" AND t.no = " + ddlNumeroDocumento.SelectedValue.Split('-')[0].Trim() + " AND t.docto = ''" + ddlNumeroDocumento.SelectedValue.Split('-')[1].Trim() + "''");
-                else
-                {
-                    pAccionLN = new PlanAccionLN();
-                    pAccionLN.DdlDocumentos(ddlNumeroDocumento, stringBuilder.ToString());
-                }
-
-                pAccionLN = new PlanAccionLN();
-                dsResultado = pAccionLN.InformacionAccionDetalles(0, 0, stringBuilder.ToString(), 4);
-
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
-                {
-                    dsResultado.Tables["BUSQUEDA"].Columns.Remove("anio_solicitud");
-                    dsResultado.Tables["BUSQUEDA"].Columns.Remove("id_unidad");
-                    dsResultado.Tables["BUSQUEDA"].Columns.Remove("id_accion");
-
-                    gridReportes.DataSource = dsResultado.Tables["BUSQUEDA"];
-                    gridReportes.DataBind();
-
-                    lblStringBuilder.Text = stringBuilder.ToString();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("filtrarGrid(). " + ex.Message);
-            }
+            string query = "";
+            query = " SELECT t.*" +
+                    "FROM(SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, " +
+                                    "c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) " +
+                                    "AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                    "FROM      unionpedidocc a INNER JOIN " +
+                                    "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
+                                    "sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN " +
+                                    "sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN " +
+                                    "sipa_pac p ON p.id_pac = c.id_pac INNER JOIN " +
+                                    "ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN " +
+                                    "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
+                                    "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN " +
+                                    "sipa_detalles_accion da ON p.id_detalle = da.id_detalle " +
+                      "WHERE(a.id_tipo_documento = 1) " +
+                      "UNION ALL " +
+                      "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, " +
+                                        "c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, " +
+                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                      "FROM     unionpedidocc a INNER JOIN " +
+                                        "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
+                                        "sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN " +
+                                        "sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN " +
+                                        "ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN " +
+                                        "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
+                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
+                      "WHERE(a.id_tipo_documento = 2) " +
+                      "UNION ALL " +
+                      "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, " +
+                                        "c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, " +
+                                        "'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) " +
+                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                      "FROM     unionpedidocc a INNER JOIN " +
+                                        "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
+                                        "sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN " +
+                                        "sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN " +
+                                        "ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN " +
+                                        "sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN " +
+                                        "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
+                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
+                      "WHERE(a.id_tipo_documento = 3) " +
+                      "UNION ALL " +
+                      " SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa," +
+                                        "c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon," +
+                                        "'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) " +
+                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                      "FROM     unionpedidocc a INNER JOIN " +
+                                        "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
+                                        "sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN " +
+                                        "sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN " +
+                                        "ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN " +
+                                        "sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN " +
+                                        "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
+                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
+                      "WHERE(a.id_tipo_documento = 4)) t " +
+                "WHERE(id_estado_pedido > 0) ";
+            return query;
         }
 
-        protected DataTable armarDtDetalles()
+        protected void ddlAcciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID_ESPECIFICACION_DETALLE", Type.GetType("System.String"));
-            dt.Columns.Add("ID_ESPECIFICACION", Type.GetType("System.String"));
-            dt.Columns.Add("ID_PEDIDO_DETALLE", Type.GetType("System.String"));
-            dt.Columns.Add("DESCRIPCION_ESPECIFICA", Type.GetType("System.String"));
-            dt.Columns.Add("USUARIO", Type.GetType("System.String"));
+            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            int idPoa = 0;
+            int.TryParse(lblPoa.Text, out idPoa);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
 
-            return dt;
-        }
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
 
-
-        protected void busqueda(object sender, EventArgs e)
-        {
-            try
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
             {
-                lblError.Text = lblErrorPoa.Text = string.Empty;           
-                filtrarGrid();
-
-                int idAccion = 0;
-                int.TryParse(ddlAcciones.SelectedValue, out idAccion);
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
             }
-            catch (Exception ex)
-            {
-                lblError.Text = "busqueda(). " + ex.Message;
-            }
-        }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
 
-        protected void ddlPlanes_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
 
-        }
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
 
-        protected void gridReportes_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
             {
 
-                double suma = 0, suma2 = 0, suma3 = 0, suma4 = 0, suma5 = 0;
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    suma = (Convert.ToDouble(e.Row.Cells[8].Text));
-                    e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", suma);
-                    total += suma;
-                    suma = 0;
-
-                    suma2 = (Convert.ToDouble(e.Row.Cells[9].Text));
-                    e.Row.Cells[9].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", suma2);
-                    total2 += suma2;
-                    suma2 = 0;
-
-                    suma3 = (Convert.ToDouble(e.Row.Cells[10].Text));
-                    e.Row.Cells[10].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", suma3);
-                    total3 += suma3;
-                    suma3 = 0;
-
-                    suma4 = (Convert.ToDouble(e.Row.Cells[11].Text));
-                    e.Row.Cells[11].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", suma4);
-                    total4 += suma4;
-                    suma4 = 0;
-                }
-                else if (e.Row.RowType == DataControlRowType.Footer)
-                {
-                    e.Row.Cells[1].Text = "TOTALES";
-                    e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total);
-                    e.Row.Cells[9].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total2);
-                    e.Row.Cells[10].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total3);
-                    e.Row.Cells[11].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", total4);
-                }
-
-                /*if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Cells[2].HorizontalAlign = HorizontalAlign.Right;
-                    e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Right;
-                    e.Row.Cells[4].HorizontalAlign = HorizontalAlign.Right;
-
-                    decimal valor = decimal.Parse(e.Row.Cells[8].Text);
-                    e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
-
-                    valor = decimal.Parse(e.Row.Cells[9].Text);
-                    e.Row.Cells[9].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
-
-                    valor = decimal.Parse(e.Row.Cells[10].Text);
-                    e.Row.Cells[10].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
-
-                    valor = decimal.Parse(e.Row.Cells[11].Text);
-                    e.Row.Cells[11].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
-
-
-                    gridReportes.FooterRow.Cells[1].Text = "TOTALES";
-                    gridReportes.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costoPedido);
-                    gridReportes.FooterRow.Cells[9].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costoEstimado);
-                    gridReportes.FooterRow.Cells[10].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costoReal);
-                    gridReportes.FooterRow.Cells[11].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", iva);
-                }    */            
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "gridReportes_RowDataBound(). " + ex.Message;
             }
 
-        }
-
-        protected void gridReportes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-
-                int idPoa = 0;
-                int.TryParse(lblIdPoa.Text, out idPoa);
-
-                obtenerPresupuesto(idPoa, 0);
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-                ddlAcciones.Items[0].Text = "<< TODAS >>";
-
-                busqueda(sender, e);
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ddlAnios(). " + ex.Message;
-            }
-        }        
-
-        protected void obtenerPresupuesto(int idPoa, int idDependencia)
-        {
-            try
-            {
-                pAccionLN = new PlanAccionLN();
-                DataSet dsPpto = pAccionLN.PptoPoa(idPoa, 0);
-
-                decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
-                decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
-
-
-                lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
-                lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleUnidad);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("obtenerPresupuesto(). " + ex.Message);
-            }
-        }
-
-        protected void ddlRenglones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lblError.Text = lblErrorPoa.Text = string.Empty;
-                filtrarGrid();
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ddlRenglones(). " + ex.Message;
-            }
-        }
-
-        protected void rblEstadosPedido_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnEnviarCorreo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Net.Mail.SmtpClient clienteCorreo = new System.Net.Mail.SmtpClient();
-
-                System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
-                objEmail.From = new System.Net.Mail.MailAddress("soporte.sistemas@cdag.com.gt");
-                //objEmail.ReplyToList = new System.Net.Mail.MailAddressCollection();
-
-
-//Destinatario
-                objEmail.To.Add("ottomansketa@hotmail.com");
-                objEmail.Priority = System.Net.Mail.MailPriority.Normal;
-                objEmail.Subject = "Asunto";
-                objEmail.Body = "Otto apurate con la función para enviar correos jaja";
-                
-                
-                System.Net.Mail.SmtpClient objSmtp = new System.Net.Mail.SmtpClient();
-                objSmtp.Host = "smtp.office365.com";
-                objSmtp.Port = 587;
-
-                objSmtp.UseDefaultCredentials = false;
-                objSmtp.Credentials = new System.Net.NetworkCredential("soporte.sistemas@cdag.com.gt", "sistemas2017*");
-                objSmtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                objSmtp.EnableSsl = true;
-                
-                objSmtp.Send(objEmail);
-
-                lblSuccess.Text = "Correo enviado con éxito!";
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "btnEnviarCorreo(). " + ex.Message;
-            }
+            ReportViewer1.LocalReport.Refresh();
         }
 
         protected void chkTiposSalida_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            if (ddlUnidades.SelectedIndex >= 0)
             {
-                lblError.Text = lblErrorPoa.Text = string.Empty;
-                filtrarGrid();
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "chkTiposSalida(). " + ex.Message;
-            }
-        }
-
-        protected void ddlNumeroDocumento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lblError.Text = lblErrorPoa.Text = string.Empty;
-                filtrarGrid();
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "chkTiposSalida(). " + ex.Message;
-            }
-
-        }
-
-        protected void lbExportar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                pAccionLN = new PlanAccionLN();
-                DataSet dsResultado = pAccionLN.InformacionAccionDetalles(0, 0, lblStringBuilder.Text, 4);
-
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-
-                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                if (ddlUnidades.Items.Count<=1)
                 {
-                    dsResultado.Tables["BUSQUEDA"].Columns.Remove("anio_solicitud");
-                    dsResultado.Tables["BUSQUEDA"].Columns.Remove("id_unidad");
-                    dsResultado.Tables["BUSQUEDA"].Columns.Remove("id_accion");
+                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                }
+               
+            }
+               
+            if (ddlAcciones.SelectedIndex > 0)
+                stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
 
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
+
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
+            {
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
+            }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
+        }
+
+        protected void chkEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            if (ddlUnidades.SelectedIndex >= 0)
+            {
+                if (ddlUnidades.Items.Count <= 1)
+                {
+                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
                 }
 
-                string nombreArchivo = "SaldosReglonesDetalles" + DateTime.Now.ToShortDateString() + ".xlsx";
-                bool b = CreateExcelFile.CreateExcelDocument(dsResultado.Tables["BUSQUEDA"].Copy(), nombreArchivo, Response);
+            }
+            if (ddlAcciones.SelectedIndex > 0)
+                stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
+
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
+
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
+            {
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
+            }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
 
             }
-            catch (Exception ex)
+
+            ReportViewer1.LocalReport.Refresh();
+        }
+
+        protected void txtFechaFinal_TextChanged(object sender, EventArgs e)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            if (ddlUnidades.SelectedIndex >= 0)
             {
-                lblError.Text = "lbExportar(). " + ex.Message;
+                if (ddlUnidades.Items.Count <= 1)
+                {
+                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                }
+
             }
+            if (ddlAcciones.SelectedIndex > 0)
+                stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
+
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
+
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text))
+            {
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
+            }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
         }
     }
 }

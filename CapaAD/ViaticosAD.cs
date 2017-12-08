@@ -497,8 +497,6 @@ namespace CapaAD
             return tabla;
         }
 
-       
-
         public DataTable PptoAprobacionSubgerente(int id, int id2, string criterio, int opcion)
         {
             conectar = new ConexionBD();

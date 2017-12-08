@@ -78,6 +78,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         public string busqueda(int opcion)
         {
+
             string valor = "";
             if (opcion==1)
             {
@@ -85,18 +86,18 @@ namespace AplicacionSIPA1.ReporteriaSistema
                "id_accion, id_tipo_documento, id_estado_pedido, Solicitante FROM (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion," +
                " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, " +
                "a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido " +
-               "INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) " +
+               "LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) " +
                "UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido," +
                " c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a " +
-               " INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado " +
+               " INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado " +
                "= a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion," +
                " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real" +
                ", d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion " +
-               " INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = " +
+               " INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = " +
                "c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida " +
                "AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' " +
                "AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON " +
-               "a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4))" +
+               "a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4))" +
                " t WHERE (1 > 0) AND (id_estado_pedido IN (8, 10, 12)) and id_unidad = @Unidad   ORDER BY id_unidad";
             }
             if (opcion == 2)
@@ -105,24 +106,31 @@ namespace AplicacionSIPA1.ReporteriaSistema
                "id_accion, id_tipo_documento, id_estado_pedido, Solicitante FROM (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion," +
                " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, " +
                "a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido " +
-               "INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) " +
+               "LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) " +
                "UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido," +
                " c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a " +
-               " INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado " +
+               " INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado " +
                "= a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion," +
                " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real" +
                ", d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion " +
-               " INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = " +
+               " INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = " +
                "c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida " +
                "AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' " +
                "AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON " +
-               "a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4))" +
+               "a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4))" +
                " t WHERE (1 > 0) AND (id_estado_pedido IN (8, 10, 12)) and id_unidad = @Unidad and id_accion =@accion  ORDER BY id_unidad";
             }
 
             return valor;
         }
 
+
+        public string querypoa()
+        {
+            string valor = "";
+            valor = "SELECT SUM(d.monto) AS monto FROM sipa_detalles_accion d INNER JOIN sipa_acciones aa ON aa.id_accion = d.id_accion INNER JOIN sipa_renglones r ON d.no_renglon = r.No_Renglon INNER JOIN sipa_tipos_financiamiento f ON d.id_tipo_financiamiento = f.id_tipo ";
+            return valor;
+        }
 
         protected bool validarPoa(int idUnidad, int anio)
         {
@@ -157,20 +165,26 @@ namespace AplicacionSIPA1.ReporteriaSistema
             int idPoa = 0;
             int.TryParse(lblIdPoa.Text, out idPoa);
             obtenerPresupuesto(idPoa, 0);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(querypoa());
+            stringBuilder.Append("Where aa.id_poa  = " + idPoa);
             pAccionLN = new PlanAccionLN();
             pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
             ddlAcciones.Items[0].Text = "<< TODAS >>";
             MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
             System.Data.DataSet thisDataSet = new System.Data.DataSet();
             SearchValue[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
+            
             /* Put the stored procedure result into a dataset */
-            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1),
-                SearchValue);
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
 
             ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
-
+            System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
+            thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+            ReportDataSource datasource1 = new ReportDataSource("DataSet2", thisDataSet2.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
             if (thisDataSet.Tables[0].Rows.Count == 0)
             {
 
@@ -195,9 +209,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     dsPpto = pAccionLN.CostoEstimado(unidads);
                     decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["Gasto"].ToString());
                     decimal disponible = pptoPoaUnidad - pptoPoaDependencia;
-                    lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
-                    lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaDependencia);
-                    lblSaldoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", disponible);
+                   
                 }
               
 
@@ -211,6 +223,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void ddlAcciones_SelectedIndexChanged(object sender, EventArgs e)
         {
+            validarPoa(int.Parse(ddlUnidades.SelectedValue), 2017);
+            int idPoa = 0;
+            int.TryParse(lblIdPoa.Text, out idPoa);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append("select sum(monto) as monto from sipa_detalles_accion ");
+            stringBuilder.Append("Where id_accion  = " + ddlAcciones.SelectedValue);
             MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
             System.Data.DataSet thisDataSet = new System.Data.DataSet();
             SearchValue2[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
@@ -219,9 +237,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(2),SearchValue2);
 
             ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
-
+            System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
+            thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+            ReportDataSource datasource1 = new ReportDataSource("DataSet2", thisDataSet2.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
             if (thisDataSet.Tables[0].Rows.Count == 0)
             {
 

@@ -152,6 +152,7 @@ namespace AplicacionSIPA1.Compras
                     {
                         dvPedido.DataSource = dsResultado.Tables["BUSQUEDA"];
                         dvPedido.DataBind();
+                        
 
                         int idEstadoPedido = 0;
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstadoPedido);
@@ -335,11 +336,11 @@ namespace AplicacionSIPA1.Compras
 
                 switch (dvPedido.Rows[3].Cells[1].Text)
                 {
-                    case "REQUISICION": tipo = 1;
+                    case "REQ": tipo = 1;
                         break;
-                    case "VALE": tipo = 2;
+                    case "VAL": tipo = 2;
                         break;
-                    case "TRANSFERENCIA, APOYO U OTRO GASTO": tipo = 3;
+                    case "GAS": tipo = 3;
                         break;
                 }
             }

@@ -10,10 +10,53 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RenglonesxAccionesTableAdapter" GeneratorDataComponentClassName="RenglonesxAccionesTableAdapter" Name="RenglonesxAcciones" UserDataComponentName="RenglonesxAccionesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="dbcdagsipaConnectionString2 (Web.config)" DbObjectName="SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectName="SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT no_solicitud, Año, Accion, Documento, fecha_pedido, Descripcion, Estado, unidad_administrativa, Pedido, costo_estimado, costo_real, no_renglon, no_pac, anio_solicitud, id_unidad, id_accion, id_tipo_documento, id_estado_pedido, Solicitante FROM (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico INNER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4)) t WHERE (1 &gt; 0) AND (id_estado_pedido IN (8, 10, 12)) ORDER BY id_unidad</CommandText>
+                    <CommandText>SELECT no_solicitud, Año, Accion, Documento, fecha_pedido, Descripcion, Estado, unidad_administrativa, Pedido, costo_estimado, costo_real, no_renglon, no_pac, anio_solicitud, id_unidad, id_accion, id_tipo_documento, id_estado_pedido, 
+                  Solicitante
+FROM     (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, 
+                                    c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante
+                  FROM      unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    sipa_pac p ON p.id_pac = c.id_pac INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante
+                  WHERE   (a.id_tipo_documento = 1)
+                  UNION ALL
+                  SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, 
+                                    c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante
+                  FROM     unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante
+                  WHERE  (a.id_tipo_documento = 2)
+                  UNION ALL
+                  SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, 
+                                    c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 
+                                    'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante
+                  FROM     unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN
+                                    sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico
+                  WHERE  (a.id_tipo_documento = 3)
+                  UNION ALL
+                  SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, 
+                                    c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 
+                                    'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante
+                  FROM     unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN
+                                    sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico
+                  WHERE  (a.id_tipo_documento = 4)) t
+WHERE  (1 &gt; 0) AND (id_estado_pedido IN (8, 10, 12))
+ORDER BY id_unidad</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -143,6 +186,120 @@ FROM     sipa_ccvale p INNER JOIN
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SaldosDetalleTableAdapter" GeneratorDataComponentClassName="SaldosDetalleTableAdapter" Name="SaldosDetalle" UserDataComponentName="SaldosDetalleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectName="SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN sipa_detalles_accion da ON p.id_detalle = da.id_detalle WHERE (a.id_tipo_documento = 1) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN ccl_empleados sec ON sec.id_empleado = a.id_tecnico WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN ccl_empleados sec ON sec.id_empleado = a.id_tecnico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN ccl_empleados sec ON sec.id_empleado = a.id_tecnico WHERE (a.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT no_solicitud, Año, Accion, Documento, fecha_pedido, Descripcion, Estado, unidad_administrativa, Pedido, costo_estimado, costo_real, no_renglon, no_pac, renglon_pac, anio_solicitud, id_unidad, id_accion, id_tipo_documento, 
+                  id_estado_pedido, Solicitante, AnalistaPpto, TecnicoCompras
+FROM     (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, 
+                                    c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) 
+                                    AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras
+                  FROM      unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    sipa_pac p ON p.id_pac = c.id_pac INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN
+                                    ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN
+                                    ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN
+                                    sipa_detalles_accion da ON p.id_detalle = da.id_detalle
+                  WHERE   (a.id_tipo_documento = 1)
+                  UNION ALL
+                  SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, 
+                                    c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, 
+                                    CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras
+                  FROM     unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN
+                                    ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN
+                                    ccl_empleados sec ON sec.id_empleado = a.id_tecnico
+                  WHERE  (a.id_tipo_documento = 2)
+                  UNION ALL
+                  SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, 
+                                    c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 
+                                    'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) 
+                                    AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras
+                  FROM     unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN
+                                    sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN
+                                    ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN
+                                    ccl_empleados sec ON sec.id_empleado = a.id_tecnico
+                  WHERE  (a.id_tipo_documento = 3)
+                  UNION ALL
+                  SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, 
+                                    c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 
+                                    'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) 
+                                    AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras
+                  FROM     unionpedidocc a INNER JOIN
+                                    sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN
+                                    sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN
+                                    sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN
+                                    ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN
+                                    sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN
+                                    ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN
+                                    ccl_empleados sec ON sec.id_empleado = a.id_tecnico
+                  WHERE  (a.id_tipo_documento = 4)) t
+WHERE  (id_estado_pedido &gt; 0)
+ORDER BY id_unidad</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="Año" DataSetColumn="Año" />
+              <Mapping SourceColumn="Accion" DataSetColumn="Accion" />
+              <Mapping SourceColumn="Documento" DataSetColumn="Documento" />
+              <Mapping SourceColumn="fecha_pedido" DataSetColumn="fecha_pedido" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="unidad_administrativa" DataSetColumn="unidad_administrativa" />
+              <Mapping SourceColumn="Pedido" DataSetColumn="Pedido" />
+              <Mapping SourceColumn="costo_estimado" DataSetColumn="costo_estimado" />
+              <Mapping SourceColumn="costo_real" DataSetColumn="costo_real" />
+              <Mapping SourceColumn="no_renglon" DataSetColumn="no_renglon" />
+              <Mapping SourceColumn="no_pac" DataSetColumn="no_pac" />
+              <Mapping SourceColumn="anio_solicitud" DataSetColumn="anio_solicitud" />
+              <Mapping SourceColumn="id_unidad" DataSetColumn="id_unidad" />
+              <Mapping SourceColumn="id_accion" DataSetColumn="id_accion" />
+              <Mapping SourceColumn="id_tipo_documento" DataSetColumn="id_tipo_documento" />
+              <Mapping SourceColumn="id_estado_pedido" DataSetColumn="id_estado_pedido" />
+              <Mapping SourceColumn="Solicitante" DataSetColumn="Solicitante" />
+              <Mapping SourceColumn="AnalistaPpto" DataSetColumn="AnalistaPpto" />
+              <Mapping SourceColumn="TecnicoCompras" DataSetColumn="TecnicoCompras" />
+              <Mapping SourceColumn="renglon_pac" DataSetColumn="renglon_pac" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GastosTableAdapter" GeneratorDataComponentClassName="GastosTableAdapter" Name="Gastos" UserDataComponentName="GastosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT g.no_solicitud, p.nombre_estado, u.Unidad
+FROM     sipa_gastos g INNER JOIN
+                  sipa_estados_pedido p ON p.id_estado_pedido = g.id_estado_gasto INNER JOIN
+                  ccl_unidades u ON u.id_unidad = g.id_unidad</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="nombre_estado" DataSetColumn="nombre_estado" />
+              <Mapping SourceColumn="Unidad" DataSetColumn="Unidad" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -196,7 +353,7 @@ FROM     sipa_ccvale p INNER JOIN
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Pedido" msprop:Generator_ColumnVarNameInTable="columnPedido" msprop:Generator_ColumnPropNameInRow="Pedido" msprop:Generator_ColumnPropNameInTable="PedidoColumn" msprop:Generator_UserColumnName="Pedido" type="xs:decimal" minOccurs="0" />
-              <xs:element name="no_renglon" msprop:Generator_ColumnVarNameInTable="columnno_renglon" msprop:Generator_ColumnPropNameInRow="no_renglon" msprop:Generator_ColumnPropNameInTable="no_renglonColumn" msprop:Generator_UserColumnName="no_renglon">
+              <xs:element name="no_renglon" msprop:Generator_ColumnVarNameInTable="columnno_renglon" msprop:Generator_ColumnPropNameInRow="no_renglon" msprop:Generator_ColumnPropNameInTable="no_renglonColumn" msprop:Generator_UserColumnName="no_renglon" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="5" />
@@ -283,6 +440,121 @@ FROM     sipa_ccvale p INNER JOIN
           </xs:complexType>
         </xs:element>
         <xs:element name="Vales" msprop:Generator_TableClassName="ValesDataTable" msprop:Generator_TableVarName="tableVales" msprop:Generator_TablePropName="Vales" msprop:Generator_RowDeletingName="ValesRowDeleting" msprop:Generator_RowChangingName="ValesRowChanging" msprop:Generator_RowEvHandlerName="ValesRowChangeEventHandler" msprop:Generator_RowDeletedName="ValesRowDeleted" msprop:Generator_UserTableName="Vales" msprop:Generator_RowChangedName="ValesRowChanged" msprop:Generator_RowEvArgName="ValesRowChangeEvent" msprop:Generator_RowClassName="ValesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" />
+              <xs:element name="nombre_estado" msprop:Generator_ColumnVarNameInTable="columnnombre_estado" msprop:Generator_ColumnPropNameInRow="nombre_estado" msprop:Generator_ColumnPropNameInTable="nombre_estadoColumn" msprop:Generator_UserColumnName="nombre_estado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Unidad" msprop:Generator_ColumnVarNameInTable="columnUnidad" msprop:Generator_ColumnPropNameInRow="Unidad" msprop:Generator_ColumnPropNameInTable="UnidadColumn" msprop:Generator_UserColumnName="Unidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SaldosDetalle" msprop:Generator_TableClassName="SaldosDetalleDataTable" msprop:Generator_TableVarName="tableSaldosDetalle" msprop:Generator_RowChangedName="SaldosDetalleRowChanged" msprop:Generator_TablePropName="SaldosDetalle" msprop:Generator_RowDeletingName="SaldosDetalleRowDeleting" msprop:Generator_RowChangingName="SaldosDetalleRowChanging" msprop:Generator_RowEvHandlerName="SaldosDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="SaldosDetalleRowDeleted" msprop:Generator_RowClassName="SaldosDetalleRow" msprop:Generator_UserTableName="SaldosDetalle" msprop:Generator_RowEvArgName="SaldosDetalleRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" minOccurs="0" />
+              <xs:element name="Año" msprop:Generator_ColumnVarNameInTable="columnAño" msprop:Generator_ColumnPropNameInRow="Año" msprop:Generator_ColumnPropNameInTable="AñoColumn" msprop:Generator_UserColumnName="Año" type="xs:int" minOccurs="0" />
+              <xs:element name="Accion" msprop:Generator_ColumnVarNameInTable="columnAccion" msprop:Generator_ColumnPropNameInRow="Accion" msprop:Generator_ColumnPropNameInTable="AccionColumn" msprop:Generator_UserColumnName="Accion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Documento" msprop:Generator_ColumnVarNameInTable="columnDocumento" msprop:Generator_ColumnPropNameInRow="Documento" msprop:Generator_ColumnPropNameInTable="DocumentoColumn" msprop:Generator_UserColumnName="Documento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="49" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fecha_pedido" msprop:Generator_ColumnVarNameInTable="columnfecha_pedido" msprop:Generator_ColumnPropNameInRow="fecha_pedido" msprop:Generator_ColumnPropNameInTable="fecha_pedidoColumn" msprop:Generator_UserColumnName="fecha_pedido" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="unidad_administrativa" msprop:Generator_ColumnVarNameInTable="columnunidad_administrativa" msprop:Generator_ColumnPropNameInRow="unidad_administrativa" msprop:Generator_ColumnPropNameInTable="unidad_administrativaColumn" msprop:Generator_UserColumnName="unidad_administrativa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pedido" msprop:Generator_ColumnVarNameInTable="columnPedido" msprop:Generator_ColumnPropNameInRow="Pedido" msprop:Generator_ColumnPropNameInTable="PedidoColumn" msprop:Generator_UserColumnName="Pedido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="costo_estimado" msprop:Generator_ColumnVarNameInTable="columncosto_estimado" msprop:Generator_ColumnPropNameInRow="costo_estimado" msprop:Generator_ColumnPropNameInTable="costo_estimadoColumn" msprop:Generator_UserColumnName="costo_estimado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="costo_real" msprop:Generator_ColumnVarNameInTable="columncosto_real" msprop:Generator_ColumnPropNameInRow="costo_real" msprop:Generator_ColumnPropNameInTable="costo_realColumn" msprop:Generator_UserColumnName="costo_real" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_renglon" msprop:Generator_ColumnVarNameInTable="columnno_renglon" msprop:Generator_ColumnPropNameInRow="no_renglon" msprop:Generator_ColumnPropNameInTable="no_renglonColumn" msprop:Generator_UserColumnName="no_renglon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_pac" msprop:Generator_ColumnVarNameInTable="columnno_pac" msprop:Generator_ColumnPropNameInRow="no_pac" msprop:Generator_ColumnPropNameInTable="no_pacColumn" msprop:Generator_UserColumnName="no_pac">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="anio_solicitud" msprop:Generator_ColumnVarNameInTable="columnanio_solicitud" msprop:Generator_ColumnPropNameInRow="anio_solicitud" msprop:Generator_ColumnPropNameInTable="anio_solicitudColumn" msprop:Generator_UserColumnName="anio_solicitud" type="xs:int" minOccurs="0" />
+              <xs:element name="id_unidad" msprop:Generator_ColumnVarNameInTable="columnid_unidad" msprop:Generator_ColumnPropNameInRow="id_unidad" msprop:Generator_ColumnPropNameInTable="id_unidadColumn" msprop:Generator_UserColumnName="id_unidad" type="xs:int" minOccurs="0" />
+              <xs:element name="id_accion" msprop:Generator_ColumnVarNameInTable="columnid_accion" msprop:Generator_ColumnPropNameInRow="id_accion" msprop:Generator_ColumnPropNameInTable="id_accionColumn" msprop:Generator_UserColumnName="id_accion" type="xs:int" />
+              <xs:element name="id_tipo_documento" msprop:Generator_ColumnVarNameInTable="columnid_tipo_documento" msprop:Generator_ColumnPropNameInRow="id_tipo_documento" msprop:Generator_ColumnPropNameInTable="id_tipo_documentoColumn" msprop:Generator_UserColumnName="id_tipo_documento" type="xs:long" />
+              <xs:element name="id_estado_pedido" msprop:Generator_ColumnVarNameInTable="columnid_estado_pedido" msprop:Generator_ColumnPropNameInRow="id_estado_pedido" msprop:Generator_ColumnPropNameInTable="id_estado_pedidoColumn" msprop:Generator_UserColumnName="id_estado_pedido" type="xs:int" minOccurs="0" />
+              <xs:element name="Solicitante" msprop:Generator_ColumnVarNameInTable="columnSolicitante" msprop:Generator_ColumnPropNameInRow="Solicitante" msprop:Generator_ColumnPropNameInTable="SolicitanteColumn" msprop:Generator_UserColumnName="Solicitante" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="264" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AnalistaPpto" msprop:Generator_ColumnVarNameInTable="columnAnalistaPpto" msprop:Generator_ColumnPropNameInRow="AnalistaPpto" msprop:Generator_ColumnPropNameInTable="AnalistaPptoColumn" msprop:Generator_UserColumnName="AnalistaPpto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="264" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TecnicoCompras" msprop:Generator_ColumnVarNameInTable="columnTecnicoCompras" msprop:Generator_ColumnPropNameInRow="TecnicoCompras" msprop:Generator_ColumnPropNameInTable="TecnicoComprasColumn" msprop:Generator_UserColumnName="TecnicoCompras" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="264" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="renglon_pac" msprop:Generator_ColumnVarNameInTable="columnrenglon_pac" msprop:Generator_ColumnPropNameInRow="renglon_pac" msprop:Generator_ColumnPropNameInTable="renglon_pacColumn" msprop:Generator_UserColumnName="renglon_pac">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Gastos" msprop:Generator_TableClassName="GastosDataTable" msprop:Generator_TableVarName="tableGastos" msprop:Generator_TablePropName="Gastos" msprop:Generator_RowDeletingName="GastosRowDeleting" msprop:Generator_RowChangingName="GastosRowChanging" msprop:Generator_RowEvHandlerName="GastosRowChangeEventHandler" msprop:Generator_RowDeletedName="GastosRowDeleted" msprop:Generator_UserTableName="Gastos" msprop:Generator_RowChangedName="GastosRowChanged" msprop:Generator_RowEvArgName="GastosRowChangeEvent" msprop:Generator_RowClassName="GastosRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" />

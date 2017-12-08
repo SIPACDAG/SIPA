@@ -527,13 +527,13 @@ namespace CapaAD
             return ds;
         }
 
-        public DataTable InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion)
+        public DataTable InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion,int anio)
         {
 
             conectar = new ConexionBD();
             conectar.AbrirConexion();
-            string permiso = string.Format("SELECT 	 pu.id_Poa FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = 2017" +
-                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = (select id_unidad from sipa_poa where id_Poa = {0}));", id);
+            string permiso = string.Format("SELECT 	 pu.id_Poa FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = {1}" +
+                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = (select id_unidad from sipa_poa where id_Poa = {0}));", id,anio);
             MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
             List<string> id_poas = new List<string>();
             MySqlDataReader dr = cmd.ExecuteReader();

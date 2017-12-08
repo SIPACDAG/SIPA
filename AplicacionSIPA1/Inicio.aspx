@@ -34,9 +34,14 @@
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource3" Name="DataSet3" />
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource4" Name="DataSet4" />
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource5" Name="DataSet5" />
+                    <rsweb:ReportDataSource DataSourceId="SqlDataSource6" Name="DataSet6" />
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
+
+        
+
+        <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:dbcdagsipaConnectionString1 %>" ProviderName="<%$ ConnectionStrings:dbcdagsipaConnectionString1.ProviderName %>" SelectCommand="SELECT g.no_solicitud, p.nombre_estado, u.Unidad FROM sipa_gastos g INNER JOIN sipa_estados_pedido p ON p.id_estado_pedido = g.id_estado_gasto INNER JOIN ccl_unidades u ON u.id_unidad = g.id_unidad"></asp:SqlDataSource>
 
         
 

@@ -120,15 +120,15 @@ C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\obj\De
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\AplicacionSIPA1.dll.config
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\AplicacionSIPA1.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
+C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.ReportViewer.WebForms.DLL
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\NumeroaLetras.dll
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll
+C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaEN.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaLN.pdb
-C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\bin\CapaAD.pdb
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.cache
 C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.compiled

@@ -167,8 +167,10 @@ namespace AplicacionSIPA1.Operativa
             bool resultado = false;
             try
             {
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 planOperativoLN = new PlanOperativoLN();
-                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuarioIng, "");
+                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuarioIng, "", ip[0], ip[1], ip[2], "Asignar Analista", "Asignar");
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

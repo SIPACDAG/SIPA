@@ -486,7 +486,17 @@ namespace AplicacionSIPA1.Pedido
                 if (idEncabezado == 0)
                     throw new Exception("Seleccione un pedido!");
 
-                Response.Redirect("PedidoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                int multianual = 0;
+                int.TryParse(gridDet.SelectedDataKey["multianual"].ToString(),out multianual);
+                if (multianual ==0)
+                {
+                    Response.Redirect("PedidoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                }
+                else
+                {
+                    Response.Redirect("Multianuales/PedidoMultianual.aspx?No=" + Convert.ToString(idEncabezado));
+                }
+              
             }
             catch (Exception ex)
             {
@@ -534,7 +544,7 @@ namespace AplicacionSIPA1.Pedido
         {
             GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
             int indice = grid.RowIndex;
-
+            
             gridDet.SelectedIndex = grid.RowIndex;
 
             LinkButton linkB = new LinkButton();

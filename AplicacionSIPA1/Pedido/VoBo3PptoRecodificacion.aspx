@@ -463,7 +463,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound" 
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover table-responsive" Visible="true">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="false">

@@ -400,11 +400,11 @@ namespace CapaLN
             }
             drop.DataBind();
 
-            if (drop.Items.Count == 2)
-            {
-                drop.Items.RemoveAt(0);
-                drop.SelectedIndex = 0;
-            }
+            //if (drop.Items.Count == 2)
+            //{
+            //    drop.Items.RemoveAt(0);
+            //    drop.SelectedIndex = 0;
+            //}
         }
 
         public void DdlAjustesVoBo(DropDownList drop, int idUnidad)

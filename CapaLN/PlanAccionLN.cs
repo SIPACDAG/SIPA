@@ -547,13 +547,13 @@ namespace CapaLN
 
             return dsResultado;
         }
-        public DataSet InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion)
+        public DataSet InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion,int anio)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanAccionAD();
             try
             {
-                DataTable dt = ObjAD.InformacionAccionDetallesCompleto(id, id2, criterio, opcion);
+                DataTable dt = ObjAD.InformacionAccionDetallesCompleto(id, id2, criterio, opcion,anio);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;

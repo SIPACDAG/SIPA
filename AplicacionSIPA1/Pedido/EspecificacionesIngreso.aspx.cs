@@ -337,7 +337,7 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnImprimir_Click(object sender, EventArgs e)
         {
-
+            generarReporte(int.Parse(lblIdPedido.Text));
         }
 
         protected void btnListado_Click(object sender, EventArgs e)

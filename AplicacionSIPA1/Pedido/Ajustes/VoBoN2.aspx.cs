@@ -630,7 +630,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_AJUSTE"].ToString(), out idEstadoAjuste);
 
                     //EL AJUSTE ESTÁ EN ESTADO 4 - Revisión Sub/Dir, AL NO SER ENVIADO A REVISIÓN SE PUEDE MODIFICAR
-                    if (idEstadoAjuste == 6)
+                    if (idEstadoAjuste == 6 || idEstadoAjuste == 8)
                     {
                         btnRechazar.Visible = btnAprobar.Visible = true;
                         lblErrorPoa.Text = lblError.Text = "";

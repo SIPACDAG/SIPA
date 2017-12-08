@@ -336,13 +336,13 @@ namespace AplicacionSIPA1.Pedido
 
                 switch (dvPedido.Rows[3].Cells[1].Text)
                 {
-                    case "REQUISICION":
+                    case "REQ":
                         tipo = 1;
                         break;
-                    case "VALE":
+                    case "VAL":
                         tipo = 2;
                         break;
-                    case "TRANSFERENCIA, APOYO U OTRO GASTO":
+                    case "GAS":
                         tipo = 3;
                         break;
                 }

@@ -136,12 +136,5 @@ namespace CapaLN
             return dt;
         }    
         
-        public DataSet SaldoXUnidad (int anio)
-        {
-            reportesAD = new ReportesAD();
-            DataSet dt = new DataSet();
-            dt = reportesAD.SaldosxUnidad(anio);
-            return dt;
-        }
     }
 }

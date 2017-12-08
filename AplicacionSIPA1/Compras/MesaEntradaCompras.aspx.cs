@@ -45,7 +45,7 @@ namespace AplicacionSIPA1.Compras
                 filtrarDvPedidos();
                 filtrarGridDetalles();
                 filtrarGridPpto();
-                txtObser.Text = string.Empty;                
+                txtObser.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -126,9 +126,9 @@ namespace AplicacionSIPA1.Compras
 
                 pInsumoLN = new PedidosLN();
                 DataSet dsResultado = new DataSet();
-                
+
                 int idEncabezado, idtipoDocto, anio = 0;
-                
+
                 int.TryParse(txtNo.Text, out idEncabezado);
                 int.TryParse(rblTipoDocto.SelectedValue, out idtipoDocto);
                 int.TryParse(ddlAnios.SelectedValue, out anio);
@@ -144,13 +144,14 @@ namespace AplicacionSIPA1.Compras
                     {
                         dsResultado = pInsumoLN.InformacionPedido(anio, 0, 0, "", 9);
 
-                    if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                        if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
-                    {
-                        dvPedido.DataSource = dsResultado.Tables["BUSQUEDA"];
-                        dvPedido.DataBind();
+                        if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
+                        {
+                            dvPedido.DataSource = dsResultado.Tables["BUSQUEDA"];
+                            dvPedido.DataBind();
+                          
 
                             //txtObser.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES"].ToString();
 
@@ -236,7 +237,7 @@ namespace AplicacionSIPA1.Compras
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
 
-                if(dvPedido.SelectedValue != null)
+                if (dvPedido.SelectedValue != null)
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
                 idTipoSalida = tipoDoc();
@@ -327,11 +328,14 @@ namespace AplicacionSIPA1.Compras
 
                 switch (dvPedido.Rows[3].Cells[1].Text)
                 {
-                    case "REQUISICION": tipo = 1;
+                    case "REQ":
+                        tipo = 1;
                         break;
-                    case "VALE": tipo = 2;
+                    case "VAL":
+                        tipo = 2;
                         break;
-                    case "TRANSFERENCIA, APOYO U OTRO GASTO": tipo = 3;
+                    case "GAS":
+                        tipo = 3;
                         break;
                 }
             }
@@ -380,7 +384,7 @@ namespace AplicacionSIPA1.Compras
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 lblErrorPoa.Text = string.Empty;
-               
+
                 string id_unidad = ddlUnidades.SelectedItem.Value;
 
                 if (anio > 0 && idUnidad > 0)
@@ -433,9 +437,9 @@ namespace AplicacionSIPA1.Compras
                 btnAprobar.Visible = btnRechazar.Visible = false;
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -471,7 +475,7 @@ namespace AplicacionSIPA1.Compras
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected bool validarEstadoPedido(int idPedido)
@@ -495,7 +499,7 @@ namespace AplicacionSIPA1.Compras
 
                     pInsumoLN = new PedidosLN();
                     DataSet dsResultado = pInsumoLN.InformacionPedido(anioSolicitud, idPedido, tipoDocumento, "ESTADO", 7);
-                    
+
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -567,7 +571,7 @@ namespace AplicacionSIPA1.Compras
 
                 int idSalida, idTipoSalida;
                 idSalida = idTipoSalida = 0;
-                if(dvPedido.SelectedValue != null)
+                if (dvPedido.SelectedValue != null)
                     int.TryParse(dvPedido.SelectedValue.ToString(), out idSalida);
 
                 int.TryParse(rblTipoDocto.SelectedValue, out idTipoSalida);
@@ -585,7 +589,7 @@ namespace AplicacionSIPA1.Compras
                         pInsumoLN = new PedidosLN();
                         string usuario = Session["usuario"].ToString();
                         string observaciones = txtObser.Text;
-                        DataSet dsResultado = pInsumoLN.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
+                        DataSet dsResultado = pInsumoLN.AprobacionMesaEntrada(idSalida, idTipoSalida, observaciones, usuario, ip[0], ip[1], ip[2]);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se APROBÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -673,7 +677,7 @@ namespace AplicacionSIPA1.Compras
                     pInsumoLN = new PedidosLN();
                     string usuario = Session["usuario"].ToString();
                     string observaciones = txtObser.Text;
-                    DataSet dsResultado = pInsumoLN.RechazoMesaEntrada(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
+                    DataSet dsResultado = pInsumoLN.RechazoMesaEntrada(idSalida, idTipoSalida, observaciones, usuario, ip[0], ip[1], ip[2]);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se RECHAZÓ la solicitud: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -793,7 +797,7 @@ namespace AplicacionSIPA1.Compras
 
                 if (anio > 0 && idUnidad > 0)
                 {
-                    
+
                     validarPoaAprobacionPedido(idUnidad, anio);
                 }
                 int idPoa = 0;

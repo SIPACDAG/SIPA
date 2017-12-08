@@ -373,7 +373,7 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones)
+        public DataTable ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones,string ip, string mac, string pc, string tipo, string boton)
         {
             conectar = new ConexionBD();
             conectar.AbrirConexion();
@@ -393,9 +393,9 @@ namespace CapaAD
             for (int i = 0; i < id_poas.Count; i++)
             {
                 if (idUsuario == null)
-                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, null, '{3}', '{4}', '{5}', 1);", id_poas[i], idEstado, anio, usuarioAsignado, usuario, observaciones);
+                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, null, '{3}', '{4}', '{5}', 1,'{6}','{7}','{8}','{9}','{10}');", id_poas[i], idEstado, anio, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
                 else
-                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, {3}, '{4}', '{5}', '{6}', 1);", id_poas[i], idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones);
+                    query = String.Format("CALL sp_cambiaEstadoPoaPac({0}, {1}, {2}, {3}, '{4}', '{5}', '{6}', 1,'{7}','{8}','{9}','{10}','{11}');", id_poas[i], idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
 
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(tabla);

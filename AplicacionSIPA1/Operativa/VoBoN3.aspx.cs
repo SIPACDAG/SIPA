@@ -162,11 +162,11 @@ namespace AplicacionSIPA1.Operativa
                 DataSet dsResultado = new DataSet();
                 int.TryParse(lblIdPoa.Text, out idPoa);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
-
+                int anio = int.Parse(ddlAnios.SelectedValue);
                 planAccionLN = new PlanAccionLN();
                 if (ddlDepend.SelectedIndex <= 0)
                 {
-                    dsResultado = planAccionLN.InformacionAccionDetallesCompleto(idPoa, 0, "", 2);
+                    dsResultado = planAccionLN.InformacionAccionDetallesCompleto(idPoa, 0, "", 2,anio);
                 }
                 else
                 {
@@ -872,8 +872,10 @@ namespace AplicacionSIPA1.Operativa
                 planOperativoLN = new PlanOperativoLN();
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 string usuario = Session["usuario"].ToString();
+                FuncionesVarias fv = new FuncionesVarias();
+                string[] ip = fv.DatosUsuarios();
                 string observaciones = txtObser.Text;
-                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones);
+                DataSet dsResultado = planOperativoLN.ActualizarEstadoPoa(int.Parse(lblIdPoa.Text), idEstado, anio, null, "", usuario, observaciones, ip[0], ip[1], ip[2], "Aprobacion N3", "Aprobar");
 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ACTUALIZÓ la planificación: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

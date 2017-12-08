@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsEstados" targetNamespace="http://tempuri.org/dsEstados.xsd" xmlns:mstns="http://tempuri.org/dsEstados.xsd" xmlns="http://tempuri.org/dsEstados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EstadosTableAdapter" GeneratorDataComponentClassName="EstadosTableAdapter" Name="Estados" UserDataComponentName="EstadosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectName="SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 1) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 2) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 3) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT no_solicitud, documento, estadoAnterior, EstadoNuevo, iniciales, fecha_comparacion_anterior, dias, horas, minutos, segundos, usuario_ing, observaciones FROM (SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 1) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 2) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 3) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 4)) t ORDER BY no_solicitud, documento, fecha_comparacion_anterior</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="documento" DataSetColumn="documento" />
+              <Mapping SourceColumn="EstadoNuevo" DataSetColumn="EstadoNuevo" />
+              <Mapping SourceColumn="fecha_comparacion_anterior" DataSetColumn="fecha_comparacion_anterior" />
+              <Mapping SourceColumn="dias" DataSetColumn="dias" />
+              <Mapping SourceColumn="horas" DataSetColumn="horas" />
+              <Mapping SourceColumn="minutos" DataSetColumn="minutos" />
+              <Mapping SourceColumn="segundos" DataSetColumn="segundos" />
+              <Mapping SourceColumn="usuario_ing" DataSetColumn="usuario_ing" />
+              <Mapping SourceColumn="observaciones" DataSetColumn="observaciones" />
+              <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
+              <Mapping SourceColumn="estadoAnterior" DataSetColumn="estadoAnterior" />
+              <Mapping SourceColumn="iniciales" DataSetColumn="iniciales" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsEstados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsEstados" msprop:Generator_UserDSName="dsEstados">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Estados" msprop:Generator_TableClassName="EstadosDataTable" msprop:Generator_TableVarName="tableEstados" msprop:Generator_RowChangedName="EstadosRowChanged" msprop:Generator_TablePropName="Estados" msprop:Generator_RowDeletingName="EstadosRowDeleting" msprop:Generator_RowChangingName="EstadosRowChanging" msprop:Generator_RowEvHandlerName="EstadosRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadosRowDeleted" msprop:Generator_RowClassName="EstadosRow" msprop:Generator_UserTableName="Estados" msprop:Generator_RowEvArgName="EstadosRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="documento" msprop:Generator_ColumnVarNameInTable="columndocumento" msprop:Generator_ColumnPropNameInRow="documento" msprop:Generator_ColumnPropNameInTable="documentoColumn" msprop:Generator_UserColumnName="documento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EstadoNuevo" msprop:Generator_ColumnVarNameInTable="columnEstadoNuevo" msprop:Generator_ColumnPropNameInRow="EstadoNuevo" msprop:Generator_ColumnPropNameInTable="EstadoNuevoColumn" msprop:Generator_UserColumnName="EstadoNuevo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fecha_comparacion_anterior" msprop:Generator_ColumnVarNameInTable="columnfecha_comparacion_anterior" msprop:Generator_ColumnPropNameInRow="fecha_comparacion_anterior" msprop:Generator_ColumnPropNameInTable="fecha_comparacion_anteriorColumn" msprop:Generator_UserColumnName="fecha_comparacion_anterior" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dias" msprop:Generator_ColumnVarNameInTable="columndias" msprop:Generator_ColumnPropNameInRow="dias" msprop:Generator_ColumnPropNameInTable="diasColumn" msprop:Generator_UserColumnName="dias" type="xs:int" minOccurs="0" />
+              <xs:element name="horas" msprop:Generator_ColumnVarNameInTable="columnhoras" msprop:Generator_ColumnPropNameInRow="horas" msprop:Generator_ColumnPropNameInTable="horasColumn" msprop:Generator_UserColumnName="horas" type="xs:int" minOccurs="0" />
+              <xs:element name="minutos" msprop:Generator_ColumnVarNameInTable="columnminutos" msprop:Generator_ColumnPropNameInRow="minutos" msprop:Generator_ColumnPropNameInTable="minutosColumn" msprop:Generator_UserColumnName="minutos" type="xs:int" minOccurs="0" />
+              <xs:element name="segundos" msprop:Generator_ColumnVarNameInTable="columnsegundos" msprop:Generator_ColumnPropNameInRow="segundos" msprop:Generator_ColumnPropNameInTable="segundosColumn" msprop:Generator_UserColumnName="segundos" type="xs:int" minOccurs="0" />
+              <xs:element name="usuario_ing" msprop:Generator_ColumnVarNameInTable="columnusuario_ing" msprop:Generator_ColumnPropNameInRow="usuario_ing" msprop:Generator_ColumnPropNameInTable="usuario_ingColumn" msprop:Generator_UserColumnName="usuario_ing" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="observaciones" msprop:Generator_ColumnVarNameInTable="columnobservaciones" msprop:Generator_ColumnPropNameInRow="observaciones" msprop:Generator_ColumnPropNameInTable="observacionesColumn" msprop:Generator_UserColumnName="observaciones" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_solicitud" msprop:Generator_ColumnVarNameInTable="columnno_solicitud" msprop:Generator_ColumnPropNameInRow="no_solicitud" msprop:Generator_ColumnPropNameInTable="no_solicitudColumn" msprop:Generator_UserColumnName="no_solicitud" type="xs:int" minOccurs="0" />
+              <xs:element name="estadoAnterior" msprop:Generator_ColumnVarNameInTable="columnestadoAnterior" msprop:Generator_ColumnPropNameInRow="estadoAnterior" msprop:Generator_ColumnPropNameInTable="estadoAnteriorColumn" msprop:Generator_UserColumnName="estadoAnterior">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="iniciales" msprop:Generator_ColumnVarNameInTable="columniniciales" msprop:Generator_ColumnPropNameInRow="iniciales" msprop:Generator_ColumnPropNameInTable="inicialesColumn" msprop:Generator_UserColumnName="iniciales" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

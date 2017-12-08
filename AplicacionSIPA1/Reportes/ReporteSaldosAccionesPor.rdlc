@@ -2184,7 +2184,7 @@
   <Width>15.14667in</Width>
   <Page>
     <PageHeader>
-      <Height>0.78056in</Height>
+      <Height>1.1139in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -2205,7 +2205,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>0.33278in</Left>
           <Height>0.55834in</Height>
           <Width>1in</Width>
@@ -2257,7 +2257,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>1.31889in</Left>
           <Height>0.55834in</Height>
           <Width>1in</Width>
@@ -2310,7 +2310,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>2.27723in</Left>
           <Height>0.55834in</Height>
           <Width>0.97222in</Width>
@@ -2363,7 +2363,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>3.24945in</Left>
           <Height>0.55834in</Height>
           <Width>0.86667in</Width>
@@ -2416,8 +2416,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
-          <Left>4.11612in</Left>
+          <Top>0.55556in</Top>
+          <Left>4.13001in</Left>
           <Height>0.55834in</Height>
           <Width>0.98611in</Width>
           <ZIndex>4</ZIndex>
@@ -2469,7 +2469,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>5.10223in</Left>
           <Height>0.55834in</Height>
           <Width>1in</Width>
@@ -2522,7 +2522,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>6.10223in</Left>
           <Height>0.55834in</Height>
           <Width>1.07222in</Width>
@@ -2575,7 +2575,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>7.17445in</Left>
           <Height>0.55834in</Height>
           <Width>0.95555in</Width>
@@ -2628,7 +2628,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>8.11612in</Left>
           <Height>0.55834in</Height>
           <Width>0.96944in</Width>
@@ -2681,7 +2681,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>9.08555in</Left>
           <Height>0.55834in</Height>
           <Width>0.99166in</Width>
@@ -2734,7 +2734,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>10.07722in</Left>
           <Height>0.55834in</Height>
           <Width>0.83055in</Width>
@@ -2787,7 +2787,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>10.90777in</Left>
           <Height>0.55834in</Height>
           <Width>1.7in</Width>
@@ -2840,7 +2840,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.20833in</Top>
+          <Top>0.55556in</Top>
           <Left>12.60776in</Left>
           <Height>0.55834in</Height>
           <Width>1.99722in</Width>
@@ -2870,6 +2870,153 @@
               <Width>1pt</Width>
             </RightBorder>
             <BackgroundColor>CornflowerBlue</BackgroundColor>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox16">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Codificado:  </Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=FormatNumber(Sum(Fields!costo_estimado.Value, "DataSet1"),0)</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>Red</Color>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>.00 </Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>Red</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox16</rd:DefaultName>
+          <Top>0.12167in</Top>
+          <Left>4.605in</Left>
+          <Height>0.31667in</Height>
+          <Width>3.525in</Width>
+          <ZIndex>13</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox17">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Presupuesto:    </Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=FormatNumber(Sum(Fields!monto.Value, "DataSet2"),0)</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>CornflowerBlue</Color>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>.00</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>CornflowerBlue</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox17</rd:DefaultName>
+          <Top>0.12167in</Top>
+          <Left>0.34667in</Left>
+          <Height>0.31667in</Height>
+          <Width>3in</Width>
+          <ZIndex>14</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox18">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Disponible : </Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=FormatNumber(FormatNumber(Sum(Fields!monto.Value, "DataSet2"),0)-FormatNumber(Sum(Fields!costo_estimado.Value, "DataSet1"),0),0)</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>LimeGreen</Color>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>.00</Value>
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>LimeGreen</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox18</rd:DefaultName>
+          <Top>0.12167in</Top>
+          <Left>8.88in</Left>
+          <Height>0.31667in</Height>
+          <Width>3.05in</Width>
+          <ZIndex>15</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -2990,6 +3137,26 @@
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>DataTable1TableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>DataSet1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="monto">
+          <DataField>monto</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSet1</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\user Dell\Documents\GitHub\SIPA\AplicacionSIPA1\Reportes\DataSetDatosRenglones.xsd</rd:SchemaPath>
+        <rd:TableName>MontoUnidad</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>MontoUnidadTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

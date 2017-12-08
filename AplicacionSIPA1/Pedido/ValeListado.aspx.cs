@@ -462,6 +462,7 @@ namespace AplicacionSIPA1.Pedido
                 if (idEncabezado == 0)
                     throw new Exception("Seleccione un pedido!");
 
+
                 Response.Redirect("ValeIngreso.aspx?No=" + Convert.ToString(idEncabezado));
             }
             catch (Exception ex)

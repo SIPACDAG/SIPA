@@ -1230,7 +1230,7 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                 }
                 else
                 {
-                    ddlAjustes.Enabled = false;
+                  //  ddlAjustes.Enabled = false;
                     //Ajustes ya existentes en función del documento seleccionado
                     pInsumoLN.DdlAjustes(ddlAjustes, idPedido);
                     validarEstadoPedido(idPedido);

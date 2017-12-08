@@ -136,6 +136,8 @@
     <Content Include="Operativa\Seguimiento\VoBoN3.aspx" />
     <Content Include="Operativa\VerListadoMods.aspx" />
     <Content Include="Pac\AdminPac.aspx" />
+    <Content Include="Pac\GuardarMoPac.aspx" />
+    <Content Include="Pac\ModificacionPac.aspx" />
     <Content Include="Pac\NoPlan.aspx" />
     <Content Include="Pedido\Ajustes\AjusteIngreso.aspx" />
     <Content Include="Pedido\Ajustes\NoAjuste.aspx" />
@@ -149,12 +151,13 @@
     <Content Include="Presupuesto\AdminTechos.aspx" />
     <Content Include="Presupuesto\ListadoModTechos.aspx" />
     <Content Include="ReporteriaSistema\cargar.gif" />
+    <Content Include="ReporteriaSistema\EstadosDocumentos.aspx" />
     <Content Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx" />
     <Content Include="ReporteriaSistema\ReportePedidos.aspx" />
     <Content Include="ReporteriaSistema\ReportePedidos2.aspx" />
-    <Content Include="ReporteriaSistema\SaldosPorUnidad.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
+    <Content Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx" />
     <Content Include="ReporteriaSistema\SalidasBusqueda.aspx" />
     <Content Include="Reporteria\SaldosRenglonesPen.aspx" />
     <Content Include="Reportes\frmReporte.aspx" />
@@ -409,6 +412,7 @@
     <Content Include="Reportes\DataSetDatosRenglones.xsc">
       <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
     </Content>
+    <EmbeddedResource Include="Reportes\SaldosRenglonesDet.rdlc" />
     <None Include="Reportes\DataSetDatosRenglones.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -433,6 +437,17 @@
     </None>
     <Content Include="Reporte.xss">
       <DependentUpon>Reporte.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reportes\dsEstados.xsc">
+      <DependentUpon>dsEstados.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\dsEstados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEstados.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\dsEstados.xss">
+      <DependentUpon>dsEstados.xsd</DependentUpon>
     </Content>
     <None Include="Reportes\dsSipa.xsd">
       <SubType>Designer</SubType>
@@ -570,6 +585,37 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pac\GuardarMoPac.aspx.cs">
+      <DependentUpon>GuardarMoPac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pac\GuardarMoPac.aspx.designer.cs">
+      <DependentUpon>GuardarMoPac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pac\ModificacionPac.aspx.cs">
+      <DependentUpon>ModificacionPac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pac\ModificacionPac.aspx.designer.cs">
+      <DependentUpon>ModificacionPac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.cs">
+      <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.designer.cs">
+      <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx.cs">
+      <DependentUpon>SaldosRenglonesDetalles2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx.designer.cs">
+      <DependentUpon>SaldosRenglonesDetalles2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetDatosRenglones.cs">
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DataSetDatosRenglones.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -864,13 +910,6 @@
     <Compile Include="ReporteriaSistema\ReportePedidos2.aspx.designer.cs">
       <DependentUpon>ReportePedidos2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReporteriaSistema\SaldosPorUnidad.aspx.cs">
-      <DependentUpon>SaldosPorUnidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteriaSistema\SaldosPorUnidad.aspx.designer.cs">
-      <DependentUpon>SaldosPorUnidad.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.cs">
       <DependentUpon>SaldosRenglones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -898,6 +937,11 @@
     </Compile>
     <Compile Include="Reporteria\SaldosRenglonesPen.aspx.designer.cs">
       <DependentUpon>SaldosRenglonesPen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\dsEstados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEstados.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DS_ADQUISICIONES.Designer.cs" />
     <Compile Include="Reportes\DS_ADQUISICIONES1.Designer.cs">
@@ -1457,8 +1501,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reportes\dashboard.rdlc" />
+    <EmbeddedResource Include="Reportes\EstadosDocumentos.rdlc" />
     <EmbeddedResource Include="Reportes\Movimientos.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteSaldosAccionesPor.rdlc" />
+    <EmbeddedResource Include="Reportes\rptCOM_FOR_64.rdlc" />
     <EmbeddedResource Include="Reportes\rptGES_FOR_03.rdlc" />
     <EmbeddedResource Include="Reportes\rptMatrizGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
